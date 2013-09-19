@@ -47,7 +47,7 @@
     [client registerHTTPOperationClass:[AFJSONRequestOperation class]];
     [client setDefaultHeader:@"Accept" value:@"application/json"];
     
-    client.defaultSSLPinningMode = AFSSLPinningModeNone;
+    client.defaultSSLPinningMode = AFSSLPinningModeCertificate;
     
     [client getPath:@"newsgroups" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"JSON: %@", responseObject);
