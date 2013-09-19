@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 Haskins. All rights reserved.
 //
 
+#import "ThreadsViewController.h"
 #import "AppDelegate.h"
 
 @implementation AppDelegate
@@ -15,7 +16,19 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
+    
+    
+    ThreadsViewController *threadsViewController = [ThreadsViewController new];
+    threadsViewController.title = @"Threads";
+    
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:threadsViewController];
+    
+    UITabBarController *tabViewController = [UITabBarController new];
+    tabViewController.viewControllers = @[navController];
+    
+    self.window.rootViewController = tabViewController;
     [self.window makeKeyAndVisible];
+    
     return YES;
 }
 
