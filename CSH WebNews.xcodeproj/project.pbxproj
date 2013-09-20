@@ -7,11 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DC0FC95417EBF4EF00945EEC /* WebNewsDataHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0FC95317EBF4EF00945EEC /* WebNewsDataHandler.m */; };
 		DC22B1A517EBAFBC00E328DE /* PDKeychainBindings.m in Sources */ = {isa = PBXBuildFile; fileRef = DC22B1A217EBAFBC00E328DE /* PDKeychainBindings.m */; };
 		DC22B1A617EBAFBC00E328DE /* PDKeychainBindingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC22B1A417EBAFBC00E328DE /* PDKeychainBindingsController.m */; };
 		DC22B1A917EBB00600E328DE /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC22B1A817EBB00600E328DE /* SettingsViewController.m */; };
+		DC22B1AD17EBDFD800E328DE /* ISO8601DateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = DC22B1AC17EBDFD800E328DE /* ISO8601DateFormatter.m */; };
 		DCBE062417E000F1007BBF4C /* UIView+Positioning.m in Sources */ = {isa = PBXBuildFile; fileRef = DCBE062317E000F1007BBF4C /* UIView+Positioning.m */; };
-		DCCAAF2E17EAB01E004B683B /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = DCCAAF2D17EAB01E004B683B /* User.m */; };
 		DCCAB04217EAB3CD004B683B /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCCAB04117EAB3CD004B683B /* CFNetwork.framework */; };
 		DCCAB04417EAB3D3004B683B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCCAB04317EAB3D3004B683B /* SystemConfiguration.framework */; };
 		DCCAB04617EAB3DA004B683B /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCCAB04517EAB3DA004B683B /* CoreData.framework */; };
@@ -52,6 +53,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DC0FC95217EBF4EF00945EEC /* WebNewsDataHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebNewsDataHandler.h; sourceTree = "<group>"; };
+		DC0FC95317EBF4EF00945EEC /* WebNewsDataHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebNewsDataHandler.m; sourceTree = "<group>"; };
 		DC22B1A117EBAFBC00E328DE /* PDKeychainBindings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDKeychainBindings.h; sourceTree = "<group>"; };
 		DC22B1A217EBAFBC00E328DE /* PDKeychainBindings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDKeychainBindings.m; sourceTree = "<group>"; };
 		DC22B1A317EBAFBC00E328DE /* PDKeychainBindingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDKeychainBindingsController.h; sourceTree = "<group>"; };
@@ -59,10 +62,10 @@
 		DC22B1A717EBB00600E328DE /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		DC22B1A817EBB00600E328DE /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		DC22B1AA17EBB82100E328DE /* CSH WebNews.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "CSH WebNews.entitlements"; sourceTree = "<group>"; };
+		DC22B1AB17EBDFD800E328DE /* ISO8601DateFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISO8601DateFormatter.h; sourceTree = "<group>"; };
+		DC22B1AC17EBDFD800E328DE /* ISO8601DateFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISO8601DateFormatter.m; sourceTree = "<group>"; };
 		DCBE062217E000F1007BBF4C /* UIView+Positioning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Positioning.h"; sourceTree = "<group>"; };
 		DCBE062317E000F1007BBF4C /* UIView+Positioning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Positioning.m"; sourceTree = "<group>"; };
-		DCCAAF2C17EAB01E004B683B /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
-		DCCAAF2D17EAB01E004B683B /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		DCCAB04117EAB3CD004B683B /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		DCCAB04317EAB3D3004B683B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		DCCAB04517EAB3DA004B683B /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -218,8 +221,8 @@
 				DC22B1A817EBB00600E328DE /* SettingsViewController.m */,
 				DCF26E0717CD62830073DA19 /* ThreadsViewController.h */,
 				DCF26E0817CD62830073DA19 /* ThreadsViewController.m */,
-				DCCAAF2C17EAB01E004B683B /* User.h */,
-				DCCAAF2D17EAB01E004B683B /* User.m */,
+				DC0FC95217EBF4EF00945EEC /* WebNewsDataHandler.h */,
+				DC0FC95317EBF4EF00945EEC /* WebNewsDataHandler.m */,
 				DCF26DEA17CD617C0073DA19 /* Images.xcassets */,
 				DCF26DDF17CD617C0073DA19 /* Supporting Files */,
 			);
@@ -229,6 +232,8 @@
 		DCF26DDF17CD617C0073DA19 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				DC22B1AB17EBDFD800E328DE /* ISO8601DateFormatter.h */,
+				DC22B1AC17EBDFD800E328DE /* ISO8601DateFormatter.m */,
 				DC22B1A017EBAFBC00E328DE /* PDKeychainBindingsController */,
 				DCCAB06817EAB81C004B683B /* AFNetworking */,
 				DCBE062217E000F1007BBF4C /* UIView+Positioning.h */,
@@ -362,7 +367,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				DCCAB07E17EAB81C004B683B /* AFImageRequestOperation.m in Sources */,
-				DCCAAF2E17EAB01E004B683B /* User.m in Sources */,
 				DCF26DE917CD617C0073DA19 /* AppDelegate.m in Sources */,
 				DC22B1A517EBAFBC00E328DE /* PDKeychainBindings.m in Sources */,
 				DCCAB08317EAB81C004B683B /* AFXMLRequestOperation.m in Sources */,
@@ -370,10 +374,12 @@
 				DCCAB08417EAB81C004B683B /* UIImageView+AFNetworking.m in Sources */,
 				DCCAB08217EAB81C004B683B /* AFURLConnectionOperation.m in Sources */,
 				DCCAB08017EAB81C004B683B /* AFNetworkActivityIndicatorManager.m in Sources */,
+				DC0FC95417EBF4EF00945EEC /* WebNewsDataHandler.m in Sources */,
 				DC22B1A917EBB00600E328DE /* SettingsViewController.m in Sources */,
 				DCBE062417E000F1007BBF4C /* UIView+Positioning.m in Sources */,
 				DCCAB07F17EAB81C004B683B /* AFJSONRequestOperation.m in Sources */,
 				DC22B1A617EBAFBC00E328DE /* PDKeychainBindingsController.m in Sources */,
+				DC22B1AD17EBDFD800E328DE /* ISO8601DateFormatter.m in Sources */,
 				DCF26DE517CD617C0073DA19 /* main.m in Sources */,
 				DCCAB08117EAB81C004B683B /* AFPropertyListRequestOperation.m in Sources */,
 				DCCAB07C17EAB81C004B683B /* AFHTTPClient.m in Sources */,
@@ -496,6 +502,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CSH WebNews/CSH WebNews-Prefix.pch";
 				INFOPLIST_FILE = "CSH WebNews/CSH WebNews-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -510,6 +517,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CSH WebNews/CSH WebNews-Prefix.pch";
 				INFOPLIST_FILE = "CSH WebNews/CSH WebNews-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
