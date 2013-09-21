@@ -6,30 +6,47 @@
 //  Copyright (c) 2013 Haskins. All rights reserved.
 //
 
-#import "ThreadsViewController.h"
+#import "ActivityViewController.h"
+#import "NewsgroupsViewController.h"
+#import "APIKeyViewController.h"
 #import "AppDelegate.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
+//    [[PDKeychainBindings sharedKeychainBindings] setObject:@"NULL_API_KEY" forKey:kApiKeyKey];
+    NSString *apiKey = [[PDKeychainBindings sharedKeychainBindings] objectForKey:kApiKeyKey];
+    if (!apiKey || [apiKey isEqualToString:@"NULL_API_KEY"]) {
+        APIKeyViewController *apiKeyViewController = [[APIKeyViewController alloc] init];
+        self.window.rootViewController = apiKeyViewController;
+    }
+    else {
+        self.window.rootViewController = [[self class] viewController];
+    }
     
-    
-    ThreadsViewController *threadsViewController = [ThreadsViewController new];
-    threadsViewController.title = @"Threads";
-    
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:threadsViewController];
-    
-    UITabBarController *tabViewController = [UITabBarController new];
-    tabViewController.viewControllers = @[navController];
-    
-    self.window.rootViewController = tabViewController;
     [self.window makeKeyAndVisible];
     
     return YES;
+}
+
++ (UIViewController*) viewController {
+    
+    NewsgroupsViewController *newsGroupsViewController = [NewsgroupsViewController new];
+    ActivityViewController *activityViewController = [ActivityViewController new];
+    
+    UINavigationController *newsGroupNavController = [[UINavigationController alloc] initWithRootViewController:newsGroupsViewController];
+    
+    UINavigationController *activityNavController = [[UINavigationController alloc] initWithRootViewController:activityViewController];
+    
+    UITabBarController *tabViewController = [UITabBarController new];
+    tabViewController.viewControllers = @[activityNavController, newsGroupNavController];
+    
+    return tabViewController;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

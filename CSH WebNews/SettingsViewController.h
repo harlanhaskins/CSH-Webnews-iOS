@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WebNewsDataHandler.h"
 
-@interface SettingsViewController : UITableViewController
+@interface SettingsViewController : UIViewController
 
 @end

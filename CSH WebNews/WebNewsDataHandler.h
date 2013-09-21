@@ -7,10 +7,19 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ISO8601DateFormatter.h"
 
-@interface WebNewsDataHandler : NSObject
+@protocol WebNewsDataHandlerProtocol <NSObject>
+
+@property NSString *title;
+@property (strong, nonatomic) NSArray *data;
+@property (strong, nonatomic) UIView *view;
+
+@end
+
+@interface WebNewsDataHandler : NSObject <UIAlertViewDelegate>
 
 @property (strong, nonatomic) NSString *baseURL;
-- (NSArray*) webNewsDataForPath:(NSString*)path;
+- (NSArray*) webNewsDataForViewController:(id<WebNewsDataHandlerProtocol>)viewController;
 + (instancetype) sharedHandler;
 @end

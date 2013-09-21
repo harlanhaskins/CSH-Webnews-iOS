@@ -7,8 +7,11 @@
 //
 
 #import "WebNewsDataHandler.h"
+#import "BoardViewController.h"
 
-@implementation WebNewsDataHandler
+@implementation WebNewsDataHandler {
+    NSString *apiKey;
+}
 
 @synthesize baseURL;
 
@@ -30,9 +33,13 @@
 }
 
 
-- (NSArray*) webNewsDataForPath:(NSString*)path {
-    NSString *apiKey = [[PDKeychainBindings sharedKeychainBindings] objectForKey:@"api_key"];
-    NSDictionary *parameters = @{@"api_key":apiKey, @"api_agent":@"iOS"};
+- (NSArray*) webNewsDataForViewController:(id<WebNewsDataHandlerProtocol>)viewController {
+    
+    if (!apiKey) {
+        apiKey = [[PDKeychainBindings sharedKeychainBindings] objectForKey:kApiKeyKey];
+    }
+    
+    NSDictionary *parameters = @{kApiKeyKey:apiKey, @"api_agent":@"iOS"};
     
     AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:baseURL]];
     [client registerHTTPOperationClass:[AFJSONRequestOperation class]];
@@ -41,16 +48,27 @@
     client.defaultSSLPinningMode = AFSSLPinningModeNone;
     
     __block NSArray *threads;
+    __block NSError *blockError;
     
+    NSString *path = viewController.title.lowercaseString;
+    
+    if ([viewController respondsToSelector:@selector(pathString)]) {
+        path = [viewController performSelector:@selector(pathString)];
+    }
     [client getPath:path parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         threads = responseObject[path];
-        NSLog(@"%@", threads);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        blockError = error;
         NSLog(@"Error: %@", error);
     }];
-    while (!threads) {
+    NSDate *currentDate = [NSDate date];
+    while ((!threads && !blockError)) {
+        if ([[NSDate date] timeIntervalSinceDate:currentDate] >= 15) {
+            return nil;
+        }
         [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.01]];
     }
+    NSLog(@"%@", threads);
     return threads;
 }
 
