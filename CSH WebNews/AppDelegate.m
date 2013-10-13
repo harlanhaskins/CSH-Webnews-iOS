@@ -19,15 +19,9 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
-//    [[PDKeychainBindings sharedKeychainBindings] setObject:@"NULL_API_KEY" forKey:kApiKeyKey];
-    NSString *apiKey = [[PDKeychainBindings sharedKeychainBindings] objectForKey:kApiKeyKey];
-    if (!apiKey || [apiKey isEqualToString:@"NULL_API_KEY"]) {
-        APIKeyViewController *apiKeyViewController = [[APIKeyViewController alloc] init];
-        self.window.rootViewController = apiKeyViewController;
-    }
-    else {
-        self.window.rootViewController = [[self class] viewController];
-    }
+    self.window.rootViewController = [[self class] viewController];
+    
+    [[PDKeychainBindings sharedKeychainBindings] setObject:@"NULL_API_KEY" forKey:kApiKeyKey];
     
     [self.window makeKeyAndVisible];
     

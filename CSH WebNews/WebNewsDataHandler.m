@@ -9,9 +9,7 @@
 #import "WebNewsDataHandler.h"
 #import "BoardViewController.h"
 
-@implementation WebNewsDataHandler {
-    NSString *apiKey;
-}
+@implementation WebNewsDataHandler
 
 @synthesize baseURL;
 
@@ -35,9 +33,7 @@
 
 - (NSArray*) webNewsDataForViewController:(id<WebNewsDataHandlerProtocol>)viewController {
     
-    if (!apiKey) {
-        apiKey = [[PDKeychainBindings sharedKeychainBindings] objectForKey:kApiKeyKey];
-    }
+    NSString *apiKey = [[PDKeychainBindings sharedKeychainBindings] objectForKey:kApiKeyKey];
     
     NSDictionary *parameters = @{kApiKeyKey:apiKey, @"api_agent":@"iOS"};
     
@@ -47,7 +43,7 @@
     [client setAllowsInvalidSSLCertificate:YES];
     client.defaultSSLPinningMode = AFSSLPinningModeNone;
     
-    __block NSArray *threads;
+    __block NSArray *data;
     __block NSError *blockError;
     
     NSString *path = viewController.title.lowercaseString;
@@ -56,20 +52,20 @@
         path = [viewController performSelector:@selector(pathString)];
     }
     [client getPath:path parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        threads = responseObject[path];
+        data = responseObject[path];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         blockError = error;
         NSLog(@"Error: %@", error);
     }];
     NSDate *currentDate = [NSDate date];
-    while ((!threads && !blockError)) {
+    while ((!data && !blockError)) {
         if ([[NSDate date] timeIntervalSinceDate:currentDate] >= 15) {
             return nil;
         }
         [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.01]];
     }
-    NSLog(@"%@", threads);
-    return threads;
+    NSLog(@"Loaded Data.");
+    return data;
 }
 
 @end

@@ -75,20 +75,20 @@
 }
 
 - (BOOL) textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
-    if (textField.text.length + string.length == 16 && ![string isEqualToString:@""]) {
+    NSUInteger newLength = [textField.text length] + [string length] - range.length;
+    if (newLength == 16 || textField.text.length == 16) {
         doneButton.enabled = YES;
-        return YES;
     }
-    doneButton.enabled = NO;
-    return YES;
+    else {
+        doneButton.enabled = NO;
+    }
+    return (newLength <= 16);
 }
 
 - (void) submitAPIKey {
     [[PDKeychainBindings sharedKeychainBindings] setObject:keyTextField.text forKey:kApiKeyKey];
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    NSLog(@"Loading data...");
     data = [[WebNewsDataHandler sharedHandler] webNewsDataForViewController:self];
-    NSLog(@"Data loaded.");
     [MBProgressHUD hideHUDForView:self.view animated:YES];
     
     if (!data) {
@@ -96,7 +96,9 @@
         descriptionLabel.textColor = [UIColor redColor];
     }
     else {
-        [self presentViewController:[AppDelegate viewController] animated:YES completion:nil];
+        [self dismissViewControllerAnimated:YES completion:^{
+            [self.delegate loadData];
+        }];
     }
 }
 

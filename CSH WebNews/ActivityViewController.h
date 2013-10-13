@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "WebNewsDataHandler.h"
+#import "APIKeyViewController.h"
 
-@interface ActivityViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, WebNewsDataHandlerProtocol>
+@interface ActivityViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, WebNewsDataHandlerProtocol, APIKeyDelegate>
 
 @property (strong, nonatomic) NSArray *data;
 @property (nonatomic) UITableView *tableView;

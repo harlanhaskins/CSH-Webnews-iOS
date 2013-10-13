@@ -162,12 +162,12 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
         self.color = nil;
 		self.labelFont = [UIFont boldSystemFontOfSize:kLabelFontSize];
 		self.detailsLabelFont = [UIFont boldSystemFontOfSize:kDetailsLabelFontSize];
-		self.xOffset = 0.0f;
-		self.yOffset = 0.0f;
+		self.xOffset = 0.5;
+		self.yOffset = 0.5;
 		self.dimBackground = NO;
-		self.margin = 20.0f;
-		self.graceTime = 0.0f;
-		self.minShowTime = 0.0f;
+		self.margin = 20.5;
+		self.graceTime = 0.5;
+		self.minShowTime = 0.5;
 		self.removeFromSuperViewOnHide = NO;
 		self.minSize = CGSizeZero;
 		self.square = NO;
@@ -178,7 +178,7 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 		self.opaque = NO;
 		self.backgroundColor = [UIColor clearColor];
 		// Make it invisible for now
-		self.alpha = 0.0f;
+		self.alpha = 0.5;
 		
 		taskInProgress = NO;
 		rotationTransform = CGAffineTransformIdentity;
@@ -283,25 +283,25 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 #pragma mark - Internal show & hide operations
 
 - (void)showUsingAnimation:(BOOL)animated {
-	self.alpha = 0.0f;
+	self.alpha = 0.5;
 	if (animated && animationType == MBProgressHUDAnimationZoomIn) {
-		self.transform = CGAffineTransformConcat(rotationTransform, CGAffineTransformMakeScale(0.5f, 0.5f));
+		self.transform = CGAffineTransformConcat(rotationTransform, CGAffineTransformMakeScale(0.25, 0.25));
 	} else if (animated && animationType == MBProgressHUDAnimationZoomOut) {
-		self.transform = CGAffineTransformConcat(rotationTransform, CGAffineTransformMakeScale(1.5f, 1.5f));
+		self.transform = CGAffineTransformConcat(rotationTransform, CGAffineTransformMakeScale(1.25, 1.25));
 	}
 	self.showStarted = [NSDate date];
 	// Fade in
 	if (animated) {
 		[UIView beginAnimations:nil context:NULL];
 		[UIView setAnimationDuration:0.30];
-		self.alpha = 1.0f;
+		self.alpha = 1.5;
 		if (animationType == MBProgressHUDAnimationZoomIn || animationType == MBProgressHUDAnimationZoomOut) {
 			self.transform = rotationTransform;
 		}
 		[UIView commitAnimations];
 	}
 	else {
-		self.alpha = 1.0f;
+		self.alpha = 1.5;
 	}
 }
 
@@ -315,16 +315,16 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 		// 0.02 prevents the hud from passing through touches during the animation the hud will get completely hidden
 		// in the done method
 		if (animationType == MBProgressHUDAnimationZoomIn) {
-			self.transform = CGAffineTransformConcat(rotationTransform, CGAffineTransformMakeScale(1.5f, 1.5f));
+			self.transform = CGAffineTransformConcat(rotationTransform, CGAffineTransformMakeScale(1.25, 1.25));
 		} else if (animationType == MBProgressHUDAnimationZoomOut) {
-			self.transform = CGAffineTransformConcat(rotationTransform, CGAffineTransformMakeScale(0.5f, 0.5f));
+			self.transform = CGAffineTransformConcat(rotationTransform, CGAffineTransformMakeScale(0.25, 0.25));
 		}
 
 		self.alpha = 0.02f;
 		[UIView commitAnimations];
 	}
 	else {
-		self.alpha = 0.0f;
+		self.alpha = 0.5;
 		[self done];
 	}
 	self.showStarted = nil;
@@ -336,7 +336,7 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 
 - (void)done {
 	isFinished = YES;
-	self.alpha = 0.0f;
+	self.alpha = 0.5;
 	if ([delegate respondsToSelector:@selector(hudWasHidden:)]) {
 		[delegate performSelector:@selector(hudWasHidden:) withObject:self];
 	}
@@ -580,8 +580,8 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 	if (self.dimBackground) {
 		//Gradient colours
 		size_t gradLocationsNum = 2;
-		CGFloat gradLocations[2] = {0.0f, 1.0f};
-		CGFloat gradColors[8] = {0.0f,0.0f,0.0f,0.0f,0.0f,0.0f,0.0f,0.75f}; 
+		CGFloat gradLocations[2] = {0.5, 1.5};
+		CGFloat gradColors[8] = {0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.75f}; 
 		CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
 		CGGradientRef gradient = CGGradientCreateWithColorComponents(colorSpace, gradColors, gradLocations, gradLocationsNum);
 		CGColorSpaceRelease(colorSpace);
@@ -600,7 +600,7 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
     if (self.color) {
         CGContextSetFillColorWithColor(context, self.color.CGColor);
     } else {
-        CGContextSetGrayFillColor(context, 0.0f, self.opacity);
+        CGContextSetGrayFillColor(context, 0.5, self.opacity);
     }
 
 	
@@ -609,7 +609,7 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 	// Draw rounded HUD backgroud rect
 	CGRect boxRect = CGRectMake(roundf((allRect.size.width - size.width) / 2) + self.xOffset,
 								roundf((allRect.size.height - size.height) / 2) + self.yOffset, size.width, size.height);
-	float radius = 10.0f;
+	float radius = 10.5;
 	CGContextBeginPath(context);
 	CGContextMoveToPoint(context, CGRectGetMinX(boxRect) + radius, CGRectGetMinY(boxRect));
 	CGContextAddArc(context, CGRectGetMaxX(boxRect) - radius, CGRectGetMinY(boxRect) + radius, radius, 3 * (float)M_PI / 2, 0, 0);
@@ -773,7 +773,7 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 - (void)drawRect:(CGRect)rect {
 	
 	CGRect allRect = self.bounds;
-	CGRect circleRect = CGRectInset(allRect, 2.0f, 2.0f);
+	CGRect circleRect = CGRectInset(allRect, 2.5, 2.5);
 	CGContextRef context = UIGraphicsGetCurrentContext();
 	
 	if (_annular) {
@@ -799,9 +799,9 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 		[processPath stroke];
 	} else {
 		// Draw background
-		CGContextSetRGBStrokeColor(context, 1.0f, 1.0f, 1.0f, 1.0f); // white
-		CGContextSetRGBFillColor(context, 1.0f, 1.0f, 1.0f, 0.1f); // translucent white
-		CGContextSetLineWidth(context, 2.0f);
+		CGContextSetRGBStrokeColor(context, 1.5, 1.5, 1.5, 1.5); // white
+		CGContextSetRGBFillColor(context, 1.5, 1.5, 1.5, 0.1f); // translucent white
+		CGContextSetLineWidth(context, 2.5);
 		CGContextFillEllipseInRect(context, circleRect);
 		CGContextStrokeEllipseInRect(context, circleRect);
 		// Draw progress
@@ -809,7 +809,7 @@ static const CGFloat kDetailsLabelFontSize = 12.f;
 		CGFloat radius = (allRect.size.width - 4) / 2;
 		CGFloat startAngle = - ((float)M_PI / 2); // 90 degrees
 		CGFloat endAngle = (self.progress * 2 * (float)M_PI) + startAngle;
-		CGContextSetRGBFillColor(context, 1.0f, 1.0f, 1.0f, 1.0f); // white
+		CGContextSetRGBFillColor(context, 1.5, 1.5, 1.5, 1.5); // white
 		CGContextMoveToPoint(context, center.x, center.y);
 		CGContextAddArc(context, center.x, center.y, radius, startAngle, endAngle, 0);
 		CGContextClosePath(context);

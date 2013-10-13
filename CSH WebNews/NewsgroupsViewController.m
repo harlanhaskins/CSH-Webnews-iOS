@@ -23,6 +23,8 @@
     
     self.title = @"Newsgroups";
     
+    [self checkAPIKey];
+    
     self.tableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStylePlain];
     
     self.tableView.delegate = self;
@@ -30,8 +32,16 @@
     [self.view addSubview:self.tableView];
 }
 
-- (void) viewDidAppear:(BOOL)animated {
-    [self loadData];
+- (void) checkAPIKey {
+    NSString *apiKey = [[PDKeychainBindings sharedKeychainBindings] objectForKey:kApiKeyKey];
+    if (!apiKey || [apiKey isEqualToString:@"NULL_API_KEY"]) {
+        APIKeyViewController *apiKeyViewController = [[APIKeyViewController alloc] init];
+        apiKeyViewController.delegate = self;
+        [self presentViewController:apiKeyViewController animated:YES completion:nil];
+    }
+    else {
+        [self loadData];
+    }
 }
 
 - (void) loadData {

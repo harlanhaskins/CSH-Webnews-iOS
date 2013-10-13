@@ -25,8 +25,21 @@
     return self;
 }
 
-- (void) viewDidAppear:(BOOL)animated {
-    [self loadData];
+- (void) viewDidLoad:(BOOL)animated {
+    [super viewDidLoad];
+    [self checkAPIKey];
+}
+
+- (void) checkAPIKey {
+    NSString *apiKey = [[PDKeychainBindings sharedKeychainBindings] objectForKey:kApiKeyKey];
+    if (!apiKey || [apiKey isEqualToString:@"NULL_API_KEY"]) {
+        APIKeyViewController *apiKeyViewController = [[APIKeyViewController alloc] init];
+        apiKeyViewController.delegate = self;
+        [self presentViewController:apiKeyViewController animated:YES completion:nil];
+    }
+    else {
+        [self loadData];
+    }
 }
 
 - (void) loadData {

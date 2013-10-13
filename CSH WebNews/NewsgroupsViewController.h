@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "WebNewsDataHandler.h"
+#import "APIKeyViewController.h"
 
-@interface NewsgroupsViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, WebNewsDataHandlerProtocol>
+@interface NewsgroupsViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, WebNewsDataHandlerProtocol, APIKeyDelegate>
 
 @property (strong, nonatomic) NSArray *data;
 @property (nonatomic) UITableView *tableView;
