@@ -90,7 +90,6 @@
         cell.userInteractionEnabled = [data[indexPath.row - 1][@"children"] count] > 0;
     }
     
-    
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"h:mm a"];
     NSDate *postDate = [[[ISO8601DateFormatter alloc] init] dateFromString:post[@"date"]];
@@ -110,10 +109,19 @@
         else if ([class isEqualToString:@"mine_reply"]) {
             cell.textLabel.textColor = [UIColor magentaColor];
         }
+        else {
+            cell.textLabel.textColor = [UIColor blackColor];
+        }
+    }
+    
+    if (cell.userInteractionEnabled) {
+        cell.accessory = UITableViewCellAccessoryDisclosureIndicator;
     }
     
     cell.textLabel.text = post[@"subject"];
     cell.detailTextLabel.text = [NSString stringWithFormat:@"by %@ at %@ on %@", post[@"author_name"], timeString, dateString];
+    
+    cell.detailTextLabel.textColor = [UIColor blackColor];
     
     if (indexPath.row > 0) {
         cell.textLabel.x += 5.0;
