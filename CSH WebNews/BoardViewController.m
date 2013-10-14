@@ -97,6 +97,13 @@
         else if ([class isEqualToString:@"mine_reply"]) {
             cell.textLabel.textColor = [UIColor magentaColor];
         }
+        else {
+            cell.textLabel.textColor = [UIColor blackColor];
+        }
+    }
+    
+    if (cell.userInteractionEnabled) {
+        cell.accessory = UITableViewCellAccessoryDisclosureIndicator;
     }
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
