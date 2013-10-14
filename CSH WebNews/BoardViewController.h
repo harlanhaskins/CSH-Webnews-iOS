@@ -16,6 +16,7 @@
 @property (nonatomic) UITableView *tableView;
 
 @property (strong, nonatomic) NSString *pathString;
+@property (strong, nonatomic) NSDictionary *specialParameters;
 @property (nonatomic) NSDate *lastUpdated;
 
 - (id)initWithTitle:(NSString*)title;

@@ -19,5 +19,6 @@
     #import "AFNetworking.h"
     #import "PDKeychainBindingsController.h"
     #import "MBProgressHUD.h"
+    #import "NSDictionary+Merge.h"
     #define kApiKeyKey @"api_key"
 #endif

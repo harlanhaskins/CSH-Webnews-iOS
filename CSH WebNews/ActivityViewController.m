@@ -7,7 +7,7 @@
 //
 #import "ISO8601DateFormatter.h"
 #import "ActivityViewController.h"
-#import "PostViewController.h"
+#import "ThreadViewController.h"
 
 @implementation ActivityViewController
 @synthesize data;
@@ -43,7 +43,8 @@
     if (!_lastUpdated || [[NSDate date] timeIntervalSinceDate:_lastUpdated] > 5*60) {
         _lastUpdated = [NSDate date];
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        data = [[WebNewsDataHandler sharedHandler] webNewsDataForViewController:self];
+        NSDictionary *webNewsDictionary = [[WebNewsDataHandler sharedHandler] webNewsDataForViewController:self];
+        data = webNewsDictionary[self.title.lowercaseString];
         [self.tableView reloadData];
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         if (!data) {
@@ -78,9 +79,10 @@
 }
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     NSString *number = data[indexPath.row][@"newest_post"][@"number"];
     NSString *pathString = data[indexPath.row][@"thread_parent"][@"newsgroup"];
-    PostViewController *postViewController = [[PostViewController alloc] init];
+    ThreadViewController *postViewController = [[ThreadViewController alloc] init];
     postViewController.pathString = [pathString stringByAppendingString:[NSString stringWithFormat:@"/%@", number]];
     [self.navigationController pushViewController:postViewController animated:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];

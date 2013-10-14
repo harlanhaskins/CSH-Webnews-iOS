@@ -48,7 +48,8 @@
     if (!_lastUpdated || [[NSDate date] timeIntervalSinceDate:_lastUpdated] > 5*60) {
         _lastUpdated = [NSDate date];
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        data = [[WebNewsDataHandler sharedHandler] webNewsDataForViewController:self];
+        NSDictionary *webNewsDictionary = [[WebNewsDataHandler sharedHandler] webNewsDataForViewController:self];
+        data = webNewsDictionary[self.title.lowercaseString];
         [self.tableView reloadData];
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         if (!data) {
@@ -78,6 +79,20 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
     }
     NSDictionary *newsgroup = data[indexPath.row];
+    NSString *unreadClass = newsgroup[@"unread_class"];
+    
+    if (![unreadClass isKindOfClass:[NSNull class]]) {
+        if ([unreadClass isEqualToString:@"mine_in_thread"]) {
+            cell.textLabel.textColor = [UIColor purpleColor];
+        }
+        else if ([unreadClass isEqualToString:@"mine_reply"]) {
+            cell.textLabel.textColor = [UIColor magentaColor];
+        }
+        else if ([unreadClass isEqualToString:@"mine"]) {
+            cell.textLabel.textColor = [UIColor greenColor];
+        }
+    }
+    
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"h:mm a"];
     NSDate *postDate = [[[ISO8601DateFormatter alloc] init] dateFromString:newsgroup[@"newest_date"]];
@@ -86,8 +101,8 @@
     NSString *dateString = [dateFormatter stringFromDate:postDate];
     NSInteger unreadCount = [newsgroup[@"unread_count"] integerValue];
     NSString *unread = unreadCount ? [NSString stringWithFormat:@" (%d)", unreadCount] : @"";
-    cell.textLabel.text = [NSString stringWithFormat:@"%@%@", data[indexPath.row][@"name"], unread];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"Last Post - %@ on %@.", timeString, dateString];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@%@", newsgroup[@"name"], unread];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"Last Post - %@ on %@", timeString, dateString];
     cell.textLabel.numberOfLines = 2;
     
     return cell;
@@ -95,8 +110,8 @@
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    BoardViewController *boardVC = [[BoardViewController alloc] initWithTitle:cell.textLabel.text];
+    NSDictionary *board = data[indexPath.row];
+    BoardViewController *boardVC = [[BoardViewController alloc] initWithTitle:board[@"name"]];
     [self.navigationController pushViewController:boardVC animated:YES];
 }
 

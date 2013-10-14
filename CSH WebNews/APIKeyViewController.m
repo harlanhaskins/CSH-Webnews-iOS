@@ -88,7 +88,7 @@
 - (void) submitAPIKey {
     [[PDKeychainBindings sharedKeychainBindings] setObject:keyTextField.text forKey:kApiKeyKey];
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    data = [[WebNewsDataHandler sharedHandler] webNewsDataForViewController:self];
+    data = [[WebNewsDataHandler sharedHandler] webNewsDataForViewController:self][self.title];
     [MBProgressHUD hideHUDForView:self.view animated:YES];
     
     if (!data) {

@@ -10,11 +10,14 @@
 #import "WebNewsDataHandler.h"
 #import "APIKeyViewController.h"
 
-@interface PostViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, WebNewsDataHandlerProtocol, APIKeyDelegate>
+@interface ThreadViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, WebNewsDataHandlerProtocol, APIKeyDelegate>
 
+@property (strong, nonatomic) NSDictionary *parentPost;
 @property (strong, nonatomic) NSArray *data;
 @property (nonatomic) UITableView *tableView;
 @property (nonatomic) NSString *pathString;
 @property (nonatomic) NSString *number;
 @property (nonatomic) NSDate *lastUpdated;
+
+- (instancetype) initWithParentPost:(NSDictionary*) parentPost;
 @end

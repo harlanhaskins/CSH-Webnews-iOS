@@ -31,11 +31,15 @@
 }
 
 
-- (NSArray*) webNewsDataForViewController:(id<WebNewsDataHandlerProtocol>)viewController {
+- (NSDictionary*) webNewsDataForViewController:(id<WebNewsDataHandlerProtocol>)viewController {
     
     NSString *apiKey = [[PDKeychainBindings sharedKeychainBindings] objectForKey:kApiKeyKey];
     
     NSDictionary *parameters = @{kApiKeyKey:apiKey, @"api_agent":@"iOS"};
+    
+    if ([viewController respondsToSelector:@selector(specialParameters)]) {
+        parameters = [parameters dictionaryByMergingWith:[viewController performSelector:@selector(specialParameters)]];
+    }
     
     AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:baseURL]];
     [client registerHTTPOperationClass:[AFJSONRequestOperation class]];
@@ -43,16 +47,20 @@
     [client setAllowsInvalidSSLCertificate:YES];
     client.defaultSSLPinningMode = AFSSLPinningModeNone;
     
-    __block NSArray *data;
+    __block NSDictionary *data;
     __block NSError *blockError;
     
-    NSString *path = viewController.title.lowercaseString;
+    NSString *path;
     
     if ([viewController respondsToSelector:@selector(pathString)]) {
         path = [viewController performSelector:@selector(pathString)];
     }
+    else {
+        path = viewController.title.lowercaseString;
+    }
+    
     [client getPath:path parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        data = responseObject[path];
+        data = responseObject;
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         blockError = error;
         NSLog(@"Error: %@", error);
@@ -64,7 +72,7 @@
         }
         [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.01]];
     }
-    NSLog(@"Loaded Data.");
+//    NSLog(@"Loaded Data: %@", data);
     return data;
 }
 

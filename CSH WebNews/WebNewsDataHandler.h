@@ -20,6 +20,6 @@
 @interface WebNewsDataHandler : NSObject <UIAlertViewDelegate>
 
 @property (strong, nonatomic) NSString *baseURL;
-- (NSArray*) webNewsDataForViewController:(id<WebNewsDataHandlerProtocol>)viewController;
+- (NSDictionary*) webNewsDataForViewController:(id<WebNewsDataHandlerProtocol>)viewController;
 + (instancetype) sharedHandler;
 @end
