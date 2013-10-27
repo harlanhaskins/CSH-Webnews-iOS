@@ -12,11 +12,12 @@
 		DC0FC95D17EC17C100945EEC /* BoardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0FC95C17EC17C100945EEC /* BoardViewController.m */; };
 		DC0FC96117EC1A4200945EEC /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0FC96017EC1A4200945EEC /* MBProgressHUD.m */; };
 		DC0FC96417EC230700945EEC /* APIKeyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0FC96317EC230700945EEC /* APIKeyViewController.m */; };
-		DC0FC96717ECEF2500945EEC /* ThreadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0FC96617ECEF2500945EEC /* ThreadViewController.m */; };
+		DC0FC96717ECEF2500945EEC /* ThreadsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0FC96617ECEF2500945EEC /* ThreadsViewController.m */; };
 		DC22B1A517EBAFBC00E328DE /* PDKeychainBindings.m in Sources */ = {isa = PBXBuildFile; fileRef = DC22B1A217EBAFBC00E328DE /* PDKeychainBindings.m */; };
 		DC22B1A617EBAFBC00E328DE /* PDKeychainBindingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC22B1A417EBAFBC00E328DE /* PDKeychainBindingsController.m */; };
 		DC22B1A917EBB00600E328DE /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC22B1A817EBB00600E328DE /* SettingsViewController.m */; };
 		DC22B1AD17EBDFD800E328DE /* ISO8601DateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = DC22B1AC17EBDFD800E328DE /* ISO8601DateFormatter.m */; };
+		DC4E776D180DA431008A20D6 /* ThreadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC4E776C180DA431008A20D6 /* ThreadViewController.m */; };
 		DC9D24A2180BB2B10034E02B /* NSDictionary+Merge.m in Sources */ = {isa = PBXBuildFile; fileRef = DC9D24A1180BB2B10034E02B /* NSDictionary+Merge.m */; };
 		DCBE062417E000F1007BBF4C /* UIView+Positioning.m in Sources */ = {isa = PBXBuildFile; fileRef = DCBE062317E000F1007BBF4C /* UIView+Positioning.m */; };
 		DCCAB04217EAB3CD004B683B /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCCAB04117EAB3CD004B683B /* CFNetwork.framework */; };
@@ -69,8 +70,8 @@
 		DC0FC96017EC1A4200945EEC /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		DC0FC96217EC230700945EEC /* APIKeyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIKeyViewController.h; sourceTree = "<group>"; };
 		DC0FC96317EC230700945EEC /* APIKeyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIKeyViewController.m; sourceTree = "<group>"; };
-		DC0FC96517ECEF2500945EEC /* ThreadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreadViewController.h; sourceTree = "<group>"; };
-		DC0FC96617ECEF2500945EEC /* ThreadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThreadViewController.m; sourceTree = "<group>"; };
+		DC0FC96517ECEF2500945EEC /* ThreadsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreadsViewController.h; sourceTree = "<group>"; };
+		DC0FC96617ECEF2500945EEC /* ThreadsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThreadsViewController.m; sourceTree = "<group>"; };
 		DC22B1A117EBAFBC00E328DE /* PDKeychainBindings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDKeychainBindings.h; sourceTree = "<group>"; };
 		DC22B1A217EBAFBC00E328DE /* PDKeychainBindings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDKeychainBindings.m; sourceTree = "<group>"; };
 		DC22B1A317EBAFBC00E328DE /* PDKeychainBindingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDKeychainBindingsController.h; sourceTree = "<group>"; };
@@ -80,6 +81,8 @@
 		DC22B1AA17EBB82100E328DE /* CSH WebNews.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "CSH WebNews.entitlements"; sourceTree = "<group>"; };
 		DC22B1AB17EBDFD800E328DE /* ISO8601DateFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISO8601DateFormatter.h; sourceTree = "<group>"; };
 		DC22B1AC17EBDFD800E328DE /* ISO8601DateFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISO8601DateFormatter.m; sourceTree = "<group>"; };
+		DC4E776B180DA431008A20D6 /* ThreadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreadViewController.h; sourceTree = "<group>"; };
+		DC4E776C180DA431008A20D6 /* ThreadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThreadViewController.m; sourceTree = "<group>"; };
 		DC9D24A0180BB2B10034E02B /* NSDictionary+Merge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Merge.h"; sourceTree = "<group>"; };
 		DC9D24A1180BB2B10034E02B /* NSDictionary+Merge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Merge.m"; sourceTree = "<group>"; };
 		DCBE062217E000F1007BBF4C /* UIView+Positioning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Positioning.h"; sourceTree = "<group>"; };
@@ -108,20 +111,20 @@
 		DCCAB07917EAB81C004B683B /* AFXMLRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFXMLRequestOperation.m; sourceTree = "<group>"; };
 		DCCAB07A17EAB81C004B683B /* UIImageView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AFNetworking.h"; sourceTree = "<group>"; };
 		DCCAB07B17EAB81C004B683B /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
-		DCF26DD517CD617C0073DA19 /* CSH WebNews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CSH WebNews.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DCF26DD517CD617C0073DA19 /* CSH News.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CSH News.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCF26DD817CD617C0073DA19 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		DCF26DDA17CD617C0073DA19 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		DCF26DDC17CD617C0073DA19 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		DCF26DE017CD617C0073DA19 /* CSH WebNews-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CSH WebNews-Info.plist"; sourceTree = "<group>"; };
+		DCF26DE017CD617C0073DA19 /* CSH News-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CSH News-Info.plist"; sourceTree = "<group>"; };
 		DCF26DE217CD617C0073DA19 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		DCF26DE417CD617C0073DA19 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		DCF26DE617CD617C0073DA19 /* CSH WebNews-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CSH WebNews-Prefix.pch"; sourceTree = "<group>"; };
+		DCF26DE617CD617C0073DA19 /* CSH News-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CSH News-Prefix.pch"; sourceTree = "<group>"; };
 		DCF26DE717CD617C0073DA19 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		DCF26DE817CD617C0073DA19 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		DCF26DEA17CD617C0073DA19 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		DCF26DF017CD617C0073DA19 /* CSH WebNewsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "CSH WebNewsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DCF26DF017CD617C0073DA19 /* CSH NewsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "CSH NewsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCF26DF117CD617C0073DA19 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		DCF26DF917CD617C0073DA19 /* CSH WebNewsTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CSH WebNewsTests-Info.plist"; sourceTree = "<group>"; };
+		DCF26DF917CD617C0073DA19 /* CSH NewsTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CSH NewsTests-Info.plist"; sourceTree = "<group>"; };
 		DCF26DFB17CD617C0073DA19 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		DCF26DFD17CD617C0073DA19 /* CSH_WebNewsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSH_WebNewsTests.m; sourceTree = "<group>"; };
 		DCF26E0717CD62830073DA19 /* ActivityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityViewController.h; sourceTree = "<group>"; };
@@ -216,8 +219,8 @@
 		DCF26DD617CD617C0073DA19 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				DCF26DD517CD617C0073DA19 /* CSH WebNews.app */,
-				DCF26DF017CD617C0073DA19 /* CSH WebNewsTests.xctest */,
+				DCF26DD517CD617C0073DA19 /* CSH News.app */,
+				DCF26DF017CD617C0073DA19 /* CSH NewsTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -252,8 +255,10 @@
 				DCF26E0817CD62830073DA19 /* ActivityViewController.m */,
 				DC0FC95B17EC17C100945EEC /* BoardViewController.h */,
 				DC0FC95C17EC17C100945EEC /* BoardViewController.m */,
-				DC0FC96517ECEF2500945EEC /* ThreadViewController.h */,
-				DC0FC96617ECEF2500945EEC /* ThreadViewController.m */,
+				DC0FC96517ECEF2500945EEC /* ThreadsViewController.h */,
+				DC0FC96617ECEF2500945EEC /* ThreadsViewController.m */,
+				DC4E776B180DA431008A20D6 /* ThreadViewController.h */,
+				DC4E776C180DA431008A20D6 /* ThreadViewController.m */,
 				DC0FC95217EBF4EF00945EEC /* WebNewsDataHandler.h */,
 				DC0FC95317EBF4EF00945EEC /* WebNewsDataHandler.m */,
 				DC0FC96217EC230700945EEC /* APIKeyViewController.h */,
@@ -276,10 +281,10 @@
 				DCCAB06817EAB81C004B683B /* AFNetworking */,
 				DCBE062217E000F1007BBF4C /* UIView+Positioning.h */,
 				DCBE062317E000F1007BBF4C /* UIView+Positioning.m */,
-				DCF26DE017CD617C0073DA19 /* CSH WebNews-Info.plist */,
+				DCF26DE017CD617C0073DA19 /* CSH News-Info.plist */,
 				DCF26DE117CD617C0073DA19 /* InfoPlist.strings */,
 				DCF26DE417CD617C0073DA19 /* main.m */,
-				DCF26DE617CD617C0073DA19 /* CSH WebNews-Prefix.pch */,
+				DCF26DE617CD617C0073DA19 /* CSH News-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -296,7 +301,7 @@
 		DCF26DF817CD617C0073DA19 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				DCF26DF917CD617C0073DA19 /* CSH WebNewsTests-Info.plist */,
+				DCF26DF917CD617C0073DA19 /* CSH NewsTests-Info.plist */,
 				DCF26DFA17CD617C0073DA19 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
@@ -305,9 +310,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		DCF26DD417CD617C0073DA19 /* CSH WebNews */ = {
+		DCF26DD417CD617C0073DA19 /* CSH News */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DCF26E0117CD617C0073DA19 /* Build configuration list for PBXNativeTarget "CSH WebNews" */;
+			buildConfigurationList = DCF26E0117CD617C0073DA19 /* Build configuration list for PBXNativeTarget "CSH News" */;
 			buildPhases = (
 				DCF26DD117CD617C0073DA19 /* Sources */,
 				DCF26DD217CD617C0073DA19 /* Frameworks */,
@@ -317,14 +322,14 @@
 			);
 			dependencies = (
 			);
-			name = "CSH WebNews";
+			name = "CSH News";
 			productName = "CSH WebNews";
-			productReference = DCF26DD517CD617C0073DA19 /* CSH WebNews.app */;
+			productReference = DCF26DD517CD617C0073DA19 /* CSH News.app */;
 			productType = "com.apple.product-type.application";
 		};
-		DCF26DEF17CD617C0073DA19 /* CSH WebNewsTests */ = {
+		DCF26DEF17CD617C0073DA19 /* CSH NewsTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DCF26E0417CD617C0073DA19 /* Build configuration list for PBXNativeTarget "CSH WebNewsTests" */;
+			buildConfigurationList = DCF26E0417CD617C0073DA19 /* Build configuration list for PBXNativeTarget "CSH NewsTests" */;
 			buildPhases = (
 				DCF26DEC17CD617C0073DA19 /* Sources */,
 				DCF26DED17CD617C0073DA19 /* Frameworks */,
@@ -335,9 +340,9 @@
 			dependencies = (
 				DCF26DF617CD617C0073DA19 /* PBXTargetDependency */,
 			);
-			name = "CSH WebNewsTests";
+			name = "CSH NewsTests";
 			productName = "CSH WebNewsTests";
-			productReference = DCF26DF017CD617C0073DA19 /* CSH WebNewsTests.xctest */;
+			productReference = DCF26DF017CD617C0073DA19 /* CSH NewsTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -361,7 +366,7 @@
 					};
 				};
 			};
-			buildConfigurationList = DCF26DD017CD617C0073DA19 /* Build configuration list for PBXProject "CSH WebNews" */;
+			buildConfigurationList = DCF26DD017CD617C0073DA19 /* Build configuration list for PBXProject "CSH News" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -373,8 +378,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				DCF26DD417CD617C0073DA19 /* CSH WebNews */,
-				DCF26DEF17CD617C0073DA19 /* CSH WebNewsTests */,
+				DCF26DD417CD617C0073DA19 /* CSH News */,
+				DCF26DEF17CD617C0073DA19 /* CSH NewsTests */,
 			);
 		};
 /* End PBXProject section */
@@ -406,6 +411,7 @@
 			files = (
 				DC0FC95D17EC17C100945EEC /* BoardViewController.m in Sources */,
 				DCCAB07E17EAB81C004B683B /* AFImageRequestOperation.m in Sources */,
+				DC4E776D180DA431008A20D6 /* ThreadViewController.m in Sources */,
 				DCF26DE917CD617C0073DA19 /* AppDelegate.m in Sources */,
 				DC22B1A517EBAFBC00E328DE /* PDKeychainBindings.m in Sources */,
 				DCCAB08317EAB81C004B683B /* AFXMLRequestOperation.m in Sources */,
@@ -425,7 +431,7 @@
 				DC0FC96417EC230700945EEC /* APIKeyViewController.m in Sources */,
 				DCF26DE517CD617C0073DA19 /* main.m in Sources */,
 				DCCAB08117EAB81C004B683B /* AFPropertyListRequestOperation.m in Sources */,
-				DC0FC96717ECEF2500945EEC /* ThreadViewController.m in Sources */,
+				DC0FC96717ECEF2500945EEC /* ThreadsViewController.m in Sources */,
 				DCCAB07C17EAB81C004B683B /* AFHTTPClient.m in Sources */,
 				DCCAB07D17EAB81C004B683B /* AFHTTPRequestOperation.m in Sources */,
 			);
@@ -444,7 +450,7 @@
 /* Begin PBXTargetDependency section */
 		DCF26DF617CD617C0073DA19 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = DCF26DD417CD617C0073DA19 /* CSH WebNews */;
+			target = DCF26DD417CD617C0073DA19 /* CSH News */;
 			targetProxy = DCF26DF517CD617C0073DA19 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -544,10 +550,10 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = "CSH WebNews/CSH WebNews.entitlements";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "CSH WebNews/CSH WebNews-Prefix.pch";
-				INFOPLIST_FILE = "CSH WebNews/CSH WebNews-Info.plist";
+				GCC_PREFIX_HEADER = "CSH WebNews/CSH News-Prefix.pch";
+				INFOPLIST_FILE = "CSH WebNews/CSH News-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "CSH News";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -559,10 +565,10 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = "CSH WebNews/CSH WebNews.entitlements";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "CSH WebNews/CSH WebNews-Prefix.pch";
-				INFOPLIST_FILE = "CSH WebNews/CSH WebNews-Info.plist";
+				GCC_PREFIX_HEADER = "CSH WebNews/CSH News-Prefix.pch";
+				INFOPLIST_FILE = "CSH WebNews/CSH News-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "CSH News";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -582,8 +588,8 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "CSH WebNewsTests/CSH WebNewsTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "CSH WebNewsTests/CSH NewsTests-Info.plist";
+				PRODUCT_NAME = "CSH NewsTests";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -600,8 +606,8 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CSH WebNews/CSH WebNews-Prefix.pch";
-				INFOPLIST_FILE = "CSH WebNewsTests/CSH WebNewsTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "CSH WebNewsTests/CSH NewsTests-Info.plist";
+				PRODUCT_NAME = "CSH NewsTests";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -610,7 +616,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		DCF26DD017CD617C0073DA19 /* Build configuration list for PBXProject "CSH WebNews" */ = {
+		DCF26DD017CD617C0073DA19 /* Build configuration list for PBXProject "CSH News" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DCF26DFF17CD617C0073DA19 /* Debug */,
@@ -619,7 +625,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DCF26E0117CD617C0073DA19 /* Build configuration list for PBXNativeTarget "CSH WebNews" */ = {
+		DCF26E0117CD617C0073DA19 /* Build configuration list for PBXNativeTarget "CSH News" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DCF26E0217CD617C0073DA19 /* Debug */,
@@ -628,7 +634,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DCF26E0417CD617C0073DA19 /* Build configuration list for PBXNativeTarget "CSH WebNewsTests" */ = {
+		DCF26E0417CD617C0073DA19 /* Build configuration list for PBXNativeTarget "CSH NewsTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DCF26E0517CD617C0073DA19 /* Debug */,

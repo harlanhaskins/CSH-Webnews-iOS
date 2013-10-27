@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "DCF26DD417CD617C0073DA19"
-               BuildableName = "CSH WebNews.app"
-               BlueprintName = "CSH WebNews"
-               ReferencedContainer = "container:CSH WebNews.xcodeproj">
+               BuildableName = "CSH News.app"
+               BlueprintName = "CSH News"
+               ReferencedContainer = "container:CSH News.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "DCF26DEF17CD617C0073DA19"
-               BuildableName = "CSH WebNewsTests.xctest"
-               BlueprintName = "CSH WebNewsTests"
-               ReferencedContainer = "container:CSH WebNews.xcodeproj">
+               BuildableName = "CSH NewsTests.xctest"
+               BlueprintName = "CSH NewsTests"
+               ReferencedContainer = "container:CSH News.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -43,9 +43,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "DCF26DD417CD617C0073DA19"
-            BuildableName = "CSH WebNews.app"
-            BlueprintName = "CSH WebNews"
-            ReferencedContainer = "container:CSH WebNews.xcodeproj">
+            BuildableName = "CSH News.app"
+            BlueprintName = "CSH News"
+            ReferencedContainer = "container:CSH News.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -62,9 +62,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "DCF26DD417CD617C0073DA19"
-            BuildableName = "CSH WebNews.app"
-            BlueprintName = "CSH WebNews"
-            ReferencedContainer = "container:CSH WebNews.xcodeproj">
+            BuildableName = "CSH News.app"
+            BlueprintName = "CSH News"
+            ReferencedContainer = "container:CSH News.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -80,9 +80,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "DCF26DD417CD617C0073DA19"
-            BuildableName = "CSH WebNews.app"
-            BlueprintName = "CSH WebNews"
-            ReferencedContainer = "container:CSH WebNews.xcodeproj">
+            BuildableName = "CSH News.app"
+            BlueprintName = "CSH News"
+            ReferencedContainer = "container:CSH News.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

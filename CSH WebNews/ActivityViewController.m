@@ -7,7 +7,7 @@
 //
 #import "ISO8601DateFormatter.h"
 #import "ActivityViewController.h"
-#import "ThreadViewController.h"
+#import "ThreadsViewController.h"
 
 @implementation ActivityViewController
 @synthesize data;
@@ -79,13 +79,7 @@
 }
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    NSString *number = data[indexPath.row][@"newest_post"][@"number"];
-    NSString *pathString = data[indexPath.row][@"thread_parent"][@"newsgroup"];
-    ThreadViewController *postViewController = [[ThreadViewController alloc] init];
-    postViewController.pathString = [pathString stringByAppendingString:[NSString stringWithFormat:@"/%@", number]];
-    [self.navigationController pushViewController:postViewController animated:YES];
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+
 }
 
 @end
