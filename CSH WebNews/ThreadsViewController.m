@@ -39,7 +39,7 @@
     }
 }
 
-- (void) loadData {
+- (void ) loadData {
     if (!_lastUpdated || [[NSDate date] timeIntervalSinceDate:_lastUpdated] > 5*60) {
         _lastUpdated = [NSDate date];
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
