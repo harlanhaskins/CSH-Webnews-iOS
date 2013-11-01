@@ -59,8 +59,10 @@
         path = viewController.title.lowercaseString;
     }
     
+    [MBProgressHUD showHUDAddedTo:viewController.view animated:YES];
     [client getPath:path parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         data = responseObject;
+//        NSLog(@"Loaded Data: %@", data);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         blockError = error;
         NSLog(@"Error: %@", error);
@@ -72,7 +74,39 @@
         }
         [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.01]];
     }
-//    NSLog(@"Loaded Data: %@", data);
+    [MBProgressHUD hideAllHUDsForView:viewController.view animated:YES];
+    return data;
+}
+
+- (NSDictionary*) webNewsDataWithCustomURLPath:(NSString*)path {
+    
+    NSString *apiKey = [[PDKeychainBindings sharedKeychainBindings] objectForKey:kApiKeyKey];
+    
+    NSDictionary *parameters = @{kApiKeyKey:apiKey, @"api_agent":@"iOS"};
+    
+    AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:baseURL]];
+    [client registerHTTPOperationClass:[AFJSONRequestOperation class]];
+    [client setDefaultHeader:@"Accept" value:@"application/json"];
+    [client setAllowsInvalidSSLCertificate:YES];
+    client.defaultSSLPinningMode = AFSSLPinningModeNone;
+    
+    __block NSDictionary *data;
+    __block NSError *blockError;
+    
+    [client getPath:path parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        data = responseObject;
+        NSLog(@"Loaded Data: %@", data);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        blockError = error;
+        NSLog(@"Error: %@", error);
+    }];
+    NSDate *currentDate = [NSDate date];
+    while ((!data && !blockError)) {
+        if ([[NSDate date] timeIntervalSinceDate:currentDate] >= 15) {
+            return nil;
+        }
+        [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.01]];
+    }
     return data;
 }
 

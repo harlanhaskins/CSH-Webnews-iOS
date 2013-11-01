@@ -14,6 +14,8 @@
 
 @implementation ThreadViewController
 
+@synthesize data;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -52,7 +54,7 @@
     
     NSDictionary *post;
     if (indexPath.row == 0) {
-        post = parentPost[@"post"];
+        post = _parentPost[@"post"];
         cell.userInteractionEnabled = NO;
     }
     else {
@@ -85,8 +87,11 @@
     }
     
     if (cell.userInteractionEnabled) {
-        cell.accessory = UITableViewCellAccessoryDisclosureIndicator;
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
+    
+    NSDictionary *postData = [[WebNewsDataHandler sharedHandler] webNewsDataWithCustomURLPath:[NSString stringWithFormat:@"%@/%@", self.title, post[@"number"]]];
+    NSLog(@"postData: %@", postData);
     
     cell.textLabel.text = post[@"subject"];
     cell.detailTextLabel.text = [NSString stringWithFormat:@"by %@ at %@ on %@", post[@"author_name"], timeString, dateString];

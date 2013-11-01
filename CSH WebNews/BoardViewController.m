@@ -62,7 +62,7 @@
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         NSDictionary *webNewsDictionary = [[WebNewsDataHandler sharedHandler] webNewsDataForViewController:self];
         data = webNewsDictionary[@"posts_older"];
-        NSLog(@"Board Data: %@", data);
+        
         [self.tableView reloadData];
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         if (!data) {
@@ -103,7 +103,7 @@
     }
     
     if (cell.userInteractionEnabled) {
-        cell.accessory = UITableViewCellAccessoryDisclosureIndicator;
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];

@@ -21,5 +21,6 @@
 
 @property (strong, nonatomic) NSString *baseURL;
 - (NSDictionary*) webNewsDataForViewController:(id<WebNewsDataHandlerProtocol>)viewController;
+- (NSDictionary*) webNewsDataWithCustomURLPath:(NSString*)path;
 + (instancetype) sharedHandler;
 @end

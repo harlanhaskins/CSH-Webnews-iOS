@@ -39,10 +39,9 @@
     }
 }
 
-- (void ) loadData {
+- (void) loadData {
     if (!_lastUpdated || [[NSDate date] timeIntervalSinceDate:_lastUpdated] > 5*60) {
         _lastUpdated = [NSDate date];
-        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         data = [[WebNewsDataHandler sharedHandler] webNewsDataForViewController:self][self.title];
         [self.tableView reloadData];
         [MBProgressHUD hideHUDForView:self.view animated:YES];
@@ -111,7 +110,11 @@
         }
     }
     
-    cell.textLabel.text = post[@"subject"];
+    
+    NSDictionary *postData = [[WebNewsDataHandler sharedHandler] webNewsDataWithCustomURLPath:[NSString stringWithFormat:@"%@/%@", post[@"newsgroup"], post[@"number"]]];
+    NSLog(@"postData: %@", postData);
+    
+    cell.textLabel.text = postData[@"post"][@"body"];
     cell.detailTextLabel.text = [NSString stringWithFormat:@"by %@ at %@ on %@", post[@"author_name"], timeString, dateString];
     
     if (indexPath.row > 0) {
