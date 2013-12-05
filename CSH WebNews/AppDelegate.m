@@ -15,10 +15,11 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
+    
     self.window.backgroundColor = [UIColor whiteColor];
+    
     self.window.rootViewController = [[self class] viewController];
     
 //    [[PDKeychainBindings sharedKeychainBindings] setObject:@"NULL_API_KEY" forKey:kApiKeyKey];
@@ -39,6 +40,8 @@
     
     UITabBarController *tabViewController = [UITabBarController new];
     tabViewController.viewControllers = @[activityNavController, newsGroupNavController];
+    
+    
     
     return tabViewController;
 }

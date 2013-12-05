@@ -62,7 +62,6 @@
     [MBProgressHUD showHUDAddedTo:viewController.view animated:YES];
     [client getPath:path parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         data = responseObject;
-//        NSLog(@"Loaded Data: %@", data);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         blockError = error;
         NSLog(@"Error: %@", error);
@@ -75,6 +74,7 @@
         [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.01]];
     }
     [MBProgressHUD hideAllHUDsForView:viewController.view animated:YES];
+    
     return data;
 }
 

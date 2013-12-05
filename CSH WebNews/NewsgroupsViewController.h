@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "WebNewsDataHandler.h"
 #import "APIKeyViewController.h"
+#import "AppDelegate.h"
 
 @interface NewsgroupsViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, WebNewsDataHandlerProtocol, APIKeyDelegate>
 

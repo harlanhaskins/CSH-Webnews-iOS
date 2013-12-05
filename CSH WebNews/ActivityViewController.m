@@ -12,11 +12,16 @@
 @implementation ActivityViewController
 @synthesize data;
 
+- (instancetype) init {
+    if (self = [super init]) {
+        self.title = @"Activity";
+    }
+    return self;
+}
+
 - (void) viewDidLoad
 {
     [super viewDidLoad];
-    
-    self.title = @"Activity";
     
     [self checkAPIKey];
     

@@ -17,11 +17,16 @@
 
 @synthesize data;
 
+- (instancetype) init {
+    if (self = [super init]) {
+        self.title = @"Newsgroups";
+    }
+    return self;
+}
+
 - (void) viewDidLoad
 {
     [super viewDidLoad];
-    
-    self.title = @"Newsgroups";
     
     [self checkAPIKey];
     
@@ -29,6 +34,7 @@
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    
     [self.view addSubview:self.tableView];
 }
 
@@ -45,7 +51,7 @@
 }
 
 - (void) loadData {
-    if (!_lastUpdated || [[NSDate date] timeIntervalSinceDate:_lastUpdated] > 5*60) {
+    if (!_lastUpdated || [[NSDate date] timeIntervalSinceDate:_lastUpdated] > 5 * 60) {
         _lastUpdated = [NSDate date];
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         NSDictionary *webNewsDictionary = [[WebNewsDataHandler sharedHandler] webNewsDataForViewController:self];

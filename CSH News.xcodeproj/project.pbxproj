@@ -17,7 +17,6 @@
 		DC22B1A617EBAFBC00E328DE /* PDKeychainBindingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC22B1A417EBAFBC00E328DE /* PDKeychainBindingsController.m */; };
 		DC22B1A917EBB00600E328DE /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC22B1A817EBB00600E328DE /* SettingsViewController.m */; };
 		DC22B1AD17EBDFD800E328DE /* ISO8601DateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = DC22B1AC17EBDFD800E328DE /* ISO8601DateFormatter.m */; };
-		DC4E776D180DA431008A20D6 /* ThreadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC4E776C180DA431008A20D6 /* ThreadViewController.m */; };
 		DC9D24A2180BB2B10034E02B /* NSDictionary+Merge.m in Sources */ = {isa = PBXBuildFile; fileRef = DC9D24A1180BB2B10034E02B /* NSDictionary+Merge.m */; };
 		DCBE062417E000F1007BBF4C /* UIView+Positioning.m in Sources */ = {isa = PBXBuildFile; fileRef = DCBE062317E000F1007BBF4C /* UIView+Positioning.m */; };
 		DCCAB04217EAB3CD004B683B /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCCAB04117EAB3CD004B683B /* CFNetwork.framework */; };
@@ -81,8 +80,6 @@
 		DC22B1AA17EBB82100E328DE /* CSH WebNews.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "CSH WebNews.entitlements"; sourceTree = "<group>"; };
 		DC22B1AB17EBDFD800E328DE /* ISO8601DateFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISO8601DateFormatter.h; sourceTree = "<group>"; };
 		DC22B1AC17EBDFD800E328DE /* ISO8601DateFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISO8601DateFormatter.m; sourceTree = "<group>"; };
-		DC4E776B180DA431008A20D6 /* ThreadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreadViewController.h; sourceTree = "<group>"; };
-		DC4E776C180DA431008A20D6 /* ThreadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThreadViewController.m; sourceTree = "<group>"; };
 		DC9D24A0180BB2B10034E02B /* NSDictionary+Merge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Merge.h"; sourceTree = "<group>"; };
 		DC9D24A1180BB2B10034E02B /* NSDictionary+Merge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Merge.m"; sourceTree = "<group>"; };
 		DCBE062217E000F1007BBF4C /* UIView+Positioning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Positioning.h"; sourceTree = "<group>"; };
@@ -257,8 +254,6 @@
 				DC0FC95C17EC17C100945EEC /* BoardViewController.m */,
 				DC0FC96517ECEF2500945EEC /* ThreadsViewController.h */,
 				DC0FC96617ECEF2500945EEC /* ThreadsViewController.m */,
-				DC4E776B180DA431008A20D6 /* ThreadViewController.h */,
-				DC4E776C180DA431008A20D6 /* ThreadViewController.m */,
 				DC0FC95217EBF4EF00945EEC /* WebNewsDataHandler.h */,
 				DC0FC95317EBF4EF00945EEC /* WebNewsDataHandler.m */,
 				DC0FC96217EC230700945EEC /* APIKeyViewController.h */,
@@ -411,7 +406,6 @@
 			files = (
 				DC0FC95D17EC17C100945EEC /* BoardViewController.m in Sources */,
 				DCCAB07E17EAB81C004B683B /* AFImageRequestOperation.m in Sources */,
-				DC4E776D180DA431008A20D6 /* ThreadViewController.m in Sources */,
 				DCF26DE917CD617C0073DA19 /* AppDelegate.m in Sources */,
 				DC22B1A517EBAFBC00E328DE /* PDKeychainBindings.m in Sources */,
 				DCCAB08317EAB81C004B683B /* AFXMLRequestOperation.m in Sources */,
