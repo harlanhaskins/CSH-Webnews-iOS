@@ -7,7 +7,6 @@
 //
 
 #import "ActivityViewController.h"
-#import "NewsgroupsViewController.h"
 #import "APIKeyViewController.h"
 #import "AppDelegate.h"
 
@@ -30,16 +29,12 @@
 }
 
 + (UIViewController*) viewController {
-    
-    NewsgroupsViewController *newsGroupsViewController = [NewsgroupsViewController new];
     ActivityViewController *activityViewController = [ActivityViewController new];
-    
-    UINavigationController *newsGroupNavController = [[UINavigationController alloc] initWithRootViewController:newsGroupsViewController];
     
     UINavigationController *activityNavController = [[UINavigationController alloc] initWithRootViewController:activityViewController];
     
     UITabBarController *tabViewController = [UITabBarController new];
-    tabViewController.viewControllers = @[activityNavController, newsGroupNavController];
+    tabViewController.viewControllers = @[activityNavController];
     
     
     

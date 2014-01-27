@@ -9,12 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "WebNewsDataHandler.h"
 
-@protocol APIKeyDelegate
-- (void) loadData;
-@end
+@interface APIKeyViewController : UIViewController <UITextFieldDelegate>
 
-@interface APIKeyViewController : UIViewController <UITextFieldDelegate, WebNewsDataHandlerProtocol>
-
-@property (strong, nonatomic) id<APIKeyDelegate> delegate;
+@property (nonatomic, copy) void (^completionBlock)();
 
 @end

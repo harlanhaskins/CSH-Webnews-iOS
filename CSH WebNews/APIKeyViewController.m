@@ -11,6 +11,8 @@
 
 @interface APIKeyViewController ()
 
+@property (nonatomic) NSDictionary *data;
+
 @end
 
 @implementation APIKeyViewController {
@@ -19,13 +21,12 @@
     UILabel *descriptionLabel;
 }
 
-@synthesize data;
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
     self.title = @"User";
+    self.view.backgroundColor = [UIColor whiteColor];
 	UILabel *titleLabel = [[UILabel alloc] init];
     titleLabel.font = [UIFont systemFontOfSize:34.0f];
     titleLabel.text = @"Enter your\nWebNews API Key";
@@ -87,19 +88,26 @@
 
 - (void) submitAPIKey {
     [[PDKeychainBindings sharedKeychainBindings] setObject:keyTextField.text forKey:kApiKeyKey];
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    data = [[WebNewsDataHandler sharedHandler] webNewsDataForViewController:self][self.title];
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
     
-    if (!data) {
+    NSString *apiKey = [[PDKeychainBindings sharedKeychainBindings] objectForKey:kApiKeyKey];
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    NSString *parameters = [NSString stringWithFormat:@"user?api_key=%@&api_agent=iOS", apiKey];
+    
+    NSString *authenticateString = [NSString stringWithFormat:kBaseURLFormat, parameters];
+    
+    [WebNewsDataHandler runHTTPOperationWithURL:[NSURL URLWithString:authenticateString] success:^(AFHTTPRequestOperation *op, id responseObject) {
+        [self setData:responseObject[@"user"]];
+        [self dismissViewControllerAnimated:YES completion:^{
+            self.completionBlock();
+        }];
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+    } failure:^(AFHTTPRequestOperation *op, NSError *error) {
         descriptionLabel.text = @"There seems to be an error with that key. Check to see if it's correct and that you're connected to the Internet, and try again.";
         descriptionLabel.textColor = [UIColor redColor];
-    }
-    else {
-        [self dismissViewControllerAnimated:YES completion:^{
-            [self.delegate loadData];
-        }];
-    }
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+    }];
 }
 
 - (void)didReceiveMemoryWarning

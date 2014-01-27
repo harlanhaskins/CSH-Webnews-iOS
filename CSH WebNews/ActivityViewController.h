@@ -10,9 +10,9 @@
 #import "WebNewsDataHandler.h"
 #import "APIKeyViewController.h"
 
-@interface ActivityViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, WebNewsDataHandlerProtocol, APIKeyDelegate>
+@interface ActivityViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
 
-@property (strong, nonatomic) NSArray *data;
+@property (strong, nonatomic) NSArray *threads;
 @property (nonatomic) UITableView *tableView;
 @property (nonatomic) NSDate *lastUpdated;
 

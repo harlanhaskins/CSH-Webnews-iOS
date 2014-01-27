@@ -38,6 +38,11 @@
     [self.view addSubview:self.tableView];
 }
 
+- (void) viewDidLayoutSubviews {
+    self.tableView.size = self.view.size;
+    self.tableView.origin = CGPointZero;
+}
+
 - (void) checkAPIKey {
     NSString *apiKey = [[PDKeychainBindings sharedKeychainBindings] objectForKey:kApiKeyKey];
     if (!apiKey || [apiKey isEqualToString:@"NULL_API_KEY"]) {
@@ -54,7 +59,7 @@
     if (!_lastUpdated || [[NSDate date] timeIntervalSinceDate:_lastUpdated] > 5 * 60) {
         _lastUpdated = [NSDate date];
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        NSDictionary *webNewsDictionary = [[WebNewsDataHandler sharedHandler] webNewsDataForViewController:self];
+        NSDictionary *webNewsDictionary = [WebNewsDataHandler webNewsDataForViewController:self];
         data = webNewsDictionary[self.title.lowercaseString];
         [self.tableView reloadData];
         [MBProgressHUD hideHUDForView:self.view animated:YES];
@@ -85,17 +90,17 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
     }
     NSDictionary *newsgroup = data[indexPath.row];
-    NSString *unreadClass = newsgroup[@"unread_class"];
+    NSString *postClass = newsgroup[@"unread_class"];
     
-    if (![unreadClass isKindOfClass:[NSNull class]]) {
-        if ([unreadClass isEqualToString:@"mine_in_thread"]) {
-            cell.textLabel.textColor = [UIColor purpleColor];
+    if (![postClass isKindOfClass:[NSNull class]]) {
+        if ([postClass isEqualToString:@"mine"]) {
+            cell.textLabel.textColor = [UIColor colorWithRed:0.000 green:0.814 blue:0.000 alpha:1.000];
         }
-        else if ([unreadClass isEqualToString:@"mine_reply"]) {
-            cell.textLabel.textColor = [UIColor magentaColor];
+        else if ([postClass isEqualToString:@"mine_in_thread"]) {
+            cell.textLabel.textColor = [UIColor colorWithRed:0.415 green:0.000 blue:0.414 alpha:1.000];
         }
-        else if ([unreadClass isEqualToString:@"mine"]) {
-            cell.textLabel.textColor = [UIColor greenColor];
+        else if ([postClass isEqualToString:@"mine_reply"]) {
+            cell.textLabel.textColor = [UIColor colorWithRed:0.953 green:0.268 blue:0.935 alpha:1.000];
         }
     }
     

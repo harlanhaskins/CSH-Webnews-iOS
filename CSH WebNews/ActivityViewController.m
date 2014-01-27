@@ -7,10 +7,10 @@
 //
 #import "ISO8601DateFormatter.h"
 #import "ActivityViewController.h"
-#import "ThreadsViewController.h"
+#import "ActivityThread.h"
+#import "ActivityThreadCell.h"
 
 @implementation ActivityViewController
-@synthesize data;
 
 - (instancetype) init {
     if (self = [super init]) {
@@ -32,11 +32,18 @@
     [self.view addSubview:self.tableView];
 }
 
+- (void) viewDidLayoutSubviews {
+    self.tableView.frame = self.view.frame;
+}
 - (void) checkAPIKey {
     NSString *apiKey = [[PDKeychainBindings sharedKeychainBindings] objectForKey:kApiKeyKey];
     if (!apiKey || [apiKey isEqualToString:@"NULL_API_KEY"]) {
         APIKeyViewController *apiKeyViewController = [[APIKeyViewController alloc] init];
-        apiKeyViewController.delegate = self;
+        
+        [apiKeyViewController setCompletionBlock:^{
+            [self loadData];
+        }];
+        
         [self presentViewController:apiKeyViewController animated:YES completion:nil];
     }
     else {
@@ -48,37 +55,45 @@
     if (!_lastUpdated || [[NSDate date] timeIntervalSinceDate:_lastUpdated] > 5*60) {
         _lastUpdated = [NSDate date];
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        NSDictionary *webNewsDictionary = [[WebNewsDataHandler sharedHandler] webNewsDataForViewController:self];
-        data = webNewsDictionary[self.title.lowercaseString];
-        [self.tableView reloadData];
+        
+        NSString *apiKey = [[PDKeychainBindings sharedKeychainBindings] objectForKey:kApiKeyKey];
+        
+        NSString *parameters = [NSString stringWithFormat:@"activity?api_key=%@&api_agent=iOS", apiKey];
+        
+        NSString *activityString = [NSString stringWithFormat:kBaseURLFormat, parameters];
+        
+        NSURL *url = [NSURL URLWithString:[activityString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+        
+        [WebNewsDataHandler runHTTPOperationWithURL:url success:^(AFHTTPRequestOperation *op, id response) {
+            self.threads = [self arrayFromActivityDictionaries:response[@"activity"]];
+            [self.tableView reloadData];
+        } failure:^(AFHTTPRequestOperation *op, NSError *error) {
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error Downloading News" message:@"There was an error downloading the data. Pleae check your internet connection and your API Key." delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Okay", nil];
+                [alertView show];
+        }];
+        
         [MBProgressHUD hideHUDForView:self.view animated:YES];
-        if (!data) {
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error Downloading News" message:@"There was an error downloading the data. Pleae check your internet connection and your API Key." delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Okay", nil];
-            [alertView show];
-        }
     }
 }
 
+- (NSArray*) arrayFromActivityDictionaries:(NSArray*)dictionaries {
+    NSMutableArray *activityThreads = [NSMutableArray array];
+    for (NSDictionary* dictionary in dictionaries) {
+        ActivityThread *thread = [ActivityThread activityThreadWithDictionary:dictionary];
+        [activityThreads addObject:thread];
+    }
+    return activityThreads;
+}
+
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [data count];
+    return [self.threads count];
 }
 
 - (UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString *cellIdentifier = @"ActivityCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    NSString *cellIdentifier = [ActivityThreadCell cellIdentifier];
+    ActivityThreadCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
-        NSDictionary *thread = data[indexPath.row];
-        NSDictionary *newestPost = thread[@"newest_post"];
-        cell.textLabel.text = newestPost[@"subject"];
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat:@"h:mm a"];
-        NSDate *postDate = [[[ISO8601DateFormatter alloc] init] dateFromString:newestPost[@"date"]];
-        NSString *timeString = [dateFormatter stringFromDate:postDate];
-        [dateFormatter setDateFormat:@"M-dd-yyyy"];
-        NSString *dateString = [dateFormatter stringFromDate:postDate];
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ in %@ at %@ on %@", newestPost[@"author_name"], newestPost[@"newsgroup"], timeString, dateString];
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell = [ActivityThreadCell cellWithActivityThread:self.threads[indexPath.row]];
     }
     return cell;
 }

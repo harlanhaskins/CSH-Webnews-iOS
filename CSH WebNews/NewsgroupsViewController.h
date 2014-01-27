@@ -11,7 +11,7 @@
 #import "APIKeyViewController.h"
 #import "AppDelegate.h"
 
-@interface NewsgroupsViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, WebNewsDataHandlerProtocol, APIKeyDelegate>
+@interface NewsgroupsViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, APIKeyDelegate>
 
 @property (strong, nonatomic) NSArray *data;
 @property (nonatomic) UITableView *tableView;

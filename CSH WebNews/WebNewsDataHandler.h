@@ -1,26 +1,19 @@
 //
-//  WebNewsDataHandler.h
-//  CSH WebNews
+//  BryxHTTPHandler.h
+//  Bryx 911
 //
-//  Created by Harlan Haskins on 9/19/13.
-//  Copyright (c) 2013 Haskins. All rights reserved.
+//  Created by Harlan Haskins on 12/30/13.
+//  Copyright (c) 2013 Bryx. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
-#import "ISO8601DateFormatter.h"
+#import "AFNetworking.h"
 
-@protocol WebNewsDataHandlerProtocol <NSObject>
+typedef void (^__strong HTTPSuccessBlock)(AFHTTPRequestOperation *__strong httpOperation, __strong id responseObject);
+typedef void (^__strong HTTPFailureBlock)(AFHTTPRequestOperation *__strong httpOperation, NSError *__strong error);
 
-@property NSString *title;
-@property (strong, nonatomic) NSArray *data;
-@property (strong, nonatomic) UIView *view;
+@interface WebNewsDataHandler : NSObject
 
-@end
++ (void) runHTTPOperationWithURL:(NSURL*)url success:(HTTPSuccessBlock)successBlock failure:(HTTPFailureBlock)failure;
 
-@interface WebNewsDataHandler : NSObject <UIAlertViewDelegate>
-
-@property (strong, nonatomic) NSString *baseURL;
-- (NSDictionary*) webNewsDataForViewController:(id<WebNewsDataHandlerProtocol>)viewController;
-- (NSDictionary*) webNewsDataWithCustomURLPath:(NSString*)path;
-+ (instancetype) sharedHandler;
 @end
