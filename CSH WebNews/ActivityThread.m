@@ -27,6 +27,37 @@
 
 @implementation ActivityThread
 
+- (void) encodeWithCoder:(NSCoder *)coder {
+    [coder encodeObject:self.parentPost forKey:@"parentPost"];
+    [coder encodeObject:self.newestPost forKey:@"newestPost"];
+    [coder encodeObject:self.nextUnreadPost forKey:@"nextUnreadPost"];
+    
+    [coder encodeObject:@(self.numberOfPosts) forKey:@"numberOfPosts"];
+    [coder encodeObject:@(self.numberOfUnreadPosts) forKey:@"numberOfUnreadPosts"];
+    
+    [coder encodeObject:@(self.parentPersonalClass) forKey:@"parentPersonalClass"];
+    [coder encodeObject:@(self.highestPriorityPersonalClass) forKey:@"highestPriorityPersonalClass"];
+    
+    [coder encodeObject:@(self.crossPosted) forKey:@"crossPosted"];
+}
+
+- (instancetype) initWithCoder:(NSCoder *)decoder {
+    if (self = [super init]) {
+        self.parentPost = [decoder decodeObjectForKey:@"parentPost"];
+        self.newestPost = [decoder decodeObjectForKey:@"newestPost"];
+        self.nextUnreadPost = [decoder decodeObjectForKey:@"nextUnreadPost"];
+        
+        self.numberOfPosts = [[decoder decodeObjectForKey:@"numberOfPosts"] integerValue];
+        self.numberOfUnreadPosts = [[decoder decodeObjectForKey:@"numberOfUnreadPosts"] integerValue];
+        
+        self.parentPersonalClass = [[decoder decodeObjectForKey:@"parentPersonalClass"] integerValue];
+        self.highestPriorityPersonalClass = [[decoder decodeObjectForKey:@"highestPriorityPersonalClass"] integerValue];
+        
+        self.crossPosted = [[decoder decodeObjectForKey:@"crossPosted"] boolValue];
+    }
+    return self;
+}
+
 + (instancetype) activityThreadWithDictionary:(NSDictionary*)dictionary {
     ActivityThread *thread = [ActivityThread new];
     thread.parentPost = [Post postwithDictionary:dictionary[@"thread_parent"]];

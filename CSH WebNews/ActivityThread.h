@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "Post.h"
 
-@interface ActivityThread : NSObject
+@interface ActivityThread : NSObject<NSCoding>
 
 @property (nonatomic, readonly) Post *parentPost;
 @property (nonatomic, readonly) Post *newestPost;
