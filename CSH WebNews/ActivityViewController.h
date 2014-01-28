@@ -7,13 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "WebNewsDataHandler.h"
-#import "APIKeyViewController.h"
 
-@interface ActivityViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
+@class ActivityTableViewModel;
 
-@property (strong, nonatomic) NSArray *threads;
-@property (nonatomic) UITableView *tableView;
-@property (nonatomic) NSDate *lastUpdated;
+@interface ActivityViewController : UIViewController
+
+@property (nonatomic, readonly) UITableView *tableView;
+@property (nonatomic, readonly) ActivityTableViewModel *tableViewModel;
+@property (nonatomic, readonly) NSDate *lastUpdated;
 
 @end
