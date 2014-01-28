@@ -7,6 +7,7 @@
 //
 
 #import "NewsgroupOutlineTableViewModel.h"
+#import "NewsgroupThreadsViewController.h"
 #import "NewsgroupOutline.h"
 #import "WebNewsDataHandler.h"
 #import "CacheManager.h"
@@ -72,12 +73,8 @@
 }
 
 - (void) loadNewsgroupIndexWithNewsgroup:(NewsgroupOutline*)newsgroup {
-    NSString *parameters = [NSString stringWithFormat:@"%@/index", newsgroup.name];
-    
-    [WebNewsDataHandler runHTTPOperationWithParameters:parameters success:^(AFHTTPRequestOperation *op, id response) {
-        NSArray *newsgroupThreads = [self newsgroupThreadsFromNewsgroupThreadDictionaryArray:response[@"posts_older"]];
-        NSLog(@"Newsgroup Threads: %@", newsgroupThreads);
-    } failure:nil];
+    NewsgroupThreadsViewController *threadsVC = [NewsgroupThreadsViewController threadListWithNewsgroupOutline:newsgroup];
+    self.pushViewControllerBlock(threadsVC);
 }
 
 - (NSArray *) newsgroupThreadsFromNewsgroupThreadDictionaryArray:(NSArray*)array {

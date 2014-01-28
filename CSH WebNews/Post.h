@@ -47,9 +47,9 @@ typedef enum UnreadClass {
 @property (nonatomic, readonly, getter = isStripped) BOOL stripped;
 @property (nonatomic, readonly, getter = isReparented) BOOL reparented;
 
-- (NSString*) friendlyDate;
-- (NSString *) authorshipAndTimeString;
-- (UIColor*) subjectColor;
+@property (nonatomic, readonly) NSString *friendlyDate;
+@property (nonatomic, readonly) NSString *authorshipAndTimeString;
+@property (nonatomic, readonly) UIColor *subjectColor;
 
 + (instancetype) postwithDictionary:(NSDictionary*)postDictionary;
 + (PersonalClass) personalClassFromString:(NSString*)string;

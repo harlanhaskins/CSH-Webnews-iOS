@@ -21,4 +21,6 @@
 
 @interface NewsgroupThreadCell : UITableViewCell
 
++ (instancetype) cellWithNewsgroupThread:(NewsgroupThread*)thread reuseIdentifier:(NSString*)cellIdentifier;
+
 @end

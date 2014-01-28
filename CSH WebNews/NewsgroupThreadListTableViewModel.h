@@ -10,7 +10,10 @@
 
 @class NewsgroupOutline;
 
-@interface NewsgroupThreadListTableViewModel : NSObject
+@interface NewsgroupThreadListTableViewModel : NSObject<UITableViewDelegate, UITableViewDataSource>
+
++ (instancetype) threadListWithNewsgroupOutline:(NewsgroupOutline*)outline;
+- (void) loadDataWithBlock:(void(^)())block;
 
 @property (nonatomic, readonly) NewsgroupOutline *outline;
 @property (nonatomic, readonly) NSArray *threads;

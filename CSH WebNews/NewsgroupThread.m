@@ -58,7 +58,7 @@
 @implementation NewsgroupThreadCell
 
 + (instancetype) cellWithNewsgroupThread:(NewsgroupThread*)thread reuseIdentifier:(NSString*)cellIdentifier {
-    NewsgroupThreadCell *cell = [[NewsgroupThreadCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+    NewsgroupThreadCell *cell = [[NewsgroupThreadCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
     cell.thread = thread;
     cell.textLabel.text = cell.thread.post.subject;
     cell.detailTextLabel.text = [cell.thread.post authorshipAndTimeString];

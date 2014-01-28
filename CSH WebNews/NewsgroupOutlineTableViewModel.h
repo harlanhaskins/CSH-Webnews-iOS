@@ -10,6 +10,8 @@
 
 @interface NewsgroupOutlineTableViewModel : NSObject<UITableViewDataSource, UITableViewDelegate>
 
+@property (nonatomic, copy) void (^pushViewControllerBlock)(UIViewController* controller);
+
 - (void) loadDataWithBlock:(void(^)())block;
 
 @end

@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NewsgroupThreadsViewController : UIViewController
+@class NewsgroupOutline;
+
+@interface NewsgroupThreadsViewController : UITableViewController
+
++ (instancetype) threadListWithNewsgroupOutline:(NewsgroupOutline*)outline;
 
 @end

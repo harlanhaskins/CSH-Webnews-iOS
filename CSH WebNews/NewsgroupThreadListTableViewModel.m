@@ -19,8 +19,10 @@
 @end
 
 @implementation NewsgroupThreadListTableViewModel
+ 
 + (instancetype) threadListWithNewsgroupOutline:(NewsgroupOutline*)outline {
     NewsgroupThreadListTableViewModel *model = [[NewsgroupThreadListTableViewModel alloc] init];
+    model.outline = outline;
     return model;
 }
 
@@ -29,8 +31,8 @@
 }
 
 - (UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NewsgroupOutline *newsgroup = self.threads[indexPath.row];
-    NewsgroupOutlineCell *cell = [NewsgroupOutlineCell cellWithNewsgroup:newsgroup];
+    NewsgroupThread *thread = self.threads[indexPath.row];
+    NewsgroupThreadCell *cell = [NewsgroupThreadCell cellWithNewsgroupThread:thread reuseIdentifier:@"Cell"];
     return cell;
 }
 
@@ -50,20 +52,20 @@
 }
 
 - (void) loadDataWithBlock:(void(^)())block {
-    
     NSString *parameters = [NSString stringWithFormat:@"%@/index", self.outline.name];
     
     [WebNewsDataHandler runHTTPOperationWithParameters:parameters success:^(AFHTTPRequestOperation *op, id response) {
         NSArray *threads = [self newsgroupThreadsFromNewsgroupThreadDictionaryArray:response[@"posts_older"]];
         [self setThreads:threads];
-    } failure:nil];
+        block();
+    } failure:^(AFHTTPRequestOperation *op, NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
 }
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-}
-
-- (void) loadNewsgroupIndexWithNewsgroup:(NewsgroupOutline*)newsgroup {
+    
 }
 
 - (NSArray *) newsgroupThreadsFromNewsgroupThreadDictionaryArray:(NSArray*)array {

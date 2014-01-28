@@ -205,7 +205,7 @@
 
 + (instancetype) cellWithPost:(Post*)post level:(NSInteger)level
 {
-    PostCell *cell = [[self alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:[self cellIdentifier]];
+    PostCell *cell = [[self alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:[self cellIdentifier]];
     cell.post = post;
     
     cell.textLabel.textColor = [post subjectColor];

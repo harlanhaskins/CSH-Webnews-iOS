@@ -34,6 +34,11 @@
     
     self.tableViewModel = [NewsgroupOutlineTableViewModel new];
     
+    __weak NewsgroupsViewController *weakSelf = self;
+    self.tableViewModel.pushViewControllerBlock = ^(UIViewController* threadsVC) {
+        [weakSelf.navigationController pushViewController:threadsVC animated:YES];
+    };
+    
     self.tableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStylePlain];
     
     self.tableView.delegate = self.tableViewModel;
