@@ -41,7 +41,10 @@
     
     self.tableView.delegate = self.tableViewModel;
     self.tableView.dataSource = self.tableViewModel;
-    [self.view addSubview:self.tableView];
+    
+    self.refreshControl = [UIRefreshControl new];
+    [self.refreshControl addTarget:self action:@selector(loadData) forControlEvents:UIControlEventAllEvents];
+//    [self.view addSubview:self.tableView];
     
     [self checkAPIKey];
 }
@@ -56,18 +59,24 @@
         APIKeyViewController *apiKeyViewController = [[APIKeyViewController alloc] init];
         
         [apiKeyViewController setCompletionBlock:^{
-            [self.tableViewModel loadDataWithBlock:^{
-                [self.tableView reloadData];
-            }];
+            [self loadData];
         }];
         
         [self presentViewController:apiKeyViewController animated:YES completion:nil];
     }
     else {
-        [self.tableViewModel loadDataWithBlock:^{
-            [self.tableView reloadData];
-        }];
+        [self loadData];
     }
+}
+
+- (void) loadData {
+    [self.tableViewModel loadDataWithBlock:^{
+        [self reloadTableView];
+    }];
+}
+
+- (void) reloadTableView {
+    [self.refreshControl endRefreshing];
 }
 
 @end

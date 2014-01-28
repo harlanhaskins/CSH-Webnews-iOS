@@ -21,7 +21,7 @@ typedef enum UnreadClass {
     UnreadClassManual
 } UnreadClass;
 
-@interface Post : NSObject
+@interface Post : NSObject<NSCoding>
 
 @property (nonatomic, readonly) NSString *newsgroup;
 @property (nonatomic, readonly) NSString *parentNewsgroup;

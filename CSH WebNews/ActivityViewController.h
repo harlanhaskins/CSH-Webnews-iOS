@@ -10,9 +10,8 @@
 
 @class ActivityTableViewModel;
 
-@interface ActivityViewController : UIViewController
+@interface ActivityViewController : UITableViewController
 
-@property (nonatomic, readonly) UITableView *tableView;
 @property (nonatomic, readonly) ActivityTableViewModel *tableViewModel;
 @property (nonatomic, readonly) NSDate *lastUpdated;
 

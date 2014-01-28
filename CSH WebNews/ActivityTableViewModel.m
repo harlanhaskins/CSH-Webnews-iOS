@@ -10,6 +10,7 @@
 #import "ActivityThreadCell.h"
 #import "WebNewsDataHandler.h"
 #import "ActivityThread.h"
+#import "CacheManager.h"
 
 @interface ActivityTableViewModel ()
 
@@ -18,6 +19,12 @@
 @end
 
 @implementation ActivityTableViewModel
+
++ (instancetype) new {
+    ActivityTableViewModel *model = [[ActivityTableViewModel alloc] init];
+    model.threads = [CacheManager cachedActivity];
+    return model;
+}
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
@@ -47,6 +54,11 @@
         [activityThreads addObject:thread];
     }
     return activityThreads;
+}
+
+- (void) setThreads:(NSArray *)threads {
+    _threads = threads;
+    [CacheManager cacheActivityThreads:self.threads];
 }
 
 - (void) loadDataWithBlock:(void(^)())block {

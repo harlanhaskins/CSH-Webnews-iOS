@@ -38,6 +38,59 @@
 
 @implementation Post
 
+- (void) encodeWithCoder:(NSCoder *)coder {
+    [coder encodeObject:self.newsgroup forKey:@"newsgroup"];
+    [coder encodeObject:self.subject forKey:@"subject"];
+    [coder encodeObject:self.authorName forKey:@"authorName"];
+    [coder encodeObject:self.authorEmail forKey:@"authorEmail"];
+    [coder encodeObject:self.stickyUserName forKey:@"stickyUserName"];
+    [coder encodeObject:self.stickyRealName forKey:@"stickyRealName"];
+    [coder encodeObject:self.parentNewsgroup forKey:@"parentNewsgroup"];
+    [coder encodeObject:self.followUpNewsgroup forKey:@"followUpNewsgroup"];
+    [coder encodeObject:self.body forKey:@"body"];
+    [coder encodeObject:self.headers forKey:@"headers"];
+    
+    [coder encodeObject:self.date forKey:@"date"];
+    [coder encodeObject:self.stickyUntilDate forKey:@"stickyUntilDate"];
+    
+    [coder encodeObject:@(self.number) forKey:@"number"];
+    
+    [coder encodeObject:@(self.personalClass) forKey:@"personalClass"];
+    
+    [coder encodeObject:@(self.starred) forKey:@"starred"];
+    [coder encodeObject:@(self.orphaned) forKey:@"orphaned"];
+    [coder encodeObject:@(self.stripped) forKey:@"stripped"];
+    [coder encodeObject:@(self.reparented) forKey:@"reparented"];
+}
+
+- (id) initWithCoder:(NSCoder *)decoder {
+    if (self = [super init]) {
+        self.newsgroup = [decoder decodeObjectForKey:@"newsgroup"];
+        self.subject = [decoder decodeObjectForKey:@"subject"];
+        self.authorName = [decoder decodeObjectForKey:@"authorName"];
+        self.authorEmail = [decoder decodeObjectForKey:@"authorEmail"];
+        self.stickyUserName = [decoder decodeObjectForKey:@"stickyUserName"];
+        self.stickyRealName = [decoder decodeObjectForKey:@"stickyRealName"];
+        self.parentNewsgroup = [decoder decodeObjectForKey:@"parentNewsgroup"];
+        self.followUpNewsgroup = [decoder decodeObjectForKey:@"followUpNewsgroup"];
+        self.body = [decoder decodeObjectForKey:@"body"];
+        self.headers = [decoder decodeObjectForKey:@"headers"];
+        
+        self.date = [decoder decodeObjectForKey:@"date"];
+        self.stickyUntilDate = [decoder decodeObjectForKey:@"stickyUntilDate"];
+        
+        self.number = [[decoder decodeObjectForKey:@"number"] integerValue];
+        
+        self.personalClass = [[decoder decodeObjectForKey:@"personalClass"] integerValue];
+        
+        self.starred = [[decoder decodeObjectForKey:@"starred"] boolValue];
+        self.orphaned = [[decoder decodeObjectForKey:@"orphaned"] boolValue];
+        self.stripped = [[decoder decodeObjectForKey:@"stripped"] boolValue];
+        self.reparented = [[decoder decodeObjectForKey:@"reparented"] boolValue];
+    }
+    return self;
+}
+
 + (instancetype) postwithDictionary:(NSDictionary*)postDictionary {
     
     if (!postDictionary || [postDictionary isKindOfClass:[NSNull class]]) {

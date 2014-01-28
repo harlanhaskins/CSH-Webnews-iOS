@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C910A6F3189733ED001D222D /* ActivityTableViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C910A6F2189733ED001D222D /* ActivityTableViewModel.m */; };
+		C92B9DDB189752DC0099C22D /* CacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C92B9DDA189752DC0099C22D /* CacheManager.m */; };
 		C96C6652185651BC007A8C2C /* PostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C96C6651185651BC007A8C2C /* PostCell.m */; };
 		C96D227D1895BD80001BFA57 /* WebNewsDataHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C96D227C1895BD80001BFA57 /* WebNewsDataHandler.m */; };
 		C96D22801895CC08001BFA57 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = C96D227F1895CC08001BFA57 /* Post.m */; };
@@ -65,6 +66,8 @@
 /* Begin PBXFileReference section */
 		C910A6F1189733ED001D222D /* ActivityTableViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityTableViewModel.h; sourceTree = "<group>"; };
 		C910A6F2189733ED001D222D /* ActivityTableViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityTableViewModel.m; sourceTree = "<group>"; };
+		C92B9DD9189752DC0099C22D /* CacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheManager.h; sourceTree = "<group>"; };
+		C92B9DDA189752DC0099C22D /* CacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheManager.m; sourceTree = "<group>"; };
 		C96C6650185651BC007A8C2C /* PostCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostCell.h; sourceTree = "<group>"; };
 		C96C6651185651BC007A8C2C /* PostCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostCell.m; sourceTree = "<group>"; };
 		C96D227B1895BD80001BFA57 /* WebNewsDataHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebNewsDataHandler.h; sourceTree = "<group>"; };
@@ -286,6 +289,8 @@
 				DCF26DE817CD617C0073DA19 /* AppDelegate.m */,
 				DC22B1A717EBB00600E328DE /* SettingsViewController.h */,
 				DC22B1A817EBB00600E328DE /* SettingsViewController.m */,
+				C92B9DD9189752DC0099C22D /* CacheManager.h */,
+				C92B9DDA189752DC0099C22D /* CacheManager.m */,
 				C97003E1189618DD00BB8B35 /* Activity */,
 				DC0FC96217EC230700945EEC /* APIKeyViewController.h */,
 				DC0FC96317EC230700945EEC /* APIKeyViewController.m */,
@@ -456,6 +461,7 @@
 				DCBE062417E000F1007BBF4C /* UIView+Positioning.m in Sources */,
 				C96D22A4189607F2001BFA57 /* AFHTTPSessionManager.m in Sources */,
 				DC22B1A617EBAFBC00E328DE /* PDKeychainBindingsController.m in Sources */,
+				C92B9DDB189752DC0099C22D /* CacheManager.m in Sources */,
 				C96D22801895CC08001BFA57 /* Post.m in Sources */,
 				C96D22A7189607F2001BFA57 /* AFURLConnectionOperation.m in Sources */,
 				C96D22A8189607F2001BFA57 /* AFURLRequestSerialization.m in Sources */,
