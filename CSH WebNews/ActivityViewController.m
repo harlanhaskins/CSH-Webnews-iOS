@@ -76,6 +76,7 @@
 }
 
 - (void) reloadTableView {
+    [self.tableView reloadData];
     [self.refreshControl endRefreshing];
 }
 

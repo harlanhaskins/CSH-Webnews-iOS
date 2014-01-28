@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		C910A6F3189733ED001D222D /* ActivityTableViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C910A6F2189733ED001D222D /* ActivityTableViewModel.m */; };
 		C92B9DDB189752DC0099C22D /* CacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C92B9DDA189752DC0099C22D /* CacheManager.m */; };
-		C96C6652185651BC007A8C2C /* PostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C96C6651185651BC007A8C2C /* PostCell.m */; };
 		C96D227D1895BD80001BFA57 /* WebNewsDataHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C96D227C1895BD80001BFA57 /* WebNewsDataHandler.m */; };
 		C96D22801895CC08001BFA57 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = C96D227F1895CC08001BFA57 /* Post.m */; };
 		C96D22831895CD7B001BFA57 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = C96D22821895CD7B001BFA57 /* User.m */; };
@@ -25,6 +24,10 @@
 		C96D22A8189607F2001BFA57 /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = C96D229D189607F2001BFA57 /* AFURLRequestSerialization.m */; };
 		C96D22A9189607F2001BFA57 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = C96D229F189607F2001BFA57 /* AFURLResponseSerialization.m */; };
 		C96D22AA189607F2001BFA57 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C96D22A1189607F2001BFA57 /* AFURLSessionManager.m */; };
+		C9D6F9F01898406C00004E3B /* NewsgroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D6F9EF1898406C00004E3B /* NewsgroupsViewController.m */; };
+		C9D6F9F5189840FE00004E3B /* Newsgroup.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D6F9F4189840FE00004E3B /* Newsgroup.m */; };
+		C9D6F9F81898498D00004E3B /* NewsgroupTableViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D6F9F71898498D00004E3B /* NewsgroupTableViewModel.m */; };
+		C9D6F9FB18984EDF00004E3B /* NSNull+TypeAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D6F9FA18984EDF00004E3B /* NSNull+TypeAdditions.m */; };
 		DC0FC96117EC1A4200945EEC /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0FC96017EC1A4200945EEC /* MBProgressHUD.m */; };
 		DC0FC96417EC230700945EEC /* APIKeyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0FC96317EC230700945EEC /* APIKeyViewController.m */; };
 		DC22B1A517EBAFBC00E328DE /* PDKeychainBindings.m in Sources */ = {isa = PBXBuildFile; fileRef = DC22B1A217EBAFBC00E328DE /* PDKeychainBindings.m */; };
@@ -68,8 +71,6 @@
 		C910A6F2189733ED001D222D /* ActivityTableViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityTableViewModel.m; sourceTree = "<group>"; };
 		C92B9DD9189752DC0099C22D /* CacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheManager.h; sourceTree = "<group>"; };
 		C92B9DDA189752DC0099C22D /* CacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheManager.m; sourceTree = "<group>"; };
-		C96C6650185651BC007A8C2C /* PostCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostCell.h; sourceTree = "<group>"; };
-		C96C6651185651BC007A8C2C /* PostCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostCell.m; sourceTree = "<group>"; };
 		C96D227B1895BD80001BFA57 /* WebNewsDataHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebNewsDataHandler.h; sourceTree = "<group>"; };
 		C96D227C1895BD80001BFA57 /* WebNewsDataHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebNewsDataHandler.m; sourceTree = "<group>"; };
 		C96D227E1895CC08001BFA57 /* Post.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
@@ -101,6 +102,14 @@
 		C96D229F189607F2001BFA57 /* AFURLResponseSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLResponseSerialization.m; sourceTree = "<group>"; };
 		C96D22A0189607F2001BFA57 /* AFURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLSessionManager.h; sourceTree = "<group>"; };
 		C96D22A1189607F2001BFA57 /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
+		C9D6F9EE1898406C00004E3B /* NewsgroupsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsgroupsViewController.h; sourceTree = "<group>"; };
+		C9D6F9EF1898406C00004E3B /* NewsgroupsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsgroupsViewController.m; sourceTree = "<group>"; };
+		C9D6F9F3189840FE00004E3B /* Newsgroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Newsgroup.h; sourceTree = "<group>"; };
+		C9D6F9F4189840FE00004E3B /* Newsgroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Newsgroup.m; sourceTree = "<group>"; };
+		C9D6F9F61898498D00004E3B /* NewsgroupTableViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsgroupTableViewModel.h; sourceTree = "<group>"; };
+		C9D6F9F71898498D00004E3B /* NewsgroupTableViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsgroupTableViewModel.m; sourceTree = "<group>"; };
+		C9D6F9F918984EDF00004E3B /* NSNull+TypeAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNull+TypeAdditions.h"; sourceTree = "<group>"; };
+		C9D6F9FA18984EDF00004E3B /* NSNull+TypeAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNull+TypeAdditions.m"; sourceTree = "<group>"; };
 		DC0FC95F17EC1A4200945EEC /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		DC0FC96017EC1A4200945EEC /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		DC0FC96217EC230700945EEC /* APIKeyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIKeyViewController.h; sourceTree = "<group>"; };
@@ -222,8 +231,30 @@
 				C96D228C18960320001BFA57 /* ActivityThreadCell.m */,
 				DCF26E0717CD62830073DA19 /* ActivityViewController.h */,
 				DCF26E0817CD62830073DA19 /* ActivityViewController.m */,
+				C96D22841895CDA4001BFA57 /* Objects */,
 			);
 			name = Activity;
+			sourceTree = "<group>";
+		};
+		C9D6F9F11898407E00004E3B /* Newsgroups */ = {
+			isa = PBXGroup;
+			children = (
+				C9D6F9F2189840F300004E3B /* Objects */,
+				C9D6F9EE1898406C00004E3B /* NewsgroupsViewController.h */,
+				C9D6F9EF1898406C00004E3B /* NewsgroupsViewController.m */,
+				C9D6F9F61898498D00004E3B /* NewsgroupTableViewModel.h */,
+				C9D6F9F71898498D00004E3B /* NewsgroupTableViewModel.m */,
+			);
+			name = Newsgroups;
+			sourceTree = "<group>";
+		};
+		C9D6F9F2189840F300004E3B /* Objects */ = {
+			isa = PBXGroup;
+			children = (
+				C9D6F9F3189840FE00004E3B /* Newsgroup.h */,
+				C9D6F9F4189840FE00004E3B /* Newsgroup.m */,
+			);
+			name = Objects;
 			sourceTree = "<group>";
 		};
 		DC0FC95E17EC1A4200945EEC /* MBProgressHUD */ = {
@@ -291,12 +322,10 @@
 				DC22B1A817EBB00600E328DE /* SettingsViewController.m */,
 				C92B9DD9189752DC0099C22D /* CacheManager.h */,
 				C92B9DDA189752DC0099C22D /* CacheManager.m */,
+				C9D6F9F11898407E00004E3B /* Newsgroups */,
 				C97003E1189618DD00BB8B35 /* Activity */,
 				DC0FC96217EC230700945EEC /* APIKeyViewController.h */,
 				DC0FC96317EC230700945EEC /* APIKeyViewController.m */,
-				C96C6650185651BC007A8C2C /* PostCell.h */,
-				C96C6651185651BC007A8C2C /* PostCell.m */,
-				C96D22841895CDA4001BFA57 /* Objects */,
 				DCF26DEA17CD617C0073DA19 /* Images.xcassets */,
 				DCF26DDF17CD617C0073DA19 /* Supporting Files */,
 			);
@@ -306,6 +335,8 @@
 		DCF26DDF17CD617C0073DA19 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C9D6F9F918984EDF00004E3B /* NSNull+TypeAdditions.h */,
+				C9D6F9FA18984EDF00004E3B /* NSNull+TypeAdditions.m */,
 				C96D228E189607F2001BFA57 /* AFNetworking */,
 				C96D227B1895BD80001BFA57 /* WebNewsDataHandler.h */,
 				C96D227C1895BD80001BFA57 /* WebNewsDataHandler.m */,
@@ -450,10 +481,10 @@
 				C96D22A6189607F2001BFA57 /* AFSecurityPolicy.m in Sources */,
 				C96D22A3189607F2001BFA57 /* AFHTTPRequestOperationManager.m in Sources */,
 				C910A6F3189733ED001D222D /* ActivityTableViewModel.m in Sources */,
+				C9D6F9F81898498D00004E3B /* NewsgroupTableViewModel.m in Sources */,
 				C96D22A2189607F2001BFA57 /* AFHTTPRequestOperation.m in Sources */,
 				DC22B1A517EBAFBC00E328DE /* PDKeychainBindings.m in Sources */,
 				DCF26E0917CD62830073DA19 /* ActivityViewController.m in Sources */,
-				C96C6652185651BC007A8C2C /* PostCell.m in Sources */,
 				C96D22831895CD7B001BFA57 /* User.m in Sources */,
 				DC9D24A2180BB2B10034E02B /* NSDictionary+Merge.m in Sources */,
 				DC22B1A917EBB00600E328DE /* SettingsViewController.m in Sources */,
@@ -463,17 +494,20 @@
 				DC22B1A617EBAFBC00E328DE /* PDKeychainBindingsController.m in Sources */,
 				C92B9DDB189752DC0099C22D /* CacheManager.m in Sources */,
 				C96D22801895CC08001BFA57 /* Post.m in Sources */,
+				C9D6F9F5189840FE00004E3B /* Newsgroup.m in Sources */,
 				C96D22A7189607F2001BFA57 /* AFURLConnectionOperation.m in Sources */,
 				C96D22A8189607F2001BFA57 /* AFURLRequestSerialization.m in Sources */,
 				C96D22AA189607F2001BFA57 /* AFURLSessionManager.m in Sources */,
 				C96D22A9189607F2001BFA57 /* AFURLResponseSerialization.m in Sources */,
 				C96D228D18960320001BFA57 /* ActivityThreadCell.m in Sources */,
 				DC0FC96117EC1A4200945EEC /* MBProgressHUD.m in Sources */,
+				C9D6F9FB18984EDF00004E3B /* NSNull+TypeAdditions.m in Sources */,
 				DC22B1AD17EBDFD800E328DE /* ISO8601DateFormatter.m in Sources */,
 				C96D22871895CDBC001BFA57 /* Preferences.m in Sources */,
 				DC0FC96417EC230700945EEC /* APIKeyViewController.m in Sources */,
 				C96D22A5189607F2001BFA57 /* AFNetworkReachabilityManager.m in Sources */,
 				DCF26DE517CD617C0073DA19 /* main.m in Sources */,
+				C9D6F9F01898406C00004E3B /* NewsgroupsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

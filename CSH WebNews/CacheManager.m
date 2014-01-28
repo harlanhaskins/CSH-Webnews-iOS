@@ -13,13 +13,25 @@
 + (void) cacheActivityThreads:(NSArray*)array {
     [NSKeyedArchiver archiveRootObject:array toFile:[self activityCachePath]];
 }
-    
+
 + (NSString*) activityCachePath {
     return [self cachePathWithPathComponent:@"Activity"];
 }
 
 + (NSArray*) cachedActivity {
     return [NSKeyedUnarchiver unarchiveObjectWithFile:[self activityCachePath]];
+}
+
++ (void) cacheNewsgroups:(NSArray*)array {
+    [NSKeyedArchiver archiveRootObject:array toFile:[self newsgroupCachePath]];
+}
+
++ (NSString*) newsgroupCachePath {
+    return [self cachePathWithPathComponent:@"Newsgroups"];
+}
+
++ (NSArray*) cachedNewsgroups {
+    return [NSKeyedUnarchiver unarchiveObjectWithFile:[self newsgroupCachePath]];
 }
 
 + (NSString*) cachePathWithPathComponent:(NSString*)pathComponent {

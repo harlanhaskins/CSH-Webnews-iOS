@@ -1,20 +1,13 @@
 //
 //  NewsgroupsViewController.h
-//  CSH WebNews
+//  CSH News
 //
-//  Created by Harlan Haskins on 9/20/13.
-//  Copyright (c) 2013 Haskins. All rights reserved.
+//  Created by Harlan Haskins on 1/28/14.
+//  Copyright (c) 2014 Haskins. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import "WebNewsDataHandler.h"
-#import "APIKeyViewController.h"
-#import "AppDelegate.h"
+#import <Foundation/Foundation.h>
 
-@interface NewsgroupsViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, APIKeyDelegate>
-
-@property (strong, nonatomic) NSArray *data;
-@property (nonatomic) UITableView *tableView;
-@property (nonatomic) NSDate *lastUpdated;
+@interface NewsgroupsViewController : UITableViewController
 
 @end

@@ -75,4 +75,12 @@
     return thread;
 }
 
+- (NSString*) debugDescription {
+    return [self description];
+}
+
+- (NSString*) description {
+    return [[self parentPost] subject];
+}
+
 @end

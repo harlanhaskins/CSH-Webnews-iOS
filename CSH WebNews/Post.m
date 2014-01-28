@@ -8,6 +8,7 @@
 
 #import "Post.h"
 #import "ISO8601DateFormatter.h"
+#import "WebNewsDataHandler.h"
 
 @interface Post ()
 
@@ -190,6 +191,38 @@
                         [UIColor blackColor]];
     
     return colors[self.personalClass];
+}
+
+@end
+
+@interface PostCell ()
+
+@property (nonatomic, readwrite) Post *post;
+
+@end
+
+@implementation PostCell
+
++ (instancetype) cellWithPost:(Post*)post level:(NSInteger)level
+{
+    PostCell *cell = [[self alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:[self cellIdentifier]];
+    cell.post = post;
+    
+    cell.textLabel.textColor = [post subjectColor];
+    
+    NSString *parameters = [NSString stringWithFormat:@"%@%@/%i",kBaseURLFormat, post.newsgroup, post.number];
+    
+    [WebNewsDataHandler runHTTPOperationWithParameters:parameters success:^(AFHTTPRequestOperation *op, id response) {
+        cell.post = response;
+    } failure:nil];
+    
+    cell.textLabel.text = cell.post.subject;
+    cell.detailTextLabel.text = [cell.post authorshipAndTimeString];
+    return cell;
+}
+
++ (NSString*) cellIdentifier {
+    return @"PostCell";
 }
 
 @end

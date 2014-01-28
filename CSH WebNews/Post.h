@@ -55,3 +55,10 @@ typedef enum UnreadClass {
 + (PersonalClass) personalClassFromString:(NSString*)string;
 
 @end
+
+@interface PostCell : UITableViewCell
+
+@property (nonatomic, readonly) Post *post;
++ (NSString*) cellIdentifier;
+
+@end

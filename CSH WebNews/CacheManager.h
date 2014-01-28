@@ -12,5 +12,7 @@
 
 + (NSArray*) cachedActivity;
 + (void) cacheActivityThreads:(NSArray*)array;
++ (void) cacheNewsgroups:(NSArray*)array;
++ (NSArray*) cachedNewsgroups;
 
 @end
