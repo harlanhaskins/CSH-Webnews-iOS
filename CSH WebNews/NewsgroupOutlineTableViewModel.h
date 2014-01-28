@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NewsgroupTableViewModel : NSObject<UITableViewDataSource, UITableViewDelegate>
+@interface NewsgroupOutlineTableViewModel : NSObject<UITableViewDataSource, UITableViewDelegate>
 
 - (void) loadDataWithBlock:(void(^)())block;
 

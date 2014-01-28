@@ -7,12 +7,12 @@
 //
 
 #import "NewsgroupsViewController.h"
-#import "NewsgroupTableViewModel.h"
+#import "NewsgroupOutlineTableViewModel.h"
 
 @interface NewsgroupsViewController ()
 
 
-@property (nonatomic) NewsgroupTableViewModel *tableViewModel;
+@property (nonatomic) NewsgroupOutlineTableViewModel *tableViewModel;
 
 @end
 
@@ -32,7 +32,7 @@
 {
     [super viewDidLoad];
     
-    self.tableViewModel = [NewsgroupTableViewModel new];
+    self.tableViewModel = [NewsgroupOutlineTableViewModel new];
     
     self.tableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStylePlain];
     

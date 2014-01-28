@@ -6,21 +6,22 @@
 //  Copyright (c) 2014 Haskins. All rights reserved.
 //
 
-#import "NewsgroupTableViewModel.h"
-#import "Newsgroup.h"
+#import "NewsgroupOutlineTableViewModel.h"
+#import "NewsgroupOutline.h"
 #import "WebNewsDataHandler.h"
 #import "CacheManager.h"
+#import "NewsgroupThread.h"
 
-@interface NewsgroupTableViewModel ()
+@interface NewsgroupOutlineTableViewModel ()
 
 @property (nonatomic, readwrite) NSArray* newsgroups;
 
 @end
 
-@implementation NewsgroupTableViewModel
+@implementation NewsgroupOutlineTableViewModel
 
 + (instancetype) new {
-    NewsgroupTableViewModel *model = [[NewsgroupTableViewModel alloc] init];
+    NewsgroupOutlineTableViewModel *model = [[NewsgroupOutlineTableViewModel alloc] init];
     model.newsgroups = [CacheManager cachedNewsgroups];
     return model;
 }
@@ -30,8 +31,8 @@
 }
 
 - (UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    Newsgroup *newsgroup = self.newsgroups[indexPath.row];
-    NewsgroupCell *cell = [NewsgroupCell cellWithNewsgroup:newsgroup];
+    NewsgroupOutline *newsgroup = self.newsgroups[indexPath.row];
+    NewsgroupOutlineCell *cell = [NewsgroupOutlineCell cellWithNewsgroup:newsgroup];
     return cell;
 }
 
@@ -39,7 +40,7 @@
     NSMutableArray *newsgroupsArray = [NSMutableArray array];
     
     for (NSDictionary* dictionary in array) {
-        Newsgroup *newsgroup = [Newsgroup newsgroupWithDictionary:dictionary];
+        NewsgroupOutline *newsgroup = [NewsgroupOutline newsgroupOutlineWithDictionary:dictionary];
         [newsgroupsArray addObject:newsgroup];
     }
     
@@ -66,7 +67,26 @@
 }
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self loadNewsgroupIndexWithNewsgroup:self.newsgroups[indexPath.row]];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+- (void) loadNewsgroupIndexWithNewsgroup:(NewsgroupOutline*)newsgroup {
+    NSString *parameters = [NSString stringWithFormat:@"%@/index", newsgroup.name];
+    
+    [WebNewsDataHandler runHTTPOperationWithParameters:parameters success:^(AFHTTPRequestOperation *op, id response) {
+        NSArray *newsgroupThreads = [self newsgroupThreadsFromNewsgroupThreadDictionaryArray:response[@"posts_older"]];
+        NSLog(@"Newsgroup Threads: %@", newsgroupThreads);
+    } failure:nil];
+}
+
+- (NSArray *) newsgroupThreadsFromNewsgroupThreadDictionaryArray:(NSArray*)array {
+    NSMutableArray *threadsArray = [NSMutableArray array];
+    for (NSDictionary *dictionary in array) {
+        NewsgroupThread *thread = [NewsgroupThread newsgroupThreadWithDictionary:dictionary];
+        [threadsArray addObject:thread];
+    }
+    return threadsArray;
 }
 
 @end

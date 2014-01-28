@@ -6,10 +6,10 @@
 //  Copyright (c) 2014 Haskins. All rights reserved.
 //
 
-#import "Newsgroup.h"
+#import "NewsgroupOutline.h"
 #import "ISO8601DateFormatter.h"
 
-@interface Newsgroup ()
+@interface NewsgroupOutline ()
 
 @property (nonatomic, readwrite) NSInteger unreadPosts;
 
@@ -23,7 +23,7 @@
 
 @end
 
-@implementation Newsgroup
+@implementation NewsgroupOutline
 
 - (void) encodeWithCoder:(NSCoder *)coder {
     [coder encodeObject:@(self.unreadPosts) forKey:@"unreadPosts"];
@@ -52,8 +52,8 @@
     return self;
 }
 
-+ (instancetype) newsgroupWithDictionary:(NSDictionary*)dictionary {
-    Newsgroup *newsgroup = [Newsgroup new];
++ (instancetype) newsgroupOutlineWithDictionary:(NSDictionary*)dictionary {
+    NewsgroupOutline *newsgroup = [NewsgroupOutline new];
     
     newsgroup.unreadPosts = [dictionary[@"unread_count"] integerValue];
     
@@ -87,17 +87,17 @@
 
 @end
 
-@interface NewsgroupCell ()
+@interface NewsgroupOutlineCell ()
 
-@property (nonatomic, readwrite) Newsgroup *newsgroup;
+@property (nonatomic, readwrite) NewsgroupOutline *newsgroup;
 
 @end
 
-@implementation NewsgroupCell
+@implementation NewsgroupOutlineCell
 
-+ (instancetype) cellWithNewsgroup:(Newsgroup*)newsgroup {
++ (instancetype) cellWithNewsgroup:(NewsgroupOutline*)newsgroup {
     
-    NewsgroupCell *cell = [[super alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"NewsgroupCell"];
+    NewsgroupOutlineCell *cell = [[super alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"NewsgroupCell"];
     
     cell.newsgroup = newsgroup;
     

@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "Post.h"
 
-@interface Newsgroup : NSObject<NSCoding>
+@interface NewsgroupOutline : NSObject<NSCoding>
 
 @property (nonatomic, readonly) NSInteger unreadPosts;
 
@@ -21,14 +21,14 @@
 
 @property (nonatomic, readonly, getter = canAddPost) BOOL postable;
 
-+ (instancetype) newsgroupWithDictionary:(NSDictionary*)dictionary;
++ (instancetype) newsgroupOutlineWithDictionary:(NSDictionary*)dictionary;
 
 @end
 
-@interface NewsgroupCell : UITableViewCell
+@interface NewsgroupOutlineCell : UITableViewCell
 
-@property (nonatomic, readonly) Newsgroup *newsgroup;
+@property (nonatomic, readonly) NewsgroupOutline *newsgroup;
 
-+ (instancetype) cellWithNewsgroup:(Newsgroup*)newsgroup;
++ (instancetype) cellWithNewsgroup:(NewsgroupOutline*)newsgroup;
 
 @end

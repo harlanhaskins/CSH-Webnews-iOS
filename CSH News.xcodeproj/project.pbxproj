@@ -24,9 +24,12 @@
 		C96D22A8189607F2001BFA57 /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = C96D229D189607F2001BFA57 /* AFURLRequestSerialization.m */; };
 		C96D22A9189607F2001BFA57 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = C96D229F189607F2001BFA57 /* AFURLResponseSerialization.m */; };
 		C96D22AA189607F2001BFA57 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C96D22A1189607F2001BFA57 /* AFURLSessionManager.m */; };
+		C9C9484418985C0C00599E74 /* NewsgroupThreadsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C9484318985C0C00599E74 /* NewsgroupThreadsViewController.m */; };
+		C9C9484818985D9B00599E74 /* NewsgroupThread.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C9484718985D9B00599E74 /* NewsgroupThread.m */; };
+		C9C9484B1898690800599E74 /* NewsgroupThreadListTableViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C9484A1898690800599E74 /* NewsgroupThreadListTableViewModel.m */; };
 		C9D6F9F01898406C00004E3B /* NewsgroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D6F9EF1898406C00004E3B /* NewsgroupsViewController.m */; };
-		C9D6F9F5189840FE00004E3B /* Newsgroup.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D6F9F4189840FE00004E3B /* Newsgroup.m */; };
-		C9D6F9F81898498D00004E3B /* NewsgroupTableViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D6F9F71898498D00004E3B /* NewsgroupTableViewModel.m */; };
+		C9D6F9F5189840FE00004E3B /* NewsgroupOutline.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D6F9F4189840FE00004E3B /* NewsgroupOutline.m */; };
+		C9D6F9F81898498D00004E3B /* NewsgroupOutlineTableViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D6F9F71898498D00004E3B /* NewsgroupOutlineTableViewModel.m */; };
 		C9D6F9FB18984EDF00004E3B /* NSNull+TypeAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D6F9FA18984EDF00004E3B /* NSNull+TypeAdditions.m */; };
 		DC0FC96117EC1A4200945EEC /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0FC96017EC1A4200945EEC /* MBProgressHUD.m */; };
 		DC0FC96417EC230700945EEC /* APIKeyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0FC96317EC230700945EEC /* APIKeyViewController.m */; };
@@ -102,12 +105,18 @@
 		C96D229F189607F2001BFA57 /* AFURLResponseSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLResponseSerialization.m; sourceTree = "<group>"; };
 		C96D22A0189607F2001BFA57 /* AFURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLSessionManager.h; sourceTree = "<group>"; };
 		C96D22A1189607F2001BFA57 /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
+		C9C9484218985C0C00599E74 /* NewsgroupThreadsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsgroupThreadsViewController.h; sourceTree = "<group>"; };
+		C9C9484318985C0C00599E74 /* NewsgroupThreadsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsgroupThreadsViewController.m; sourceTree = "<group>"; };
+		C9C9484618985D9B00599E74 /* NewsgroupThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsgroupThread.h; sourceTree = "<group>"; };
+		C9C9484718985D9B00599E74 /* NewsgroupThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsgroupThread.m; sourceTree = "<group>"; };
+		C9C948491898690800599E74 /* NewsgroupThreadListTableViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsgroupThreadListTableViewModel.h; sourceTree = "<group>"; };
+		C9C9484A1898690800599E74 /* NewsgroupThreadListTableViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsgroupThreadListTableViewModel.m; sourceTree = "<group>"; };
 		C9D6F9EE1898406C00004E3B /* NewsgroupsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsgroupsViewController.h; sourceTree = "<group>"; };
 		C9D6F9EF1898406C00004E3B /* NewsgroupsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsgroupsViewController.m; sourceTree = "<group>"; };
-		C9D6F9F3189840FE00004E3B /* Newsgroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Newsgroup.h; sourceTree = "<group>"; };
-		C9D6F9F4189840FE00004E3B /* Newsgroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Newsgroup.m; sourceTree = "<group>"; };
-		C9D6F9F61898498D00004E3B /* NewsgroupTableViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsgroupTableViewModel.h; sourceTree = "<group>"; };
-		C9D6F9F71898498D00004E3B /* NewsgroupTableViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsgroupTableViewModel.m; sourceTree = "<group>"; };
+		C9D6F9F3189840FE00004E3B /* NewsgroupOutline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsgroupOutline.h; sourceTree = "<group>"; };
+		C9D6F9F4189840FE00004E3B /* NewsgroupOutline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsgroupOutline.m; sourceTree = "<group>"; };
+		C9D6F9F61898498D00004E3B /* NewsgroupOutlineTableViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsgroupOutlineTableViewModel.h; sourceTree = "<group>"; };
+		C9D6F9F71898498D00004E3B /* NewsgroupOutlineTableViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsgroupOutlineTableViewModel.m; sourceTree = "<group>"; };
 		C9D6F9F918984EDF00004E3B /* NSNull+TypeAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNull+TypeAdditions.h"; sourceTree = "<group>"; };
 		C9D6F9FA18984EDF00004E3B /* NSNull+TypeAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNull+TypeAdditions.m"; sourceTree = "<group>"; };
 		DC0FC95F17EC1A4200945EEC /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
@@ -236,14 +245,27 @@
 			name = Activity;
 			sourceTree = "<group>";
 		};
+		C9C9484518985C1300599E74 /* Newsgroup Threads */ = {
+			isa = PBXGroup;
+			children = (
+				C9C9484218985C0C00599E74 /* NewsgroupThreadsViewController.h */,
+				C9C9484318985C0C00599E74 /* NewsgroupThreadsViewController.m */,
+				C9C948491898690800599E74 /* NewsgroupThreadListTableViewModel.h */,
+				C9C9484A1898690800599E74 /* NewsgroupThreadListTableViewModel.m */,
+				C9C9484618985D9B00599E74 /* NewsgroupThread.h */,
+				C9C9484718985D9B00599E74 /* NewsgroupThread.m */,
+			);
+			name = "Newsgroup Threads";
+			sourceTree = "<group>";
+		};
 		C9D6F9F11898407E00004E3B /* Newsgroups */ = {
 			isa = PBXGroup;
 			children = (
 				C9D6F9F2189840F300004E3B /* Objects */,
 				C9D6F9EE1898406C00004E3B /* NewsgroupsViewController.h */,
 				C9D6F9EF1898406C00004E3B /* NewsgroupsViewController.m */,
-				C9D6F9F61898498D00004E3B /* NewsgroupTableViewModel.h */,
-				C9D6F9F71898498D00004E3B /* NewsgroupTableViewModel.m */,
+				C9D6F9F61898498D00004E3B /* NewsgroupOutlineTableViewModel.h */,
+				C9D6F9F71898498D00004E3B /* NewsgroupOutlineTableViewModel.m */,
 			);
 			name = Newsgroups;
 			sourceTree = "<group>";
@@ -251,8 +273,8 @@
 		C9D6F9F2189840F300004E3B /* Objects */ = {
 			isa = PBXGroup;
 			children = (
-				C9D6F9F3189840FE00004E3B /* Newsgroup.h */,
-				C9D6F9F4189840FE00004E3B /* Newsgroup.m */,
+				C9D6F9F3189840FE00004E3B /* NewsgroupOutline.h */,
+				C9D6F9F4189840FE00004E3B /* NewsgroupOutline.m */,
 			);
 			name = Objects;
 			sourceTree = "<group>";
@@ -322,6 +344,7 @@
 				DC22B1A817EBB00600E328DE /* SettingsViewController.m */,
 				C92B9DD9189752DC0099C22D /* CacheManager.h */,
 				C92B9DDA189752DC0099C22D /* CacheManager.m */,
+				C9C9484518985C1300599E74 /* Newsgroup Threads */,
 				C9D6F9F11898407E00004E3B /* Newsgroups */,
 				C97003E1189618DD00BB8B35 /* Activity */,
 				DC0FC96217EC230700945EEC /* APIKeyViewController.h */,
@@ -478,10 +501,12 @@
 			files = (
 				C96D228A1895D550001BFA57 /* ActivityThread.m in Sources */,
 				DCF26DE917CD617C0073DA19 /* AppDelegate.m in Sources */,
+				C9C9484B1898690800599E74 /* NewsgroupThreadListTableViewModel.m in Sources */,
 				C96D22A6189607F2001BFA57 /* AFSecurityPolicy.m in Sources */,
 				C96D22A3189607F2001BFA57 /* AFHTTPRequestOperationManager.m in Sources */,
+				C9C9484418985C0C00599E74 /* NewsgroupThreadsViewController.m in Sources */,
 				C910A6F3189733ED001D222D /* ActivityTableViewModel.m in Sources */,
-				C9D6F9F81898498D00004E3B /* NewsgroupTableViewModel.m in Sources */,
+				C9D6F9F81898498D00004E3B /* NewsgroupOutlineTableViewModel.m in Sources */,
 				C96D22A2189607F2001BFA57 /* AFHTTPRequestOperation.m in Sources */,
 				DC22B1A517EBAFBC00E328DE /* PDKeychainBindings.m in Sources */,
 				DCF26E0917CD62830073DA19 /* ActivityViewController.m in Sources */,
@@ -494,11 +519,12 @@
 				DC22B1A617EBAFBC00E328DE /* PDKeychainBindingsController.m in Sources */,
 				C92B9DDB189752DC0099C22D /* CacheManager.m in Sources */,
 				C96D22801895CC08001BFA57 /* Post.m in Sources */,
-				C9D6F9F5189840FE00004E3B /* Newsgroup.m in Sources */,
+				C9D6F9F5189840FE00004E3B /* NewsgroupOutline.m in Sources */,
 				C96D22A7189607F2001BFA57 /* AFURLConnectionOperation.m in Sources */,
 				C96D22A8189607F2001BFA57 /* AFURLRequestSerialization.m in Sources */,
 				C96D22AA189607F2001BFA57 /* AFURLSessionManager.m in Sources */,
 				C96D22A9189607F2001BFA57 /* AFURLResponseSerialization.m in Sources */,
+				C9C9484818985D9B00599E74 /* NewsgroupThread.m in Sources */,
 				C96D228D18960320001BFA57 /* ActivityThreadCell.m in Sources */,
 				DC0FC96117EC1A4200945EEC /* MBProgressHUD.m in Sources */,
 				C9D6F9FB18984EDF00004E3B /* NSNull+TypeAdditions.m in Sources */,
