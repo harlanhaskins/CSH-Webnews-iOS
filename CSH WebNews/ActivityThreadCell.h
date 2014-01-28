@@ -14,8 +14,6 @@
 
 @property (nonatomic, readonly) ActivityThread *thread;
 
-+ (instancetype) cellWithActivityThread:(ActivityThread*)thread;
-
-+ (NSString*) cellIdentifier;
++ (instancetype) cellWithActivityThread:(ActivityThread*)thread reuseIdentifier:(NSString*)reuseID;
 
 @end

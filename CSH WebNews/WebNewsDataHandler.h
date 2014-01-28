@@ -14,6 +14,6 @@ typedef void (^__strong HTTPFailureBlock)(AFHTTPRequestOperation *__strong httpO
 
 @interface WebNewsDataHandler : NSObject
 
-+ (void) runHTTPOperationWithURL:(NSURL*)url success:(HTTPSuccessBlock)successBlock failure:(HTTPFailureBlock)failure;
++ (void) runHTTPOperationWithParameters:(NSString*)parameters success:(HTTPSuccessBlock)successBlock failure:(HTTPFailureBlock)failure;
 
 @end

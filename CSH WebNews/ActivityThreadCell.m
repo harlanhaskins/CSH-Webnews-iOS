@@ -17,10 +17,10 @@
 
 @implementation ActivityThreadCell
 
-+ (instancetype) cellWithActivityThread:(ActivityThread*)thread {
++ (instancetype) cellWithActivityThread:(ActivityThread*)thread reuseIdentifier:(NSString *)reuseID {
     
     ActivityThreadCell *cell = [[ActivityThreadCell alloc] initWithStyle:UITableViewCellStyleSubtitle
-                                                         reuseIdentifier:[self cellIdentifier]];
+                                                         reuseIdentifier:reuseID];
     
     cell.thread = thread;
     
@@ -28,14 +28,13 @@
     cell.detailTextLabel.text = [cell.thread.parentPost authorshipAndTimeString];
     
     cell.textLabel.textColor = [cell.thread.parentPost subjectColor];
+    cell.textLabel.backgroundColor =
+    cell.detailTextLabel.backgroundColor =
+    cell.backgroundColor = [UIColor whiteColor];
     
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     return cell;
-}
-
-+ (NSString*) cellIdentifier {
-    return @"ActivityThreadCell";
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated

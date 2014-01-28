@@ -169,10 +169,6 @@
 		C96D22841895CDA4001BFA57 /* Objects */ = {
 			isa = PBXGroup;
 			children = (
-				C96D22881895D550001BFA57 /* ActivityThread.h */,
-				C96D22891895D550001BFA57 /* ActivityThread.m */,
-				C96D228B18960320001BFA57 /* ActivityThreadCell.h */,
-				C96D228C18960320001BFA57 /* ActivityThreadCell.m */,
 				C96D227E1895CC08001BFA57 /* Post.h */,
 				C96D227F1895CC08001BFA57 /* Post.m */,
 				C96D22811895CD7B001BFA57 /* User.h */,
@@ -207,6 +203,19 @@
 				C96D22A1189607F2001BFA57 /* AFURLSessionManager.m */,
 			);
 			path = AFNetworking;
+			sourceTree = "<group>";
+		};
+		C97003E1189618DD00BB8B35 /* Activity */ = {
+			isa = PBXGroup;
+			children = (
+				DCF26E0717CD62830073DA19 /* ActivityViewController.h */,
+				DCF26E0817CD62830073DA19 /* ActivityViewController.m */,
+				C96D22881895D550001BFA57 /* ActivityThread.h */,
+				C96D22891895D550001BFA57 /* ActivityThread.m */,
+				C96D228B18960320001BFA57 /* ActivityThreadCell.h */,
+				C96D228C18960320001BFA57 /* ActivityThreadCell.m */,
+			);
+			name = Activity;
 			sourceTree = "<group>";
 		};
 		DC0FC95E17EC1A4200945EEC /* MBProgressHUD */ = {
@@ -272,8 +281,7 @@
 				DCF26DE817CD617C0073DA19 /* AppDelegate.m */,
 				DC22B1A717EBB00600E328DE /* SettingsViewController.h */,
 				DC22B1A817EBB00600E328DE /* SettingsViewController.m */,
-				DCF26E0717CD62830073DA19 /* ActivityViewController.h */,
-				DCF26E0817CD62830073DA19 /* ActivityViewController.m */,
+				C97003E1189618DD00BB8B35 /* Activity */,
 				DC0FC96217EC230700945EEC /* APIKeyViewController.h */,
 				DC0FC96317EC230700945EEC /* APIKeyViewController.m */,
 				C96C6650185651BC007A8C2C /* PostCell.h */,

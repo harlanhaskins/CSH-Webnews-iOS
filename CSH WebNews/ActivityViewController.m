@@ -56,15 +56,11 @@
         _lastUpdated = [NSDate date];
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         
-        NSString *apiKey = [[PDKeychainBindings sharedKeychainBindings] objectForKey:kApiKeyKey];
         
-        NSString *parameters = [NSString stringWithFormat:@"activity?api_key=%@&api_agent=iOS", apiKey];
         
-        NSString *activityString = [NSString stringWithFormat:kBaseURLFormat, parameters];
+        NSString *parameters = @"activity";
         
-        NSURL *url = [NSURL URLWithString:[activityString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-        
-        [WebNewsDataHandler runHTTPOperationWithURL:url success:^(AFHTTPRequestOperation *op, id response) {
+        [WebNewsDataHandler runHTTPOperationWithParameters:parameters success:^(AFHTTPRequestOperation *op, id response) {
             self.threads = [self arrayFromActivityDictionaries:response[@"activity"]];
             [self.tableView reloadData];
         } failure:^(AFHTTPRequestOperation *op, NSError *error) {
@@ -90,10 +86,10 @@
 }
 
 - (UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString *cellIdentifier = [ActivityThreadCell cellIdentifier];
+    NSString *cellIdentifier = [NSString stringWithFormat:@"ActivityThreadCell_%i%i", indexPath.row, indexPath.section];
     ActivityThreadCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (!cell) {
-        cell = [ActivityThreadCell cellWithActivityThread:self.threads[indexPath.row]];
+        cell = [ActivityThreadCell cellWithActivityThread:self.threads[indexPath.row] reuseIdentifier:cellIdentifier];
     }
     return cell;
 }

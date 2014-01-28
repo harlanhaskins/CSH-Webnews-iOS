@@ -10,7 +10,29 @@
 
 @implementation WebNewsDataHandler
 
-+ (void) runHTTPOperationWithURL:(NSURL*)url success:(HTTPSuccessBlock)successBlock failure:(HTTPFailureBlock)failure {
++ (void) runHTTPOperationWithParameters:(NSString*)parameters
+                                success:(HTTPSuccessBlock)successBlock
+                                failure:(HTTPFailureBlock)failure; {
+    
+    NSString *apiKey = [[PDKeychainBindings sharedKeychainBindings] objectForKey:kApiKeyKey];
+    
+    NSString *apiKeyString = [NSString stringWithFormat:@"api_key=%@&api_agent=iOS", apiKey];
+    
+    NSString *questionMarkString = @"?";
+    NSString *ampersandString = @"&";
+    
+    if ([parameters rangeOfString:questionMarkString].location == NSNotFound) {
+        apiKeyString = [questionMarkString stringByAppendingString:apiKeyString];
+    }
+    else {
+        apiKeyString = [ampersandString stringByAppendingString:apiKeyString];
+    }
+    
+    parameters = [parameters stringByAppendingString:apiKeyString];
+    
+    NSString *activityString = [NSString stringWithFormat:kBaseURLFormat, parameters];
+    
+    NSURL *url = [NSURL URLWithString:[activityString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     
     // Create an NSURLRequest with that URL.
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];

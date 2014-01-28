@@ -89,15 +89,11 @@
 - (void) submitAPIKey {
     [[PDKeychainBindings sharedKeychainBindings] setObject:keyTextField.text forKey:kApiKeyKey];
     
-    NSString *apiKey = [[PDKeychainBindings sharedKeychainBindings] objectForKey:kApiKeyKey];
-    
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
-    NSString *parameters = [NSString stringWithFormat:@"user?api_key=%@&api_agent=iOS", apiKey];
+    NSString *parameters = @"user";
     
-    NSString *authenticateString = [NSString stringWithFormat:kBaseURLFormat, parameters];
-    
-    [WebNewsDataHandler runHTTPOperationWithURL:[NSURL URLWithString:authenticateString] success:^(AFHTTPRequestOperation *op, id responseObject) {
+    [WebNewsDataHandler runHTTPOperationWithParameters:parameters success:^(AFHTTPRequestOperation *op, id responseObject) {
         [self setData:responseObject[@"user"]];
         [self dismissViewControllerAnimated:YES completion:^{
             self.completionBlock();

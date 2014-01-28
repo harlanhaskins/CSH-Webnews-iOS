@@ -28,9 +28,8 @@
     cell.textLabel.textColor = [post subjectColor];
     
     NSString *parameters = [NSString stringWithFormat:@"%@%@/%i",kBaseURLFormat, post.newsgroup, post.number];
-    NSURL *url = [NSURL URLWithString:parameters];
     
-    [WebNewsDataHandler runHTTPOperationWithURL:url success:^(AFHTTPRequestOperation *op, id response) {
+    [WebNewsDataHandler runHTTPOperationWithParameters:parameters success:^(AFHTTPRequestOperation *op, id response) {
         cell.post = response;
     } failure:nil];
     
