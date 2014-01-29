@@ -38,7 +38,7 @@
 }
 
 - (void) loadData {
-    NSLog(@"Refreshing.");
+    [self.tableView reloadData];
     [self.refreshControl endRefreshing];
 }
 

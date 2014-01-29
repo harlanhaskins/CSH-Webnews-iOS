@@ -46,6 +46,8 @@ typedef enum UnreadClass {
 
 @property (nonatomic, readonly) PersonalClass personalClass;
 
+@property (nonatomic, readonly) UnreadClass unreadClass;
+
 @property (nonatomic, readonly, getter = isStarred) BOOL starred;
 @property (nonatomic, readonly, getter = isOrphaned) BOOL orphaned;
 @property (nonatomic, readonly, getter = isStripped) BOOL stripped;

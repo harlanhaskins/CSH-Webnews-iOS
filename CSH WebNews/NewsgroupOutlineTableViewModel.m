@@ -77,13 +77,4 @@
     self.pushViewControllerBlock(threadsVC);
 }
 
-- (NSArray *) newsgroupThreadsFromNewsgroupThreadDictionaryArray:(NSArray*)array {
-    NSMutableArray *threadsArray = [NSMutableArray array];
-    for (NSDictionary *dictionary in array) {
-        NewsgroupThread *thread = [NewsgroupThread newsgroupThreadWithDictionary:dictionary];
-        [threadsArray addObject:thread];
-    }
-    return threadsArray;
-}
-
 @end

@@ -24,6 +24,8 @@
 @property (nonatomic, readwrite) NSString *body;
 @property (nonatomic, readwrite) NSString *headers;
 
+@property (nonatomic, readwrite) UnreadClass unreadClass;
+
 @property (nonatomic, readwrite) NSDate *date;
 @property (nonatomic, readwrite) NSDate *stickyUntilDate;
 
@@ -63,6 +65,8 @@
     [coder encodeObject:@(self.orphaned) forKey:@"orphaned"];
     [coder encodeObject:@(self.stripped) forKey:@"stripped"];
     [coder encodeObject:@(self.reparented) forKey:@"reparented"];
+    
+    [coder encodeObject:@(self.unreadClass) forKey:@"unreadClass"];
 }
 
 - (id) initWithCoder:(NSCoder *)decoder {
@@ -89,6 +93,7 @@
         self.orphaned = [[decoder decodeObjectForKey:@"orphaned"] boolValue];
         self.stripped = [[decoder decodeObjectForKey:@"stripped"] boolValue];
         self.reparented = [[decoder decodeObjectForKey:@"reparented"] boolValue];
+        self.unreadClass = [[decoder decodeObjectForKey:@"unreadClass"] integerValue];
     }
     return self;
 }
@@ -135,7 +140,7 @@
     post.stickyUserName = stickyUser[@"username"];
     post.stickyRealName = stickyUser[@"real_name"];
     
-    [post loadBody];
+    post.unreadClass = [self unreadClassFromString:postDictionary[@"unread_class"]];
 
     return post;
 }
@@ -219,6 +224,10 @@
     return [NSString stringWithFormat:@"Depth: %i", self.depth];
 }
 
+- (NSString*) body {
+    return [_body stringByAppendingString:@"\n "];
+}
+
 @end
 
 @interface PostCell ()
@@ -243,8 +252,13 @@
         cell.post = response;
     } failure:nil];
     
-    cell.textLabel.text = cell.post.body;
+    cell.textLabel.text = [cell.post body];
+    cell.textLabel.font = [UIFont systemFontOfSize:14.0];
+    cell.textLabel.numberOfLines = 0;
+    cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
     cell.detailTextLabel.text = [cell.post authorshipAndTimeString];
+    cell.detailTextLabel.font = [UIFont systemFontOfSize:12.0];
+    cell.detailTextLabel.textAlignment = NSTextAlignmentRight;
     
     cell.indentationLevel += cell.post.depth;
     

@@ -27,6 +27,25 @@
     return [self.posts count];
 }
 
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    Post *post = self.posts[indexPath.row];
+    
+    CGFloat CELL_CONTENT_MARGIN = 10.0 * (post.depth / 2);
+    
+    CGSize constraint = CGSizeMake(tableView.width - (CELL_CONTENT_MARGIN * 2), 2000.0);
+    
+    NSDictionary *attributes = @{NSFontAttributeName:[UIFont systemFontOfSize:14.0]};
+    
+    CGSize size = [post.body boundingRectWithSize:constraint
+                                     options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
+                                  attributes:attributes
+                                     context:nil].size;
+    
+    CGFloat height = ceil(MAX(size.height + 50.0, 34.0));
+    
+    return height;
+}
+
 - (UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     Post *post = self.posts[indexPath.row];
     PostCell *cell = [post cellFromPost];
