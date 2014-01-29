@@ -175,10 +175,22 @@
 }
 
 - (void) loadBody {
+    [self loadBodyWithBlock:nil];
+}
+
+- (void) loadBodyWithBlock:(void (^)(Post *currentPost))block {
+    
+    if (self.body) {
+        block(self);
+        return;
+    }
+    
     NSString *parameters = [NSString stringWithFormat:@"%@/%i", self.newsgroup, self.number];
     
     [WebNewsDataHandler runHTTPOperationWithParameters:parameters success:^(AFHTTPRequestOperation *op, id response) {
         [self setBody:response[@"post"][@"body"]];
+        [CacheManager cachePost:self];
+        block(self);
     } failure:^(AFHTTPRequestOperation *op, NSError *error) {
         NSLog(@"Error: %@", error);
     }];

@@ -26,18 +26,24 @@
     threadVC.title = thread.post.subject;
     
     threadVC.refreshControl = [UIRefreshControl new];
-    [threadVC.refreshControl addTarget:threadVC action:@selector(loadData) forControlEvents:UIControlEventAllEvents];
+    [threadVC.refreshControl addTarget:threadVC action:@selector(didLoadData) forControlEvents:UIControlEventAllEvents];
     
     threadVC.tableViewModel = [ThreadDetailTableViewModel modelWithPosts:threadVC.thread.allPosts];
+    
+    __weak ThreadDetailViewController *weakThreadView = threadVC;
+    threadVC.tableViewModel.reloadTableViewBlock = ^{
+        [weakThreadView didLoadData];
+    };
     
     threadVC.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
     
     threadVC.tableView.delegate = threadVC.tableViewModel;
     threadVC.tableView.dataSource = threadVC.tableViewModel;
+    
     return threadVC;
 }
 
-- (void) loadData {
+- (void) didLoadData {
     [self.tableView reloadData];
     [self.refreshControl endRefreshing];
 }

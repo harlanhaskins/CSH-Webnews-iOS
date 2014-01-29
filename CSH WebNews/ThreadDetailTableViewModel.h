@@ -10,6 +10,10 @@
 
 @interface ThreadDetailTableViewModel : NSObject<UITableViewDataSource, UITableViewDelegate>
 
+@property (nonatomic, copy) void (^reloadTableViewBlock)();
+
 + (instancetype) modelWithPosts:(NSArray*)posts;
+
+- (void) loadPosts;
 
 @end

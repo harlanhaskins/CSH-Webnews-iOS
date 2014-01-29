@@ -13,5 +13,6 @@
 @interface ThreadDetailViewController : UITableViewController
 
 + (instancetype) threadViewControllerWithThread:(NewsgroupThread*)thread;
+- (void) didLoadData;
 
 @end

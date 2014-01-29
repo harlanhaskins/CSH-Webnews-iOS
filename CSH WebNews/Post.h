@@ -61,6 +61,9 @@ typedef enum UnreadClass {
 + (PersonalClass) personalClassFromString:(NSString*)string;
 - (PostCell *) cellFromPost;
 
+- (void) loadBody;
+- (void) loadBodyWithBlock:(void (^)(Post *currentPost))block;
+
 @end
 
 @interface PostCell : UITableViewCell

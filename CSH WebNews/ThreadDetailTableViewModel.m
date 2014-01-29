@@ -12,6 +12,7 @@
 @interface ThreadDetailTableViewModel ()
 
 @property (nonatomic) NSArray *posts;
+@property (nonatomic) NSInteger postsLoaded;
 
 @end
 
@@ -21,6 +22,11 @@
     ThreadDetailTableViewModel *model = [ThreadDetailTableViewModel new];
     model.posts = posts;
     return model;
+}
+
+- (void) setReloadTableViewBlock:(void (^)())reloadTableViewBlock {
+    _reloadTableViewBlock = reloadTableViewBlock;
+    [self loadPosts];
 }
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -60,5 +66,16 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
+- (void) loadPosts {
+    for (Post *post in self.posts) {
+        [post loadBodyWithBlock:^(Post *currentPost) {
+            self.postsLoaded++;
+        }];
+    }
+    while (self.postsLoaded < self.posts.count) {
+        [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.05]];
+    }
+    self.reloadTableViewBlock();
+}
 
 @end
