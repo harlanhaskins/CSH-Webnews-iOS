@@ -68,7 +68,6 @@
 }
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     NewsgroupThread *thread = self.threads[indexPath.row];
     ThreadDetailViewController *threadVC = [ThreadDetailViewController threadViewControllerWithThread:thread];
     self.pushViewControllerBlock(threadVC);

@@ -13,6 +13,7 @@
 
 @property (nonatomic) NSArray *posts;
 @property (nonatomic) NSInteger postsLoaded;
+@property (nonatomic) UITableView *tableView;
 
 @end
 
@@ -63,9 +64,7 @@
 }
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
-
 - (void) loadPosts {
     for (Post *post in self.posts) {
         [post loadBodyWithBlock:^(Post *currentPost) {

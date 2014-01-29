@@ -50,6 +50,11 @@
     [self loadData];
 }
 
+- (void) viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:animated];
+}
+
 - (void) loadData {
     [self.tableViewModel loadDataWithBlock:^{
         [self reloadTableView];
