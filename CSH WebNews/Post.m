@@ -161,6 +161,19 @@
     return PersonalClassDefault;
 }
 
++ (UnreadClass) unreadClassFromString:(NSString*)string {
+    if ([string isKindOfClass:[NSNull class]]) {
+        return UnreadClassDefault;
+    }
+    if ([string isEqualToString:@"auto"]) {
+        return UnreadClassAuto;
+    }
+    if ([string isEqualToString:@"manual"]) {
+        return UnreadClassManual;
+    }
+    return UnreadClassManual;
+}
+
 - (void) loadBody {
     NSString *parameters = [NSString stringWithFormat:@"%@/%i", self.newsgroup, self.number];
     
