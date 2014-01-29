@@ -19,32 +19,33 @@
 
 @implementation NewsgroupThreadsViewController
 
-- (id)init {
-    self = [super init];
-    if (self) {
-        self.title = @"Newsgroups";
-    }
-    return self;
-}
-
 + (instancetype) threadListWithNewsgroupOutline:(NewsgroupOutline*)outline {
     NewsgroupThreadsViewController *threadsVC = [NewsgroupThreadsViewController new];
     threadsVC.outline = outline;
+    threadsVC.title = @"Newsgroups";
+    
+    
     return threadsVC;
 }
 
 - (void) viewDidLoad {
+    
     [super viewDidLoad];
     
+    self.refreshControl = [UIRefreshControl new];
+    [self.refreshControl addTarget:self action:@selector(loadData) forControlEvents:UIControlEventAllEvents];
+    
     self.tableViewModel = [NewsgroupThreadListTableViewModel threadListWithNewsgroupOutline:self.outline];
+    
+    __weak NewsgroupThreadsViewController *weakself = self;
+    self.tableViewModel.pushViewControllerBlock = ^(UIViewController *viewController) {
+        [weakself.navigationController pushViewController:viewController animated:YES];
+    };
     
     self.tableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStylePlain];
     
     self.tableView.delegate = self.tableViewModel;
     self.tableView.dataSource = self.tableViewModel;
-    
-    self.refreshControl = [UIRefreshControl new];
-    [self.refreshControl addTarget:self action:@selector(loadData) forControlEvents:UIControlEventAllEvents];
     
     [self loadData];
 }

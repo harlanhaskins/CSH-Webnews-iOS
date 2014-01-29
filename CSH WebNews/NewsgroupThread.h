@@ -10,11 +10,12 @@
 
 @class Post;
 
-@interface NewsgroupThread : NSObject
+@interface NewsgroupThread : NSObject<NSCoding>
 
 @property (nonatomic, readonly) Post *post;
 @property (nonatomic, readonly) NSArray *children;
 
+@property (nonatomic, readonly) NSMutableArray *allPosts;
 + (instancetype) newsgroupThreadWithDictionary:(NSDictionary*)dictionary;
 
 @end

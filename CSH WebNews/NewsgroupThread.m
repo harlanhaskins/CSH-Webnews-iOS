@@ -8,16 +8,35 @@
 
 #import "NewsgroupThread.h"
 #import "Post.h"
+#import "CacheManager.h"
 
 @interface NewsgroupThread ()
 
 @property (nonatomic, readwrite) Post *post;
 @property (nonatomic, readwrite) NSInteger depth;
 @property (nonatomic, readwrite) NSArray *children;
+@property (nonatomic, readwrite) NSMutableArray *allPosts;
 
 @end
 
 @implementation NewsgroupThread
+
+- (void) encodeWithCoder:(NSCoder *)coder {
+    [coder encodeObject:self.post forKey:@"post"];
+    [coder encodeObject:@(self.depth) forKey:@"depth"];
+    [coder encodeObject:self.children forKey:@"children"];
+    [coder encodeObject:self.allPosts forKey:@"allPosts"];
+}
+
+- (id) initWithCoder:(NSCoder *)decoder {
+    if (self = [super init]) {
+        self.post = [decoder decodeObjectForKey:@"post"];
+        self.depth = [[decoder decodeObjectForKey:@"depth"] integerValue];
+        self.children = [decoder decodeObjectForKey:@"children"];
+        self.allPosts = [decoder decodeObjectForKey:@"allPosts"];
+    }
+    return self;
+}
 
 + (instancetype) newsgroupThreadWithDictionary:(NSDictionary*)dictionary atDepth:(NSInteger)depth {
     NewsgroupThread *thread = [NewsgroupThread new];
@@ -29,6 +48,22 @@
     thread.children = [thread recursiveChildrenFromDictionaryArray:children atDepth:thread.depth];
     
     return thread;
+}
+
+- (NSArray*) allPosts {
+    if (!_allPosts) {
+        _allPosts = [NSMutableArray array];
+        [_allPosts addObject:self.post];
+        for (NewsgroupThread *thread in self.children) {
+            thread.post.depth = thread.depth;
+            Post *postToAdd = [CacheManager cachedPostWithNumber:thread.post.number];
+            if (!postToAdd || !postToAdd.body || [postToAdd.body isKindOfClass:[NSNull class]]) {
+                postToAdd = thread.post;
+            }
+            [_allPosts addObject:postToAdd];
+        }
+    }
+    return _allPosts;
 }
 
 // Don't expose the recursive methods.

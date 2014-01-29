@@ -9,6 +9,7 @@
 #import "Post.h"
 #import "ISO8601DateFormatter.h"
 #import "WebNewsDataHandler.h"
+#import "CacheManager.h"
 
 @interface Post ()
 
@@ -98,7 +99,12 @@
         return nil;
     }
     
-    Post *post = [Post new];
+    NSInteger postNumber = [postDictionary[@"number"] integerValue];
+    
+    Post *post = [CacheManager cachedPostWithNumber:postNumber];
+    if (!post) {
+        post = [Post new];
+    }
     
     post.newsgroup = postDictionary[@"newsgroup"];
     post.subject = postDictionary[@"subject"];
@@ -109,7 +115,7 @@
     post.date = [dateFormatter dateFromString:postDictionary[@"date"]];
     post.stickyUntilDate = [dateFormatter dateFromString:postDictionary[@"sticky_until"]];
     
-    post.number = [postDictionary[@"number"] integerValue];
+    post.number = postNumber;
     
     post.personalClass = [self personalClassFromString:postDictionary[@"personal_class"]];
     
@@ -129,6 +135,8 @@
     post.stickyUserName = stickyUser[@"username"];
     post.stickyRealName = stickyUser[@"real_name"];
     
+    [post loadBody];
+
     return post;
 }
 
@@ -146,6 +154,16 @@
         return PersonalClassMine;
     }
     return PersonalClassDefault;
+}
+
+- (void) loadBody {
+    NSString *parameters = [NSString stringWithFormat:@"%@/%i", self.newsgroup, self.number];
+    
+    [WebNewsDataHandler runHTTPOperationWithParameters:parameters success:^(AFHTTPRequestOperation *op, id response) {
+        [self setBody:response[@"post"][@"body"]];
+    } failure:^(AFHTTPRequestOperation *op, NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
 }
 
 - (NSString*) dateString {
@@ -193,17 +211,26 @@
     return colors[self.personalClass];
 }
 
+- (PostCell *) cellFromPost {
+    return [PostCell cellWithPost:self];
+}
+
+- (NSString*) description {
+    return [NSString stringWithFormat:@"Depth: %i", self.depth];
+}
+
 @end
 
 @interface PostCell ()
 
 @property (nonatomic, readwrite) Post *post;
 
+
 @end
 
 @implementation PostCell
 
-+ (instancetype) cellWithPost:(Post*)post level:(NSInteger)level
++ (instancetype) cellWithPost:(Post*)post
 {
     PostCell *cell = [[self alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:[self cellIdentifier]];
     cell.post = post;
@@ -216,8 +243,11 @@
         cell.post = response;
     } failure:nil];
     
-    cell.textLabel.text = cell.post.subject;
+    cell.textLabel.text = cell.post.body;
     cell.detailTextLabel.text = [cell.post authorshipAndTimeString];
+    
+    cell.indentationLevel += cell.post.depth;
+    
     return cell;
 }
 

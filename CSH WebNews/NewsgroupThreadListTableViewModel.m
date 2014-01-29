@@ -8,8 +8,10 @@
 
 #import "NewsgroupThreadListTableViewModel.h"
 #import "NewsgroupOutline.h"
+#import "ThreadDetailViewController.h"
 #import "WebNewsDataHandler.h"
 #import "NewsgroupThread.h"
+#import "CacheManager.h"
 
 @interface NewsgroupThreadListTableViewModel ()
 
@@ -23,6 +25,7 @@
 + (instancetype) threadListWithNewsgroupOutline:(NewsgroupOutline*)outline {
     NewsgroupThreadListTableViewModel *model = [[NewsgroupThreadListTableViewModel alloc] init];
     model.outline = outline;
+    model.threads = [CacheManager cachedThreadsWithOutline:outline];
     return model;
 }
 
@@ -49,10 +52,11 @@
 
 - (void) setThreads:(NSArray *)threads {
     _threads = threads;
+    [CacheManager cacheThreads:threads withOutline:self.outline];
 }
 
 - (void) loadDataWithBlock:(void(^)())block {
-    NSString *parameters = [NSString stringWithFormat:@"%@/index", self.outline.name];
+    NSString *parameters = [NSString stringWithFormat:@"%@/index?limit=20", self.outline.name];
     
     [WebNewsDataHandler runHTTPOperationWithParameters:parameters success:^(AFHTTPRequestOperation *op, id response) {
         NSArray *threads = [self newsgroupThreadsFromNewsgroupThreadDictionaryArray:response[@"posts_older"]];
@@ -65,7 +69,9 @@
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
+    NewsgroupThread *thread = self.threads[indexPath.row];
+    ThreadDetailViewController *threadVC = [ThreadDetailViewController threadViewControllerWithThread:thread];
+    self.pushViewControllerBlock(threadVC);
 }
 
 - (NSArray *) newsgroupThreadsFromNewsgroupThreadDictionaryArray:(NSArray*)array {

@@ -53,6 +53,7 @@
 }
 
 + (instancetype) newsgroupOutlineWithDictionary:(NSDictionary*)dictionary {
+    
     NewsgroupOutline *newsgroup = [NewsgroupOutline new];
     
     newsgroup.unreadPosts = [dictionary[@"unread_count"] integerValue];

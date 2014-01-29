@@ -7,6 +7,8 @@
 //
 
 #import "CacheManager.h"
+#import "Post.h"
+#import "NewsgroupOutline.h"
 
 @implementation CacheManager
 
@@ -22,20 +24,53 @@
     return [NSKeyedUnarchiver unarchiveObjectWithFile:[self activityCachePath]];
 }
 
-+ (void) cacheNewsgroups:(NSArray*)array {
-    [NSKeyedArchiver archiveRootObject:array toFile:[self newsgroupCachePath]];
++ (void) cacheNewsgroupList:(NSArray*)array {
+    [NSKeyedArchiver archiveRootObject:array toFile:[self newsgroupListCachePath]];
 }
 
-+ (NSString*) newsgroupCachePath {
-    return [self cachePathWithPathComponent:@"Newsgroups"];
++ (NSString*) newsgroupListCachePath {
+    return [self cachePathWithPathComponent:@"NewsgroupsList"];
 }
 
-+ (NSArray*) cachedNewsgroups {
-    return [NSKeyedUnarchiver unarchiveObjectWithFile:[self newsgroupCachePath]];
++ (NSArray*) cachedThreadsWithOutline:(NewsgroupOutline*)outline {
+    return [NSKeyedUnarchiver unarchiveObjectWithFile:[self threadListCachePathWithOutline:outline]];
+}
+
++ (void) cacheThreads:(NSArray*)array withOutline:(NewsgroupOutline*)outline {
+    [NSKeyedArchiver archiveRootObject:array toFile:[self threadListCachePathWithOutline:outline]];
+}
+
++ (NSString*) threadListCachePathWithOutline:(NewsgroupOutline*)outline {
+    NSString *outlinePath = [NSString stringWithFormat:@"%@_list", outline.name];
+    return [self cachePathWithPathComponent:outlinePath];
+}
+
++ (NSArray*) cachedNewsgroupList {
+    return [NSKeyedUnarchiver unarchiveObjectWithFile:[self newsgroupListCachePath]];
+}
+
++ (void) cachePosts:(NSArray*)array {
+    [NSKeyedArchiver archiveRootObject:array toFile:[self postCachePath]];
+}
+
++ (void) cachePost:(Post*)post {
+    [NSKeyedArchiver archiveRootObject:post toFile:[self postCachePathWithNumber:post.number]];
+}
+
++ (NSString*) postCachePath {
+    return [self cachePathWithPathComponent:@"Posts"];
+}
+
++ (NSString*) postCachePathWithNumber:(NSInteger)number {
+    NSString *postCachePath = [NSString stringWithFormat:@"Post_%i", number];
+    return [self cachePathWithPathComponent:postCachePath];
+}
+
++ (Post*) cachedPostWithNumber:(NSInteger)postNumber {
+    return [NSKeyedUnarchiver unarchiveObjectWithFile:[self postCachePathWithNumber:postNumber]];
 }
 
 + (NSString*) cachePathWithPathComponent:(NSString*)pathComponent {
-    
     NSString *cacheFileName = [[self cachePath] stringByAppendingPathComponent:pathComponent];
     return cacheFileName;
 }

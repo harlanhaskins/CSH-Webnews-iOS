@@ -21,6 +21,8 @@ typedef enum UnreadClass {
     UnreadClassManual
 } UnreadClass;
 
+@class PostCell;
+
 @interface Post : NSObject<NSCoding>
 
 @property (nonatomic, readonly) NSString *newsgroup;
@@ -40,6 +42,8 @@ typedef enum UnreadClass {
 @property (nonatomic, readonly) NSInteger number;
 @property (nonatomic, readonly) NSInteger parentNumber;
 
+@property (nonatomic, readwrite) NSInteger depth;
+
 @property (nonatomic, readonly) PersonalClass personalClass;
 
 @property (nonatomic, readonly, getter = isStarred) BOOL starred;
@@ -53,12 +57,16 @@ typedef enum UnreadClass {
 
 + (instancetype) postwithDictionary:(NSDictionary*)postDictionary;
 + (PersonalClass) personalClassFromString:(NSString*)string;
+- (PostCell *) cellFromPost;
 
 @end
 
 @interface PostCell : UITableViewCell
 
 @property (nonatomic, readonly) Post *post;
+
++ (instancetype) cellWithPost:(Post*)post;
+
 + (NSString*) cellIdentifier;
 
 @end

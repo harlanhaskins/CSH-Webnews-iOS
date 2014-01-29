@@ -8,11 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
+@class Post, NewsgroupOutline;
+
 @interface CacheManager : NSObject
 
 + (NSArray*) cachedActivity;
 + (void) cacheActivityThreads:(NSArray*)array;
-+ (void) cacheNewsgroups:(NSArray*)array;
-+ (NSArray*) cachedNewsgroups;
-
++ (void) cacheNewsgroupList:(NSArray*)array;
++ (NSArray*) cachedNewsgroupList;
++ (Post*) cachedPostWithNumber:(NSInteger)postNumber;
++ (void) cachePosts:(NSArray*)array;
++ (void) cachePost:(Post*)post;
++ (NSArray*) cachedThreadsWithOutline:(NewsgroupOutline*)outline;
++ (void) cacheThreads:(NSArray*)array withOutline:(NewsgroupOutline*)outline;
 @end

@@ -12,6 +12,8 @@
 
 @interface NewsgroupThreadListTableViewModel : NSObject<UITableViewDelegate, UITableViewDataSource>
 
+@property (nonatomic, copy) void (^pushViewControllerBlock)(UIViewController* controller);
+
 + (instancetype) threadListWithNewsgroupOutline:(NewsgroupOutline*)outline;
 - (void) loadDataWithBlock:(void(^)())block;
 

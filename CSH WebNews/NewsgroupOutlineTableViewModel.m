@@ -23,7 +23,7 @@
 
 + (instancetype) new {
     NewsgroupOutlineTableViewModel *model = [[NewsgroupOutlineTableViewModel alloc] init];
-    model.newsgroups = [CacheManager cachedNewsgroups];
+    model.newsgroups = [CacheManager cachedNewsgroupList];
     return model;
 }
 
@@ -50,7 +50,7 @@
 
 - (void) setNewsgroups:(NSArray *)newsgroups {
     _newsgroups = newsgroups;
-    [CacheManager cacheNewsgroups:newsgroups];
+    [CacheManager cacheNewsgroupList:newsgroups];
 }
 
 - (void) loadDataWithBlock:(void(^)())block {
