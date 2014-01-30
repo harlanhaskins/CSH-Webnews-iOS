@@ -241,6 +241,15 @@
     return colors[self.personalClass];
 }
 
+- (UIFont*) fontForAuthorshipString {
+    CGFloat fontSize = 12.0;
+    return self.unread ? [UIFont boldSystemFontOfSize:fontSize] : [UIFont systemFontOfSize:fontSize];
+}
+
+- (BOOL) isUnread {
+    return self.unreadClass != UnreadClassDefault;
+}
+
 - (PostCell *) cellFromPost {
     return [PostCell cellWithPost:self];
 }
@@ -282,7 +291,7 @@
     cell.textLabel.numberOfLines = 0;
     cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
     cell.detailTextLabel.text = [cell.post authorshipAndTimeString];
-    cell.detailTextLabel.font = [UIFont systemFontOfSize:12.0];
+    cell.detailTextLabel.font = [cell.post fontForAuthorshipString];
     cell.detailTextLabel.textAlignment = NSTextAlignmentRight;
     
     cell.indentationLevel += cell.post.depth;

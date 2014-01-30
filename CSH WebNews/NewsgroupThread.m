@@ -66,6 +66,15 @@
     return _allPosts;
 }
 
+- (UIFont*) fontForSubject {
+    for (Post *post in self.allPosts) {
+        if (post.unreadClass != UnreadClassDefault) {
+            return [UIFont boldSystemFontOfSize:18.0];
+        }
+    }
+    return [UIFont systemFontOfSize:18.0];
+}
+
 // Don't expose the recursive methods.
 + (instancetype) newsgroupThreadWithDictionary:(NSDictionary*)dictionary {
     return [self newsgroupThreadWithDictionary:dictionary atDepth:0];
@@ -96,6 +105,7 @@
     NewsgroupThreadCell *cell = [[NewsgroupThreadCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
     cell.thread = thread;
     cell.textLabel.text = cell.thread.post.subject;
+    cell.textLabel.font = [cell.thread fontForSubject];
     cell.detailTextLabel.text = [cell.thread.post authorshipAndTimeString];
     return cell;
 }

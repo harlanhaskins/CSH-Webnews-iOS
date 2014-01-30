@@ -52,6 +52,7 @@ typedef enum UnreadClass {
 @property (nonatomic, readonly, getter = isOrphaned) BOOL orphaned;
 @property (nonatomic, readonly, getter = isStripped) BOOL stripped;
 @property (nonatomic, readonly, getter = isReparented) BOOL reparented;
+@property (nonatomic, readonly, getter = isUnread) BOOL unread;
 
 @property (nonatomic, readonly) NSString *friendlyDate;
 @property (nonatomic, readonly) NSString *authorshipAndTimeString;
