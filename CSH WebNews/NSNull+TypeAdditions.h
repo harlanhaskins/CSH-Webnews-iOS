@@ -20,6 +20,8 @@
 
 - (float) floatValue;
 
+- (NSUInteger) unsignedIntegerValue;
+
 - (CGFloat) CGFloatValue;
 
 @end

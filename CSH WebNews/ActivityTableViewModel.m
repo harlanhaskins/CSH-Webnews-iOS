@@ -35,7 +35,7 @@
 }
 
 - (UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString *cellIdentifier = [NSString stringWithFormat:@"ActivityThreadCell_%i%i", indexPath.row, indexPath.section];
+    NSString *cellIdentifier = [NSString stringWithFormat:@"ActivityThreadCell_%li%li", (long)indexPath.row, (long)indexPath.section];
     ActivityThreadCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (!cell) {
         cell = [ActivityThreadCell cellWithActivityThread:self.threads[indexPath.row] reuseIdentifier:cellIdentifier];

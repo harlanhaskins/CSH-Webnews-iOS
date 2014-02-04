@@ -14,6 +14,10 @@
     return 0;
 }
 
+- (NSUInteger) unsignedIntegerValue {
+    return 0;
+}
+
 - (int) intValue {
     return 0;
 }

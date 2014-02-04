@@ -8,18 +8,18 @@
 
 #import <Foundation/Foundation.h>
 
-typedef enum PersonalClass {
+typedef NS_ENUM(NSUInteger, PersonalClass) {
     PersonalClassMine,
     PersonalClassInThreadWithMine,
     PersonalClassReplyToMine,
     PersonalClassDefault
-} PersonalClass;
+};
 
-typedef enum UnreadClass {
+typedef NS_ENUM(NSUInteger, UnreadClass) {
     UnreadClassDefault,
     UnreadClassAuto,
     UnreadClassManual
-} UnreadClass;
+};
 
 @class PostCell;
 

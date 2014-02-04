@@ -185,7 +185,7 @@
         return;
     }
     
-    NSString *parameters = [NSString stringWithFormat:@"%@/%i", self.newsgroup, self.number];
+    NSString *parameters = [NSString stringWithFormat:@"%@/%li", self.newsgroup, (long)self.number];
     
     [WebNewsDataHandler runHTTPOperationWithParameters:parameters success:^(AFHTTPRequestOperation *op, id response) {
         [self setBody:response[@"post"][@"body"]];
@@ -255,7 +255,7 @@
 }
 
 - (NSString*) description {
-    return [NSString stringWithFormat:@"Depth: %i", self.depth];
+    return [NSString stringWithFormat:@"Depth: %li", (long)self.depth];
 }
 
 - (NSString*) body {
@@ -280,7 +280,7 @@
     
     cell.textLabel.textColor = [post subjectColor];
     
-    NSString *parameters = [NSString stringWithFormat:@"%@%@/%i",kBaseURLFormat, post.newsgroup, post.number];
+    NSString *parameters = [NSString stringWithFormat:@"%@%@/%li",kBaseURLFormat, post.newsgroup, (long)post.number];
     
     [WebNewsDataHandler runHTTPOperationWithParameters:parameters success:^(AFHTTPRequestOperation *op, id response) {
         cell.post = response;

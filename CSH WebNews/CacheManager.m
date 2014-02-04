@@ -62,7 +62,7 @@
 }
 
 + (NSString*) postCachePathWithNumber:(NSInteger)number {
-    NSString *postCachePath = [NSString stringWithFormat:@"Post_%i", number];
+    NSString *postCachePath = [NSString stringWithFormat:@"Post_%li", (long)number];
     return [self cachePathWithPathComponent:postCachePath];
 }
 

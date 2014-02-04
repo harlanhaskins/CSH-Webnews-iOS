@@ -41,7 +41,7 @@
     if (self = [super init]) {
         self.unreadPosts = [[decoder decodeObjectForKey:@"unreadPosts"] integerValue];
         
-        self.highestPriorityPersonalClass = [[decoder decodeObjectForKey:@"highestPriorityPersonalClass"] integerValue];
+        self.highestPriorityPersonalClass = [[decoder decodeObjectForKey:@"highestPriorityPersonalClass"] unsignedIntegerValue];
         
         self.name = [decoder decodeObjectForKey:@"name"];
         
@@ -58,7 +58,7 @@
     
     newsgroup.unreadPosts = [dictionary[@"unread_count"] integerValue];
     
-    newsgroup.highestPriorityPersonalClass = [dictionary[@"unread_class"] integerValue];
+    newsgroup.highestPriorityPersonalClass = [dictionary[@"unread_class"] unsignedIntegerValue];
     
     newsgroup.name = dictionary[@"name"];
     
@@ -75,7 +75,7 @@
         return [self name];
     }
     else {
-        return [NSString stringWithFormat:@"%@ (%i)", [self name], self.unreadPosts];
+        return [NSString stringWithFormat:@"%@ (%li)", [self name], (long)self.unreadPosts];
     }
 }
 
