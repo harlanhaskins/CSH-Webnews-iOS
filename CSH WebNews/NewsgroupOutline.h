@@ -17,6 +17,8 @@
 
 @property (nonatomic, readonly) NSString *name;
 
+@property (nonatomic, readonly) NSString *truncatedName;
+
 @property (nonatomic, readonly) NSDate *newestDate;
 
 @property (nonatomic, readonly, getter = canAddPost) BOOL postable;

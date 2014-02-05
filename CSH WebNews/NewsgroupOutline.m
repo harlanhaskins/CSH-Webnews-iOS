@@ -70,6 +70,10 @@
     return newsgroup;
 }
 
+- (NSString*) truncatedName {
+    return [self.name stringByReplacingOccurrencesOfString:@"csh." withString:@""];
+}
+
 - (NSString*) textWithUnreadCount {
     if (self.unreadPosts <= 0) {
         return [self name];

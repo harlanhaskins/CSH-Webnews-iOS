@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		C910A6F3189733ED001D222D /* ActivityTableViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C910A6F2189733ED001D222D /* ActivityTableViewModel.m */; };
 		C92B9DDB189752DC0099C22D /* CacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C92B9DDA189752DC0099C22D /* CacheManager.m */; };
+		C944E26E18A179F4002D07CD /* HHCollapsibleCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C944E26D18A179F4002D07CD /* HHCollapsibleCommentCell.m */; };
+		C944E27218A180C0002D07CD /* HHCellActionsView.m in Sources */ = {isa = PBXBuildFile; fileRef = C944E27118A180C0002D07CD /* HHCellActionsView.m */; };
+		C944E27518A18310002D07CD /* NSMutableArray+HHActionButtons.m in Sources */ = {isa = PBXBuildFile; fileRef = C944E27418A18310002D07CD /* NSMutableArray+HHActionButtons.m */; };
 		C96D227D1895BD80001BFA57 /* WebNewsDataHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C96D227C1895BD80001BFA57 /* WebNewsDataHandler.m */; };
 		C96D22801895CC08001BFA57 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = C96D227F1895CC08001BFA57 /* Post.m */; };
 		C96D22831895CD7B001BFA57 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = C96D22821895CD7B001BFA57 /* User.m */; };
@@ -76,6 +79,12 @@
 		C910A6F2189733ED001D222D /* ActivityTableViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityTableViewModel.m; sourceTree = "<group>"; };
 		C92B9DD9189752DC0099C22D /* CacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheManager.h; sourceTree = "<group>"; };
 		C92B9DDA189752DC0099C22D /* CacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheManager.m; sourceTree = "<group>"; };
+		C944E26C18A179F4002D07CD /* HHCollapsibleCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HHCollapsibleCommentCell.h; sourceTree = "<group>"; };
+		C944E26D18A179F4002D07CD /* HHCollapsibleCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HHCollapsibleCommentCell.m; sourceTree = "<group>"; };
+		C944E27018A180C0002D07CD /* HHCellActionsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HHCellActionsView.h; sourceTree = "<group>"; };
+		C944E27118A180C0002D07CD /* HHCellActionsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HHCellActionsView.m; sourceTree = "<group>"; };
+		C944E27318A18310002D07CD /* NSMutableArray+HHActionButtons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+HHActionButtons.h"; sourceTree = "<group>"; };
+		C944E27418A18310002D07CD /* NSMutableArray+HHActionButtons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+HHActionButtons.m"; sourceTree = "<group>"; };
 		C96D227B1895BD80001BFA57 /* WebNewsDataHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebNewsDataHandler.h; sourceTree = "<group>"; };
 		C96D227C1895BD80001BFA57 /* WebNewsDataHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebNewsDataHandler.m; sourceTree = "<group>"; };
 		C96D227E1895CC08001BFA57 /* Post.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
@@ -196,6 +205,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C944E26F18A17CF3002D07CD /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				C944E26C18A179F4002D07CD /* HHCollapsibleCommentCell.h */,
+				C944E26D18A179F4002D07CD /* HHCollapsibleCommentCell.m */,
+				C944E27018A180C0002D07CD /* HHCellActionsView.h */,
+				C944E27118A180C0002D07CD /* HHCellActionsView.m */,
+				C944E27318A18310002D07CD /* NSMutableArray+HHActionButtons.h */,
+				C944E27418A18310002D07CD /* NSMutableArray+HHActionButtons.m */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
 		C96D22841895CDA4001BFA57 /* Objects */ = {
 			isa = PBXGroup;
 			children = (
@@ -267,6 +289,7 @@
 		C9C9485818987CAC00599E74 /* ThreadDetail */ = {
 			isa = PBXGroup;
 			children = (
+				C944E26F18A17CF3002D07CD /* Cells */,
 				C9C9485218987B5E00599E74 /* ThreadDetailViewController.h */,
 				C9C9485318987B5E00599E74 /* ThreadDetailViewController.m */,
 				C9C9485518987CA400599E74 /* ThreadDetailTableViewModel.h */,
@@ -463,6 +486,7 @@
 				ORGANIZATIONNAME = Haskins;
 				TargetAttributes = {
 					DCF26DD417CD617C0073DA19 = {
+						DevelopmentTeam = W7GJMYD5A4;
 						SystemCapabilities = {
 							com.apple.Keychain = {
 								enabled = 1;
@@ -527,6 +551,7 @@
 				C910A6F3189733ED001D222D /* ActivityTableViewModel.m in Sources */,
 				C9D6F9F81898498D00004E3B /* NewsgroupOutlineTableViewModel.m in Sources */,
 				C96D22A2189607F2001BFA57 /* AFHTTPRequestOperation.m in Sources */,
+				C944E27518A18310002D07CD /* NSMutableArray+HHActionButtons.m in Sources */,
 				DC22B1A517EBAFBC00E328DE /* PDKeychainBindings.m in Sources */,
 				DCF26E0917CD62830073DA19 /* ActivityViewController.m in Sources */,
 				C96D22831895CD7B001BFA57 /* User.m in Sources */,
@@ -547,6 +572,7 @@
 				C9C9484818985D9B00599E74 /* NewsgroupThread.m in Sources */,
 				C96D228D18960320001BFA57 /* ActivityThreadCell.m in Sources */,
 				DC0FC96117EC1A4200945EEC /* MBProgressHUD.m in Sources */,
+				C944E26E18A179F4002D07CD /* HHCollapsibleCommentCell.m in Sources */,
 				C9D6F9FB18984EDF00004E3B /* NSNull+TypeAdditions.m in Sources */,
 				DC22B1AD17EBDFD800E328DE /* ISO8601DateFormatter.m in Sources */,
 				C96D22871895CDBC001BFA57 /* Preferences.m in Sources */,
@@ -554,6 +580,7 @@
 				C96D22A5189607F2001BFA57 /* AFNetworkReachabilityManager.m in Sources */,
 				DCF26DE517CD617C0073DA19 /* main.m in Sources */,
 				C9D6F9F01898406C00004E3B /* NewsgroupsViewController.m in Sources */,
+				C944E27218A180C0002D07CD /* HHCellActionsView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -670,11 +697,13 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = "CSH WebNews/CSH WebNews.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CSH WebNews/CSH News-Prefix.pch";
 				INFOPLIST_FILE = "CSH WebNews/CSH News-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "CSH News";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -686,11 +715,13 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = "CSH WebNews/CSH WebNews.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CSH WebNews/CSH News-Prefix.pch";
 				INFOPLIST_FILE = "CSH WebNews/CSH News-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "CSH News";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

@@ -9,6 +9,7 @@
 #import "NewsgroupThreadsViewController.h"
 #import "NewsgroupThread.h"
 #import "NewsgroupThreadListTableViewModel.h"
+#import "NewsgroupOutline.h"
 
 @interface NewsgroupThreadsViewController ()
 
@@ -22,9 +23,7 @@
 + (instancetype) threadListWithNewsgroupOutline:(NewsgroupOutline*)outline {
     NewsgroupThreadsViewController *threadsVC = [NewsgroupThreadsViewController new];
     threadsVC.outline = outline;
-    threadsVC.title = @"Newsgroups";
-    
-    
+    threadsVC.title = threadsVC.outline.truncatedName;
     return threadsVC;
 }
 
