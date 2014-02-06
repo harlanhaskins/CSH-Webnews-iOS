@@ -7,15 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "HHPostProtocol.h"
 
 @class Post;
 
-@interface NewsgroupThread : NSObject<NSCoding>
+@interface NewsgroupThread : NSObject<NSCoding, HHPostProtocol>
 
 @property (nonatomic, readonly) Post *post;
-@property (nonatomic, readonly) NSArray *children;
 
 @property (nonatomic, readonly) NSMutableArray *allPosts;
+
 + (instancetype) newsgroupThreadWithDictionary:(NSDictionary*)dictionary;
 
 @end

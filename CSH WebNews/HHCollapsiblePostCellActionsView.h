@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HHCellActionsView : UIView
+/**
+ HHCollapsiblePostCellActionsView is a UIView that positions a set of UIButtons inside an HHCollapsiblePostCell, accessible with a swipe.
+ */
+@interface HHCollapsiblePostCellActionsView : UIView
 
 + (instancetype) viewWithActionButtons:(NSArray*)actionButtons;
 

@@ -65,6 +65,7 @@
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 }
+
 - (void) loadPosts {
     for (Post *post in self.posts) {
         [post loadBodyWithBlock:^(Post *currentPost) {

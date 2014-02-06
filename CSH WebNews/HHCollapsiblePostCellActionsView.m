@@ -6,18 +6,18 @@
 //  Copyright (c) 2014 Haskins. All rights reserved.
 //
 
-#import "HHCellActionsView.h"
+#import "HHCollapsiblePostCellActionsView.h"
 
-@interface HHCellActionsView ()
+@interface HHCollapsiblePostCellActionsView ()
 
 @property (nonatomic) NSArray *actionButtons;
 
 @end
 
-@implementation HHCellActionsView
+@implementation HHCollapsiblePostCellActionsView
 
 + (instancetype) viewWithActionButtons:(NSArray*)actionButtons {
-    HHCellActionsView *view = [[HHCellActionsView alloc] init];
+    HHCollapsiblePostCellActionsView *view = [[HHCollapsiblePostCellActionsView alloc] init];
     view.actionButtons = actionButtons;
     for (UIButton *button in view.actionButtons) {
         [view addSubview:button];

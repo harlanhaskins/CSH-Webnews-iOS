@@ -18,7 +18,6 @@
     #import <MobileCoreServices/MobileCoreServices.h>
     #import "AFNetworking.h"
     #import "PDKeychainBindingsController.h"
-    #import "MBProgressHUD.h"
     #import "NSDictionary+Merge.h"
     #import "NSNull+TypeAdditions.h"
     #define kApiKeyKey @"api_key"

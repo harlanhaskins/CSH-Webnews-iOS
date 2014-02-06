@@ -14,18 +14,21 @@
 
 @property (nonatomic, readwrite) Post *post;
 @property (nonatomic, readwrite) NSInteger depth;
-@property (nonatomic, readwrite) NSArray *children;
+@property (nonatomic, readwrite) NSArray *allThreads;
 @property (nonatomic, readwrite) NSMutableArray *allPosts;
 
 @end
 
 @implementation NewsgroupThread
 
+@synthesize bodyText;
+@synthesize headerText;
+@synthesize children;
+
 - (void) encodeWithCoder:(NSCoder *)coder {
     [coder encodeObject:self.post forKey:@"post"];
     [coder encodeObject:@(self.depth) forKey:@"depth"];
     [coder encodeObject:self.children forKey:@"children"];
-    [coder encodeObject:self.allPosts forKey:@"allPosts"];
 }
 
 - (id) initWithCoder:(NSCoder *)decoder {
@@ -33,7 +36,6 @@
         self.post = [decoder decodeObjectForKey:@"post"];
         self.depth = [[decoder decodeObjectForKey:@"depth"] integerValue];
         self.children = [decoder decodeObjectForKey:@"children"];
-        self.allPosts = [decoder decodeObjectForKey:@"allPosts"];
     }
     return self;
 }
@@ -45,25 +47,9 @@
     thread.depth = depth;
     
     NSArray *children = dictionary[@"children"];
-    thread.children = [thread recursiveChildrenFromDictionaryArray:children atDepth:thread.depth];
+    thread.children = [thread childrenFromDictionaryArray:children atDepth:thread.depth];
     
     return thread;
-}
-
-- (NSArray*) allPosts {
-    if (!_allPosts) {
-        _allPosts = [NSMutableArray array];
-        [_allPosts addObject:self.post];
-        for (NewsgroupThread *thread in self.children) {
-            thread.post.depth = thread.depth;
-            Post *postToAdd = [CacheManager cachedPostWithNumber:thread.post.number];
-            if (!postToAdd || !postToAdd.body || [postToAdd.body isKindOfClass:[NSNull class]]) {
-                postToAdd = thread.post;
-            }
-            [_allPosts addObject:postToAdd];
-        }
-    }
-    return _allPosts;
 }
 
 - (UIFont*) fontForSubject {
@@ -75,20 +61,48 @@
     return [UIFont systemFontOfSize:18.0];
 }
 
+- (NSArray *) allPosts {
+    if (!_allPosts) {
+        _allPosts = [NSMutableArray array];
+        for (NewsgroupThread *thread in self.allThreads) {
+            [_allPosts addObject:thread.post];
+        }
+    }
+    return _allPosts;
+}
+
+- (NSArray*) allThreads {
+    if (!_allThreads) {
+        _allThreads = [self recursivelyAddAllPosts];
+    }
+    return _allThreads;
+}
+
+- (NSArray *) recursivelyAddAllPosts {
+    NSMutableArray *array = [NSMutableArray array];
+    [array addObject:self];
+    for (NewsgroupThread *thread in self.children) {
+        [array addObjectsFromArray:[thread recursivelyAddAllPosts]];
+    }
+    return array;
+}
+
 // Don't expose the recursive methods.
 + (instancetype) newsgroupThreadWithDictionary:(NSDictionary*)dictionary {
     return [self newsgroupThreadWithDictionary:dictionary atDepth:0];
 }
 
+- (NSString *) bodyText {
+    return [self.post.body stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+}
 
-- (NSArray *) recursiveChildrenFromDictionaryArray:(NSArray*)array atDepth:(NSInteger)depth {
-    NSMutableArray *children = [NSMutableArray array];
+- (NSArray *) childrenFromDictionaryArray:(NSArray*)array atDepth:(NSInteger)depth {
+    NSMutableArray *allChildren = [NSMutableArray array];
     for (NSDictionary *threadDictionary in array) {
         NewsgroupThread *thread = [NewsgroupThread newsgroupThreadWithDictionary:threadDictionary atDepth:(depth + 1)];
-        [children addObject:thread];
-        [children addObjectsFromArray:thread.children];
+        [allChildren addObject:thread];
     }
-    return children;
+    return allChildren;
 }
 
 @end

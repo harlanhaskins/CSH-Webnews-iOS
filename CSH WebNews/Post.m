@@ -107,10 +107,11 @@
     NSInteger postNumber = [postDictionary[@"number"] integerValue];
     
     Post *post = [CacheManager cachedPostWithNumber:postNumber];
-    if (!post) {
-        post = [Post new];
+    if (post) {
+        return post;
     }
     
+    post = [Post new];
     post.newsgroup = postDictionary[@"newsgroup"];
     post.subject = postDictionary[@"subject"];
     post.authorName = postDictionary[@"author_name"];
@@ -187,7 +188,8 @@
     
     NSString *parameters = [NSString stringWithFormat:@"%@/%li", self.newsgroup, (long)self.number];
     
-    [WebNewsDataHandler runHTTPOperationWithParameters:parameters success:^(AFHTTPRequestOperation *op, id response) {
+    [WebNewsDataHandler runHTTPOperationWithParameters:parameters
+                                               success:^(AFHTTPRequestOperation *op, id response) {
         [self setBody:response[@"post"][@"body"]];
         [CacheManager cachePost:self];
         block(self);

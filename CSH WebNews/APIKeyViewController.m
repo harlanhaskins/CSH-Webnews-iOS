@@ -89,8 +89,6 @@
 - (void) submitAPIKey {
     [[PDKeychainBindings sharedKeychainBindings] setObject:keyTextField.text forKey:kApiKeyKey];
     
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    
     NSString *parameters = @"user";
     
     [WebNewsDataHandler runHTTPOperationWithParameters:parameters success:^(AFHTTPRequestOperation *op, id responseObject) {
@@ -98,11 +96,9 @@
         [self dismissViewControllerAnimated:YES completion:^{
             self.completionBlock();
         }];
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
     } failure:^(AFHTTPRequestOperation *op, NSError *error) {
         descriptionLabel.text = @"There seems to be an error with that key. Check to see if it's correct and that you're connected to the Internet, and try again.";
         descriptionLabel.textColor = [UIColor redColor];
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
     }];
 }
 

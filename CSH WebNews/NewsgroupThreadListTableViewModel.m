@@ -12,6 +12,7 @@
 #import "WebNewsDataHandler.h"
 #import "NewsgroupThread.h"
 #import "CacheManager.h"
+#import "ThreadPostsViewController.h"
 
 @interface NewsgroupThreadListTableViewModel ()
 
@@ -69,7 +70,8 @@
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NewsgroupThread *thread = self.threads[indexPath.row];
-    ThreadDetailViewController *threadVC = [ThreadDetailViewController threadViewControllerWithThread:thread];
+//    ThreadDetailViewController *threadVC = [ThreadDetailViewController threadViewControllerWithThread:thread];
+    ThreadPostsViewController *threadVC = [ThreadPostsViewController controllerWithThread:thread];
     self.pushViewControllerBlock(threadVC);
 }
 
