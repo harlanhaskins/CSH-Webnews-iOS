@@ -57,6 +57,8 @@ typedef NS_ENUM(NSUInteger, UnreadClass) {
 @property (nonatomic, readonly) NSString *authorshipAndTimeString;
 @property (nonatomic, readonly) UIColor *subjectColor;
 
+@property (nonatomic, readonly) NSAttributedString *attributedBody;
+
 + (instancetype) postwithDictionary:(NSDictionary*)postDictionary;
 + (PersonalClass) personalClassFromString:(NSString*)string;
 

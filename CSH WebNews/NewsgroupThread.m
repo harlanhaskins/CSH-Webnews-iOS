@@ -93,6 +93,10 @@
     return [self.post.body stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 }
 
+- (NSAttributedString *) attributedBody {
+    return self.post.attributedBody;
+}
+
 - (NSString*) headerText {
     return self.post.authorName;
 }

@@ -100,13 +100,24 @@
     self.bodyView.attributedText = text;
 }
 
+- (void) setText:(NSString*) text {
+    self.bodyView.text = text;
+}
+
 - (void) setHeaderText:(NSString*)headerText {
     [self.headerButton setTitle:headerText forState:UIControlStateNormal];
 }
 
 - (CGSize) sizeThatFits:(CGSize)size {
     size.width = size.width - (self.indentationLevel * self.indentationWidth);
-    self.bodyView.text = self.post.bodyText;
+    
+    if ([self.post respondsToSelector:@selector(attributedBody)]) {
+        self.bodyView.attributedText = self.post.attributedBody;
+    }
+    else {
+        self.bodyView.text = self.post.bodyText;
+    }
+    
     CGSize textSize = [self.bodyView sizeThatFits:size];
     textSize.height += self.headerButton.height;
     return textSize;

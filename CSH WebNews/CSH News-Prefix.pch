@@ -20,6 +20,7 @@
     #import "PDKeychainBindingsController.h"
     #import "NSDictionary+Merge.h"
     #import "NSNull+TypeAdditions.h"
+    #import "TestFlight.h"
     #define kApiKeyKey @"api_key"
     #define kBaseURLFormat @"https://webnews.csh.rit.edu/%@"
 #endif

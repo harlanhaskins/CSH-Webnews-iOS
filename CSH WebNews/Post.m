@@ -263,6 +263,20 @@
     return [self processedBody];
 }
 
+- (NSAttributedString *) attributedBody {
+    NSString *body = self.body;
+    NSError *error;
+    NSRegularExpression *quotedTextPattern = [NSRegularExpression regularExpressionWithPattern:@"^>.*$" options:NSRegularExpressionAnchorsMatchLines error:&error];
+    
+    NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:body];
+    
+    [quotedTextPattern enumerateMatchesInString:body options:0 range:NSMakeRange(0, body.length) usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
+        [string addAttribute:NSForegroundColorAttributeName value:[UIColor lightGrayColor] range:result.range];
+        [string addAttribute:NSFontAttributeName value:[UIFont italicSystemFontOfSize:12.0] range:result.range];
+    }];
+    return string;
+}
+
 - (NSString*) processedBody {
     return _body;
 }

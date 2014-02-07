@@ -93,6 +93,7 @@
     
     [WebNewsDataHandler runHTTPGETOperationWithParameters:parameters success:^(AFHTTPRequestOperation *op, id responseObject) {
         [self setData:responseObject[@"user"]];
+        [TestFlight passCheckpoint:@"Entered API Key"];
         [self dismissViewControllerAnimated:YES completion:^{
             self.completionBlock();
         }];

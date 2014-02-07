@@ -26,4 +26,9 @@
  */
 @property (nonatomic) NSInteger depth;
 
+/**
+ An NSAttributedString representation of the body.
+ */
+@property (nonatomic) NSAttributedString *attributedBody;
+
 @end
