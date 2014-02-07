@@ -8,7 +8,6 @@
 
 #import "NewsgroupThreadListTableViewModel.h"
 #import "NewsgroupOutline.h"
-#import "ThreadDetailViewController.h"
 #import "WebNewsDataHandler.h"
 #import "NewsgroupThread.h"
 #import "CacheManager.h"

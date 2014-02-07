@@ -32,8 +32,6 @@
 		C9C9484418985C0C00599E74 /* NewsgroupThreadsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C9484318985C0C00599E74 /* NewsgroupThreadsViewController.m */; };
 		C9C9484818985D9B00599E74 /* NewsgroupThread.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C9484718985D9B00599E74 /* NewsgroupThread.m */; };
 		C9C9484B1898690800599E74 /* NewsgroupThreadListTableViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C9484A1898690800599E74 /* NewsgroupThreadListTableViewModel.m */; };
-		C9C9485418987B5E00599E74 /* ThreadDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C9485318987B5E00599E74 /* ThreadDetailViewController.m */; };
-		C9C9485718987CA400599E74 /* ThreadDetailTableViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C9485618987CA400599E74 /* ThreadDetailTableViewModel.m */; };
 		C9C9485C189892AA00599E74 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9C9485B189892AA00599E74 /* Images.xcassets */; };
 		C9D6F9F01898406C00004E3B /* NewsgroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D6F9EF1898406C00004E3B /* NewsgroupsViewController.m */; };
 		C9D6F9F5189840FE00004E3B /* NewsgroupOutline.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D6F9F4189840FE00004E3B /* NewsgroupOutline.m */; };
@@ -128,10 +126,6 @@
 		C9C9484718985D9B00599E74 /* NewsgroupThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsgroupThread.m; sourceTree = "<group>"; };
 		C9C948491898690800599E74 /* NewsgroupThreadListTableViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsgroupThreadListTableViewModel.h; sourceTree = "<group>"; };
 		C9C9484A1898690800599E74 /* NewsgroupThreadListTableViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsgroupThreadListTableViewModel.m; sourceTree = "<group>"; };
-		C9C9485218987B5E00599E74 /* ThreadDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreadDetailViewController.h; sourceTree = "<group>"; };
-		C9C9485318987B5E00599E74 /* ThreadDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThreadDetailViewController.m; sourceTree = "<group>"; };
-		C9C9485518987CA400599E74 /* ThreadDetailTableViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreadDetailTableViewModel.h; sourceTree = "<group>"; };
-		C9C9485618987CA400599E74 /* ThreadDetailTableViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThreadDetailTableViewModel.m; sourceTree = "<group>"; };
 		C9C9485B189892AA00599E74 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		C9D6F9EE1898406C00004E3B /* NewsgroupsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsgroupsViewController.h; sourceTree = "<group>"; };
 		C9D6F9EF1898406C00004E3B /* NewsgroupsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsgroupsViewController.m; sourceTree = "<group>"; };
@@ -297,12 +291,8 @@
 			isa = PBXGroup;
 			children = (
 				C944E26F18A17CF3002D07CD /* Cells */,
-				C9C9485218987B5E00599E74 /* ThreadDetailViewController.h */,
-				C9C9485318987B5E00599E74 /* ThreadDetailViewController.m */,
 				C97DD33118A2A08000D1B9B7 /* ThreadPostsViewController.h */,
 				C97DD33218A2A08000D1B9B7 /* ThreadPostsViewController.m */,
-				C9C9485518987CA400599E74 /* ThreadDetailTableViewModel.h */,
-				C9C9485618987CA400599E74 /* ThreadDetailTableViewModel.m */,
 			);
 			name = ThreadDetail;
 			sourceTree = "<group>";
@@ -540,7 +530,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C9C9485418987B5E00599E74 /* ThreadDetailViewController.m in Sources */,
 				C96D228A1895D550001BFA57 /* ActivityThread.m in Sources */,
 				DCF26DE917CD617C0073DA19 /* AppDelegate.m in Sources */,
 				C9C9484B1898690800599E74 /* NewsgroupThreadListTableViewModel.m in Sources */,
@@ -558,7 +547,6 @@
 				DC22B1A917EBB00600E328DE /* SettingsViewController.m in Sources */,
 				C96D227D1895BD80001BFA57 /* WebNewsDataHandler.m in Sources */,
 				DCBE062417E000F1007BBF4C /* UIView+Positioning.m in Sources */,
-				C9C9485718987CA400599E74 /* ThreadDetailTableViewModel.m in Sources */,
 				C97DD33318A2A08000D1B9B7 /* ThreadPostsViewController.m in Sources */,
 				C96D22A4189607F2001BFA57 /* AFHTTPSessionManager.m in Sources */,
 				DC22B1A617EBAFBC00E328DE /* PDKeychainBindingsController.m in Sources */,

@@ -92,6 +92,10 @@
     return [self.post.body stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 }
 
+- (NSString*) headerText {
+    return self.post.authorName;
+}
+
 - (NSArray *) childrenFromDictionaryArray:(NSArray*)array atDepth:(NSInteger)theDepth {
     NSMutableArray *allChildren = [NSMutableArray array];
     for (NSDictionary *threadDictionary in array) {

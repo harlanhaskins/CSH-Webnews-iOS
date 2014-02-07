@@ -22,6 +22,7 @@
 @property (nonatomic, readwrite) NSString *parentNewsgroup;
 @property (nonatomic, readwrite) NSString *followUpNewsgroup;
 @property (nonatomic, readwrite) NSString *body;
+@property (nonatomic, readwrite) NSString *htmlBody;
 @property (nonatomic, readwrite) NSString *headers;
 
 @property (nonatomic, readwrite) UnreadClass unreadClass;
@@ -254,57 +255,12 @@
     return self.unreadClass != UnreadClassDefault;
 }
 
-- (PostCell *) cellFromPost {
-    return [PostCell cellWithPost:self];
-}
-
 - (NSString*) description {
     return [NSString stringWithFormat:@"Depth: %li", (long)self.depth];
 }
 
 - (NSString*) body {
     return [_body stringByAppendingString:@"\n "];
-}
-
-@end
-
-@interface PostCell ()
-
-@property (nonatomic, readwrite) Post *post;
-
-
-@end
-
-@implementation PostCell
-
-+ (instancetype) cellWithPost:(Post*)post
-{
-    PostCell *cell = [[self alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:[self cellIdentifier]];
-    cell.post = post;
-    
-    cell.textLabel.textColor = [post subjectColor];
-    
-    NSString *parameters = [NSString stringWithFormat:@"%@%@/%li",kBaseURLFormat, post.newsgroup, (long)post.number];
-    
-    [WebNewsDataHandler runHTTPOperationWithParameters:parameters success:^(AFHTTPRequestOperation *op, id response) {
-        cell.post = response;
-    } failure:nil];
-    
-    cell.textLabel.text = [cell.post body];
-    cell.textLabel.font = [UIFont systemFontOfSize:14.0];
-    cell.textLabel.numberOfLines = 0;
-    cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    cell.detailTextLabel.text = [cell.post authorshipAndTimeString];
-    cell.detailTextLabel.font = [cell.post fontForAuthorshipString];
-    cell.detailTextLabel.textAlignment = NSTextAlignmentRight;
-    
-    cell.indentationLevel += cell.post.depth;
-    
-    return cell;
-}
-
-+ (NSString*) cellIdentifier {
-    return @"PostCell";
 }
 
 @end

@@ -21,8 +21,6 @@ typedef NS_ENUM(NSUInteger, UnreadClass) {
     UnreadClassManual
 };
 
-@class PostCell;
-
 @interface Post : NSObject<NSCoding>
 
 @property (nonatomic, readonly) NSString *newsgroup;
@@ -30,6 +28,7 @@ typedef NS_ENUM(NSUInteger, UnreadClass) {
 @property (nonatomic, readonly) NSString *followUpNewsgroup;
 @property (nonatomic, readonly) NSString *subject;
 @property (nonatomic, readonly) NSString *body;
+@property (nonatomic, readonly) NSString *htmlBody;
 @property (nonatomic, readonly) NSString *headers;
 @property (nonatomic, readonly) NSString *authorName;
 @property (nonatomic, readonly) NSString *authorEmail;
@@ -60,19 +59,8 @@ typedef NS_ENUM(NSUInteger, UnreadClass) {
 
 + (instancetype) postwithDictionary:(NSDictionary*)postDictionary;
 + (PersonalClass) personalClassFromString:(NSString*)string;
-- (PostCell *) cellFromPost;
 
 - (void) loadBody;
 - (void) loadBodyWithBlock:(void (^)(Post *currentPost))block;
-
-@end
-
-@interface PostCell : UITableViewCell
-
-@property (nonatomic, readonly) Post *post;
-
-+ (instancetype) cellWithPost:(Post*)post;
-
-+ (NSString*) cellIdentifier;
 
 @end

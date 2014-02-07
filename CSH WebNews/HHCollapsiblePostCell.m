@@ -17,6 +17,8 @@
 @property (nonatomic) UITextView *bodyView;
 @property (nonatomic) UIButton *headerButton;
 
+@property (nonatomic) NSMutableArray *lineViews;
+
 @end
 
 @implementation HHCollapsiblePostCell
@@ -27,10 +29,11 @@
     cell.bodyView = [UITextView new];
     cell.bodyView.scrollEnabled = NO;
     cell.bodyView.editable = NO;
+    cell.bodyView.selectable = NO;
     [cell addSubview:cell.bodyView];
     
     cell.indentationLevel = 0;
-    cell.indentationWidth = 10.0;
+    cell.indentationWidth = 15.0;
     
     return cell;
 }
@@ -40,24 +43,50 @@
     
     if ([post respondsToSelector:@selector(depth)]) {
         cell.indentationLevel = post.depth;
+        cell.lineViews = [NSMutableArray array];
+        for (int i = 1; i < cell.indentationLevel; i++) {
+            UIView *lineView = [UIView new];
+            CGRect lineViewFrame = CGRectMake(0, (i * cell.indentationWidth), 1 / [UIScreen mainScreen].scale, 0);
+            lineView.frame = lineViewFrame;
+            lineView.backgroundColor = [UIColor colorWithWhite:0.85 alpha:1.0];
+            [cell.lineViews addObject:lineView];
+            [cell addSubview:lineView];
+        }
     }
     
     cell.post = post;
-    [cell.headerButton setTitle:post.headerText forState:UIControlStateNormal];
     
-    [cell addSubview:cell.bodyView];
+    cell.headerButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [cell.headerButton setTitle:post.headerText forState:UIControlStateNormal];
+    [cell.headerButton setTitleColor:[UIColor colorWithRed:0.0 green:148.0/255.0 blue:224.0/255.0 alpha:1.0] forState:UIControlStateNormal];
+    cell.headerButton.titleLabel.font = [UIFont systemFontOfSize:12.0];
+    cell.headerButton.titleLabel.textAlignment = NSTextAlignmentLeft;
+    cell.headerButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    cell.headerButton.frame = CGRectMake(0, 0, cell.frame.size.width, 15.0);
+    [cell addSubview:cell.headerButton];
     
     return cell;
 }
 
 - (void) layoutSubviews {
+    CGFloat buttonHeight = self.headerButton.height;
+    
     CGRect frame = self.frame;
+    frame.origin.y = buttonHeight;
     frame.origin.x = (self.indentationLevel * self.indentationWidth);
     frame.size.width -= frame.origin.x;
-    self.frame = frame;
-    frame.origin.y = 0;
-    
     self.bodyView.frame = frame;
+    
+    CGRect lineViewFrame = CGRectMake(0, 0, 1 / [UIScreen mainScreen].scale, frame.size.height);
+    
+    for (int i = 0; i < self.lineViews.count; i++) {
+        lineViewFrame.origin.x = (i + 1) * self.indentationWidth;
+        [self.lineViews[i] setFrame:lineViewFrame];
+    }
+    
+    frame.size.height = buttonHeight;
+    frame.origin.y = 0;
+    self.headerButton.frame = frame;
 }
 
 - (void) setAttributedText:(NSAttributedString*)text {
@@ -72,6 +101,7 @@
     size.width = size.width - (self.indentationLevel * self.indentationWidth);
     self.bodyView.text = self.post.bodyText;
     CGSize textSize = [self.bodyView sizeThatFits:size];
+    textSize.height += self.headerButton.height;
     return textSize;
 }
 

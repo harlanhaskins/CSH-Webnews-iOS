@@ -31,7 +31,7 @@
 
 - (void) viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
-    self.scrollView.contentInset = UIEdgeInsetsMake(self.topLayoutGuide.length,
+    self.scrollView.contentInset = UIEdgeInsetsMake(self.topLayoutGuide.length + 3.0,
                                                     0,
                                                     self.bottomLayoutGuide.length,
                                                     0);
