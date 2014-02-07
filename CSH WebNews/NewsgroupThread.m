@@ -118,10 +118,16 @@
 
 + (instancetype) cellWithNewsgroupThread:(NewsgroupThread*)thread reuseIdentifier:(NSString*)cellIdentifier {
     NewsgroupThreadCell *cell = [[NewsgroupThreadCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
+    
     cell.thread = thread;
     cell.textLabel.text = cell.thread.post.subject;
     cell.textLabel.font = [cell.thread fontForSubject];
     cell.detailTextLabel.text = [cell.thread.post authorshipAndTimeString];
+    
+    cell.backgroundColor =
+    cell.textLabel.backgroundColor =
+    cell.detailTextLabel.backgroundColor = [UIColor whiteColor];
+    
     return cell;
 }
 

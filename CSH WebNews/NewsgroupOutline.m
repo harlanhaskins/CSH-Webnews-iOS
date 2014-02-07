@@ -112,6 +112,10 @@
     
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
+    cell.textLabel.backgroundColor =
+    cell.detailTextLabel.backgroundColor =
+    cell.backgroundColor = [UIColor whiteColor];
+    
     return cell;
 }
 

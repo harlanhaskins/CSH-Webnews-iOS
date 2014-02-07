@@ -44,7 +44,7 @@
 
 - (void) layoutSubviews {
     if (!self.laidOutSubviews) {
-        CGFloat sidePadding = 3.0;
+        CGFloat sidePadding = 0.0;
         CGFloat widthWithSidePadding = self.frame.size.width - (sidePadding * 2.0);
         CGSize comparisonSize = CGSizeMake(widthWithSidePadding, CGFLOAT_MAX);
         CGFloat previousHeight = 0;

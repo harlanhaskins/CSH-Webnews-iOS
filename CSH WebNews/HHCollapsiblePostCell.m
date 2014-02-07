@@ -30,6 +30,11 @@
     cell.bodyView.scrollEnabled = NO;
     cell.bodyView.editable = NO;
     cell.bodyView.selectable = NO;
+    cell.bodyView.dataDetectorTypes = UIDataDetectorTypeAll;
+    cell.bodyView.opaque = YES;
+    cell.bodyView.backgroundColor =
+    cell.backgroundColor = [UIColor whiteColor];
+    
     [cell addSubview:cell.bodyView];
     
     cell.indentationLevel = 0;
@@ -57,6 +62,7 @@
     cell.post = post;
     
     cell.headerButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    cell.headerButton.backgroundColor = cell.backgroundColor;
     [cell.headerButton setTitle:post.headerText forState:UIControlStateNormal];
     [cell.headerButton setTitleColor:[UIColor colorWithRed:0.0 green:148.0/255.0 blue:224.0/255.0 alpha:1.0] forState:UIControlStateNormal];
     cell.headerButton.titleLabel.font = [UIFont systemFontOfSize:12.0];
