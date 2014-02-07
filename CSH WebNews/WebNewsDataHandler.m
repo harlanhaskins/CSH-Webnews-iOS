@@ -10,10 +10,21 @@
 
 @implementation WebNewsDataHandler
 
-+ (void) runHTTPOperationWithParameters:(NSString*)parameters
++ (void) runHTTPGETOperationWithParameters:(NSString*)parameters
                                 success:(HTTPSuccessBlock)successBlock
-                                failure:(HTTPFailureBlock)failure; {
+                                failure:(HTTPFailureBlock)failure {
     
+    NSURL *url = [self urlFromParameters:parameters];
+    
+    // Create an NSURLRequest with that URL.
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    [request setHTTPMethod:@"GET"];
+    
+    [self runHTTPOperationWithRequest:request success:successBlock failure:failure];
+}
+
++ (NSURL *) urlFromParameters:(NSString*)parameters {
     NSString *apiKey = [[PDKeychainBindings sharedKeychainBindings] objectForKey:kApiKeyKey];
     
     NSString *apiKeyString = [NSString stringWithFormat:@"api_key=%@&api_agent=iOS", apiKey];
@@ -34,10 +45,12 @@
     
     NSURL *url = [NSURL URLWithString:[activityString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     
-    // Create an NSURLRequest with that URL.
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-    
+    return url;
+}
+
++ (void) runHTTPOperationWithRequest:(NSURLRequest*)request
+                                success:(HTTPSuccessBlock)successBlock
+                                failure:(HTTPFailureBlock)failure  {
     // Create an AFHTTPRequestOperation with that request. Lots of creation here.
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     
@@ -50,6 +63,19 @@
     operation.responseSerializer = serializer;
     [operation setCompletionBlockWithSuccess:successBlock failure:failure];
     [[NSOperationQueue mainQueue] addOperation:operation];
+}
+
++ (void) runHTTPPUTOperationWithParameters:(NSString*)parameters
+                                success:(HTTPSuccessBlock)successBlock
+                                failure:(HTTPFailureBlock)failure {
+    NSURL *url = [self urlFromParameters:parameters];
+    
+    // Create an NSURLRequest with that URL.
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    [request setHTTPMethod:@"PUT"];
+    
+    [self runHTTPOperationWithRequest:request success:successBlock failure:failure];
 }
 
 @end

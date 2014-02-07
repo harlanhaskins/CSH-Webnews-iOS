@@ -192,7 +192,7 @@
     
     NSString *parameters = [NSString stringWithFormat:@"%@/%li", self.newsgroup, (long)self.number];
     
-    [WebNewsDataHandler runHTTPOperationWithParameters:parameters
+    [WebNewsDataHandler runHTTPGETOperationWithParameters:parameters
                                                success:^(AFHTTPRequestOperation *op, id response) {
         [self setBody:response[@"post"][@"body"]];
         [CacheManager cachePost:self];

@@ -57,7 +57,7 @@
     
     NSString *parameters = @"newsgroups";
     
-    [WebNewsDataHandler runHTTPOperationWithParameters:parameters success:^(AFHTTPRequestOperation *op, id response) {
+    [WebNewsDataHandler runHTTPGETOperationWithParameters:parameters success:^(AFHTTPRequestOperation *op, id response) {
         NSArray *newsgroups = [self newsgroupArrayFromDictionaryArray:response[parameters]];
         [self setNewsgroups:newsgroups];
         block();

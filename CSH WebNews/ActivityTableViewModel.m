@@ -65,7 +65,7 @@
     
     NSString *parameters = @"activity";
     
-    [WebNewsDataHandler runHTTPOperationWithParameters:parameters success:^(AFHTTPRequestOperation *op, id response) {
+    [WebNewsDataHandler runHTTPGETOperationWithParameters:parameters success:^(AFHTTPRequestOperation *op, id response) {
         NSArray *activityThreads = [self activityThreadArrayFromDictionaryArray:response[parameters]];
         [self setThreads:activityThreads];
         block();

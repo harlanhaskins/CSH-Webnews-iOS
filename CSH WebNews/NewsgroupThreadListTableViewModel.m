@@ -55,13 +55,13 @@
     [CacheManager cacheThreads:threads withOutline:self.outline];
 }
 
-- (void) loadDataWithBlock:(void(^)())block {
+- (void) loadData {
     NSString *parameters = [NSString stringWithFormat:@"%@/index?limit=20", self.outline.name];
     
-    [WebNewsDataHandler runHTTPOperationWithParameters:parameters success:^(AFHTTPRequestOperation *op, id response) {
+    [WebNewsDataHandler runHTTPGETOperationWithParameters:parameters success:^(AFHTTPRequestOperation *op, id response) {
         NSArray *threads = [self newsgroupThreadsFromNewsgroupThreadDictionaryArray:response[@"posts_older"]];
         [self setThreads:threads];
-        block();
+        self.loadDataBlock();
     } failure:^(AFHTTPRequestOperation *op, NSError *error) {
         NSLog(@"Error: %@", error);
     }];
@@ -71,6 +71,7 @@
     NewsgroupThread *thread = self.threads[indexPath.row];
 //    ThreadDetailViewController *threadVC = [ThreadDetailViewController threadViewControllerWithThread:thread];
     ThreadPostsViewController *threadVC = [ThreadPostsViewController controllerWithThread:thread];
+    threadVC.reloadThreadsBlock = self.loadDataBlock;
     self.pushViewControllerBlock(threadVC);
 }
 

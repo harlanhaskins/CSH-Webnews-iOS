@@ -11,6 +11,7 @@
 #import "HHThreadScrollView.h"
 #import "HHCollapsiblePostCell.h"
 #import "Post.h"
+#import "WebNewsDataHandler.h"
 
 @interface ThreadPostsViewController ()
 
@@ -51,6 +52,19 @@
     [self.view addSubview:self.scrollView];
 }
 
+- (void) markThreadRead {
+    dispatch_async(dispatch_queue_create("Mark Thread Read", 0), ^{
+        NSString *parameters = [NSString stringWithFormat:@"mark_read?newsgroup=%@&number=%li&in_thread=true", self.thread.post.newsgroup, (long)self.thread.post.number];
+        [WebNewsDataHandler runHTTPPUTOperationWithParameters:parameters success:^(AFHTTPRequestOperation *op, id response) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.reloadThreadsBlock();
+            });
+        } failure:^(AFHTTPRequestOperation *op, NSError *error) {
+            NSLog(@"Failed to mark thread read.");
+        }];
+    });
+}
+
 - (NSArray*) posts {
     return self.thread.allPosts;
 }
@@ -67,6 +81,7 @@
         }
         dispatch_async(dispatch_get_main_queue(), ^{
             [self createScrollView];
+            [self markThreadRead];
         });
     });
 }

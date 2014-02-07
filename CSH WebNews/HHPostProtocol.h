@@ -20,12 +20,6 @@
  */
 @property (nonatomic) NSString *bodyText;
 
-/**
- Children. Must contain only elements that follow the HHPostProtocol.
- */
-@property (nonatomic) NSArray *children;
-
-
 @optional
 /**
  The depth of the current post.

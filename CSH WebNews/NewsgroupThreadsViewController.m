@@ -40,6 +40,9 @@
     self.tableViewModel.pushViewControllerBlock = ^(UIViewController *viewController) {
         [weakself.navigationController pushViewController:viewController animated:YES];
     };
+    self.tableViewModel.loadDataBlock = ^{
+        [weakself reloadTableView];
+    };
     
     self.tableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStylePlain];
     
@@ -55,9 +58,7 @@
 }
 
 - (void) loadData {
-    [self.tableViewModel loadDataWithBlock:^{
-        [self reloadTableView];
-    }];
+    [self.tableViewModel loadData];
 }
 
 - (void) reloadTableView {

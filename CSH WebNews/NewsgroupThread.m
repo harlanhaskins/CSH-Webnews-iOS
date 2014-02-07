@@ -16,13 +16,14 @@
 @property (nonatomic, readwrite) NSMutableArray *allThreads;
 @property (nonatomic, readwrite) NSMutableArray *allPosts;
 
+@property (nonatomic, readwrite) NSMutableArray *children;
+
 @end
 
 @implementation NewsgroupThread
 
 @synthesize bodyText;
 @synthesize headerText;
-@synthesize children;
 @synthesize depth;
 
 - (void) encodeWithCoder:(NSCoder *)coder {
@@ -96,7 +97,7 @@
     return self.post.authorName;
 }
 
-- (NSArray *) childrenFromDictionaryArray:(NSArray*)array atDepth:(NSInteger)theDepth {
+- (NSMutableArray *) childrenFromDictionaryArray:(NSArray*)array atDepth:(NSInteger)theDepth {
     NSMutableArray *allChildren = [NSMutableArray array];
     for (NSDictionary *threadDictionary in array) {
         NewsgroupThread *thread = [NewsgroupThread newsgroupThreadWithDictionary:threadDictionary atDepth:(theDepth + 1)];

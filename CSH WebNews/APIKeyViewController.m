@@ -91,7 +91,7 @@
     
     NSString *parameters = @"user";
     
-    [WebNewsDataHandler runHTTPOperationWithParameters:parameters success:^(AFHTTPRequestOperation *op, id responseObject) {
+    [WebNewsDataHandler runHTTPGETOperationWithParameters:parameters success:^(AFHTTPRequestOperation *op, id responseObject) {
         [self setData:responseObject[@"user"]];
         [self dismissViewControllerAnimated:YES completion:^{
             self.completionBlock();

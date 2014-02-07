@@ -12,6 +12,7 @@
 
 @interface ThreadPostsViewController : UIViewController
 
+@property (nonatomic, copy) void (^reloadThreadsBlock)();
 + (instancetype) controllerWithThread:(NewsgroupThread*)thread;
 
 @end
