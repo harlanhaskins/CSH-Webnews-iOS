@@ -62,6 +62,7 @@
     cell.headerButton.titleLabel.font = [UIFont systemFontOfSize:12.0];
     cell.headerButton.titleLabel.textAlignment = NSTextAlignmentLeft;
     cell.headerButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    cell.headerButton.contentEdgeInsets = UIEdgeInsetsMake(0, 5.0, 0, 0);
     cell.headerButton.frame = CGRectMake(0, 0, cell.frame.size.width, 15.0);
     [cell addSubview:cell.headerButton];
     

@@ -260,7 +260,11 @@
 }
 
 - (NSString*) body {
-    return [_body stringByAppendingString:@"\n "];
+    return [self processedBody];
+}
+
+- (NSString*) processedBody {
+    return _body;
 }
 
 @end
