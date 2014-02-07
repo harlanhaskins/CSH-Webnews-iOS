@@ -47,16 +47,4 @@
  */
 @property (nonatomic, readonly) HHCollapsiblePostCellActionsView *actionsView;
 
-/**
- The children of this post (All should be HHCollapsibleCommentCell objects)
- */
-@property (nonatomic, readonly) NSArray* children;
-
-/**
- Set the text inside the cell. This shouldn't be necessary, and I might be taking it out.
- 
- @since v1.0
- */
-- (void) setText:(NSString*)text;
-
 @end

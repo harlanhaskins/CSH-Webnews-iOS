@@ -31,9 +31,11 @@
 
 - (void) viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
+    self.scrollView.contentInset = UIEdgeInsetsMake(self.topLayoutGuide.length,
+                                                    0,
+                                                    self.bottomLayoutGuide.length,
+                                                    0);
     self.scrollView.frame = self.view.frame;
-    self.scrollView.contentInset = UIEdgeInsetsMake(self.topLayoutGuide.length, 0, self.bottomLayoutGuide.length, 0);
-    self.scrollView.contentSize = self.view.size;
 }
 
 - (void)viewDidLoad {
@@ -44,7 +46,7 @@
 }
 
 - (void) createScrollView {
-    self.scrollView = [HHThreadScrollView threadViewWithParentPost:self.thread];
+    self.scrollView = [HHThreadScrollView threadViewWithPosts:self.thread.allThreads];
     self.scrollView.scrollEnabled = YES;
     [self.view addSubview:self.scrollView];
 }
@@ -54,7 +56,7 @@
 }
 
 - (void) loadPosts {
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    dispatch_async(dispatch_queue_create("Loading Posts", 0), ^{
         for (Post *post in self.posts) {
             [post loadBodyWithBlock:^(Post *currentPost) {
                 self.postsLoaded++;

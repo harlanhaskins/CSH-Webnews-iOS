@@ -25,4 +25,11 @@
  */
 @property (nonatomic) NSArray *children;
 
+
+@optional
+/**
+ The depth of the current post.
+ */
+@property (nonatomic) NSInteger depth;
+
 @end

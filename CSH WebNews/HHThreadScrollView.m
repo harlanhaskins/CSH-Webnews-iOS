@@ -13,48 +13,55 @@
 @interface HHThreadScrollView ()
 
 @property (nonatomic) HHCollapsiblePostCell *parentCell;
-@property (nonatomic, readwrite) NSArray *allCells;
+@property (nonatomic) NSArray *posts;
 @property (nonatomic) BOOL laidOutSubviews;
+
+@property (nonatomic, readwrite) NSMutableArray *allCells;
 
 @end
 
 @implementation HHThreadScrollView
 
-+ (instancetype) threadViewWithParentCell:(HHCollapsiblePostCell*)cell {
++ (instancetype) threadViewWithPosts:(NSArray*)posts {
     HHThreadScrollView *threadView = [HHThreadScrollView new];
-    threadView.parentCell = cell;
-//    threadView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:1 alpha:0.5];
+    threadView.posts = posts;
+    [threadView addAllCellsAsSubviews];
     return threadView;
 }
 
-+ (instancetype) threadViewWithParentPost:(id<HHPostProtocol>)post {
-    HHCollapsiblePostCell *cell = [HHCollapsiblePostCell cellWithPost:post];
-    return [self threadViewWithParentCell:cell];
-}
-
-- (void) setParentCell:(HHCollapsiblePostCell *)parentCell {
-    _parentCell = parentCell;
-    [self addAllCellsAsSubviews];
+- (void) setPosts:(NSArray *)posts {
+    _posts = posts;
 }
 
 - (void) addAllCellsAsSubviews {
-    for (int i = 0; i < self.allCells.count; i++) {
-        HHCollapsiblePostCell *cell = self.allCells[i];
+    self.allCells = [NSMutableArray array];
+    for (int i = 0; i < self.posts.count; i++) {
+        HHCollapsiblePostCell *cell = [HHCollapsiblePostCell cellWithPost:self.posts[i]];
+        [self.allCells addObject:cell];
         [self addSubview:cell];
     }
 }
 
 - (void) layoutSubviews {
     if (!self.laidOutSubviews) {
-        CGPoint origin = CGPointZero;
+        CGFloat sidePadding = 3.0;
+        CGFloat widthWithSidePadding = self.frame.size.width - (sidePadding * 2.0);
+        CGSize comparisonSize = CGSizeMake(widthWithSidePadding, CGFLOAT_MAX);
+        CGFloat previousHeight = 0;
+        CGFloat previousY = 0;
         for (int i = 0; i < self.allCells.count; i++) {
             HHCollapsiblePostCell *cell = self.allCells[i];
             
-            CGRect cellRect = cell.frame;
-            cellRect.origin = origin;
-            cellRect.size = [cell sizeThatFits:CGSizeMake(self.frame.size.width, CGFLOAT_MAX)];
+            CGFloat originY =
+            previousY = previousY + previousHeight;
+            
+            CGFloat estimatedHeight =
+            previousHeight = [cell sizeThatFits:comparisonSize].height;
+            
+            CGRect cellRect = CGRectZero;
+            cellRect.origin = CGPointMake(sidePadding, originY);
+            cellRect.size = CGSizeMake(widthWithSidePadding, estimatedHeight);
             cell.frame = cellRect;
-            origin.y += cellRect.size.height;
         }
         self.laidOutSubviews = YES;
         [self reloadContentSize];
@@ -69,22 +76,6 @@
 - (void) reloadContentSize {
     UIView *lastCollapsibleCell = [self.allCells lastObject];
     self.contentSize = CGSizeMake(self.frame.size.width, lastCollapsibleCell.frame.origin.y + lastCollapsibleCell.frame.size.height);
-}
-
-- (NSArray*) allCells {
-    if (!_allCells) {
-        _allCells = [self recursivelyAddAllCellsFromCell:self.parentCell];
-    }
-    return _allCells;
-}
-
-- (NSArray *) recursivelyAddAllCellsFromCell:(HHCollapsiblePostCell*)cell {
-    NSMutableArray *array = [NSMutableArray array];
-    for (HHCollapsiblePostCell *childCell in cell.children) {
-        [array addObject:cell];
-        [array addObjectsFromArray:[self recursivelyAddAllCellsFromCell:childCell]];
-    }
-    return array;
 }
 
 @end

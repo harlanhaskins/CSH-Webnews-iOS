@@ -16,6 +16,7 @@
 @property (nonatomic, readonly) Post *post;
 
 @property (nonatomic, readonly) NSMutableArray *allPosts;
+@property (nonatomic, readonly) NSMutableArray *allThreads;
 
 + (instancetype) newsgroupThreadWithDictionary:(NSDictionary*)dictionary;
 

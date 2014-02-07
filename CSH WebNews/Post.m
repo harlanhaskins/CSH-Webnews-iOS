@@ -105,9 +105,14 @@
     }
     
     NSInteger postNumber = [postDictionary[@"number"] integerValue];
+    ISO8601DateFormatter *dateFormatter = [[ISO8601DateFormatter alloc] init];
     
     Post *post = [CacheManager cachedPostWithNumber:postNumber];
     if (post) {
+        // Change the values that can change.
+        post.starred = [postDictionary[@"starred"] boolValue];
+        post.unreadClass = [self unreadClassFromString:postDictionary[@"unread_class"]];
+        post.stickyUntilDate = [dateFormatter dateFromString:postDictionary[@"sticky_until"]];
         return post;
     }
     
@@ -117,9 +122,7 @@
     post.authorName = postDictionary[@"author_name"];
     post.authorEmail = postDictionary[@"author_email"];
     
-    ISO8601DateFormatter *dateFormatter = [[ISO8601DateFormatter alloc] init];
     post.date = [dateFormatter dateFromString:postDictionary[@"date"]];
-    post.stickyUntilDate = [dateFormatter dateFromString:postDictionary[@"sticky_until"]];
     
     post.number = postNumber;
     
@@ -199,7 +202,6 @@
 }
 
 - (NSString*) dateString {
-    
     // Create an empty formatter.
     NSDateFormatter *dateFormatter = [NSDateFormatter new];
     

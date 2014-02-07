@@ -12,8 +12,8 @@
 
 @interface HHThreadScrollView : UIScrollView
 
-@property (nonatomic, readonly) NSArray *allCells;
+@property (nonatomic, readonly) NSMutableArray *allCells;
 
-+ (instancetype) threadViewWithParentPost:(id<HHPostProtocol>)post;
++ (instancetype) threadViewWithPosts:(NSArray*)posts;
 
 @end
