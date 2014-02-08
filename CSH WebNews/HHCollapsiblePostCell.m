@@ -23,56 +23,61 @@
 
 @implementation HHCollapsiblePostCell
 
-+ (instancetype) new {
-    HHCollapsiblePostCell *cell = [[HHCollapsiblePostCell alloc] init];
++ (instancetype) cellWithPost:(id<HHPostProtocol>)post {
+    HHCollapsiblePostCell *cell = [HHCollapsiblePostCell new];
     
-    cell.bodyView = [UITextView new];
-    cell.bodyView.scrollEnabled = NO;
-    cell.bodyView.editable = NO;
-    cell.bodyView.selectable = NO;
-    cell.bodyView.dataDetectorTypes = UIDataDetectorTypeAll;
-    cell.bodyView.opaque = YES;
-    cell.bodyView.backgroundColor =
-    cell.backgroundColor = [UIColor whiteColor];
-    
-    [cell addSubview:cell.bodyView];
-    
-    cell.indentationLevel = 0;
-    cell.indentationWidth = 15.0;
+    [cell setPost:post];
+    [cell adjustDepth];
+    [cell createTextContainer];
+    [cell createHeaderButton];
     
     return cell;
 }
 
-+ (instancetype) cellWithPost:(id<HHPostProtocol>)post {
-    HHCollapsiblePostCell *cell = [HHCollapsiblePostCell new];
-    
-    if ([post respondsToSelector:@selector(depth)]) {
-        cell.indentationLevel = post.depth;
-        cell.lineViews = [NSMutableArray array];
-        for (int i = 1; i < cell.indentationLevel; i++) {
-            UIView *lineView = [UIView new];
-            CGRect lineViewFrame = CGRectMake(0, (i * cell.indentationWidth), 1 / [UIScreen mainScreen].scale, 0);
-            lineView.frame = lineViewFrame;
-            lineView.backgroundColor = [UIColor colorWithWhite:0.85 alpha:1.0];
-            [cell.lineViews addObject:lineView];
-            [cell addSubview:lineView];
-        }
+- (void) createTextContainer {
+    self.bodyView = [UITextView new];
+    self.bodyView.scrollEnabled = NO;
+    self.bodyView.editable = NO;
+    self.bodyView.selectable = NO;
+    self.bodyView.dataDetectorTypes = UIDataDetectorTypeAll;
+    self.bodyView.opaque = YES;
+    self.bodyView.backgroundColor =
+    self.backgroundColor = [UIColor whiteColor];
+    [self addSubview:self.bodyView];
+}
+
+- (void) adjustDepth {
+    self.indentationLevel = 0;
+    self.indentationWidth = 20.0;
+    if ([self.post respondsToSelector:@selector(depth)]) {
+        self.indentationLevel = self.post.depth;
+        [self createLineViews];
     }
-    
-    cell.post = post;
-    
-    cell.headerButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    cell.headerButton.backgroundColor = cell.backgroundColor;
-    [cell.headerButton setTitle:post.headerText forState:UIControlStateNormal];
-    [cell.headerButton setTitleColor:[UIColor colorWithRed:0.0 green:148.0/255.0 blue:224.0/255.0 alpha:1.0] forState:UIControlStateNormal];
-    cell.headerButton.titleLabel.font = [UIFont systemFontOfSize:12.0];
-    cell.headerButton.titleLabel.textAlignment = NSTextAlignmentLeft;
-    cell.headerButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    cell.headerButton.contentEdgeInsets = UIEdgeInsetsMake(0, 5.0, 0, 0);
-    cell.headerButton.frame = CGRectMake(0, 0, cell.frame.size.width, 15.0);
-    [cell addSubview:cell.headerButton];
-    
-    return cell;
+}
+
+- (void) createLineViews {
+    self.lineViews = [NSMutableArray array];
+    for (int i = 1; i < self.indentationLevel; i++) {
+        UIView *lineView = [UIView new];
+        CGRect lineViewFrame = CGRectMake(0, (i * self.indentationWidth), 1 / [UIScreen mainScreen].scale, 0);
+        lineView.frame = lineViewFrame;
+        lineView.backgroundColor = [UIColor colorWithWhite:0.85 alpha:1.0];
+        [self.lineViews addObject:lineView];
+        [self addSubview:lineView];
+    }
+}
+
+- (void) createHeaderButton {
+    self.headerButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.headerButton.backgroundColor = self.backgroundColor;
+    [self.headerButton setTitle:self.post.headerText forState:UIControlStateNormal];
+    [self.headerButton setTitleColor:[UIColor colorWithRed:0.0 green:148.0/255.0 blue:224.0/255.0 alpha:1.0] forState:UIControlStateNormal];
+    self.headerButton.titleLabel.font = [UIFont systemFontOfSize:12.0];
+    self.headerButton.titleLabel.textAlignment = NSTextAlignmentLeft;
+    self.headerButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    self.headerButton.contentEdgeInsets = UIEdgeInsetsMake(0, 5.0, 0, 0);
+    self.headerButton.frame = CGRectMake(0, 0, self.frame.size.width, 15.0);
+    [self addSubview:self.headerButton];
 }
 
 - (void) layoutSubviews {
