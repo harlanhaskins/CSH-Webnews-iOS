@@ -49,6 +49,8 @@
 - (void) createScrollView {
     self.scrollView = [HHThreadScrollView threadViewWithPosts:self.thread.allThreads];
     self.scrollView.scrollEnabled = YES;
+    self.scrollView.contentInset =
+    self.scrollView.scrollIndicatorInsets = UIEdgeInsetsMake(self.topLayoutGuide.length, 0, self.bottomLayoutGuide.length, 0);
     [self.view addSubview:self.scrollView];
 }
 
