@@ -11,10 +11,10 @@ Building
 
 To build the project yourself, clone the project and then update the submodule(s):
 
-   $ git clone https://github.com/harlanhaskins/CSH-Webnews-iOS.git
-   $ cd CSH-Webnews-iOS
-   $ git submodule init
-   $ git submodule add
+    $ git clone https://github.com/harlanhaskins/CSH-Webnews-iOS.git
+    $ cd CSH-Webnews-iOS
+    $ git submodule init
+    $ git submodule add
 
 License
 ---
