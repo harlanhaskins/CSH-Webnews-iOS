@@ -5,13 +5,12 @@ An iOS app for Computer Science House's internal WebNews program.
 Building
 ---
 
-To build the project yourself, clone the project and then update the submodule(s):
+To build the project yourself, clone the project and then install the pods:
 
     $ git clone https://github.com/harlanhaskins/CSH-Webnews-iOS.git
     $ cd CSH-Webnews-iOS
-    $ git submodule init
-    $ git submodule update
-    
+    $ pod install 
+
 Authors
 ---
 Harlan Haskins ([@harlanhaskins](http://github.com/harlanhaskins))
