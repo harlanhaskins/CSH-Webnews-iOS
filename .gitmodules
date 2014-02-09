@@ -1,0 +1,3 @@
+[submodule "CSH WebNews/AFNetworking"]
+	path = CSH WebNews/AFNetworking
+	url = https://github.com/AFNetworking/AFNetworking.git
