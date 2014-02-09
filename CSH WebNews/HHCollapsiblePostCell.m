@@ -141,7 +141,8 @@ static const NSInteger MAX_INDENTATION_LEVEL = 6;
         NSString *dots = [@"" stringByPaddingToLength:(numberPastMax * paddingString.length) withString:paddingString startingAtIndex:0];
         return [dots stringByAppendingString:self.post.headerText];
     }
-    return self.post.headerText;
+    NSString *arrowString = self.collapsed ? @"▸ " : @"▾ ";
+    return [arrowString stringByAppendingString:self.post.headerText];
 }
 
 - (void) tappedOnCell {

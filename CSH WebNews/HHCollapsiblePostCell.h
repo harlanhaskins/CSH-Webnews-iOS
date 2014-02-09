@@ -54,4 +54,11 @@
  */
 @property (nonatomic) NSMutableArray *actionButtons;
 
+/**
+ If the cell is collapsed, it shows only the header button, grayed out.
+ 
+ @since 1.0
+ */
+@property (nonatomic, getter = isCollapsed) BOOL collapsed;
+
 @end
