@@ -6,6 +6,10 @@ Authors
 ---
 Harlan Haskins ([@harlanhaskins](http://github.com/harlanhaskins))
 
+Contributors
+---
+Mihir Singh ([@citruspi](http://github.com/citruspi))
+
 Building
 ---
 
@@ -15,6 +19,10 @@ To build the project yourself, clone the project and then update the submodule(s
     $ cd CSH-Webnews-iOS
     $ git submodule init
     $ git submodule add
+
+Thanks
+---
+Alex Grant ([@grantovich](http://github.com/grantovich)) for his WebNews API.
 
 License
 ---
