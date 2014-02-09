@@ -47,4 +47,11 @@
  */
 @property (nonatomic, readonly) HHCollapsiblePostCellActionsView *actionsView;
 
+/**
+ The action buttons in the cell.
+ 
+ @since 1.0
+ */
+@property (nonatomic) NSMutableArray *actionButtons;
+
 @end

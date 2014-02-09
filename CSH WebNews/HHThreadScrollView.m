@@ -42,6 +42,11 @@
     }
 }
 
+- (void) setNeedsLayout {
+    self.laidOutSubviews = NO;
+    [super setNeedsLayout];
+}
+
 - (void) layoutSubviews {
     if (!self.laidOutSubviews) {
         CGFloat sidePadding = 0.0;

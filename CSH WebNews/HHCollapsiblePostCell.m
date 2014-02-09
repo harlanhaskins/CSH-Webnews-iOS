@@ -13,11 +13,14 @@
 @interface HHCollapsiblePostCell ()
 
 @property (nonatomic, readwrite) HHCollapsiblePostCellActionsView *actionsView;
+@property (nonatomic) BOOL actionButtonsVisible;
 
 @property (nonatomic) UITextView *bodyView;
 @property (nonatomic) UIButton *headerButton;
 
 @property (nonatomic) NSMutableArray *lineViews;
+
+@property (nonatomic) UITapGestureRecognizer *tapGestureRecognizer;
 
 @end
 
@@ -30,8 +33,14 @@
     [cell adjustDepth];
     [cell createTextContainer];
     [cell createHeaderButton];
+    [cell createTapRecognizer];
     
     return cell;
+}
+
+- (void) createTapRecognizer {
+    self.tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedOnCell)];
+    [self addGestureRecognizer:self.tapGestureRecognizer];
 }
 
 - (void) createTextContainer {
@@ -81,24 +90,45 @@
 }
 
 - (void) layoutSubviews {
-    CGFloat buttonHeight = self.headerButton.height;
-    
-    CGRect frame = self.frame;
-    frame.origin.y = buttonHeight;
-    frame.origin.x = (self.indentationLevel * self.indentationWidth);
-    frame.size.width -= frame.origin.x;
-    self.bodyView.frame = frame;
-    
-    CGRect lineViewFrame = CGRectMake(0, 0, 1 / [UIScreen mainScreen].scale, frame.size.height);
-    
-    for (int i = 0; i < self.lineViews.count; i++) {
-        lineViewFrame.origin.x = (i + 1) * self.indentationWidth;
-        [self.lineViews[i] setFrame:lineViewFrame];
-    }
-    
-    frame.size.height = buttonHeight;
-    frame.origin.y = 0;
-    self.headerButton.frame = frame;
+    dispatch_async(dispatch_queue_create("Cell Loading", 0), ^{
+        CGFloat buttonHeight = self.headerButton.height;
+        CGFloat indentationLevel = self.actionButtonsVisible ? 0 : self.indentationLevel;
+        
+        CGRect frame = self.frame;
+        frame.origin.y = buttonHeight;
+        frame.origin.x = (indentationLevel * self.indentationWidth);
+        frame.size.width -= frame.origin.x;
+        
+        CGRect headerFrame = frame;
+        headerFrame.size.height = buttonHeight;
+        headerFrame.origin.y = 0;
+        
+        CGRect actionFrame = self.actionsView.frame;
+        actionFrame.origin.y = self.bodyView.frame.origin.y + self.bodyView.frame.size.height;
+        actionFrame.size.height = 55.0;
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.headerButton.frame = headerFrame;
+            self.bodyView.frame = frame;
+            self.actionsView.frame = actionFrame;
+            
+            CGRect lineViewFrame = CGRectMake(0, 0, 1 / [UIScreen mainScreen].scale, frame.size.height);
+            for (int i = 0; i < self.lineViews.count; i++) {
+                lineViewFrame.origin.x = (i + 1) * self.indentationWidth;
+                [self.lineViews[i] setFrame:lineViewFrame];
+            }
+        });
+    });
+}
+
+- (void) tappedOnCell {
+    self.actionButtonsVisible = !self.actionButtonsVisible;
+    [self setNeedsLayout];
+}
+
+- (void) setActionButtons:(NSMutableArray *)actionButtons {
+    self.actionsView = [HHCollapsiblePostCellActionsView viewWithActionButtons:actionButtons size:CGSizeMake(self.width, 0.0)];
+    [self addSubview:self.actionsView];
 }
 
 - (void) setAttributedText:(NSAttributedString*)text {
@@ -123,9 +153,11 @@
         self.bodyView.text = self.post.bodyText;
     }
     
-    CGSize textSize = [self.bodyView sizeThatFits:size];
-    textSize.height += self.headerButton.height;
-    return textSize;
+    CGSize returnedSize = [self.bodyView sizeThatFits:size];
+    returnedSize.height += self.headerButton.height;
+    returnedSize.height += self.actionButtonsVisible ? self.actionsView.frame.size.height : 0.0;
+    
+    return returnedSize;
 }
 
 - (NSString*) description {

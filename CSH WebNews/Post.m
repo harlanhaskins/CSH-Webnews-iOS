@@ -146,7 +146,7 @@
     post.stickyRealName = stickyUser[@"real_name"];
     
     post.unreadClass = [self unreadClassFromString:postDictionary[@"unread_class"]];
-
+    
     return post;
 }
 
@@ -190,16 +190,16 @@
         return;
     }
     
-    NSString *parameters = [NSString stringWithFormat:@"%@/%li", self.newsgroup, (long)self.number];
+    NSString *parameters = [NSString stringWithFormat:@"%@/%li?html_body=true", self.newsgroup, (long)self.number];
     
     [WebNewsDataHandler runHTTPGETOperationWithParameters:parameters
-                                               success:^(AFHTTPRequestOperation *op, id response) {
-        [self setBody:response[@"post"][@"body"]];
-        [CacheManager cachePost:self];
-        block(self);
-    } failure:^(AFHTTPRequestOperation *op, NSError *error) {
-        NSLog(@"Error: %@", error);
-    }];
+                                                  success:^(AFHTTPRequestOperation *op, id response) {
+                                                      [self setBody:response[@"post"][@"body"]];
+                                                      [CacheManager cachePost:self];
+                                                      block(self);
+                                                  } failure:^(AFHTTPRequestOperation *op, NSError *error) {
+                                                      NSLog(@"Error: %@", error);
+                                                  }];
 }
 
 - (NSString*) dateString {
@@ -266,11 +266,16 @@
 - (NSAttributedString *) attributedBody {
     NSString *body = self.body;
     NSError *error;
-    NSRegularExpression *quotedTextPattern = [NSRegularExpression regularExpressionWithPattern:@"^>.*$" options:NSRegularExpressionAnchorsMatchLines error:&error];
+        NSRegularExpression *quotedTextPattern = [NSRegularExpression regularExpressionWithPattern:@"^>.*$" options:NSRegularExpressionAnchorsMatchLines error:&error];
+    NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithData:[body dataUsingEncoding:NSUTF8StringEncoding]
+                                                                  options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,
+                                                                            NSCharacterEncodingDocumentAttribute: [NSNumber numberWithInt:NSUTF8StringEncoding]}
+                                                       documentAttributes:nil
+                                                                    error:&error];
     
-    NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:body];
+    [string addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:12.0] range:NSMakeRange(0, string.length)];
     
-    [quotedTextPattern enumerateMatchesInString:body options:0 range:NSMakeRange(0, body.length) usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
+    [quotedTextPattern enumerateMatchesInString:string.string options:0 range:NSMakeRange(0, string.string.length) usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
         [string addAttribute:NSForegroundColorAttributeName value:[UIColor lightGrayColor] range:result.range];
         [string addAttribute:NSFontAttributeName value:[UIFont italicSystemFontOfSize:12.0] range:result.range];
     }];
@@ -278,6 +283,23 @@
 }
 
 - (NSString*) processedBody {
+    if (_body) {
+        _body = [_body stringByReplacingOccurrencesOfString:@"\n" withString:@"<br />"];
+//        NSRange rangeOfDivOpening = [_body rangeOfString:@"<div class=\"quoted_text\">"];
+        NSUInteger beginning = 0;
+        
+        if (beginning != NSNotFound) {
+            NSRange rangeOfDivClosing = [_body rangeOfString:@"</div><br />"];
+            NSUInteger end = rangeOfDivClosing.location + rangeOfDivClosing.length;
+            if (end != NSNotFound) {
+                NSUInteger totalLength = end - beginning;
+        
+                NSRange totalHTMLRange = NSMakeRange(beginning, totalLength);
+        
+                _body = [_body stringByReplacingCharactersInRange:totalHTMLRange withString:@""];
+            }
+        }
+    }
     return _body;
 }
 

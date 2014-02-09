@@ -16,12 +16,15 @@
 
 @implementation HHCollapsiblePostCellActionsView
 
-+ (instancetype) viewWithActionButtons:(NSArray*)actionButtons {
++ (instancetype) viewWithActionButtons:(NSArray*)actionButtons size:(CGSize)size {
     HHCollapsiblePostCellActionsView *view = [[HHCollapsiblePostCellActionsView alloc] init];
     view.actionButtons = actionButtons;
     for (UIButton *button in view.actionButtons) {
         [view addSubview:button];
     }
+    CGRect viewFrame = view.frame;
+    viewFrame.size = size;
+    view.frame = viewFrame;
     return view;
 }
 
