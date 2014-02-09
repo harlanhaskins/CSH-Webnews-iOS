@@ -456,7 +456,7 @@
 				ORGANIZATIONNAME = Haskins;
 				TargetAttributes = {
 					DCF26DD417CD617C0073DA19 = {
-						DevelopmentTeam = SH52BQ2ZXA;
+						DevelopmentTeam = W7GJMYD5A4;
 						SystemCapabilities = {
 							com.apple.Keychain = {
 								enabled = 1;
@@ -705,7 +705,7 @@
 				);
 				LLVM_LTO = YES;
 				PRODUCT_NAME = "CSH News";
-				PROVISIONING_PROFILE = "AC5762E2-7936-4AC7-874B-AF03DD58B540";
+				PROVISIONING_PROFILE = "5AA73E1A-E77E-426F-A528-84D5349D665F";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
@@ -731,7 +731,7 @@
 				);
 				LLVM_LTO = YES;
 				PRODUCT_NAME = "CSH News";
-				PROVISIONING_PROFILE = "AC5762E2-7936-4AC7-874B-AF03DD58B540";
+				PROVISIONING_PROFILE = "5AA73E1A-E77E-426F-A528-84D5349D665F";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
