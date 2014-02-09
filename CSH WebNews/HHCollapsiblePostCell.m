@@ -61,7 +61,7 @@
         UIView *lineView = [UIView new];
         CGRect lineViewFrame = CGRectMake(0, (i * self.indentationWidth), 1 / [UIScreen mainScreen].scale, 0);
         lineView.frame = lineViewFrame;
-        lineView.backgroundColor = [UIColor colorWithWhite:0.85 alpha:1.0];
+        lineView.backgroundColor = [UIColor colorWithWhite:0.95 alpha:1.0];
         [self.lineViews addObject:lineView];
         [self addSubview:lineView];
     }

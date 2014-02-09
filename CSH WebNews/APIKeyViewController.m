@@ -19,6 +19,7 @@
     UIButton* doneButton;
     UITextField *keyTextField;
     UILabel *descriptionLabel;
+    UILabel *titleLabel;
 }
 
 - (void)viewDidLoad
@@ -27,35 +28,27 @@
     
     self.title = @"User";
     self.view.backgroundColor = [UIColor whiteColor];
-	UILabel *titleLabel = [[UILabel alloc] init];
+	titleLabel = [[UILabel alloc] init];
     titleLabel.font = [UIFont systemFontOfSize:34.0f];
     titleLabel.text = @"Enter your\nWebNews API Key";
     titleLabel.numberOfLines = 2;
     titleLabel.textAlignment = NSTextAlignmentCenter;
     [titleLabel sizeToFit];
     [self.view addSubview:titleLabel];
-    [titleLabel centerToParent];
-    titleLabel.y = 40.0f;
     
     descriptionLabel = [[UILabel alloc] init];
     descriptionLabel.text = @"You can't use Web News until you type in your API key.\nYou can find it in WebNews Settings.";
-    descriptionLabel.width = self.view.width * 0.9;
     descriptionLabel.font = [UIFont systemFontOfSize:10.0f];
     descriptionLabel.adjustsFontSizeToFitWidth = YES;
     descriptionLabel.numberOfLines = 2;
     descriptionLabel.textAlignment = NSTextAlignmentCenter;
     [descriptionLabel sizeToFit];
     [self.view addSubview:descriptionLabel];
-    [descriptionLabel centerToParent];
-    descriptionLabel.y = titleLabel.bottom + 7.0f;
     
     keyTextField = [[UITextField alloc] init];
-    keyTextField.width = self.view.width * 0.75;
     keyTextField.height = 44.0f;
     keyTextField.placeholder = @"abcd1234efgh5678";
     keyTextField.delegate = self;
-    keyTextField.centerY = self.view.centerY;
-    keyTextField.centerX = self.view.centerX;
     keyTextField.autocapitalizationType = UITextAutocapitalizationTypeNone;
     keyTextField.autocorrectionType = UITextAutocorrectionTypeNo;
     [self.view addSubview:keyTextField];
@@ -68,11 +61,26 @@
     [doneButton setTintColor:[UIColor colorWithRed:0.0f green:0.2f blue:1.0f alpha:1.0f]];
     doneButton.enabled = NO;
     [doneButton sizeToFit];
-    keyTextField.x -= (doneButton.width / 2);
-    doneButton.x = keyTextField.right + 2.0f;
-    doneButton.centerY = keyTextField.centerY;
     [self.view addSubview:doneButton];
     
+}
+
+- (void) viewDidLayoutSubviews {
+    [titleLabel centerToParent];
+    titleLabel.y = 40.0f;
+    
+    descriptionLabel.width = self.view.width * 0.9;
+    [descriptionLabel centerToParent];
+    descriptionLabel.y = titleLabel.bottom + 7.0f;
+    
+    keyTextField.width = self.view.width * 0.75;
+    keyTextField.centerY = self.view.centerY;
+    keyTextField.centerX = self.view.centerX;
+    
+    doneButton.x = keyTextField.right + 2.0f;
+    doneButton.centerY = keyTextField.centerY;
+    
+    keyTextField.x -= (doneButton.width / 2);
 }
 
 - (BOOL) textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
