@@ -24,6 +24,8 @@
 
 @property (nonatomic) UITapGestureRecognizer *tapGestureRecognizer;
 
+@property (nonatomic) CGFloat textViewHeight;
+
 @end
 
 @implementation HHCollapsiblePostCell
@@ -174,7 +176,15 @@ static const NSInteger MAX_INDENTATION_LEVEL = 6;
         self.bodyView.text = self.post.bodyText;
     }
     
-    CGSize returnedSize = [self.bodyView sizeThatFits:size];
+    CGSize returnedSize = size;
+    if (self.textViewHeight == 0) {
+        returnedSize.height = [self.bodyView sizeThatFits:size].height;
+        self.textViewHeight = returnedSize.height;
+    }
+    else {
+        returnedSize.height = self.textViewHeight;
+    }
+    
     returnedSize.height += self.headerButton.height;
     returnedSize.height += self.actionButtonsVisible ? self.actionsView.frame.size.height : 0.0;
     
