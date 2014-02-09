@@ -124,6 +124,7 @@
 		C97DD32F18A29D4900D1B9B7 /* HHThreadScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HHThreadScrollView.m; sourceTree = "<group>"; };
 		C97DD33118A2A08000D1B9B7 /* ThreadPostsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreadPostsViewController.h; sourceTree = "<group>"; };
 		C97DD33218A2A08000D1B9B7 /* ThreadPostsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThreadPostsViewController.m; sourceTree = "<group>"; };
+		C9C456C318A73564008C6C1F /* CSH News.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "CSH News.entitlements"; sourceTree = "<group>"; };
 		C9C9484218985C0C00599E74 /* NewsgroupThreadsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsgroupThreadsViewController.h; sourceTree = "<group>"; };
 		C9C9484318985C0C00599E74 /* NewsgroupThreadsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsgroupThreadsViewController.m; sourceTree = "<group>"; };
 		C9C9484618985D9B00599E74 /* NewsgroupThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsgroupThread.h; sourceTree = "<group>"; };
@@ -154,7 +155,6 @@
 		DC22B1A417EBAFBC00E328DE /* PDKeychainBindingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDKeychainBindingsController.m; sourceTree = "<group>"; };
 		DC22B1A717EBB00600E328DE /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		DC22B1A817EBB00600E328DE /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
-		DC22B1AA17EBB82100E328DE /* CSH WebNews.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "CSH WebNews.entitlements"; sourceTree = "<group>"; };
 		DC22B1AB17EBDFD800E328DE /* ISO8601DateFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISO8601DateFormatter.h; sourceTree = "<group>"; };
 		DC22B1AC17EBDFD800E328DE /* ISO8601DateFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISO8601DateFormatter.m; sourceTree = "<group>"; };
 		DC9D24A0180BB2B10034E02B /* NSDictionary+Merge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Merge.h"; sourceTree = "<group>"; };
@@ -358,6 +358,7 @@
 		DCF26DCC17CD617C0073DA19 = {
 			isa = PBXGroup;
 			children = (
+				C9C456C318A73564008C6C1F /* CSH News.entitlements */,
 				DCF26DDE17CD617C0073DA19 /* CSH WebNews */,
 				DCF26DF717CD617C0073DA19 /* CSH WebNewsTests */,
 				DCF26DD717CD617C0073DA19 /* Frameworks */,
@@ -394,7 +395,6 @@
 		DCF26DDE17CD617C0073DA19 /* CSH WebNews */ = {
 			isa = PBXGroup;
 			children = (
-				DC22B1AA17EBB82100E328DE /* CSH WebNews.entitlements */,
 				DCF26DE717CD617C0073DA19 /* AppDelegate.h */,
 				DCF26DE817CD617C0073DA19 /* AppDelegate.m */,
 				DC22B1A717EBB00600E328DE /* SettingsViewController.h */,
@@ -713,19 +713,21 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_ENTITLEMENTS = "CSH WebNews/CSH WebNews.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "CSH News.entitlements";
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CSH WebNews/CSH News-Prefix.pch";
+				GCC_UNROLL_LOOPS = YES;
 				INFOPLIST_FILE = "CSH WebNews/CSH News-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/CSH\\ Webnews/TestFlightSDK2",
 				);
+				LLVM_LTO = YES;
 				PRODUCT_NAME = "CSH News";
-				PROVISIONING_PROFILE = "5AA73E1A-E77E-426F-A528-84D5349D665F";
+				PROVISIONING_PROFILE = "AC5762E2-7936-4AC7-874B-AF03DD58B540";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
@@ -736,19 +738,21 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_ENTITLEMENTS = "CSH WebNews/CSH WebNews.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "CSH News.entitlements";
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CSH WebNews/CSH News-Prefix.pch";
+				GCC_UNROLL_LOOPS = YES;
 				INFOPLIST_FILE = "CSH WebNews/CSH News-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/CSH\\ Webnews/TestFlightSDK2",
 				);
+				LLVM_LTO = YES;
 				PRODUCT_NAME = "CSH News";
-				PROVISIONING_PROFILE = "5AA73E1A-E77E-426F-A528-84D5349D665F";
+				PROVISIONING_PROFILE = "AC5762E2-7936-4AC7-874B-AF03DD58B540";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};

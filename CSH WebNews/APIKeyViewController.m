@@ -16,7 +16,6 @@
 @end
 
 @implementation APIKeyViewController {
-    UIButton* doneButton;
     UITextField *keyTextField;
     UILabel *descriptionLabel;
     UILabel *titleLabel;
@@ -29,7 +28,7 @@
     self.title = @"User";
     self.view.backgroundColor = [UIColor whiteColor];
 	titleLabel = [[UILabel alloc] init];
-    titleLabel.font = [UIFont systemFontOfSize:34.0f];
+    titleLabel.font = [UIFont systemFontOfSize:34.0];
     titleLabel.text = @"Enter your\nWebNews API Key";
     titleLabel.numberOfLines = 2;
     titleLabel.textAlignment = NSTextAlignmentCenter;
@@ -46,22 +45,16 @@
     [self.view addSubview:descriptionLabel];
     
     keyTextField = [[UITextField alloc] init];
-    keyTextField.height = 44.0f;
+    keyTextField.height = 44.0;
     keyTextField.placeholder = @"abcd1234efgh5678";
     keyTextField.delegate = self;
     keyTextField.autocapitalizationType = UITextAutocapitalizationTypeNone;
     keyTextField.autocorrectionType = UITextAutocorrectionTypeNo;
+    keyTextField.returnKeyType = UIReturnKeyDone;
+    keyTextField.enablesReturnKeyAutomatically = YES;
+    keyTextField.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:keyTextField];
     [keyTextField becomeFirstResponder];
-    
-    doneButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    [doneButton setTitle:@"done" forState:UIControlStateNormal];
-    [doneButton setTitle:@"done" forState:UIControlStateDisabled];
-    [doneButton addTarget:self action:@selector(submitAPIKey) forControlEvents:UIControlEventTouchUpInside];
-    [doneButton setTintColor:[UIColor colorWithRed:0.0f green:0.2f blue:1.0f alpha:1.0f]];
-    doneButton.enabled = NO;
-    [doneButton sizeToFit];
-    [self.view addSubview:doneButton];
     
 }
 
@@ -71,27 +64,20 @@
     
     descriptionLabel.width = self.view.width * 0.9;
     [descriptionLabel centerToParent];
-    descriptionLabel.y = titleLabel.bottom + 7.0f;
+    descriptionLabel.y = titleLabel.bottom + 7.0;
     
     keyTextField.width = self.view.width * 0.75;
-    keyTextField.centerY = self.view.centerY;
-    keyTextField.centerX = self.view.centerX;
-    
-    doneButton.x = keyTextField.right + 2.0f;
-    doneButton.centerY = keyTextField.centerY;
-    
-    keyTextField.x -= (doneButton.width / 2);
+    [keyTextField centerToParent];
+    keyTextField.y = descriptionLabel.bottom + 25.0;
 }
 
 - (BOOL) textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    NSString *acceptableCharacters = @"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
     NSUInteger newLength = [textField.text length] + [string length] - range.length;
-    if (newLength == 16 || textField.text.length == 16) {
-        doneButton.enabled = YES;
-    }
-    else {
-        doneButton.enabled = NO;
-    }
-    return (newLength <= 16);
+    
+    NSCharacterSet *cs = [[NSCharacterSet characterSetWithCharactersInString:acceptableCharacters] invertedSet];
+    
+    return (newLength <= 16) && [string rangeOfCharacterFromSet:cs].location == NSNotFound;
 }
 
 - (void) submitAPIKey {
@@ -108,7 +94,16 @@
     } failure:^(AFHTTPRequestOperation *op, NSError *error) {
         descriptionLabel.text = @"There seems to be an error with that key. Check to see if it's correct and that you're connected to the Internet, and try again.";
         descriptionLabel.textColor = [UIColor redColor];
+        [[PDKeychainBindings sharedKeychainBindings] setObject:@"NULL_API_KEY" forKey:kApiKeyKey];
     }];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    BOOL shouldReturn = (textField.text.length == 16);
+    if (shouldReturn) {
+        [self submitAPIKey];
+    }
+    return shouldReturn;
 }
 
 - (void)didReceiveMemoryWarning
