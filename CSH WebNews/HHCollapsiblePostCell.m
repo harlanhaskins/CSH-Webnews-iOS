@@ -18,6 +18,8 @@
 @property (nonatomic) UITextView *bodyView;
 @property (nonatomic) UIButton *headerButton;
 
+@property (nonatomic, readonly) NSString *headerText;
+
 @property (nonatomic) NSMutableArray *lineViews;
 
 @property (nonatomic) UITapGestureRecognizer *tapGestureRecognizer;
@@ -25,6 +27,8 @@
 @end
 
 @implementation HHCollapsiblePostCell
+
+static const NSInteger MAX_INDENTATION_LEVEL = 6;
 
 + (instancetype) cellWithPost:(id<HHPostProtocol>)post {
     HHCollapsiblePostCell *cell = [HHCollapsiblePostCell new];
@@ -66,7 +70,9 @@
 
 - (void) createLineViews {
     self.lineViews = [NSMutableArray array];
-    for (int i = 1; i < self.indentationLevel; i++) {
+    for (int i = 1; i <= MAX_INDENTATION_LEVEL; i++) {
+        if (i >= self.indentationLevel) break;
+        
         UIView *lineView = [UIView new];
         CGRect lineViewFrame = CGRectMake(0, (i * self.indentationWidth), 1 / [UIScreen mainScreen].scale, 0);
         lineView.frame = lineViewFrame;
@@ -79,7 +85,7 @@
 - (void) createHeaderButton {
     self.headerButton = [UIButton buttonWithType:UIButtonTypeCustom];
     self.headerButton.backgroundColor = self.backgroundColor;
-    [self.headerButton setTitle:self.post.headerText forState:UIControlStateNormal];
+    [self.headerButton setTitle:self.headerText forState:UIControlStateNormal];
     [self.headerButton setTitleColor:[UIColor colorWithRed:0.0 green:148.0/255.0 blue:224.0/255.0 alpha:1.0] forState:UIControlStateNormal];
     self.headerButton.titleLabel.font = [UIFont systemFontOfSize:12.0];
     self.headerButton.titleLabel.textAlignment = NSTextAlignmentLeft;
@@ -89,14 +95,19 @@
     [self addSubview:self.headerButton];
 }
 
+- (NSInteger) indentationLevel {
+    CGFloat indentationLevel = MIN(_indentationLevel, MAX_INDENTATION_LEVEL);
+    indentationLevel = self.actionButtonsVisible ? 0 : indentationLevel;
+    return indentationLevel;
+}
+
 - (void) layoutSubviews {
     dispatch_async(dispatch_queue_create("Cell Loading", 0), ^{
         CGFloat buttonHeight = self.headerButton.height;
-        CGFloat indentationLevel = self.actionButtonsVisible ? 0 : self.indentationLevel;
         
         CGRect frame = self.frame;
         frame.origin.y = buttonHeight;
-        frame.origin.x = (indentationLevel * self.indentationWidth);
+        frame.origin.x = (self.indentationLevel * self.indentationWidth);
         frame.size.width -= frame.origin.x;
         
         CGRect headerFrame = frame;
@@ -119,6 +130,16 @@
             }
         });
     });
+}
+
+- (NSString*) headerText {
+    NSInteger numberPastMax = _indentationLevel - MAX_INDENTATION_LEVEL;
+    if (numberPastMax > 0) {
+        NSString *paddingString = @"• ";
+        NSString *dots = [@"" stringByPaddingToLength:(numberPastMax * paddingString.length) withString:paddingString startingAtIndex:0];
+        return [dots stringByAppendingString:self.post.headerText];
+    }
+    return self.post.headerText;
 }
 
 - (void) tappedOnCell {
