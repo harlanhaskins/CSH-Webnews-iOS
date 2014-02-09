@@ -13,4 +13,4 @@ This program is released under the MIT License. A copy of this license is availa
 
 Libraries
 ---
-This program makes use of [AFNetworking](https://github.com/AFNetworking/AFNetworking), which is released on the MIT License.
+This program makes use of [AFNetworking](https://github.com/AFNetworking/AFNetworking) and [PDKeychainBindingsController](https://github.com/carlbrown/PDKeychainBindingsController), which are both released under the MIT License.
