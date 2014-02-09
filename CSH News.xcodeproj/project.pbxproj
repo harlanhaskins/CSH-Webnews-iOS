@@ -28,14 +28,8 @@
 		C9E1243B18A5661E0084B828 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = C9E1243518A5661E0084B828 /* README.md */; };
 		C9E1243C18A5661E0084B828 /* release_notes.md in Resources */ = {isa = PBXBuildFile; fileRef = C9E1243618A5661E0084B828 /* release_notes.md */; };
 		C9E1243E18A5665F0084B828 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E1243D18A5665F0084B828 /* libz.dylib */; };
-		C9E6FFBB18A80781008E9373 /* HHCollapsiblePostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E6FFB318A80781008E9373 /* HHCollapsiblePostCell.m */; };
-		C9E6FFBC18A80781008E9373 /* HHCollapsiblePostCellActionsView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E6FFB518A80781008E9373 /* HHCollapsiblePostCellActionsView.m */; };
-		C9E6FFBD18A80781008E9373 /* HHThreadScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E6FFB818A80781008E9373 /* HHThreadScrollView.m */; };
-		C9E6FFBE18A80781008E9373 /* NSMutableArray+HHActionButtons.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E6FFBA18A80781008E9373 /* NSMutableArray+HHActionButtons.m */; };
 		D4E94FBCBCF34F4895213210 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 234ACC9F35034B7CA1D4ECFC /* libPods.a */; };
 		DC0FC96417EC230700945EEC /* APIKeyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0FC96317EC230700945EEC /* APIKeyViewController.m */; };
-		DC22B1A517EBAFBC00E328DE /* PDKeychainBindings.m in Sources */ = {isa = PBXBuildFile; fileRef = DC22B1A217EBAFBC00E328DE /* PDKeychainBindings.m */; };
-		DC22B1A617EBAFBC00E328DE /* PDKeychainBindingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC22B1A417EBAFBC00E328DE /* PDKeychainBindingsController.m */; };
 		DC22B1A917EBB00600E328DE /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC22B1A817EBB00600E328DE /* SettingsViewController.m */; };
 		DC22B1AD17EBDFD800E328DE /* ISO8601DateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = DC22B1AC17EBDFD800E328DE /* ISO8601DateFormatter.m */; };
 		DC9D24A2180BB2B10034E02B /* NSDictionary+Merge.m in Sources */ = {isa = PBXBuildFile; fileRef = DC9D24A1180BB2B10034E02B /* NSDictionary+Merge.m */; };
@@ -112,22 +106,9 @@
 		C9E1243818A5661E0084B828 /* TestFlight+ManualSessions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TestFlight+ManualSessions.h"; sourceTree = "<group>"; };
 		C9E1243918A5661E0084B828 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
 		C9E1243D18A5665F0084B828 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		C9E6FFB218A80781008E9373 /* HHCollapsiblePostCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HHCollapsiblePostCell.h; sourceTree = "<group>"; };
-		C9E6FFB318A80781008E9373 /* HHCollapsiblePostCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HHCollapsiblePostCell.m; sourceTree = "<group>"; };
-		C9E6FFB418A80781008E9373 /* HHCollapsiblePostCellActionsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HHCollapsiblePostCellActionsView.h; sourceTree = "<group>"; };
-		C9E6FFB518A80781008E9373 /* HHCollapsiblePostCellActionsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HHCollapsiblePostCellActionsView.m; sourceTree = "<group>"; };
-		C9E6FFB618A80781008E9373 /* HHPostProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HHPostProtocol.h; sourceTree = "<group>"; };
-		C9E6FFB718A80781008E9373 /* HHThreadScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HHThreadScrollView.h; sourceTree = "<group>"; };
-		C9E6FFB818A80781008E9373 /* HHThreadScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HHThreadScrollView.m; sourceTree = "<group>"; };
-		C9E6FFB918A80781008E9373 /* NSMutableArray+HHActionButtons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+HHActionButtons.h"; sourceTree = "<group>"; };
-		C9E6FFBA18A80781008E9373 /* NSMutableArray+HHActionButtons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+HHActionButtons.m"; sourceTree = "<group>"; };
 		CCF7A34595E241278F44BBAB /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		DC0FC96217EC230700945EEC /* APIKeyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIKeyViewController.h; sourceTree = "<group>"; };
 		DC0FC96317EC230700945EEC /* APIKeyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIKeyViewController.m; sourceTree = "<group>"; };
-		DC22B1A117EBAFBC00E328DE /* PDKeychainBindings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDKeychainBindings.h; sourceTree = "<group>"; };
-		DC22B1A217EBAFBC00E328DE /* PDKeychainBindings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDKeychainBindings.m; sourceTree = "<group>"; };
-		DC22B1A317EBAFBC00E328DE /* PDKeychainBindingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDKeychainBindingsController.h; sourceTree = "<group>"; };
-		DC22B1A417EBAFBC00E328DE /* PDKeychainBindingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDKeychainBindingsController.m; sourceTree = "<group>"; };
 		DC22B1A717EBB00600E328DE /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		DC22B1A817EBB00600E328DE /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		DC22B1AB17EBDFD800E328DE /* ISO8601DateFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISO8601DateFormatter.h; sourceTree = "<group>"; };
@@ -237,7 +218,6 @@
 		C9C9485818987CAC00599E74 /* ThreadDetail */ = {
 			isa = PBXGroup;
 			children = (
-				C9E6FFB118A8076D008E9373 /* HHThreadView */,
 				C97DD33118A2A08000D1B9B7 /* ThreadPostsViewController.h */,
 				C97DD33218A2A08000D1B9B7 /* ThreadPostsViewController.m */,
 			);
@@ -276,33 +256,6 @@
 				C9E1243918A5661E0084B828 /* TestFlight.h */,
 			);
 			path = TestFlightSDK2;
-			sourceTree = "<group>";
-		};
-		C9E6FFB118A8076D008E9373 /* HHThreadView */ = {
-			isa = PBXGroup;
-			children = (
-				C9E6FFB218A80781008E9373 /* HHCollapsiblePostCell.h */,
-				C9E6FFB318A80781008E9373 /* HHCollapsiblePostCell.m */,
-				C9E6FFB418A80781008E9373 /* HHCollapsiblePostCellActionsView.h */,
-				C9E6FFB518A80781008E9373 /* HHCollapsiblePostCellActionsView.m */,
-				C9E6FFB618A80781008E9373 /* HHPostProtocol.h */,
-				C9E6FFB718A80781008E9373 /* HHThreadScrollView.h */,
-				C9E6FFB818A80781008E9373 /* HHThreadScrollView.m */,
-				C9E6FFB918A80781008E9373 /* NSMutableArray+HHActionButtons.h */,
-				C9E6FFBA18A80781008E9373 /* NSMutableArray+HHActionButtons.m */,
-			);
-			name = HHThreadView;
-			sourceTree = "<group>";
-		};
-		DC22B1A017EBAFBC00E328DE /* PDKeychainBindingsController */ = {
-			isa = PBXGroup;
-			children = (
-				DC22B1A117EBAFBC00E328DE /* PDKeychainBindings.h */,
-				DC22B1A217EBAFBC00E328DE /* PDKeychainBindings.m */,
-				DC22B1A317EBAFBC00E328DE /* PDKeychainBindingsController.h */,
-				DC22B1A417EBAFBC00E328DE /* PDKeychainBindingsController.m */,
-			);
-			path = PDKeychainBindingsController;
 			sourceTree = "<group>";
 		};
 		DCF26DCC17CD617C0073DA19 = {
@@ -377,7 +330,6 @@
 				DC9D24A1180BB2B10034E02B /* NSDictionary+Merge.m */,
 				DC22B1AB17EBDFD800E328DE /* ISO8601DateFormatter.h */,
 				DC22B1AC17EBDFD800E328DE /* ISO8601DateFormatter.m */,
-				DC22B1A017EBAFBC00E328DE /* PDKeychainBindingsController */,
 				DCBE062217E000F1007BBF4C /* UIView+Positioning.h */,
 				DCBE062317E000F1007BBF4C /* UIView+Positioning.m */,
 				DCF26DE017CD617C0073DA19 /* CSH News-Info.plist */,
@@ -548,12 +500,10 @@
 			files = (
 				C96D228A1895D550001BFA57 /* ActivityThread.m in Sources */,
 				DCF26DE917CD617C0073DA19 /* AppDelegate.m in Sources */,
-				C9E6FFBB18A80781008E9373 /* HHCollapsiblePostCell.m in Sources */,
 				C9C9484B1898690800599E74 /* NewsgroupThreadListTableViewModel.m in Sources */,
 				C9C9484418985C0C00599E74 /* NewsgroupThreadsViewController.m in Sources */,
 				C910A6F3189733ED001D222D /* ActivityTableViewModel.m in Sources */,
 				C9D6F9F81898498D00004E3B /* NewsgroupOutlineTableViewModel.m in Sources */,
-				DC22B1A517EBAFBC00E328DE /* PDKeychainBindings.m in Sources */,
 				DCF26E0917CD62830073DA19 /* ActivityViewController.m in Sources */,
 				C96D22831895CD7B001BFA57 /* User.m in Sources */,
 				DC9D24A2180BB2B10034E02B /* NSDictionary+Merge.m in Sources */,
@@ -561,16 +511,12 @@
 				C96D227D1895BD80001BFA57 /* WebNewsDataHandler.m in Sources */,
 				DCBE062417E000F1007BBF4C /* UIView+Positioning.m in Sources */,
 				C97DD33318A2A08000D1B9B7 /* ThreadPostsViewController.m in Sources */,
-				C9E6FFBD18A80781008E9373 /* HHThreadScrollView.m in Sources */,
-				DC22B1A617EBAFBC00E328DE /* PDKeychainBindingsController.m in Sources */,
 				C92B9DDB189752DC0099C22D /* CacheManager.m in Sources */,
-				C9E6FFBE18A80781008E9373 /* NSMutableArray+HHActionButtons.m in Sources */,
 				C96D22801895CC08001BFA57 /* Post.m in Sources */,
 				C9D6F9F5189840FE00004E3B /* NewsgroupOutline.m in Sources */,
 				C9C9484818985D9B00599E74 /* NewsgroupThread.m in Sources */,
 				C96D228D18960320001BFA57 /* ActivityThreadCell.m in Sources */,
 				C9D6F9FB18984EDF00004E3B /* NSNull+TypeAdditions.m in Sources */,
-				C9E6FFBC18A80781008E9373 /* HHCollapsiblePostCellActionsView.m in Sources */,
 				DC22B1AD17EBDFD800E328DE /* ISO8601DateFormatter.m in Sources */,
 				C96D22871895CDBC001BFA57 /* Preferences.m in Sources */,
 				DC0FC96417EC230700945EEC /* APIKeyViewController.m in Sources */,
