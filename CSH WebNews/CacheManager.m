@@ -72,7 +72,6 @@
 
 + (NSString*) cachePathWithPathComponent:(NSString*)pathComponent {
     NSString *cacheFileName = [[self cachePath] stringByAppendingPathComponent:pathComponent];
-    NSLog(@"Cache: %@", cacheFileName);
     return cacheFileName;
 }
 
