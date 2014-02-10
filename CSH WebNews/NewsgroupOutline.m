@@ -8,6 +8,7 @@
 
 #import "NewsgroupOutline.h"
 #import "ISO8601DateFormatter.h"
+#import "Post.h"
 
 @interface NewsgroupOutline ()
 
@@ -58,7 +59,7 @@
     
     newsgroup.unreadPosts = [dictionary[@"unread_count"] integerValue];
     
-    newsgroup.highestPriorityPersonalClass = [dictionary[@"unread_class"] unsignedIntegerValue];
+    newsgroup.highestPriorityPersonalClass = [Post personalClassFromString:dictionary[@"unread_class"]];
     
     newsgroup.name = dictionary[@"name"];
     
