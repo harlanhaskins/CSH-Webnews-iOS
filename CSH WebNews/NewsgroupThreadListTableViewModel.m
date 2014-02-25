@@ -12,11 +12,13 @@
 #import "NewsgroupThread.h"
 #import "CacheManager.h"
 #import "ThreadPostsViewController.h"
+#import "NSMutableArray+HHActionButtons.h"
 
 @interface NewsgroupThreadListTableViewModel ()
 
 @property (nonatomic, readwrite) NewsgroupOutline *outline;
 @property (nonatomic, readwrite) NSArray *threads;
+@property (nonatomic) NSMutableArray *cellActions;
 
 @end
 
@@ -26,7 +28,23 @@
     NewsgroupThreadListTableViewModel *model = [[NewsgroupThreadListTableViewModel alloc] init];
     model.outline = outline;
     model.threads = [CacheManager cachedThreadsWithOutline:outline];
+    model.cellActions = [NSMutableArray array];
+    [model.cellActions HH_addActionButtonWithTitle:@"Reply" target:self selector:@selector(didTapReply)];
+    [model.cellActions HH_addActionButtonWithTitle:@"Star" target:self selector:@selector(didTapStar)];
+    [model.cellActions HH_addActionButtonWithTitle:@"Mark Unread" target:self selector:@selector(didTapMarkUnread)];
     return model;
+}
+
+- (void) didTapReply {
+    
+}
+
+- (void) didTapStar {
+    
+}
+
+- (void) didTapMarkUnread {
+    
 }
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

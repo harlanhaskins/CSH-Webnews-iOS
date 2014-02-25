@@ -264,40 +264,24 @@
 }
 
 - (NSAttributedString *) attributedBody {
-    NSString *body = self.body;
-    NSError *error;
-        NSRegularExpression *quotedTextPattern = [NSRegularExpression regularExpressionWithPattern:@"^>.*$" options:NSRegularExpressionAnchorsMatchLines error:&error];
-    NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithData:[body dataUsingEncoding:NSUTF8StringEncoding]
-                                                                  options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,
-                                                                            NSCharacterEncodingDocumentAttribute: [NSNumber numberWithInt:NSUTF8StringEncoding]}
-                                                       documentAttributes:nil
-                                                                    error:&error];
-    
-    [string addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:12.0] range:NSMakeRange(0, string.length)];
-    
-    [quotedTextPattern enumerateMatchesInString:string.string options:0 range:NSMakeRange(0, string.string.length) usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
-        [string addAttribute:NSForegroundColorAttributeName value:[UIColor lightGrayColor] range:result.range];
-        [string addAttribute:NSFontAttributeName value:[UIFont italicSystemFontOfSize:12.0] range:result.range];
-    }];
-    return string;
+    return [[NSMutableAttributedString alloc] initWithData:[self.body dataUsingEncoding:NSUTF8StringEncoding]
+                                                   options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,
+                                                             NSCharacterEncodingDocumentAttribute: [NSNumber numberWithInt:NSUTF8StringEncoding]}
+                                        documentAttributes:nil
+                                                     error:nil];
 }
 
 - (NSString*) processedBody {
     if (_body) {
-        _body = [_body stringByReplacingOccurrencesOfString:@"\n" withString:@"<br />"];
-//        NSRange rangeOfDivOpening = [_body rangeOfString:@"<div class=\"quoted_text\">"];
-        NSUInteger beginning = 0;
+        // Add CSS to body.
+        _body = [@"<style type=\"text/css\">body {white-space: pre-wrap; word-wrap: break-word; font-family: sans-serif;} blockquote {color: #aaa;} </style>" stringByAppendingString:_body];
+        _body = [_body stringByReplacingOccurrencesOfString:@"\t" withString:@"&nbsp;&nbsp;&nbsp;&nbsp;"];
         
-        if (beginning != NSNotFound) {
-            NSRange rangeOfDivClosing = [_body rangeOfString:@"</div><br />"];
-            NSUInteger end = rangeOfDivClosing.location + rangeOfDivClosing.length;
-            if (end != NSNotFound) {
-                NSUInteger totalLength = end - beginning;
-        
-                NSRange totalHTMLRange = NSMakeRange(beginning, totalLength);
-        
-                _body = [_body stringByReplacingCharactersInRange:totalHTMLRange withString:@""];
-            }
+        NSRange rangeOfDivClosing = [_body rangeOfString:@"</div><br />"];
+        NSUInteger end = rangeOfDivClosing.location + rangeOfDivClosing.length;
+        if (end != NSNotFound) {
+            NSUInteger totalLength = end;
+            _body = [_body substringFromIndex:totalLength];
         }
     }
     return _body;
