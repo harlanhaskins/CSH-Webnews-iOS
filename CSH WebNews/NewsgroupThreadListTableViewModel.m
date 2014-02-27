@@ -29,9 +29,9 @@
     model.outline = outline;
     model.threads = [CacheManager cachedThreadsWithOutline:outline];
     model.cellActions = [NSMutableArray array];
-    [model.cellActions HH_addActionButtonWithTitle:@"Reply" target:self selector:@selector(didTapReply)];
-    [model.cellActions HH_addActionButtonWithTitle:@"Star" target:self selector:@selector(didTapStar)];
-    [model.cellActions HH_addActionButtonWithTitle:@"Mark Unread" target:self selector:@selector(didTapMarkUnread)];
+//    [model.cellActions HH_addActionButtonWithTitle:@"Reply" target:self selector:@selector(didTapReply)];
+//    [model.cellActions HH_addActionButtonWithTitle:@"Star" target:self selector:@selector(didTapStar)];
+//    [model.cellActions HH_addActionButtonWithTitle:@"Mark Unread" target:self selector:@selector(didTapMarkUnread)];
     return model;
 }
 
