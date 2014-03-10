@@ -9,7 +9,7 @@
 #import "ThreadPostsViewController.h"
 #import "NewsgroupThread.h"
 #import "HHThreadScrollView.h"
-#import "HHCollapsiblePostCell.h"
+#import "HHPostCell.h"
 #import "Post.h"
 #import "WebNewsDataHandler.h"
 #import "NSMutableArray+HHActionButtons.h"
