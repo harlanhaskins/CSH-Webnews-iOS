@@ -273,10 +273,15 @@
 
 - (NSString*) processedBody {
     if (_body) {
+        
         // Add CSS to body.
-        _body = [@"<style type=\"text/css\">body {white-space: pre-wrap; word-wrap: break-word; font-family: sans-serif;} blockquote {color: #aaa;} </style>" stringByAppendingString:_body];
+        NSString *cssRules = @"<style type=\"text/css\">body {white-space: pre-wrap; word-wrap: break-word; font-family: sans-serif;} blockquote {color: #aaa;} </style>";
+        _body = [_body stringByAppendingString:cssRules];
+        
+        // Replace tabs with 4 spaces.
         _body = [_body stringByReplacingOccurrencesOfString:@"\t" withString:@"&nbsp;&nbsp;&nbsp;&nbsp;"];
         
+        // Grab the end of the blockquote and delete everything before it.
         NSRange rangeOfDivClosing = [_body rangeOfString:@"</div><br />"];
         NSUInteger end = rangeOfDivClosing.location + rangeOfDivClosing.length;
         if (end != NSNotFound) {

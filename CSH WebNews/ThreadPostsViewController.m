@@ -12,12 +12,14 @@
 #import "HHCollapsiblePostCell.h"
 #import "Post.h"
 #import "WebNewsDataHandler.h"
+#import "NSMutableArray+HHActionButtons.h"
 
 @interface ThreadPostsViewController ()
 
 @property (nonatomic) HHThreadScrollView *scrollView;
 @property (nonatomic) NewsgroupThread *thread;
 @property (nonatomic) NSInteger postsLoaded;
+@property (nonatomic) NSMutableArray *cellActions;
 
 @end
 
@@ -27,8 +29,30 @@
     ThreadPostsViewController *postsVC = [ThreadPostsViewController new];
     postsVC.thread = thread;
     postsVC.title = thread.post.subject;
+    
+    postsVC.cellActions = [NSMutableArray array];
+    [postsVC.cellActions HH_addActionButtonWithImage:[UIImage imageNamed:@"Reply"]
+                                              target:postsVC
+                                            selector:@selector(didTapReply)];
+    [postsVC.cellActions HH_addActionButtonWithImage:[UIImage imageNamed:@"Star"]
+                                              target:postsVC
+                                            selector:@selector(didTapStar)];
+    
     return postsVC;
 }
+
+- (void) didTapReply {
+    NSLog(@"Tapped Reply");
+}
+
+- (void) didTapStar {
+    NSLog(@"Tapped Star");
+}
+
+- (void) didTapMarkUnread {
+    
+}
+
 
 - (void) viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
@@ -47,7 +71,7 @@
 }
 
 - (void) createScrollView {
-    self.scrollView = [HHThreadScrollView threadViewWithPosts:self.thread.allThreads];
+    self.scrollView = [HHThreadScrollView threadViewWithPosts:self.thread.allThreads actions:self.cellActions];
     self.scrollView.scrollEnabled = YES;
     self.scrollView.contentInset =
     self.scrollView.scrollIndicatorInsets = UIEdgeInsetsMake(self.topLayoutGuide.length, 0, self.bottomLayoutGuide.length, 0);
