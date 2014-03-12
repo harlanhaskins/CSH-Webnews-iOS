@@ -10,6 +10,7 @@
 #import "NewsgroupThread.h"
 #import "NewsgroupThreadListTableViewModel.h"
 #import "NewsgroupOutline.h"
+#import "NewPostViewController.h"
 
 @interface NewsgroupThreadsViewController ()
 
@@ -49,7 +50,16 @@
     self.tableView.delegate = self.tableViewModel;
     self.tableView.dataSource = self.tableViewModel;
     
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose
+                                                                                           target:self
+                                                                                           action:@selector(newPost)];
+    
     [self loadData];
+}
+
+- (void) newPost {
+    NewPostViewController *newPost = [NewPostViewController postControllerWithNewsgroup:self.outline.name];
+    [self.navigationController pushViewController:newPost animated:YES];
 }
 
 - (void) viewWillAppear:(BOOL)animated {

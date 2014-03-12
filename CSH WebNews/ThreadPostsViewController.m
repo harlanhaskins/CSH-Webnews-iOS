@@ -12,7 +12,7 @@
 #import "Post.h"
 #import "WebNewsDataHandler.h"
 #import "NSMutableArray+HHActionButtons.h"
-#import "ReplyViewController.h"
+#import "NewPostViewController.h"
 
 @interface ThreadPostsViewController ()
 
@@ -51,7 +51,7 @@
 }
 
 - (void) replyToPost:(id<HHPostProtocol>)post {
-    ReplyViewController *replyVC = [ReplyViewController replyControllerWithPost:post];
+    NewPostViewController *replyVC = [NewPostViewController replyControllerWithPost:post];
     replyVC.didSendReplyBlock = ^ {
         self.reloadThreadsBlock();
     };

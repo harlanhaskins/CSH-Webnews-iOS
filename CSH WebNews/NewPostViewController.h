@@ -10,9 +10,10 @@
 
 @protocol HHPostProtocol;
 
-@interface ReplyViewController : UIViewController
+@interface NewPostViewController : UIViewController
 
 + (instancetype) replyControllerWithPost:(id<HHPostProtocol>)post;
++ (instancetype) postControllerWithNewsgroup:(NSString*)string;
 
 @property (nonatomic, copy) void (^didSendReplyBlock)();
 

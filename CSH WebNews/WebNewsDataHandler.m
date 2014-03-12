@@ -78,15 +78,27 @@
     [self runHTTPOperationWithRequest:request success:successBlock failure:failure];
 }
 
-+ (void) runHTTPPOSTOperationWithParameters:(NSString*)parameters
++ (void) runHTTPPOSTOperationWithBaseURL:(NSString*)baseURL
+                              parameters:(NSString*)parameters
                                    success:(HTTPSuccessBlock)successBlock
                                    failure:(HTTPFailureBlock)failure {
-    NSURL *url = [self urlFromParameters:parameters];
+    NSURL *url = [self urlFromParameters:baseURL];
     
     // Create an NSURLRequest with that URL.
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    
     [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    
     [request setHTTPMethod:@"POST"];
+    
+    NSData *postData = [parameters dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+    NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
+    
+    [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
+    
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    
+    [request setHTTPBody:postData];
     
     [self runHTTPOperationWithRequest:request success:successBlock failure:failure];
 }
