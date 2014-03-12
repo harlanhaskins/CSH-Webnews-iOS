@@ -31,15 +31,19 @@
 }
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.threads count];
+    return self.threads.count;
 }
 
 - (UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString *cellIdentifier = [NSString stringWithFormat:@"ActivityThreadCell_%li%li", (long)indexPath.row, (long)indexPath.section];
-    ActivityThreadCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    ActivityThreadCell *cell = [tableView dequeueReusableCellWithIdentifier:[ActivityThreadCell reuseIdentifier]];
     if (!cell) {
-        cell = [ActivityThreadCell cellWithActivityThread:self.threads[indexPath.row] reuseIdentifier:cellIdentifier];
+        cell = [ActivityThreadCell cell];
     }
+    ActivityThread *thread = self.threads[indexPath.row];
+    cell.textLabel.text = thread.parentPost.subject;
+    cell.detailTextLabel.text = [thread.parentPost authorshipAndTimeString];
+    
+    cell.textLabel.textColor = [thread.parentPost subjectColor];
     return cell;
 }
 

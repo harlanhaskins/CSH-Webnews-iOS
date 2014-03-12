@@ -9,10 +9,10 @@
 #import "ThreadPostsViewController.h"
 #import "NewsgroupThread.h"
 #import "HHThreadScrollView.h"
-#import "HHPostCell.h"
 #import "Post.h"
 #import "WebNewsDataHandler.h"
 #import "NSMutableArray+HHActionButtons.h"
+#import "ReplyViewController.h"
 
 @interface ThreadPostsViewController ()
 
@@ -33,26 +33,27 @@
     postsVC.cellActions = [NSMutableArray array];
     [postsVC.cellActions HH_addActionButtonWithImage:[UIImage imageNamed:@"Reply"]
                                               target:postsVC
-                                            selector:@selector(didTapReply)];
+                                            selector:@selector(didTapReply:)];
     [postsVC.cellActions HH_addActionButtonWithImage:[UIImage imageNamed:@"Star"]
                                               target:postsVC
-                                            selector:@selector(didTapStar)];
+                                            selector:@selector(didTapStar:)];
     
     return postsVC;
 }
 
-- (void) didTapReply {
-    NSLog(@"Tapped Reply");
+- (void) didTapReply:(UIButton*)sender {
+    NewsgroupThread *threadForReply = self.thread.allThreads[sender.tag];
+    [self replyToPost:threadForReply];
 }
 
-- (void) didTapStar {
-    NSLog(@"Tapped Star");
+- (void) didTapStar:(UIButton*)sender {
+    NSLog(@"Tapped Star: %ld", (long)sender.tag);
 }
 
-- (void) didTapMarkUnread {
-    
+- (void) replyToPost:(id<HHPostProtocol>)post {
+    ReplyViewController *replyVC = [ReplyViewController replyControllerWithPost:post];
+    [self.navigationController pushViewController:replyVC animated:YES];
 }
-
 
 - (void) viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];

@@ -67,7 +67,7 @@
     return [UIFont systemFontOfSize:18.0];
 }
 
-- (NSArray *) allPosts {
+- (NSMutableArray *) allPosts {
     if (!_allPosts) {
         _allPosts = [NSMutableArray array];
         for (NewsgroupThread *thread in self.allThreads) {
@@ -77,7 +77,7 @@
     return _allPosts;
 }
 
-- (NSArray*) allThreads {
+- (NSMutableArray*) allThreads {
     if (!_allThreads) {
         NSMutableArray *allThreads = [NSMutableArray array];
         [allThreads addObject:self];
@@ -91,6 +91,10 @@
 
 - (NSString *) bodyText {
     return [self.post.body stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+}
+
+- (NSString*) subject {
+    return self.post.subject;
 }
 
 - (NSAttributedString *) attributedBody {

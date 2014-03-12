@@ -11,23 +11,15 @@
 
 @interface ActivityThreadCell ()
 
-@property (nonatomic, readwrite) ActivityThread *thread;
-
 @end
 
 @implementation ActivityThreadCell
 
-+ (instancetype) cellWithActivityThread:(ActivityThread*)thread reuseIdentifier:(NSString *)reuseID {
++ (instancetype) cell {
     
     ActivityThreadCell *cell = [[ActivityThreadCell alloc] initWithStyle:UITableViewCellStyleSubtitle
-                                                         reuseIdentifier:reuseID];
+                                                         reuseIdentifier:[self reuseIdentifier]];
     
-    cell.thread = thread;
-    
-    cell.textLabel.text = cell.thread.parentPost.subject;
-    cell.detailTextLabel.text = [cell.thread.parentPost authorshipAndTimeString];
-    
-    cell.textLabel.textColor = [cell.thread.parentPost subjectColor];
     cell.textLabel.backgroundColor =
     cell.detailTextLabel.backgroundColor =
     cell.backgroundColor = [UIColor whiteColor];
@@ -37,11 +29,21 @@
     return cell;
 }
 
++ (NSString*) reuseIdentifier {
+    return @"ActivityThreadCell";
+}
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+
+- (void) prepareForReuse {
+    self.textLabel.text = @"";
+    self.detailTextLabel.text = @"";
+    self.textLabel.textColor = [UIColor blackColor];
 }
 
 @end
