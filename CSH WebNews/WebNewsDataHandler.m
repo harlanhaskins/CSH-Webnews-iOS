@@ -66,14 +66,27 @@
 }
 
 + (void) runHTTPPUTOperationWithParameters:(NSString*)parameters
-                                success:(HTTPSuccessBlock)successBlock
-                                failure:(HTTPFailureBlock)failure {
+                                   success:(HTTPSuccessBlock)successBlock
+                                   failure:(HTTPFailureBlock)failure {
     NSURL *url = [self urlFromParameters:parameters];
     
     // Create an NSURLRequest with that URL.
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
     [request setHTTPMethod:@"PUT"];
+    
+    [self runHTTPOperationWithRequest:request success:successBlock failure:failure];
+}
+
++ (void) runHTTPPOSTOperationWithParameters:(NSString*)parameters
+                                   success:(HTTPSuccessBlock)successBlock
+                                   failure:(HTTPFailureBlock)failure {
+    NSURL *url = [self urlFromParameters:parameters];
+    
+    // Create an NSURLRequest with that URL.
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    [request setHTTPMethod:@"POST"];
     
     [self runHTTPOperationWithRequest:request success:successBlock failure:failure];
 }

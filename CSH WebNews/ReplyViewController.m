@@ -10,12 +10,14 @@
 #import "HHPostProtocol.h"
 #import "UIColor+HHPostCellColors.h"
 #import "SAMTextView.h"
+#import "SAMTextField.h"
+#import "WebNewsDataHandler.h"
 
 @interface ReplyViewController ()
 
 @property (nonatomic) id<HHPostProtocol> post;
 @property (nonatomic) UILabel *replyToLabel;
-@property (nonatomic) UITextField *subjectField;
+@property (nonatomic) SAMTextField *subjectField;
 @property (nonatomic) SAMTextView *bodyTextView;
 
 @end
@@ -34,18 +36,18 @@
         _replyToLabel.textColor = [UIColor lightGrayColor];
         _replyToLabel.font = [UIFont fontWithDescriptor:[self fontDescripterForReplyLabel] size:14.0];
         _replyToLabel.numberOfLines = 4;
-        _replyToLabel.text = [NSString stringWithFormat:@"Reply to %@:\n%@", self.post.headerText, self.post.bodyText];
+        _replyToLabel.text = [NSString stringWithFormat:@"Reply to %@:\n%@", self.post.headerText, self.post.attributedBody.string];
     }
     return _replyToLabel;
 }
 
-- (UITextField*) subjectField {
+- (SAMTextField*) subjectField {
     if (!_subjectField) {
-        _subjectField = [UITextField new];
+        _subjectField = [SAMTextField new];
         _subjectField.placeholder = [NSString stringWithFormat:@"Re: %@", self.post.subject];
         _subjectField.layer.borderWidth = 1.0 / [UIScreen mainScreen].scale;
         _subjectField.layer.borderColor = [UIColor colorWithWhite:0.8 alpha:1.0].CGColor;
-        _subjectField.layer.sublayerTransform = CATransform3DMakeTranslation([self standardPadding], 0, 0);
+        _subjectField.textEdgeInsets = UIEdgeInsetsMake(0.0, [self standardPadding], 0.0, [self standardPadding]);
     }
     return _subjectField;
 }
@@ -84,9 +86,10 @@
 
 - (void) viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
-    [self.replyToLabel setSize:[self.replyToLabel sizeThatFits:[self replyToLabelConstraintSize]]];
+    
+    self.replyToLabel.size = [self.replyToLabel sizeThatFits:[self replyToLabelConstraintSize]];
     [self.replyToLabel centerToParent];
-    [self.replyToLabel setY:[self topPadding]];
+    self.replyToLabel.y = [self topPadding];
     
     self.subjectField.size = [self subjectFieldSize];
     [self.subjectField centerToParent];
@@ -123,6 +126,44 @@
     [self.view addSubview:self.subjectField];
     [self.view addSubview:self.bodyTextView];
     // Do any additional setup after loading the view.
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Reply"
+                                                                              style:UIBarButtonItemStylePlain
+                                                                             target:self
+                                                                             action:@selector(sendReply)];
+}
+
+- (void) sendReply {
+    NSString *body = self.bodyTextView.text;
+    if (!body || [body isEqualToString:@""]) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                            message:@"You can't have a blank body."
+                                                           delegate:nil
+                                                  cancelButtonTitle:nil
+                                                  otherButtonTitles:@"Okay.", nil];
+        [alertView show];
+        return;
+    }
+    
+    NSString *text = self.subjectField.text;
+    if (!text || [text isEqualToString:@""]) {
+        text = self.subjectField.placeholder;
+    }
+    
+    NSString *baseURL = [NSString stringWithFormat:@"compose?newsgroup=%@&subject=%@&body=%@&reply_number=%ld",
+                         self.post.board,
+                         text,
+                         body,
+                         (long)self.post.number];
+    
+    [WebNewsDataHandler runHTTPPOSTOperationWithParameters:baseURL success:^(AFHTTPRequestOperation *op, id response) {
+        NSLog(@"response: %@", response);
+        if (self.didSendReplyBlock) {
+            self.didSendReplyBlock();
+        }
+        [self.navigationController popViewControllerAnimated:YES];
+    } failure:^(AFHTTPRequestOperation *op, NSError *error) {
+        NSLog(@"%s Error: %@", __PRETTY_FUNCTION__, error);
+    }];
 }
 
 - (void)didReceiveMemoryWarning

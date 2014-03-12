@@ -22,4 +22,8 @@ typedef void (^__strong HTTPFailureBlock)(AFHTTPRequestOperation *__strong httpO
                                    success:(HTTPSuccessBlock)successBlock
                                    failure:(HTTPFailureBlock)failure;
 
++ (void) runHTTPPOSTOperationWithParameters:(NSString*)parameters
+                                    success:(HTTPSuccessBlock)successBlock
+                                    failure:(HTTPFailureBlock)failure;
+
 @end

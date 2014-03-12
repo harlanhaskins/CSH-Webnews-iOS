@@ -93,6 +93,10 @@
     return [self.post.body stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 }
 
+- (NSString*) board {
+    return self.post.newsgroup;
+}
+
 - (NSString*) subject {
     return self.post.subject;
 }
@@ -103,6 +107,10 @@
 
 - (NSString*) headerText {
     return self.post.authorName;
+}
+
+- (NSInteger) number {
+    return self.post.number;
 }
 
 - (NSMutableArray *) childrenFromDictionaryArray:(NSArray*)array atDepth:(NSInteger)theDepth {

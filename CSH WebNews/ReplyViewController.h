@@ -14,4 +14,6 @@
 
 + (instancetype) replyControllerWithPost:(id<HHPostProtocol>)post;
 
+@property (nonatomic, copy) void (^didSendReplyBlock)();
+
 @end

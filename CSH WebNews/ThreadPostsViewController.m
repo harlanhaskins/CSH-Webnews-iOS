@@ -52,6 +52,9 @@
 
 - (void) replyToPost:(id<HHPostProtocol>)post {
     ReplyViewController *replyVC = [ReplyViewController replyControllerWithPost:post];
+    replyVC.didSendReplyBlock = ^ {
+        self.reloadThreadsBlock();
+    };
     [self.navigationController pushViewController:replyVC animated:YES];
 }
 
