@@ -102,7 +102,9 @@
         NSString *parameters = [NSString stringWithFormat:@"mark_read?newsgroup=%@&number=%li&in_thread=true", self.thread.post.newsgroup, (long)self.thread.post.number];
         [WebNewsDataHandler runHTTPPUTOperationWithParameters:parameters success:^(AFHTTPRequestOperation *op, id response) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                self.reloadThreadsBlock();
+                if (self.reloadThreadsBlock) {
+                    self.reloadThreadsBlock();
+                }
             });
         } failure:^(AFHTTPRequestOperation *op, NSError *error) {
             NSLog(@"Failed to mark thread read.");

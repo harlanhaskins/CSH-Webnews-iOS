@@ -10,6 +10,8 @@
 #import "ActivityTableViewModel.h"
 #import "APIKeyViewController.h"
 #import "WebNewsDataHandler.h"
+#import "NewsgroupThread.h"
+#import "ThreadPostsViewController.h"
 
 @interface ActivityViewController ()
 
@@ -36,6 +38,15 @@
     [super viewDidLoad];
     
     self.tableViewModel = [ActivityTableViewModel new];
+    
+    __weak ActivityViewController *weakSelf = self;
+    self.tableViewModel.didSelectCellBlock = ^(NewsgroupThread* thread) {
+        ThreadPostsViewController *postsVC = [ThreadPostsViewController controllerWithThread:thread];
+        postsVC.reloadThreadsBlock = ^ {
+            [weakSelf loadData];
+        };
+        [weakSelf.navigationController pushViewController:postsVC animated:YES];
+    };
     
     self.tableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStylePlain];
     

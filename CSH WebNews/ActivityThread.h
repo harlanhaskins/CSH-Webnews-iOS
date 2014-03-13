@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "Post.h"
 
+@class NewsgroupThread;
+
 @interface ActivityThread : NSObject<NSCoding>
 
 @property (nonatomic, readonly) Post *parentPost;
@@ -24,5 +26,6 @@
 @property (nonatomic, readonly, getter = isCrossPosted) BOOL crossPosted;
 
 + (instancetype) activityThreadWithDictionary:(NSDictionary*)dictionary;
+- (void) loadNewsgroupThreadVersionWithBlock:(void(^)(NewsgroupThread* thread))block;
 
 @end

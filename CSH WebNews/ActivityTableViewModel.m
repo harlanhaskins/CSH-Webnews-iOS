@@ -48,6 +48,10 @@
 }
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    ActivityThread *thread = self.threads[indexPath.row];
+    [thread loadNewsgroupThreadVersionWithBlock:^(NewsgroupThread *thread) {
+        self.didSelectCellBlock(thread);
+    }];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 

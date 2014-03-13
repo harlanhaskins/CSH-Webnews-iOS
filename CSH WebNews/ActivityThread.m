@@ -8,6 +8,9 @@
 
 #import "ActivityThread.h"
 #import "Post.h"
+#import "NewsgroupThread.h"
+#import "WebNewsDataHandler.h"
+#import "SVProgressHUD.h"
 
 @interface ActivityThread ()
 
@@ -81,6 +84,19 @@
 
 - (NSString*) description {
     return [[self parentPost] subject];
+}
+
+- (void) loadNewsgroupThreadVersionWithBlock:(void(^)(NewsgroupThread* thread))block {
+    NSString *parameters = [NSString stringWithFormat:@"%@/%li", self.parentPost.newsgroup, (long)self.parentPost.number];
+    
+    [SVProgressHUD showWithStatus:@"Loading Thread..."];
+    [WebNewsDataHandler runHTTPGETOperationWithParameters:parameters success:^(AFHTTPRequestOperation *op, id response) {
+        [SVProgressHUD dismiss];
+        block([NewsgroupThread newsgroupThreadWithDictionary:response]);
+    } failure:^(AFHTTPRequestOperation *op, NSError *error) {
+        [SVProgressHUD dismiss];
+        NSLog(@"%s Error: %@", __PRETTY_FUNCTION__, error);
+    }];
 }
 
 @end
