@@ -48,7 +48,7 @@
     if (!_replyToLabel) {
         _replyToLabel = [UILabel new];
         _replyToLabel.textColor = [UIColor lightGrayColor];
-        _replyToLabel.font = [UIFont fontWithDescriptor:[self fontDescripterForReplyLabel] size:14.0];
+        _replyToLabel.font = [UIFont fontWithDescriptor:[self fontDescripterForReplyLabel] size:12.0];
         if (self.reply) {
             _replyToLabel.text = [NSString stringWithFormat:@"Reply to %@:\n%@", self.post.headerText, self.post.attributedBody.string];
             _replyToLabel.numberOfLines = 4;
@@ -59,6 +59,11 @@
         }
     }
     return _replyToLabel;
+}
+
+- (void) textViewDidChange:(UITextView *)textView {
+    CGRect caretRect = [textView caretRectForPosition:textView.endOfDocument];
+    [textView scrollRectToVisible:caretRect animated:NO];
 }
 
 - (NSString*) randomSubject {
@@ -95,10 +100,11 @@
 - (SAMTextView*) bodyTextView {
     if (!_bodyTextView) {
         _bodyTextView = [SAMTextView new];
+        _bodyTextView.delegate = self;
         _bodyTextView.contentInset = UIEdgeInsetsMake(5.0,
+                                                      0.0,
                                                       5.0,
-                                                      5.0,
-                                                      5.0);
+                                                      0.0);
         _bodyTextView.font = [UIFont fontWithDescriptor:[self fontDescripterForBodyText] size:14.0];
         _bodyTextView.placeholder = @"Tap here to start writing...";
     }
@@ -178,6 +184,38 @@
                                                                                  target:self
                                                                                  action:@selector(sendPost)];
     }
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillShow:)
+                                                 name:UIKeyboardWillShowNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillHide:)
+                                                 name:UIKeyboardWillHideNotification
+                                               object:nil];
+}
+
+- (void)keyboardWillShow:(NSNotification *)notification
+{
+    // Take frame with key: UIKeyboardFrameEndUserInfoKey because we want the final frame not the begin one
+    NSValue *keyboardFrameValue = [notification.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
+    CGRect keyboardFrame = [keyboardFrameValue CGRectValue];
+    
+    UIEdgeInsets contentInsets = self.bodyTextView.contentInset;
+    contentInsets.bottom = CGRectGetHeight(keyboardFrame);
+    
+    self.bodyTextView.contentInset = contentInsets;
+    self.bodyTextView.scrollIndicatorInsets = contentInsets;
+}
+
+- (void)keyboardWillHide:(NSNotification *)notification
+{
+    UIEdgeInsets contentInsets = self.bodyTextView.contentInset;
+    contentInsets.bottom = 0.0;
+    
+    self.bodyTextView.contentInset = contentInsets;
+    self.bodyTextView.scrollIndicatorInsets = contentInsets;
 }
 
 - (void) sendReply {
@@ -244,6 +282,10 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void) viewWillDisappear:(BOOL)animated {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

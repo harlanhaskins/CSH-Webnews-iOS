@@ -10,7 +10,7 @@
 
 @protocol HHPostProtocol;
 
-@interface NewPostViewController : UIViewController
+@interface NewPostViewController : UIViewController<UITextViewDelegate>
 
 + (instancetype) replyControllerWithPost:(id<HHPostProtocol>)post;
 + (instancetype) postControllerWithNewsgroup:(NSString*)string;
