@@ -33,7 +33,30 @@
 
 - (UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NewsgroupOutline *newsgroup = self.newsgroups[indexPath.row];
-    NewsgroupOutlineCell *cell = [NewsgroupOutlineCell cellWithNewsgroup:newsgroup];
+    
+    NSString *cellID = @"NewsgroupCell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                                       reuseIdentifier:cellID];
+    }
+    
+    
+    cell.textLabel.text = [newsgroup textWithUnreadCount];
+    
+    if (newsgroup.unreadPosts > 0) {
+        cell.textLabel.textColor = [Post colorForPersonalClass:newsgroup.highestPriorityPersonalClass];
+    }
+    
+    cell.textLabel.font = [newsgroup fontForName];
+    
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
+    cell.textLabel.backgroundColor =
+    cell.detailTextLabel.backgroundColor =
+    cell.backgroundColor = [UIColor whiteColor];
     return cell;
 }
 

@@ -25,12 +25,8 @@
 
 + (instancetype) newsgroupOutlineWithDictionary:(NSDictionary*)dictionary;
 
-@end
+- (NSString*) textWithUnreadCount;
 
-@interface NewsgroupOutlineCell : UITableViewCell
-
-@property (nonatomic, readonly) NewsgroupOutline *newsgroup;
-
-+ (instancetype) cellWithNewsgroup:(NewsgroupOutline*)newsgroup;
+- (UIFont*) fontForName;
 
 @end

@@ -92,32 +92,3 @@
 }
 
 @end
-
-@interface NewsgroupOutlineCell ()
-
-@property (nonatomic, readwrite) NewsgroupOutline *newsgroup;
-
-@end
-
-@implementation NewsgroupOutlineCell
-
-+ (instancetype) cellWithNewsgroup:(NewsgroupOutline*)newsgroup {
-    
-    NewsgroupOutlineCell *cell = [[super alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"NewsgroupCell"];
-    
-    cell.newsgroup = newsgroup;
-    
-    cell.textLabel.text = [cell.newsgroup textWithUnreadCount];
-    
-    cell.textLabel.font = [newsgroup fontForName];
-    
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    
-    cell.textLabel.backgroundColor =
-    cell.detailTextLabel.backgroundColor =
-    cell.backgroundColor = [UIColor whiteColor];
-    
-    return cell;
-}
-
-@end

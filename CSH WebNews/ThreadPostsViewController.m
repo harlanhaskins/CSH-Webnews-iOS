@@ -13,6 +13,9 @@
 #import "WebNewsDataHandler.h"
 #import "NSMutableArray+HHActionButtons.h"
 #import "NewPostViewController.h"
+#import "HHPostCell.h"
+#import "HHPostCellActionsView.h"
+#import "SVProgressHUD.h"
 
 @interface ThreadPostsViewController ()
 
@@ -47,7 +50,19 @@
 }
 
 - (void) didTapStar:(UIButton*)sender {
-    NSLog(@"Tapped Star: %ld", (long)sender.tag);
+    NewsgroupThread *threadToStar = self.thread.allThreads[sender.tag];
+    NSString *parameters = [NSString stringWithFormat:@"%@/%li/star", threadToStar.board, (long)threadToStar.number];
+    [WebNewsDataHandler runHTTPPUTOperationWithParameters:parameters success:^(AFHTTPRequestOperation *op, id response) {
+        BOOL starred = [response[@"starred"] boolValue];
+        if (starred) {
+            [sender setImage:[UIImage imageNamed:@"StarFilled"] forState:UIControlStateNormal];
+        }
+        else {
+            [sender setImage:[UIImage imageNamed:@"Star"] forState:UIControlStateNormal];
+        }
+    } failure:^(AFHTTPRequestOperation *op, NSError *error) {
+        NSLog(@"%s Error: %@", __PRETTY_FUNCTION__, error);
+    }];
 }
 
 - (void) replyToPost:(id<HHPostProtocol>)post {
@@ -100,6 +115,7 @@
 }
 
 - (void) loadPosts {
+    [SVProgressHUD showWithStatus:@"Loading posts."];
     dispatch_async(dispatch_queue_create("Loading Posts", 0), ^{
         for (Post *post in self.posts) {
             [post loadBodyWithBlock:^(Post *currentPost) {
@@ -110,6 +126,7 @@
             [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.05]];
         }
         dispatch_async(dispatch_get_main_queue(), ^{
+            [SVProgressHUD dismiss];
             [self createScrollView];
             [self markThreadRead];
         });

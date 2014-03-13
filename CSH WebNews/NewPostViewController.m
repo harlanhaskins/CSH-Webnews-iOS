@@ -33,12 +33,14 @@
     NewPostViewController *replyVC = [NewPostViewController new];
     replyVC.post = post;
     replyVC.newsgroup = post.board;
+    replyVC.reply = YES;
     return replyVC;
 }
 
 + (instancetype) postControllerWithNewsgroup:(NSString *)string {
     NewPostViewController *replyVC = [NewPostViewController new];
     replyVC.newsgroup = string;
+    replyVC.reply = NO;
     return replyVC;
 }
 
@@ -227,7 +229,6 @@
     [WebNewsDataHandler runHTTPPOSTOperationWithBaseURL:@"compose"
                                              parameters:baseURL
                                                 success:^(AFHTTPRequestOperation *op, id response) {
-                                                    NSLog(@"response: %@", response);
                                                     if (self.didSendReplyBlock) {
                                                         self.didSendReplyBlock();
                                                     }

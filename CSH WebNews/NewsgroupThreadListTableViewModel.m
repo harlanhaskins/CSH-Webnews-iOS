@@ -13,6 +13,7 @@
 #import "CacheManager.h"
 #import "ThreadPostsViewController.h"
 #import "NSMutableArray+HHActionButtons.h"
+#import "SVProgressHUD.h"
 
 @interface NewsgroupThreadListTableViewModel ()
 
@@ -70,7 +71,6 @@
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NewsgroupThread *thread = self.threads[indexPath.row];
-//    ThreadDetailViewController *threadVC = [ThreadDetailViewController threadViewControllerWithThread:thread];
     ThreadPostsViewController *threadVC = [ThreadPostsViewController controllerWithThread:thread];
     threadVC.reloadThreadsBlock = self.loadDataBlock;
     self.pushViewControllerBlock(threadVC);

@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		C910A6F3189733ED001D222D /* ActivityTableViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C910A6F2189733ED001D222D /* ActivityTableViewModel.m */; };
+		C924761918D105490006D1DC /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = C924761318D105490006D1DC /* README.md */; };
+		C924761A18D105490006D1DC /* release_notes.md in Resources */ = {isa = PBXBuildFile; fileRef = C924761418D105490006D1DC /* release_notes.md */; };
+		C924761C18D105BB0006D1DC /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C924761B18D105BB0006D1DC /* libPods.a */; };
+		C924761D18D105C70006D1DC /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C924761218D105490006D1DC /* libTestFlight.a */; };
 		C92B5F0418D0B83400FCB8EA /* NewPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C92B5F0318D0B83400FCB8EA /* NewPostViewController.m */; };
 		C92B9DDB189752DC0099C22D /* CacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C92B9DDA189752DC0099C22D /* CacheManager.m */; };
 		C96D227D1895BD80001BFA57 /* WebNewsDataHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C96D227C1895BD80001BFA57 /* WebNewsDataHandler.m */; };
@@ -24,11 +28,7 @@
 		C9D6F9F01898406C00004E3B /* NewsgroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D6F9EF1898406C00004E3B /* NewsgroupsViewController.m */; };
 		C9D6F9F5189840FE00004E3B /* NewsgroupOutline.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D6F9F4189840FE00004E3B /* NewsgroupOutline.m */; };
 		C9D6F9F81898498D00004E3B /* NewsgroupOutlineTableViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D6F9F71898498D00004E3B /* NewsgroupOutlineTableViewModel.m */; };
-		C9E1243A18A5661E0084B828 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E1243418A5661E0084B828 /* libTestFlight.a */; };
-		C9E1243B18A5661E0084B828 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = C9E1243518A5661E0084B828 /* README.md */; };
-		C9E1243C18A5661E0084B828 /* release_notes.md in Resources */ = {isa = PBXBuildFile; fileRef = C9E1243618A5661E0084B828 /* release_notes.md */; };
 		C9E1243E18A5665F0084B828 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E1243D18A5665F0084B828 /* libz.dylib */; };
-		D4E94FBCBCF34F4895213210 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 234ACC9F35034B7CA1D4ECFC /* libPods.a */; };
 		DC0FC96417EC230700945EEC /* APIKeyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0FC96317EC230700945EEC /* APIKeyViewController.m */; };
 		DC22B1A917EBB00600E328DE /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC22B1A817EBB00600E328DE /* SettingsViewController.m */; };
 		DC22B1AD17EBDFD800E328DE /* ISO8601DateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = DC22B1AC17EBDFD800E328DE /* ISO8601DateFormatter.m */; };
@@ -67,6 +67,13 @@
 		234ACC9F35034B7CA1D4ECFC /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C910A6F1189733ED001D222D /* ActivityTableViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityTableViewModel.h; sourceTree = "<group>"; };
 		C910A6F2189733ED001D222D /* ActivityTableViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityTableViewModel.m; sourceTree = "<group>"; };
+		C924761218D105490006D1DC /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
+		C924761318D105490006D1DC /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		C924761418D105490006D1DC /* release_notes.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes.md; sourceTree = "<group>"; };
+		C924761518D105490006D1DC /* TestFlight+AsyncLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TestFlight+AsyncLogging.h"; sourceTree = "<group>"; };
+		C924761618D105490006D1DC /* TestFlight+ManualSessions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TestFlight+ManualSessions.h"; sourceTree = "<group>"; };
+		C924761718D105490006D1DC /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
+		C924761B18D105BB0006D1DC /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
 		C92B5F0218D0B83400FCB8EA /* NewPostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewPostViewController.h; sourceTree = "<group>"; };
 		C92B5F0318D0B83400FCB8EA /* NewPostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewPostViewController.m; sourceTree = "<group>"; };
 		C92B9DD9189752DC0099C22D /* CacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheManager.h; sourceTree = "<group>"; };
@@ -99,12 +106,6 @@
 		C9D6F9F4189840FE00004E3B /* NewsgroupOutline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsgroupOutline.m; sourceTree = "<group>"; };
 		C9D6F9F61898498D00004E3B /* NewsgroupOutlineTableViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsgroupOutlineTableViewModel.h; sourceTree = "<group>"; };
 		C9D6F9F71898498D00004E3B /* NewsgroupOutlineTableViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsgroupOutlineTableViewModel.m; sourceTree = "<group>"; };
-		C9E1243418A5661E0084B828 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
-		C9E1243518A5661E0084B828 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
-		C9E1243618A5661E0084B828 /* release_notes.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes.md; sourceTree = "<group>"; };
-		C9E1243718A5661E0084B828 /* TestFlight+AsyncLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TestFlight+AsyncLogging.h"; sourceTree = "<group>"; };
-		C9E1243818A5661E0084B828 /* TestFlight+ManualSessions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TestFlight+ManualSessions.h"; sourceTree = "<group>"; };
-		C9E1243918A5661E0084B828 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
 		C9E1243D18A5665F0084B828 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		CCF7A34595E241278F44BBAB /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		DC0FC96217EC230700945EEC /* APIKeyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIKeyViewController.h; sourceTree = "<group>"; };
@@ -146,8 +147,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C924761C18D105BB0006D1DC /* libPods.a in Frameworks */,
+				C924761D18D105C70006D1DC /* libTestFlight.a in Frameworks */,
 				C9E1243E18A5665F0084B828 /* libz.dylib in Frameworks */,
-				C9E1243A18A5661E0084B828 /* libTestFlight.a in Frameworks */,
 				DCCAB04A17EAB3E9004B683B /* Security.framework in Frameworks */,
 				DCCAB04817EAB3E5004B683B /* MobileCoreServices.framework in Frameworks */,
 				DCCAB04617EAB3DA004B683B /* CoreData.framework in Frameworks */,
@@ -156,7 +158,6 @@
 				DCF26DDB17CD617C0073DA19 /* CoreGraphics.framework in Frameworks */,
 				DCF26DDD17CD617C0073DA19 /* UIKit.framework in Frameworks */,
 				DCF26DD917CD617C0073DA19 /* Foundation.framework in Frameworks */,
-				D4E94FBCBCF34F4895213210 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -173,6 +174,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C924761118D105490006D1DC /* TestFlightSDK3 */ = {
+			isa = PBXGroup;
+			children = (
+				C924761218D105490006D1DC /* libTestFlight.a */,
+				C924761318D105490006D1DC /* README.md */,
+				C924761418D105490006D1DC /* release_notes.md */,
+				C924761518D105490006D1DC /* TestFlight+AsyncLogging.h */,
+				C924761618D105490006D1DC /* TestFlight+ManualSessions.h */,
+				C924761718D105490006D1DC /* TestFlight.h */,
+			);
+			path = TestFlightSDK3;
+			sourceTree = "<group>";
+		};
 		C96D22841895CDA4001BFA57 /* Objects */ = {
 			isa = PBXGroup;
 			children = (
@@ -247,19 +261,6 @@
 			name = Objects;
 			sourceTree = "<group>";
 		};
-		C9E1243318A5661E0084B828 /* TestFlightSDK2 */ = {
-			isa = PBXGroup;
-			children = (
-				C9E1243418A5661E0084B828 /* libTestFlight.a */,
-				C9E1243518A5661E0084B828 /* README.md */,
-				C9E1243618A5661E0084B828 /* release_notes.md */,
-				C9E1243718A5661E0084B828 /* TestFlight+AsyncLogging.h */,
-				C9E1243818A5661E0084B828 /* TestFlight+ManualSessions.h */,
-				C9E1243918A5661E0084B828 /* TestFlight.h */,
-			);
-			path = TestFlightSDK2;
-			sourceTree = "<group>";
-		};
 		DCF26DCC17CD617C0073DA19 = {
 			isa = PBXGroup;
 			children = (
@@ -284,6 +285,7 @@
 		DCF26DD717CD617C0073DA19 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C924761B18D105BB0006D1DC /* libPods.a */,
 				C9E1243D18A5665F0084B828 /* libz.dylib */,
 				DCCAB04917EAB3E9004B683B /* Security.framework */,
 				DCCAB04717EAB3E5004B683B /* MobileCoreServices.framework */,
@@ -323,7 +325,7 @@
 		DCF26DDF17CD617C0073DA19 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				C9E1243318A5661E0084B828 /* TestFlightSDK2 */,
+				C924761118D105490006D1DC /* TestFlightSDK3 */,
 				C96D227B1895BD80001BFA57 /* WebNewsDataHandler.h */,
 				C96D227C1895BD80001BFA57 /* WebNewsDataHandler.m */,
 				DC9D24A0180BB2B10034E02B /* NSDictionary+Merge.h */,
@@ -443,8 +445,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C9E1243C18A5661E0084B828 /* release_notes.md in Resources */,
-				C9E1243B18A5661E0084B828 /* README.md in Resources */,
+				C924761A18D105490006D1DC /* release_notes.md in Resources */,
+				C924761918D105490006D1DC /* README.md in Resources */,
 				DCF26DE317CD617C0073DA19 /* InfoPlist.strings in Resources */,
 				C9C9485C189892AA00599E74 /* Images.xcassets in Resources */,
 			);
@@ -647,7 +649,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/CSH\\ Webnews/TestFlightSDK2",
+					"$(PROJECT_DIR)/CSH\\ WebNews/TestFlightSDK3",
 				);
 				LLVM_LTO = YES;
 				PRODUCT_NAME = "CSH News";
@@ -675,11 +677,11 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/CSH\\ Webnews/TestFlightSDK2",
+					"$(PROJECT_DIR)/CSH\\ WebNews/TestFlightSDK3",
 				);
 				LLVM_LTO = YES;
 				PRODUCT_NAME = "CSH News";
-				PROVISIONING_PROFILE = "5AA73E1A-E77E-426F-A528-84D5349D665F";
+				PROVISIONING_PROFILE = "8E8D936A-91B6-438B-9DEA-C7CFC9F10B85";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/../\"/**";
 				WRAPPER_EXTENSION = app;

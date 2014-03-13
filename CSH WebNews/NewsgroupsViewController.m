@@ -47,6 +47,10 @@
     self.refreshControl = [UIRefreshControl new];
     [self.refreshControl addTarget:self action:@selector(loadData) forControlEvents:UIControlEventAllEvents];
     
+}
+
+- (void) viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
     [self loadData];
 }
 
