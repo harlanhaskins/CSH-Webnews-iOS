@@ -87,12 +87,17 @@
 }
 
 - (void) loadNewsgroupThreadVersionWithBlock:(void(^)(NewsgroupThread* thread))block {
-    NSString *parameters = [NSString stringWithFormat:@"%@/%li", self.parentPost.newsgroup, (long)self.parentPost.number];
+    NSString *parameters = [NSString stringWithFormat:@"%@/index?from_number=%li", self.parentPost.newsgroup, (long)self.parentPost.number];
     
     [SVProgressHUD showWithStatus:@"Loading Thread..."];
     [WebNewsDataHandler runHTTPGETOperationWithParameters:parameters success:^(AFHTTPRequestOperation *op, id response) {
         [SVProgressHUD dismiss];
-        block([NewsgroupThread newsgroupThreadWithDictionary:response]);
+        NSDictionary *threadDict = response[@"posts_selected"];
+        
+        NewsgroupThread *thread = [NewsgroupThread newsgroupThreadWithDictionary:threadDict];
+        if (thread) {
+            block(thread);
+        }
     } failure:^(AFHTTPRequestOperation *op, NSError *error) {
         [SVProgressHUD dismiss];
         NSLog(@"%s Error: %@", __PRETTY_FUNCTION__, error);
