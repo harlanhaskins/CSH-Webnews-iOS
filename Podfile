@@ -1,5 +1,5 @@
 pod 'AFNetworking'
-pod 'HHThreadView', '~> 0.9.8'
+pod 'HHThreadView'
 pod 'NSNull+TypeAdditions'
 pod 'PDKeychainBindingsController', :podspec => 'https://raw.github.com/carlbrown/PDKeychainBindingsController/master/PDKeychainBindingsController.podspec'
 pod 'SAMTextView'
