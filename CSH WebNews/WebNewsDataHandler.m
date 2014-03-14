@@ -43,7 +43,14 @@
     
     NSString *activityString = [NSString stringWithFormat:kBaseURLFormat, parameters];
     
-    NSURL *url = [NSURL URLWithString:[activityString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    // Need to encode this way instead of stringByAddingPercentEscapesUsingEncoding: so we can ignore the '+' in 'r+d'.
+    NSString *urlString = CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL,
+                                                                  (CFStringRef)activityString,
+                                                                  NULL,
+                                                                  (CFStringRef) @"+",
+                                                                  kCFStringEncodingUTF8));
+    
+    NSURL *url = [NSURL URLWithString:urlString];
     
     return url;
 }
