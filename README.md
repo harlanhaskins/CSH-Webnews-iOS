@@ -29,4 +29,4 @@ This program is released under the MIT License. A copy of this license is availa
 
 Libraries
 ---
-This program makes use of [AFNetworking](https://github.com/AFNetworking/AFNetworking), [PDKeychainBindingsController](https://github.com/carlbrown/PDKeychainBindingsController), and [UIView+Positioning](https://github.com/freak4pc/UIView-Positioning), which are all released under the MIT License, and [ISO8601DateFormatter](https://github.com/boredzo/iso-8601-date-formatter), released under the BSD license.
+This program makes use of [AFNetworking](https://github.com/AFNetworking/AFNetworking), [PDKeychainBindingsController](https://github.com/carlbrown/PDKeychainBindingsController), [SAMTextView](https://github.com/soffes/SAMTextView), [SAMTextField](https://github.com/soffes/SAMTextField), [SVProgressHUD](https://github.com/samvermette/SVProgressHUD) and [UIView+Positioning](https://github.com/freak4pc/UIView-Positioning), which are all released under the MIT License, and [ISO8601DateFormatter](https://github.com/boredzo/iso-8601-date-formatter), released under the BSD license.
