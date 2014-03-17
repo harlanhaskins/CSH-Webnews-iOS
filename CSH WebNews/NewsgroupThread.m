@@ -9,6 +9,7 @@
 #import "NewsgroupThread.h"
 #import "Post.h"
 #import "CacheManager.h"
+#import "NSMutableArray+HHActionButtons.h"
 
 @interface NewsgroupThread ()
 
@@ -25,6 +26,7 @@
 @synthesize bodyText;
 @synthesize headerText;
 @synthesize depth;
+@synthesize actionButtons = _actionButtons;
 
 - (void) encodeWithCoder:(NSCoder *)coder {
     [coder encodeObject:self.post forKey:@"post"];
@@ -89,6 +91,31 @@
     return _allThreads;
 }
 
+- (NSMutableArray*) actionButtons {
+    if (!_actionButtons) {
+        _actionButtons = [NSMutableArray new];
+        [_actionButtons HH_addActionButtonWithImage:[UIImage imageNamed:@"Reply"]
+                                             target:self.delegate
+                                           selector:@selector(didTapReply:)];
+        
+        UIImage *starImage = [self isStarred] ? [UIImage imageNamed:@"StarFilled"] : [UIImage imageNamed:@"Star"];
+        [_actionButtons HH_addActionButtonWithImage:starImage
+                                             target:self.delegate
+                                           selector:@selector(didTapStar:)];
+        
+//        if (self.post.isSelfPost && ![self hasChildren]) {
+//            [_actionButtons HH_addActionButtonWithImage:[UIImage imageNamed:@"Delete"]
+//                                                 target:self.delegate
+//                                               selector:@selector(didTapDelete:)];
+//        }
+    }
+    return _actionButtons;
+}
+
+- (BOOL) hasChildren {
+    return self.children && self.children.count > 0;
+}
+
 - (NSString *) bodyText {
     return [self.post.body stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 }
@@ -124,32 +151,6 @@
 
 - (BOOL) isStarred {
     return self.post.isStarred;
-}
-
-@end
-
-@interface NewsgroupThreadCell ()
-
-@property (nonatomic, readwrite) NewsgroupThread *thread;
-
-@end
-
-@implementation NewsgroupThreadCell
-
-+ (instancetype) cellWithNewsgroupThread:(NewsgroupThread*)thread reuseIdentifier:(NSString*)cellIdentifier {
-    NewsgroupThreadCell *cell = [[NewsgroupThreadCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
-    
-    cell.textLabel.text = thread.post.subject;
-    cell.textLabel.font = [thread fontForSubject];
-    cell.detailTextLabel.text = [thread.post authorshipAndTimeString];
-    
-    cell.textLabel.textColor = thread.post.subjectColor;
-    
-    cell.backgroundColor =
-    cell.textLabel.backgroundColor =
-    cell.detailTextLabel.backgroundColor = [UIColor whiteColor];
-    
-    return cell;
 }
 
 @end

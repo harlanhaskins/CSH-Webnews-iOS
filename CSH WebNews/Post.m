@@ -278,14 +278,14 @@
 - (NSString*) processedBody {
     if (_body) {
         
-        // Add CSS to body.
+        // Add CSS to body. I'm so sorry.
         NSString *cssRules = @"<style type=\"text/css\">body {white-space: pre-wrap; word-wrap: break-word; font-family: sans-serif;} blockquote {color: #aaa;} </style>";
         _body = [_body stringByAppendingString:cssRules];
         
-        // Replace tabs with 4 spaces.
+        // Replace tabs with 4 spaces. I'm so sorry.
         _body = [_body stringByReplacingOccurrencesOfString:@"\t" withString:@"&nbsp;&nbsp;&nbsp;&nbsp;"];
         
-        // Grab the end of the blockquote and delete everything before it.
+        // Grab the end of the blockquote and delete everything before it. I'm so sorry.
         NSRange rangeOfDivClosing = [_body rangeOfString:@"</div><br />"];
         NSUInteger end = rangeOfDivClosing.location + rangeOfDivClosing.length;
         if (end != NSNotFound) {
@@ -293,7 +293,13 @@
             _body = [_body substringFromIndex:totalLength];
         }
     }
+    
+    // Sorry. So sorry. I am so sorry. I am.
     return _body;
+}
+
+- (BOOL) isSelfPost {
+    return self.personalClass == PersonalClassMine;
 }
 
 @end

@@ -37,7 +37,24 @@
 
 - (UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NewsgroupThread *thread = self.threads[indexPath.row];
-    NewsgroupThreadCell *cell = [NewsgroupThreadCell cellWithNewsgroupThread:thread reuseIdentifier:@"Cell"];
+    NSString *cellID = @"NewsgroupThread";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellID];
+    }
+    
+    cell.textLabel.text = thread.post.subject;
+    cell.textLabel.font = [thread fontForSubject];
+    cell.detailTextLabel.text = [thread.post authorshipAndTimeString];
+    
+    cell.textLabel.textColor = thread.post.subjectColor;
+    
+    cell.backgroundColor =
+    cell.textLabel.backgroundColor =
+    cell.detailTextLabel.backgroundColor = [UIColor whiteColor];
+    
     return cell;
 }
 

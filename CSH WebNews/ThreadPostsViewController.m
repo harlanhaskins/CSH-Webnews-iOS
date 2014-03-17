@@ -17,12 +17,11 @@
 #import "HHPostCellActionsView.h"
 #import "SVProgressHUD.h"
 
-@interface ThreadPostsViewController ()
+@interface ThreadPostsViewController () <NewsgroupThreadDelegate>
 
 @property (nonatomic) HHThreadScrollView *scrollView;
 @property (nonatomic) NewsgroupThread *thread;
 @property (nonatomic) NSInteger postsLoaded;
-@property (nonatomic) NSMutableArray *cellActions;
 
 @end
 
@@ -31,22 +30,20 @@
 + (instancetype) controllerWithThread:(NewsgroupThread*)thread {
     ThreadPostsViewController *postsVC = [ThreadPostsViewController new];
     postsVC.thread = thread;
-    postsVC.title = thread.post.subject;
-    
-    postsVC.cellActions = [NSMutableArray array];
-    [postsVC.cellActions HH_addActionButtonWithImage:[UIImage imageNamed:@"Reply"]
-                                              target:postsVC
-                                            selector:@selector(didTapReply:)];
-    [postsVC.cellActions HH_addActionButtonWithImage:[UIImage imageNamed:@"Star"]
-                                              target:postsVC
-                                            selector:@selector(didTapStar:)];
-    
     return postsVC;
 }
 
+- (void) setThread:(NewsgroupThread *)thread {
+    _thread = thread;
+    for (NewsgroupThread *child in thread.allThreads) {
+        child.delegate = self;
+    }
+    self.title = thread.post.subject;
+}
+
 - (void) didTapReply:(UIButton*)sender {
-    NewsgroupThread *threadForReply = self.thread.allThreads[sender.tag];
-    [self replyToPost:threadForReply];
+    NewsgroupThread *threadToReply = self.thread.allThreads[sender.tag];
+    [self replyToPost:threadToReply];
 }
 
 - (void) didTapStar:(UIButton*)sender {
@@ -60,6 +57,28 @@
         else {
             [sender setImage:[UIImage imageNamed:@"Star"] forState:UIControlStateNormal];
         }
+    } failure:^(AFHTTPRequestOperation *op, NSError *error) {
+        NSLog(@"%s Error: %@", __PRETTY_FUNCTION__, error);
+    }];
+}
+
+- (void) didTapDelete:(UIButton*)sender {
+    NewsgroupThread *threadToDelete = self.thread.allThreads[sender.tag];
+    NSString *parameters = [NSString stringWithFormat:@"%@/%li", threadToDelete.board, (long)threadToDelete.number];
+    NSString *deleteParameters = [parameters stringByAppendingString:@"?confirm_cancel=true"];
+    [WebNewsDataHandler runHTTPDELETEOperationWithParameters:deleteParameters success:^(AFHTTPRequestOperation *op, id response) {
+        [self reloadThread];
+    } failure:^(AFHTTPRequestOperation *op, NSError *error) {
+        NSLog(@"%s Error: %@", __PRETTY_FUNCTION__, error);
+    }];
+}
+
+- (void) reloadThread {
+    NewsgroupThread *thread = self.thread;
+    NSString *parameters = [NSString stringWithFormat:@"%@/%li", thread.board, (long)thread.number];
+    [WebNewsDataHandler runHTTPGETOperationWithParameters:parameters success:^(AFHTTPRequestOperation *op, id response) {
+        self.thread = [NewsgroupThread newsgroupThreadWithDictionary:response];
+        [self loadPosts];
     } failure:^(AFHTTPRequestOperation *op, NSError *error) {
         NSLog(@"%s Error: %@", __PRETTY_FUNCTION__, error);
     }];
@@ -90,7 +109,11 @@
 }
 
 - (void) createScrollView {
-    self.scrollView = [HHThreadScrollView threadViewWithPosts:self.thread.allThreads actions:self.cellActions];
+    if (self.scrollView) {
+        [self.scrollView removeFromSuperview];
+        self.scrollView = nil;
+    }
+    self.scrollView = [HHThreadScrollView threadViewWithPosts:self.thread.allThreads];
     self.scrollView.scrollEnabled = YES;
     self.scrollView.contentInset =
     self.scrollView.scrollIndicatorInsets = UIEdgeInsetsMake(self.topLayoutGuide.length, 0, self.bottomLayoutGuide.length, 0);
@@ -98,7 +121,7 @@
 }
 
 - (void) markThreadRead {
-    dispatch_async(dispatch_queue_create("Mark Thread Read", 0), ^{
+    dispatch_async(dispatch_queue_create("Mark Thread Read", NULL), ^{
         NSString *parameters = [NSString stringWithFormat:@"mark_read?newsgroup=%@&number=%li&in_thread=true", self.thread.post.newsgroup, (long)self.thread.post.number];
         [WebNewsDataHandler runHTTPPUTOperationWithParameters:parameters success:^(AFHTTPRequestOperation *op, id response) {
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -118,7 +141,7 @@
 
 - (void) loadPosts {
     [SVProgressHUD showWithStatus:@"Loading posts."];
-    dispatch_async(dispatch_queue_create("Loading Posts", 0), ^{
+    dispatch_async(dispatch_queue_create("Loading Posts", NULL), ^{
         for (Post *post in self.posts) {
             [post loadBodyWithBlock:^(Post *currentPost) {
                 self.postsLoaded++;
@@ -133,6 +156,18 @@
             [self markThreadRead];
         });
     });
+}
+
+-(NSUInteger)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskPortrait;
+}
+
+- (BOOL) shouldAutorotate {
+    return NO;
+}
+
+- (UIInterfaceOrientation) preferredInterfaceOrientationForPresentation {
+    return self.supportedInterfaceOrientations;
 }
 
 @end

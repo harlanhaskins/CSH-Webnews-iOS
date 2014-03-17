@@ -68,10 +68,31 @@
 
 - (NSString*) randomSubject {
     NSDictionary *subjectsDictionary = @{
-                                         @"csh.flame" :          @[@"Hey fuckface!",
-                                                                   @"You're a piece of shit, Young Money."],
-                                         @"csh.lists.sysadmin" : @[@"Shit's broken.",
-                                                                   @"Rancor is down."],
+                                         @"csh.flame" :             @[@"Hey fuckface!",
+                                                                      @"You're a piece of shit, Young Money.",
+                                                                      @"I KNOW YOU TOUCHED MY DRUM SET",
+                                                                      @"If you touch my drums, I will stab you in the neck with a knife",
+                                                                      @"FUCK YOU MOM",
+                                                                      @"THIS HOUSE IS A FUCKING PRISON ON PLANET BULLSHIT IN THE GALAXY OF THIS SUCKS CAMEL DICKS",
+                                                                      @"THE BUNK BEDS WERE A TERRIBLE IDEA WHY WOULD YOU LET US DO THAT?",
+                                                                      @"STEP BROTHERS QUOTES ARE NOT FUNNY!!11!"],
+                                         @"csh.noise" :             @[@"Selling sex, $2/lb",
+                                                                      @"Has anyone seen Tal?",
+                                                                      @"Let's start a band",
+                                                                      @"House should adopt a dog",
+                                                                      @"House should adopt a cat",
+                                                                      @"House should adopt Anthony"],
+                                         @"csh.jobs" :              @[@"Treat me like a pirate, and give me that booty."],
+                                         @"csh.kudos" :             @[@"Thanks Moffit",
+                                                                      @"This drill lubricant is FANTASTIC!",
+                                                                      @"Joe showered this week, Thank god.",
+                                                                      @"Saucy radiates fatherly love. Thank you"],
+                                         @"csh.projects" :          @[@"Are sex robots technical?",
+                                                                      @"Presenting Ass-Scratcher 3000"],
+                                         @"csh.projects.freshman" : @[@"Guyz, srsly",
+                                                                      @"We need more duct-tape."],
+                                         @"csh.lists.sysadmin" :    @[@"Shit's broken.",
+                                                                      @"Rancor is down."],
                                         };
     
     if (!self.newsgroup || !subjectsDictionary[self.newsgroup]) {
@@ -138,11 +159,10 @@
     self.replyToLabel.y = [self topPadding];
     
     self.subjectField.size = [self subjectFieldSize];
-    [self.subjectField centerToParent];
+    self.subjectField.x = -self.subjectField.layer.borderWidth;
     self.subjectField.y = self.replyToLabel.bottom + [self standardPadding];
     
     self.bodyTextView.size = [self bodyTextViewSize];
-    [self.bodyTextView centerToParent];
     self.bodyTextView.y = [self subjectFieldBottom];
 }
 

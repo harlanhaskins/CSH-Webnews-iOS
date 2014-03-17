@@ -85,6 +85,19 @@
     [self runHTTPOperationWithRequest:request success:successBlock failure:failure];
 }
 
++ (void) runHTTPDELETEOperationWithParameters:(NSString*)parameters
+                                   success:(HTTPSuccessBlock)successBlock
+                                   failure:(HTTPFailureBlock)failure {
+    NSURL *url = [self urlFromParameters:parameters];
+    
+    // Create an NSURLRequest with that URL.
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    [request setHTTPMethod:@"DELETE"];
+    
+    [self runHTTPOperationWithRequest:request success:successBlock failure:failure];
+}
+
 + (void) runHTTPPOSTOperationWithBaseURL:(NSString*)baseURL
                               parameters:(NSString*)parameters
                                    success:(HTTPSuccessBlock)successBlock

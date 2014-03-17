@@ -10,6 +10,8 @@
 #import "NewsgroupsViewController.h"
 #import "APIKeyViewController.h"
 #import "AppDelegate.h"
+#import "SelectivelyRotatingNavigationController.h"
+#import "SelectivelyRotatingTabBarController.h"
 
 @implementation AppDelegate
 
@@ -34,13 +36,13 @@
 + (UIViewController*) viewController {
     ActivityViewController *activityViewController = [ActivityViewController new];
     
-    UINavigationController *activityNavController = [[UINavigationController alloc] initWithRootViewController:activityViewController];
+    SelectivelyRotatingNavigationController *activityNavController = [[SelectivelyRotatingNavigationController alloc] initWithRootViewController:activityViewController];
     
     NewsgroupsViewController *newsgroupsViewController = [NewsgroupsViewController new];
     
-    UINavigationController *newsgroupNavController = [[UINavigationController alloc] initWithRootViewController:newsgroupsViewController];
+    SelectivelyRotatingNavigationController *newsgroupNavController = [[SelectivelyRotatingNavigationController alloc] initWithRootViewController:newsgroupsViewController];
     
-    UITabBarController *tabViewController = [UITabBarController new];
+    SelectivelyRotatingTabBarController *tabViewController = [SelectivelyRotatingTabBarController new];
     tabViewController.viewControllers = @[activityNavController, newsgroupNavController];
     
     

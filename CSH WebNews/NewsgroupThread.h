@@ -11,19 +11,23 @@
 
 @class Post;
 
+@protocol NewsgroupThreadDelegate <NSObject>
+
+- (void) didTapDelete:(id)sender;
+- (void) didTapReply:(id)sender;
+- (void) didTapStar:(id)sender;
+
+@end
+
 @interface NewsgroupThread : NSObject<NSCoding, HHPostProtocol>
 
 @property (nonatomic, readonly) Post *post;
 
 @property (nonatomic, readonly) NSMutableArray *allPosts;
 @property (nonatomic, readonly) NSMutableArray *allThreads;
+@property (nonatomic) id<NewsgroupThreadDelegate> delegate;
 
 + (instancetype) newsgroupThreadWithDictionary:(NSDictionary*)dictionary;
-
-@end
-
-@interface NewsgroupThreadCell : UITableViewCell
-
-+ (instancetype) cellWithNewsgroupThread:(NewsgroupThread*)thread reuseIdentifier:(NSString*)cellIdentifier;
+- (UIFont*) fontForSubject;
 
 @end
