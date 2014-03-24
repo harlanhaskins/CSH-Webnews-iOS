@@ -18,6 +18,10 @@ If there is already a user with a given API key, the provided device token
 is appended to their list of tokens. This is so people can have multiple devices
 receiving notifications.
 
+If there is already a user with the given device token, the provided token is
+removed from their list (or the user is deleted if that was their only token)
+and the token is added to the new user's list.
+
 Returns: True if the database was updated successfully. False if there was an
 error.
 """
