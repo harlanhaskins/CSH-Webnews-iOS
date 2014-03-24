@@ -7,9 +7,9 @@ Building
 
 To build the project yourself, clone the project and then install the pods:
 
-    $ git clone https://github.com/harlanhaskins/CSH-Webnews-iOS.git
-    $ cd CSH-Webnews-iOS
-    $ pod install 
+    ~> git clone https://github.com/harlanhaskins/CSH-Webnews-iOS.git
+    ~> cd App/CSH-Webnews-iOS
+    ~> pod install
 
 Authors
 ---
@@ -21,7 +21,8 @@ Mihir Singh ([@citruspi](http://github.com/citruspi))
 
 Thanks
 ---
-Alex Grant ([@grantovich](http://github.com/grantovich)) for his WebNews API.
+Alex Grant ([@grantovich](http://github.com/grantovich)) for his 
+[WebNews API.](https://github.com/grantovich/CSH-WebNews/wiki/API)
 
 License
 ---
