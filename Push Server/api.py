@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 from pymongo import MongoClient
 import re
 
@@ -19,17 +17,25 @@ Inserts a user with a given api key and device token into the database.
 If there is already a user with a given API key, the provided device token
 is appended to their list of tokens. This is so people can have multiple devices
 receiving notifications.
+
+Returns: True if the database was updated successfully. False if there was an
+error.
 """
 def insertUser(deviceToken, apiKey):
+    userWithToken = userWithDeviceToken(deviceToken)
+    if userWithToken:
+        # If a user with that token exists, remove that token from their
+        # list and update that user in the database.
+        clearToken(deviceToken, userWithToken[API_KEY_KEY])
+
     newUser = userWithAPIKey(apiKey)
     if not newUser:
-        database.insert(newUserDict(deviceToken, apiKey))
-        return
+        return not not database.insert(newUserDict(deviceToken, apiKey))
 
     userTokens = newUser[DEVICE_TOKEN_KEY]
     userTokens.append(deviceToken)
 
-    updateUser(newUser)
+    return updateUser(newUser)
 
 """
 This is a dictionary containing the API key of the user we're looking for.
@@ -39,11 +45,20 @@ def apiKeyLookupQuery(apiKey):
     return {API_KEY_KEY : apiKey}
 
 """
+This is a dictionary containing the device token of the user we're looking for.
+Mongo will search the users for any user who has this token in their list of
+tokens.
+"""
+def deviceTokenLookupQuery(deviceToken):
+    return {DEVICE_TOKEN_KEY : {"$in" : [deviceToken]}}
+
+"""
 This prints each user on a new line to standard output.
 """
 def printUsers():
     for user in database.find():
         print(stringForUser(user))
+    print("\n")
 
 """
 Returns a string representation of a user (so far their api key and all tokens)
@@ -78,6 +93,9 @@ lookup query defined in apiKeyLookupQuery()
 """
 def userWithAPIKey(apiKey):
     return database.find_one(apiKeyLookupQuery(apiKey))
+
+def userWithDeviceToken(deviceToken):
+    return database.find_one(deviceTokenLookupQuery(deviceToken))
 
 """
 Returns a Mongo dictionary representation for inserting a new user with a given
@@ -120,9 +138,9 @@ def updateUser(user):
     apiKey = user[API_KEY_KEY]
 
     if not apiKey:
-        return
+        return False
 
-    database.update(apiKeyLookupQuery(apiKey), user)
+    return not not database.update(apiKeyLookupQuery(apiKey), user)
 
 """
 Removes a user with a given API Key from the database.

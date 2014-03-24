@@ -1,8 +1,12 @@
-# Also search the directory above.
+#!/usr/bin/env python
+
+# Search the current directory and the directory above.
 import sys
 sys.path.append('..')
+sys.path.append('.')
 
 import api
+
 import random
 import string
 
