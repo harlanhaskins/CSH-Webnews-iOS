@@ -3,3 +3,4 @@ Podfile.lock
 *.xcworkspace
 xcuserdata
 .idea
+*.pyc
