@@ -4,3 +4,4 @@ Podfile.lock
 xcuserdata
 .idea
 *.pyc
+*.pem

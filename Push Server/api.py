@@ -30,7 +30,7 @@ def insertUser(deviceToken, apiKey):
     if userWithToken:
         # If a user with that token exists, remove that token from their
         # list and update that user in the database.
-        clearToken(deviceToken, userWithToken[API_KEY_KEY])
+        clearToken(deviceToken, userWithToken)
 
     newUser = userWithAPIKey(apiKey)
     if not newUser:
@@ -125,14 +125,14 @@ If the user only has one token, then the entire user will be removed.
 
 If the API key is invalid, then the entire entry is removed from the database.
 """
-def clearToken(deviceToken, apiKey):
-    userToRemove = userWithAPIKey(apiKey)
-    if (userToRemove):
-        tokens = userToRemove[DEVICE_TOKEN_KEY]
+def clearToken(deviceToken, user):
+    if (user):
+        tokens = user[DEVICE_TOKEN_KEY]
         if len(tokens) == 1:
-            database.remove(userToRemove)
+            return not not database.remove(user)
         elif deviceToken in tokens:
             tokens.remove(deviceToken)
+            return updateUser(user)
 
 """
 Updates a user in the database. Uses provided user's apiKey and calls the Mongo
