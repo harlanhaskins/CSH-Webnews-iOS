@@ -1,4 +1,4 @@
-import api
+import mongoapi
 from apns import APNs, Payload
 
 apns = APNs(use_sandbox=True, cert_file='cert.pem', key_file='key.pem')

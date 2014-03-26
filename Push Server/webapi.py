@@ -4,7 +4,7 @@ from flask import Flask, Response
 from flask import request
 from bson import Binary, Code
 from bson.json_util import dumps
-import api
+import mongoapi
 
 app = Flask(__name__)
 
@@ -15,21 +15,19 @@ def token():
     apiKey = arguments.get("apiKey", "")
 
     if (not token or not apiKey):
-        return errorWithMessage("You must provide both an\
-                API Key and a push token.")
+        return errorWithMessage("You must provide both an API Key and a push token.")
 
-    success = api.insertUser(token, apiKey)
+    success = mongoapi.insertUser(token, apiKey)
     if success:
         return successWithMessage('The user was updated successfully.')
     else:
-        return errorWithMessage('The database encountered an error \
-                inserting the token')
+        return errorWithMessage('The database encountered an error inserting the token')
 
 @app.route("/user", methods=["GET", "POST"])
 def user():
     arguments = request.args
     apiKey = arguments.get("apiKey", "")
-    user = api.userWithAPIKey(apiKey)
+    user = mongoapi.userWithAPIKey(apiKey)
     if user:
         return successWithMessage(user)
     else:
@@ -42,8 +40,8 @@ def errorWithMessage(message):
     return responseTemplateWithKeyValue('E', message)
 
 def responseTemplateWithKeyValue(key, value):
-    return Response('{' + dumps(key) + ' : ' + dumps(value) + '}', \
-            mimetype="application/json")
+    responseString = '{' + dumps(key) + ' : ' + dumps(value) + '}'
+    return Response(responseString, mimetype="application/json")
 
 if __name__ == "__main__":
     app.run(debug=True)

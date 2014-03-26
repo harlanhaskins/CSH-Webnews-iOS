@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import api
+import mongoapi
 import requests
 import bson
 from bson.json_utils import dumps
