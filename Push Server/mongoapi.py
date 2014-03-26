@@ -34,7 +34,7 @@ def insertUser(deviceToken, apiKey):
 
     newUser = userWithAPIKey(apiKey)
     if not newUser:
-        return not not database.insert(newUserDict(deviceToken, apiKey))
+        return database.insert(newUserDict(deviceToken, apiKey))
 
     userTokens = newUser[DEVICE_TOKEN_KEY]
     userTokens.append(deviceToken)
@@ -133,7 +133,7 @@ def clearToken(deviceToken, user):
     if (user):
         tokens = user[DEVICE_TOKEN_KEY]
         if len(tokens) == 1:
-            return not not database.remove(user)
+            return database.remove(user)
         elif deviceToken in tokens:
             tokens.remove(deviceToken)
             return updateUser(user)
@@ -148,7 +148,7 @@ def updateUser(user):
     if not apiKey:
         return False
 
-    return not not database.update(apiKeyLookupQuery(apiKey), user)
+    return database.update(apiKeyLookupQuery(apiKey), user)
 
 def removeUserWithAPIKey(apiKey):
     """
