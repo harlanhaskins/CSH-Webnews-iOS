@@ -26,19 +26,31 @@ def insertUser(deviceToken, apiKey):
     Returns: True if the database was updated successfully. False if there was an
     error.
     """
+    # Check if that user with that key already exist in the store.
+    newUser = userWithAPIKey(apiKey)
+    if not newUser:
+        # If they don't, then add a new user with one token.
+        return database.insert(newUserDict(deviceToken, apiKey))
+
+    # Next, check if the token is in the list. We don't want duplicate
+    # tokens.
     userWithToken = userWithDeviceToken(deviceToken)
     if userWithToken:
+        # Check to see if that's the same user.
+        # No sense in doing anything if the deviceToken and apiKey
+        # pair already exist in the store.
+        if userWithToken[API_KEY_KEY] == newUser[API_KEY_KEY]:
+            return userWithToken
+
         # If a user with that token exists, remove that token from their
         # list and update that user in the database.
         clearToken(deviceToken, userWithToken)
 
-    newUser = userWithAPIKey(apiKey)
-    if not newUser:
-        return database.insert(newUserDict(deviceToken, apiKey))
-
+    # Append the new token to the list.
     userTokens = newUser[DEVICE_TOKEN_KEY]
     userTokens.append(deviceToken)
 
+    # Update the user.
     return updateUser(newUser)
 
 def apiKeyLookupQuery(apiKey):
@@ -124,27 +136,32 @@ def clearToken(deviceToken, user):
     If the API key is invalid, then the entire entry is removed from the database.
     """
     if (user):
-
+        # Check to see if that token really does exist in the given user.
         tokens = user[DEVICE_TOKEN_KEY]
         if deviceToken in tokens:
+            # If so, remove it from the list and update.
             tokens.remove(deviceToken)
-
-        return updateUser(user)
+            return updateUser(user)
 
 def updateUser(user):
     """
     Updates a user in the database. Uses provided user's apiKey and calls the Mongo
     update() function.
     """
+    # Grab the API key.
     apiKey = user[API_KEY_KEY]
 
+    # If the provided user does not have a key, don't update anything.
     if not apiKey:
-        return False
+        return None
 
+    # If the user doesn't have any tokens before they get updated in the server,
+    # Then just delete the entry. This user is useless.
     tokens = user[DEVICE_TOKEN_KEY]
     if len(tokens) == 0:
-        return database.remove(userWithAPIKey(apiKey))
+        return removeUserWithAPIKey(apiKey)
 
+    # Update the user. We want to look the user up by API key so we know what to update.
     return database.update(apiKeyLookupQuery(apiKey), user)
 
 def removeUserWithAPIKey(apiKey):
@@ -153,7 +170,7 @@ def removeUserWithAPIKey(apiKey):
     """
     userToRemove = userWithAPIKey(apiKey)
     if (userToRemove):
-        database.remove(userToRemove)
+        return database.remove(userToRemove)
 
 def boolFromString(inputString):
     """
