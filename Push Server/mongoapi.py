@@ -131,12 +131,12 @@ def clearToken(deviceToken, user):
     If the API key is invalid, then the entire entry is removed from the database.
     """
     if (user):
+
         tokens = user[DEVICE_TOKEN_KEY]
-        if len(tokens) == 1:
-            return database.remove(user)
-        elif deviceToken in tokens:
+        if deviceToken in tokens:
             tokens.remove(deviceToken)
-            return updateUser(user)
+
+        return updateUser(user)
 
 def updateUser(user):
     """
@@ -147,6 +147,10 @@ def updateUser(user):
 
     if not apiKey:
         return False
+
+    tokens = user[DEVICE_TOKEN_KEY]
+    if len(tokens) == 0:
+        return database.remove(userWithAPIKey(apiKey))
 
     return database.update(apiKeyLookupQuery(apiKey), user)
 
