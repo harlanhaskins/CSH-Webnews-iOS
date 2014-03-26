@@ -113,13 +113,6 @@ def newUserDict(deviceToken, apiKey):
     return {API_KEY_KEY : apiKey,
             DEVICE_TOKEN_KEY : [deviceToken]}
 
-def userExistenceQuery(deviceToken):
-    """
-    Returns a javascript query that can be put into the Mongo where() function to
-    select a user WHERE the condition is true.
-    """
-    return DEVICE_TOKEN_KEY + " === " + deviceToken
-
 def clearToken(deviceToken, user):
     """
     Deletes a user with a given API key and device token from the list.
