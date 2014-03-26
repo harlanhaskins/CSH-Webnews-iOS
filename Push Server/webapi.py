@@ -5,6 +5,7 @@ from flask import request
 from bson import Binary, Code
 from bson.json_util import dumps
 import mongoapi
+import argparse
 
 app = Flask(__name__)
 
@@ -44,4 +45,14 @@ def responseTemplateWithKeyValue(key, value):
     return Response(responseString, mimetype="application/json")
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-t", "--test",
+                        help="Runs the server in test mode and updates the testUsers database.",
+                        action="store_true")
+
+    args = parser.parse_args()
+
+    if args.test:
+        mongoapi.database = mongoapi.MongoClient().webnewsios.testUsers
+
+    app.run(debug=args.test)
