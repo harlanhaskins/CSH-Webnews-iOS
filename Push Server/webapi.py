@@ -41,8 +41,8 @@ def errorWithMessage(message):
     return responseTemplateWithKeyValue('E', message)
 
 def responseTemplateWithKeyValue(key, value):
-    responseString = '{' + dumps(key) + ' : ' + dumps(value) + '}'
-    return Response(responseString, mimetype="application/json")
+    response = {key : value}
+    return Response(dumps(response), mimetype="application/json")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
