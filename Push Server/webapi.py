@@ -8,7 +8,7 @@ import argparse
 
 app = Flask(__name__)
 
-@app.route("/token", methods=["GET", "POST"])
+@app.route("/token", methods=["POST"])
 def token():
     arguments = request.args
     token = arguments.get("token", "")
@@ -23,7 +23,7 @@ def token():
     else:
         return errorWithMessage('The database encountered an error inserting the token')
 
-@app.route("/user", methods=["GET", "POST"])
+@app.route("/user", methods=["GET"])
 def user():
     arguments = request.args
     apiKey = arguments.get("apiKey", "")
