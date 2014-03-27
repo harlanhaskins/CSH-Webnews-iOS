@@ -26,25 +26,25 @@ def insertUser(deviceToken, apiKey):
     Returns: True if the database was updated successfully. False if there was an
     error.
     """
+    # Next, check if the token is in the list. We don't want duplicate
+    # tokens.
+    userWithToken = userWithDeviceToken(deviceToken)
+    if userWithToken:
+        # If a user with that token exists, remove that token from their
+        # list and update that user in the database.
+        clearToken(deviceToken, userWithToken)
+
     # Check if that user with that key already exist in the store.
     newUser = userWithAPIKey(apiKey)
     if not newUser:
         # If they don't, then add a new user with one token.
         return database.insert(newUserDict(deviceToken, apiKey))
 
-    # Next, check if the token is in the list. We don't want duplicate
-    # tokens.
-    userWithToken = userWithDeviceToken(deviceToken)
-    if userWithToken:
-        # Check to see if that's the same user.
-        # No sense in doing anything if the deviceToken and apiKey
-        # pair already exist in the store.
-        if userWithToken[API_KEY_KEY] == newUser[API_KEY_KEY]:
-            return userWithToken
-
-        # If a user with that token exists, remove that token from their
-        # list and update that user in the database.
-        clearToken(deviceToken, userWithToken)
+    # Check to see if that's the same user.
+    # No sense in doing anything if the deviceToken and apiKey
+    # pair already exist in the store.
+    if userWithToken and (userWithToken[API_KEY_KEY] == newUser[API_KEY_KEY]):
+        return userWithToken
 
     # Append the new token to the list.
     userTokens = newUser[DEVICE_TOKEN_KEY]
