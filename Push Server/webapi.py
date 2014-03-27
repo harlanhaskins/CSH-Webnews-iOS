@@ -2,8 +2,7 @@
 
 from flask import Flask, Response
 from flask import request
-from bson import Binary, Code
-from bson.json_util import dumps
+from flask.json import jsonify
 import mongoapi
 import argparse
 
@@ -35,14 +34,10 @@ def user():
         return errorWithMessage('Could not find user with that API Key.')
 
 def successWithMessage(message):
-    return responseTemplateWithKeyValue('S', message)
+    return jsonify(S=message)
 
 def errorWithMessage(message):
-    return responseTemplateWithKeyValue('E', message)
-
-def responseTemplateWithKeyValue(key, value):
-    response = {key : value}
-    return Response(dumps(response), mimetype="application/json")
+    return jsonify(E=message)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
