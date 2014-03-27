@@ -12,6 +12,7 @@
 #import "AppDelegate.h"
 #import "SelectivelyRotatingNavigationController.h"
 #import "SelectivelyRotatingTabBarController.h"
+#import "PushAPIHandler.h"
 
 @implementation AppDelegate
 
@@ -75,6 +76,23 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (void) application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    // Grab the device token's hex value.
+    const unsigned *tokenBytes = [deviceToken bytes];
+    
+    // Create a string using hex format specifiers.
+    NSString *hexToken = [NSString stringWithFormat:@"%08x%08x%08x%08x%08x%08x%08x%08x",
+                          ntohl(tokenBytes[0]), ntohl(tokenBytes[1]), ntohl(tokenBytes[2]),
+                          ntohl(tokenBytes[3]), ntohl(tokenBytes[4]), ntohl(tokenBytes[5]),
+                          ntohl(tokenBytes[6]), ntohl(tokenBytes[7])];
+    
+    [PushAPIHandler sendPushToken:hexToken withSuccess:^(AFHTTPRequestOperation *op, id response) {
+        NSLog(@"Response: %@", response);
+    } failure:^(AFHTTPRequestOperation *op, NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
 }
 
 @end

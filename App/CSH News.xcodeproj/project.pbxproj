@@ -14,6 +14,7 @@
 		C924761D18D105C70006D1DC /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C924761218D105490006D1DC /* libTestFlight.a */; };
 		C92B5F0418D0B83400FCB8EA /* NewPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C92B5F0318D0B83400FCB8EA /* NewPostViewController.m */; };
 		C92B9DDB189752DC0099C22D /* CacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C92B9DDA189752DC0099C22D /* CacheManager.m */; };
+		C96032FD18E4909500BAE63C /* PushAPIHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C96032FC18E4909500BAE63C /* PushAPIHandler.m */; };
 		C96D227D1895BD80001BFA57 /* WebNewsDataHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C96D227C1895BD80001BFA57 /* WebNewsDataHandler.m */; };
 		C96D22801895CC08001BFA57 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = C96D227F1895CC08001BFA57 /* Post.m */; };
 		C96D22831895CD7B001BFA57 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = C96D22821895CD7B001BFA57 /* User.m */; };
@@ -80,6 +81,8 @@
 		C92B5F0318D0B83400FCB8EA /* NewPostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewPostViewController.m; sourceTree = "<group>"; };
 		C92B9DD9189752DC0099C22D /* CacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheManager.h; sourceTree = "<group>"; };
 		C92B9DDA189752DC0099C22D /* CacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheManager.m; sourceTree = "<group>"; };
+		C96032FB18E4909500BAE63C /* PushAPIHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushAPIHandler.h; sourceTree = "<group>"; };
+		C96032FC18E4909500BAE63C /* PushAPIHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushAPIHandler.m; sourceTree = "<group>"; };
 		C96D227B1895BD80001BFA57 /* WebNewsDataHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebNewsDataHandler.h; sourceTree = "<group>"; };
 		C96D227C1895BD80001BFA57 /* WebNewsDataHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebNewsDataHandler.m; sourceTree = "<group>"; };
 		C96D227E1895CC08001BFA57 /* Post.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
@@ -334,6 +337,8 @@
 				C924761118D105490006D1DC /* TestFlightSDK3 */,
 				C96D227B1895BD80001BFA57 /* WebNewsDataHandler.h */,
 				C96D227C1895BD80001BFA57 /* WebNewsDataHandler.m */,
+				C96032FB18E4909500BAE63C /* PushAPIHandler.h */,
+				C96032FC18E4909500BAE63C /* PushAPIHandler.m */,
 				C9CE73A518D39F7200FD5CA4 /* SelectivelyRotatingNavigationController.h */,
 				C9CE73A618D39F7200FD5CA4 /* SelectivelyRotatingNavigationController.m */,
 				C9CE73A818D3A58500FD5CA4 /* SelectivelyRotatingTabBarController.h */,
@@ -516,6 +521,7 @@
 				C92B5F0418D0B83400FCB8EA /* NewPostViewController.m in Sources */,
 				C9C9484418985C0C00599E74 /* NewsgroupThreadsViewController.m in Sources */,
 				C910A6F3189733ED001D222D /* ActivityTableViewModel.m in Sources */,
+				C96032FD18E4909500BAE63C /* PushAPIHandler.m in Sources */,
 				C9D6F9F81898498D00004E3B /* NewsgroupOutlineTableViewModel.m in Sources */,
 				DCF26E0917CD62830073DA19 /* ActivityViewController.m in Sources */,
 				C96D22831895CD7B001BFA57 /* User.m in Sources */,
