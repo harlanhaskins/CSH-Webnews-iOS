@@ -29,8 +29,10 @@
     
 //    [[PDKeychainBindings sharedKeychainBindings] setObject:@"NULL_API_KEY" forKey:kApiKeyKey];
     
-    [self.window makeKeyAndVisible];
+    [application registerForRemoteNotificationTypes:
+     (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
     
+    [self.window makeKeyAndVisible];
     return YES;
 }
 
@@ -93,6 +95,10 @@
     } failure:^(AFHTTPRequestOperation *op, NSError *error) {
         NSLog(@"Error: %@", error);
     }];
+}
+
+- (void) application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+    NSLog(@"Error: %@", error);
 }
 
 @end

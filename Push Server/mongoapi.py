@@ -9,7 +9,8 @@ If these do not exist, they are created.
 """
 database = MongoClient().webnewsios.users
 API_KEY_KEY = "apiKey"
-DEVICE_TOKEN_KEY = "deviceToken"
+DEVICE_TOKEN_KEY = "deviceTokens"
+DEVELOPER_KEY = "dev"
 
 def insertUser(deviceToken, apiKey):
     """
@@ -101,6 +102,12 @@ def allUsers():
     """
     return [user for user in database.find()]
 
+def allDevelopers():
+    return [user for user in database.find(developerLookupQuery())]
+
+def developerLookupQuery():
+    return {DEVELOPER_KEY : True}
+
 def userWithAPIKey(apiKey):
     """
     Finds a single user in the database that matches a given API Key, using the
@@ -121,11 +128,12 @@ def newUserDict(deviceToken, apiKey):
     API key and token.
     """
     return {API_KEY_KEY : apiKey,
-            DEVICE_TOKEN_KEY : [deviceToken]}
+            DEVICE_TOKEN_KEY : [deviceToken],
+            DEVELOPER_KEY : False}
 
 def clearToken(deviceToken):
     """
-    Deletes a user with a given API key and device token from the list.
+    Deletes a user with a given device token from the list.
 
     If the user has multiple device tokens, only the given token will be removed.
 

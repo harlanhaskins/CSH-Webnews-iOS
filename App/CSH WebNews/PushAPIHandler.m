@@ -11,7 +11,7 @@
 @implementation PushAPIHandler
 
 + (void) sendPushToken:(NSString*)token withSuccess:(HTTPSuccessBlock)success failure:(HTTPFailureBlock)failure {
-    NSString *tokenParameters = [NSString stringWithFormat:@"?token=%@", token];
+    NSString *tokenParameters = [NSString stringWithFormat:@"&token=%@", token];
     [self runHTTPPOSTOperationWithBaseURL:@"token" parameters:tokenParameters success:success failure:failure];
 }
 
