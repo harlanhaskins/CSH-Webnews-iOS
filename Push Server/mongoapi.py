@@ -12,6 +12,7 @@ API_KEY_KEY = "apiKey"
 DEVICE_TOKEN_KEY = "deviceTokens"
 DEVELOPER_KEY = "dev"
 UNREAD_POSTS_KEY = "unreadPosts"
+DEVICE_TYPE_KEY = "deviceType"
 
 def insertUser(deviceToken, apiKey):
     """
@@ -123,7 +124,7 @@ def userWithDeviceToken(deviceToken):
     """
     return database.find_one(deviceTokenLookupQuery(deviceToken))
 
-def newUserDict(deviceToken, apiKey):
+def newUserDict(deviceToken, apiKey, deviceType):
     """
     Returns a Mongo dictionary representation for inserting a new user with a given
     API key and token.
@@ -131,7 +132,8 @@ def newUserDict(deviceToken, apiKey):
     return {API_KEY_KEY : apiKey,
             DEVICE_TOKEN_KEY : [deviceToken],
             DEVELOPER_KEY : False,
-            UNREAD_POSTS_KEY : []}
+            UNREAD_POSTS_KEY : [],
+            DEVICE_TYPE_KEY : deviceType}
 
 def clearToken(deviceToken):
     """
@@ -190,11 +192,21 @@ def clearPostsForAPIKey(apiKey):
         userToClear[UNREAD_POSTS_KEY] = []
         return updateUser(userToClear)
 
-def updatePostsForAPIKey(posts, apiKey):
+def updatePostIDListForAPIKey(posts, apiKey):
     user = userWithAPIKey(apiKey)
     if user:
         user[UNREAD_POSTS_KEY] = posts
         updateUser(user)
+
+def postIdentifierList(posts):
+    # Because I don't care at all about storing the actual post data,
+    # I decided to store only the pertinent parts of the post data.
+    idList = []
+    for thread in posts:
+        post = thread['post']
+        idList.append(post['newsgroup'] + " - " + str(post['number']))
+    return idList
+
 
 def boolFromString(inputString):
     """

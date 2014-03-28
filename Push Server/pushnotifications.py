@@ -23,13 +23,16 @@ def sendAlert(tokens, message, count):
         retry_message = result.retry()
 
 def unreadPostsAlert(unreadCount):
-    return "You have %d unread posts." % unreadCount
+    post = "post" if unreadCount == 1 else "posts"
+    return ("You have %d unread " + post + ".") % unreadCount
 
 def unreadInThreadAlert(unreadCount):
-    return "You have %d unread posts in threads you've replied to." % unreadCount
+    post = "post" if unreadCount == 1 else "posts"
+    return ("You have %d unread " + post + " in threads you've replied to.") % unreadCount
 
 def unreadReplyAlert(unreadCount):
-    return "You have %d unread replies." % unreadCount
+    reply = "reply" if unreadCount == 1 else "replies"
+    return ("You have %d unread " + reply + ".") % unreadCount
 
 def sendUnreadPostsAlert(unreadCount, tokens):
     sendAlert(tokens, unreadPostsAlert(unreadCount), unreadCount)

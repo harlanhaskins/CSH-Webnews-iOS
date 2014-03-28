@@ -7,13 +7,27 @@ import argparse
 
 baseURL = "https://webnews.csh.rit.edu/"
 
-def unreadCount(apiKey):
+def unreadReplies(apiKey):
+    hasOlder = True
+    replies = []
     url = baseURL + "search?" + credentials(apiKey) + "&unread=true&personal_class=mine_reply&limit=20"
-    request = requests.get(url, headers = {'Accept': 'application/json'})
-    if ("does not match any known user" in request.text):
-        return None
-    else:
-        return request.json()
+
+    from_older = ""
+
+    while hasOlder:
+        request = requests.get(url + from_older, headers = {'Accept': 'application/json'})
+        if ("does not match any known user" in request.text):
+            return None
+
+        threads = request.json()
+        posts = threads['posts_older']
+        hasOlder = threads['more_older']
+        if posts:
+            replies += posts
+            oldestPost = posts[-1]['post']
+            from_older = "&from_older=" + oldestPost['date']
+
+    return mongoapi.postIdentifierList(replies)
 
 def credentials(apiKey):
     return "api_key=" + apiKey + "&api_agent=iOSPushServer"
@@ -24,31 +38,35 @@ def checkAllUsers(debug, verbose):
         tokens = user[mongoapi.DEVICE_TOKEN_KEY]
         isDev = user[mongoapi.DEVELOPER_KEY]
         posts = user[mongoapi.UNREAD_POSTS_KEY]
-        if verbose: print("Processing user: " + apiKey)
 
-        unreadPosts = unreadCount(apiKey)
-        if not unreadPosts:
+        if verbose: print("Processing user: " + apiKey)
+        apiShortKey = apiKey[:4] + ": "
+
+        newPosts = unreadReplies(apiKey)
+        if newPosts == None:
             # If the user's API key is invalid, then remove the user from the database.
             mongoapi.removeUserWithAPIKey(apiKey)
-            if verbose: print("\tRemoving API Key: " + apiKey)
+            if verbose: print("\t" + apiShortKey + "Removing API Key: " + apiKey)
             continue
 
-        olderPosts = unreadPosts['posts_older']
-        if olderPosts == None:
-            if verbose: print("\tNo older posts returned.")
-            continue
+        if verbose: print("\t" + apiShortKey + "New Posts: " + str(newPosts))
 
-        unreadPostCount = len(differenceOfLists(olderPosts, posts))
-        if verbose: print("\tUser has " + str(unreadPostCount) + " unread posts.")
+        unreadPostCount = len(differenceOfLists(newPosts, posts))
+        if verbose: print("\t" + apiShortKey + "User has " + str(unreadPostCount) + " unread posts.")
         if unreadPostCount > 0 or (debug and isDev):
-            if verbose: print("\tSending notification...", end="")
+            if verbose: print("\t" + apiShortKey + "Sending notification...", end="")
             pushnotifications.sendUnreadReplyAlert(unreadPostCount, tokens)
             if verbose: print("Done.")
+        else:
+            if verbose: print("\t" + apiShortKey + "Not sending notification.")
 
-        if verbose: print("\tUpdating posts.\n\t\tOld count: " + \
-                          str(len(posts)) + \
-                          "\n\t\tNew count: " + str(len(olderPosts)))
-        mongoapi.updatePostsForAPIKey(olderPosts, apiKey)
+        if newPosts == posts:
+            if verbose: print("\t" + apiShortKey + "Not updating posts.")
+        else:
+            if verbose: print("\t" + apiShortKey + "Updating posts.\n\t\tOld count: " + \
+                              str(len(posts)) + \
+                              "\n\t\tNew count: " + str(len(newPosts)))
+            mongoapi.updatePostIDListForAPIKey(newPosts, apiKey)
 
 def differenceOfLists(list1, list2):
     s = set(list2)
