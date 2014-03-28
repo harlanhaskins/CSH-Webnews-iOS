@@ -89,7 +89,7 @@ def checkAllUsers():
         if verbose: print("\t" + apiShortKey + "User has " + str(unreadPostCount) + " unread posts.")
         if unreadPostCount > 0 or (debug and isDev):
             if verbose: print("\t" + apiShortKey + "Sending notification...", end="")
-            pushnotifications.sendUnreadReplyAlert(unreadPostCount, tokens)
+            pushnotifications.sendUnreadReplyAlert(tokens, unreadPostCount, len(newPosts))
             if verbose: print("Done.")
         else:
             if verbose: print("\t" + apiShortKey + "Not sending notification.")

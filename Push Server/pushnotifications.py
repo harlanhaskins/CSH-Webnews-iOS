@@ -32,7 +32,7 @@ def unreadPostsAlert(unreadCount):
     Returns an alert that tells a number of unread posts.
     """
     post = "post" if unreadCount == 1 else "posts"
-    return ("You have %d unread " + post + ".") % unreadCount
+    return ("You have %d new unread " + post + ".") % unreadCount
 
 def unreadInThreadAlert(unreadCount):
     """
@@ -40,22 +40,28 @@ def unreadInThreadAlert(unreadCount):
     that user has posted.
     """
     post = "post" if unreadCount == 1 else "posts"
-    return ("You have %d unread " + post + " in threads you've replied to.") % unreadCount
+    return ("You have %d new unread " + post + " in threads you've replied to.") % unreadCount
 
 def unreadReplyAlert(unreadCount):
     """
     Returns an alert that tells a number of unread replies to a user's post.
     """
     reply = "reply" if unreadCount == 1 else "replies"
-    return ("You have %d unread " + reply + ".") % unreadCount
+    return ("You have %d new unread " + reply + ".") % unreadCount
 
-def sendUnreadInThreadAlert(newUnreadCount, totalUnreadCount, tokens):
+def sendUnreadPostsAlert(tokens, newUnreadCount, totalUnreadCount):
+    """
+    Sends an unreadPostsAlert.
+    """
+    sendAlert(tokens, unreadPostsAlert(newUnreadCount), totalUnreadCount)
+
+def sendUnreadInThreadAlert(tokens, newUnreadCount, totalUnreadCount):
     """
     Sends an unreadInThreadAlert.
     """
     sendAlert(tokens, unreadInThreadAlert(newUnreadCount), totalUnreadCount)
 
-def sendUnreadReplyAlert(newUnreadCount, totalUnreadCount, tokens):
+def sendUnreadReplyAlert(tokens, newUnreadCount, totalUnreadCount):
     """
     Sends an unreadReplyAlert.
     """
