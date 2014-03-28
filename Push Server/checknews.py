@@ -4,6 +4,7 @@ import mongoapi
 import requests
 import pushnotifications
 import argparse
+import time
 
 baseURL = "https://webnews.csh.rit.edu/"
 verbose = False
@@ -66,6 +67,7 @@ def checkAllUsers():
 
     Once the new posts have been determined, the posts in the database are overwritten with the posts returned from unreadReplies().
     """
+    print("----- New Run ----")
     for user in mongoapi.allUsers():
         apiKey = user[mongoapi.API_KEY_KEY]
         tokens = user[mongoapi.DEVICE_TOKEN_KEY]
@@ -122,4 +124,8 @@ if __name__ == "__main__":
     debug = args.test
     verbose = args.verbose
 
-    checkAllUsers()
+    while True:
+        checkAllUsers()
+        time.sleep(10)
+        if debug:
+            break

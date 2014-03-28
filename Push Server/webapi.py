@@ -13,11 +13,12 @@ def token():
     arguments = request.args
     token = arguments.get("token", "")
     apiKey = arguments.get("apiKey", "")
+    deviceType = arguments.get("deviceType", "")
 
-    if (not token or not apiKey):
-        return errorWithMessage("You must provide both an API Key and a push token.")
+    if not (token and deviceType and apiKey):
+        return errorWithMessage("You must provide both an API Key, a push token, and a device type.")
 
-    success = mongoapi.insertUser(token, apiKey)
+    success = mongoapi.insertUser(token, apiKey, deviceType)
     if success:
         return successWithMessage('The user was updated successfully.')
     else:

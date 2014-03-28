@@ -11,10 +11,14 @@ database = MongoClient().webnewsios.users
 API_KEY_KEY = "apiKey"
 DEVICE_TOKEN_KEY = "deviceTokens"
 DEVELOPER_KEY = "dev"
-UNREAD_POSTS_KEY = "unreadPosts"
+UNREAD_POSTS_KEY = "unreadReplies"
 DEVICE_TYPE_KEY = "deviceType"
+DEVICES_KEY = "devices"
+ANDROID_DEVICE_TYPE = 'android'
+IOS_DEVICE_TYPE = 'ios'
+DEVICE_TYPE_KEYS = [ANDROID_DEVICE_TYPE, IOS_DEVICE_TYPE]
 
-def insertUser(deviceToken, apiKey):
+def insertUser(deviceToken, apiKey, deviceType):
     """
     Inserts a user with a given api key and device token into the database.
 
@@ -39,20 +43,17 @@ def insertUser(deviceToken, apiKey):
     newUser = userWithAPIKey(apiKey)
     if not newUser:
         # If they don't, then add a new user with one token.
-        return database.insert(newUserDict(deviceToken, apiKey))
+        return database.insert(newUserDict(deviceToken, apiKey, deviceType))
 
     # Check to see if that's the same user.
     # No sense in doing anything if the deviceToken and apiKey
     # pair already exist in the store.
+    userWithToken = userWithDeviceToken(deviceToken)
     if userWithToken and (userWithToken[API_KEY_KEY] == newUser[API_KEY_KEY]):
         return userWithToken
 
-    # Append the new token to the list.
-    userTokens = newUser[DEVICE_TOKEN_KEY]
-    userTokens.append(deviceToken)
-
     # Update the user.
-    return updateUser(newUser)
+    return addToken(newUser, deviceToken, deviceType)
 
 def apiKeyLookupQuery(apiKey):
     """
@@ -67,7 +68,37 @@ def deviceTokenLookupQuery(deviceToken):
     Mongo will search the users for any user who has this token in their list of
     tokens.
     """
-    return {DEVICE_TOKEN_KEY : {"$in" : [deviceToken]}}
+    deviceQueries = []
+    for deviceType in DEVICE_TYPE_KEYS:
+        deviceQueries.append({DEVICE_TOKEN_KEY + "." + deviceType: deviceToken})
+
+    return {"$or":deviceQueries}
+
+def addToken(user, token, deviceType):
+    deviceTokens = user[DEVICE_TOKEN_KEY]
+    currentDeviceType = deviceTypeOfToken(user, token)
+
+    if currentDeviceType == deviceType:
+        return user
+    elif currentDeviceType:
+        deviceTokens[currentDeviceType].remove(token)
+
+    if deviceType in deviceTokens:
+        deviceTokens[deviceType].append(token)
+    else:
+        deviceTokens[deviceType] = [token]
+
+    return updateUser(user)
+
+def deviceTypeOfToken(user, deviceToken):
+    deviceTokens = user[DEVICE_TOKEN_KEY]
+    for deviceType in DEVICE_TYPE_KEYS:
+        if deviceType in deviceTokens:
+            tokens = deviceTokens[deviceType]
+            if tokens:
+                if deviceToken in tokens:
+                    return deviceType
+    return None
 
 def printUsers():
     """
@@ -130,10 +161,9 @@ def newUserDict(deviceToken, apiKey, deviceType):
     API key and token.
     """
     return {API_KEY_KEY : apiKey,
-            DEVICE_TOKEN_KEY : [deviceToken],
             DEVELOPER_KEY : False,
             UNREAD_POSTS_KEY : [],
-            DEVICE_TYPE_KEY : deviceType}
+            DEVICE_TOKEN_KEY : {deviceType : [deviceToken]}}
 
 def clearToken(deviceToken):
     """
@@ -148,11 +178,17 @@ def clearToken(deviceToken):
     user = userWithDeviceToken(deviceToken)
     if (user):
         # Check to see if that token really does exist in the given user.
-        tokens = user[DEVICE_TOKEN_KEY]
-        if deviceToken in tokens:
-            # If so, remove it from the list and update.
-            tokens.remove(deviceToken)
-            return updateUser(user)
+        deviceTokens = user[DEVICE_TOKEN_KEY]
+        for deviceType in DEVICE_TYPE_KEYS:
+            if deviceType in deviceTokens:
+                tokens = deviceTokens[deviceType]
+                if deviceToken in tokens:
+                    # If so, remove it from the list and update.
+                    tokens.remove(deviceToken)
+                    if len(tokens) == 0:
+                        deviceTokens.pop(deviceType, None)
+                    return updateUser(user)
+    return user
 
 def updateUser(user):
     """
@@ -168,8 +204,17 @@ def updateUser(user):
 
     # If the user doesn't have any tokens before they get updated in the server,
     # Then just delete the entry. This user is useless.
-    tokens = user[DEVICE_TOKEN_KEY]
-    if len(tokens) == 0:
+    deviceTokens = user[DEVICE_TOKEN_KEY]
+    containsAtLeastOneType = False
+
+    for deviceType in DEVICE_TYPE_KEYS:
+        if deviceType in deviceTokens:
+            tokens = deviceTokens[deviceType]
+
+            if tokens: # Will also check len(tokens) > 0
+                containsAtLeastOneType = True
+
+    if not containsAtLeastOneType:
         return removeUserWithAPIKey(apiKey)
 
     # Update the user. We want to look the user up by API key so we know what to update.

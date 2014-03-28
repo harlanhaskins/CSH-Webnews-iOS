@@ -4,7 +4,7 @@ from apnsclient import *
 
 session = Session.new_connection("push_sandbox", cert_file="newspush.pem")
 
-def sendAlert(tokens, message, count):
+def sendAlertiOS(tokens, message, count):
     """
     Sends the passed in message to the device tokens provided using the APNs
     server.
@@ -14,18 +14,29 @@ def sendAlert(tokens, message, count):
     result = APNs(session).send(pushMessage)
     for token, reason in result.failed.items():
         code, errmsg = reason
-        print("Device faled: " + token + " reason: " + errmsg)
+        print("\n\t\tDevice faled: " + token + " reason: " + errmsg)
         if errmsg == 'Invalid token':
             mongoapi.clearToken(token)
 
     # Check failures not related to devices.
     for code, errmsg in result.errors:
-        print("Error: " + errmsg)
+        print("\n\t\tError: " + errmsg)
 
     # Check if there are tokens that can be retried
     if result.needs_retry():
         # repeat with retry_message or reschedule your task
         retry_message = result.retry()
+
+def sendAlertAndroid(tokens, message, count):
+    print("\n\t\tSkipping Android notification, until implemented.")
+
+def sendAlert(tokens, message, count):
+    if mongoapi.IOS_DEVICE_TYPE in tokens:
+        deviceTokens = tokens[mongoapi.IOS_DEVICE_TYPE]
+        sendAlertiOS(deviceTokens, message, count)
+    if mongoapi.ANDROID_DEVICE_TYPE in tokens:
+        deviceTokens = tokens[mongoapi.ANDROID_DEVICE_TYPE]
+        sendAlertAndroid(deviceTokens, message, count)
 
 def unreadPostsAlert(unreadCount):
     """
