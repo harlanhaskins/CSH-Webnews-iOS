@@ -193,12 +193,18 @@ def clearPostsForAPIKey(apiKey):
         return updateUser(userToClear)
 
 def updatePostIDListForAPIKey(posts, apiKey):
+    """
+    Finds the user with a given API key and overwrites their unreadPosts list with the list provided.
+    """
     user = userWithAPIKey(apiKey)
     if user:
         user[UNREAD_POSTS_KEY] = posts
         updateUser(user)
 
 def postIdentifierList(posts):
+    """
+    Converts a list of WebNews Post Objects into a list of unique string identifiers for posts.
+    """
     # Because I don't care at all about storing the actual post data,
     # I decided to store only the pertinent parts of the post data.
     idList = []

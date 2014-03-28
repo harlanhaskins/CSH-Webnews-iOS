@@ -10,6 +10,11 @@ verbose = False
 debug = False
 
 def unreadReplies(apiKey):
+    """
+    For a given API key, the function finds all direct replies that are unread.
+
+    Returns: A list of strings like this: "newsgroup - number", of every unread post.
+    """
     hasOlder = True
     replies = []
     url = baseURL + "search?" + credentials(apiKey) + "&unread=true&personal_class=mine_reply&limit=20"
@@ -37,12 +42,30 @@ def unreadReplies(apiKey):
     return mongoapi.postIdentifierList(replies)
 
 def credentials(apiKey):
+    """
+    Returns the WebNews API credential parameters for a given API key.
+    """
     return "api_key=" + apiKey + "&api_agent=iOSPushServer"
 
 def shortAPIKey(apiKey):
+    """
+    Returns a shortened version of an API key, along with a colon and a space.
+    """
     return apiKey[:4] + ": "
 
 def checkAllUsers():
+    """
+    Iterates through every user in the Mongo database checking for their unread
+    posts, and sending push notifications when necessary.
+
+    If the API key of a certain user is reported invalid by WebNews, that entire user is removed from the database.
+
+    The function checks the unread posts returned through unreadReplies() and compares it to the posts in the database.
+    If any posts exist in the returned data that don't exist in the database already, those posts are considered new to the
+    push API, and will be sent as a new notification.
+
+    Once the new posts have been determined, the posts in the database are overwritten with the posts returned from unreadReplies().
+    """
     for user in mongoapi.allUsers():
         apiKey = user[mongoapi.API_KEY_KEY]
         tokens = user[mongoapi.DEVICE_TOKEN_KEY]
@@ -80,6 +103,9 @@ def checkAllUsers():
             mongoapi.updatePostIDListForAPIKey(newPosts, apiKey)
 
 def differenceOfLists(list1, list2):
+    """
+    Returns a list of all of the objects in the first list passed in that don't exist in the second list.
+    """
     s = set(list2)
     return [x for x in list1 if x not in s]
 
