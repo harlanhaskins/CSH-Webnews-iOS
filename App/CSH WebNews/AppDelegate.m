@@ -32,7 +32,17 @@
     [application registerForRemoteNotificationTypes:
      (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
     
+    // Reset the badge icon.
+    application.applicationIconBadgeNumber = 0;
+    
     [self.window makeKeyAndVisible];
+    
+    [PushAPIHandler sendPushToken:@"Token" withSuccess:^(AFHTTPRequestOperation *op, id response) {
+        NSLog(@"Response: %@", response);
+    } failure:^(AFHTTPRequestOperation *op, NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
+    
     return YES;
 }
 

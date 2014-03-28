@@ -23,7 +23,16 @@
     AFJSONResponseSerializer *serializer = [AFJSONResponseSerializer serializerWithReadingOptions:(NSJSONReadingMutableContainers | NSJSONReadingMutableLeaves)];
     
     operation.responseSerializer = serializer;
-    [operation setCompletionBlockWithSuccess:successBlock failure:failure];
+    
+    HTTPFailureBlock failureBlock = ^(AFHTTPRequestOperation *op, NSError *error) {
+        NSLog(@"Error Sending Request: %s - %@", __PRETTY_FUNCTION__, error);
+        if (operation.response.statusCode == 401) {
+            [[PDKeychainBindings sharedKeychainBindings] setObject:@"NULL_API_KEY" forKey:kApiKeyKey];
+        }
+        failure(op, error);
+    };
+    
+    [operation setCompletionBlockWithSuccess:successBlock failure:failureBlock];
     [[NSOperationQueue mainQueue] addOperation:operation];
 }
 

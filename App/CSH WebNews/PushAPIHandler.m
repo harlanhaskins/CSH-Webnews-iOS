@@ -11,16 +11,34 @@
 @implementation PushAPIHandler
 
 + (void) sendPushToken:(NSString*)token withSuccess:(HTTPSuccessBlock)success failure:(HTTPFailureBlock)failure {
-    NSString *tokenParameters = [NSString stringWithFormat:@"&token=%@", token];
-    [self runHTTPPOSTOperationWithBaseURL:@"token" parameters:tokenParameters success:success failure:failure];
+    NSString *tokenParameters = [NSString stringWithFormat:@"?token=%@&deviceType=ios", token];
+    NSURL *url = [self urlFromParameters:tokenParameters];
+    
+    if (!url) {
+        return;
+    }
+    
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request setHTTPMethod:@"POST"];
+    
+    AFHTTPRequestOperation *op = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    op.responseSerializer = [[AFJSONResponseSerializer alloc] init];
+    op.securityPolicy.allowInvalidCertificates = YES;
+    [op setCompletionBlockWithSuccess:success failure:failure];
+    
+    [[NSOperationQueue mainQueue] addOperation:op];
 }
 
 + (NSURL*) urlFromParameters:(NSString*)parameters {
-    NSString *baseURL = @"https://harlanhaskins.com/";
+    NSString *baseURL = @"http://localhost:5000/token";
     
     NSString *apiKey = [[PDKeychainBindings sharedKeychainBindings] objectForKey:kApiKeyKey];
     
-    NSString *apiKeyString = [NSString stringWithFormat:@"api_key=%@", apiKey];
+    if ([apiKey isEqualToString:@"NULL_API_KEY"]) {
+        return nil;
+    }
+    
+    NSString *apiKeyString = [NSString stringWithFormat:@"apiKey=%@", apiKey];
     
     NSString *questionMarkString = @"?";
     NSString *ampersandString = @"&";
@@ -34,7 +52,7 @@
     
     parameters = [parameters stringByAppendingString:apiKeyString];
     
-    baseURL = [baseURL stringByAppendingString:apiKeyString];
+    baseURL = [baseURL stringByAppendingString:parameters];
     
     return [NSURL URLWithString:baseURL];
 }

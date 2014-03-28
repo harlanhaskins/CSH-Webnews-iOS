@@ -238,13 +238,14 @@
 }
 
 - (UIColor*) subjectColor {
-    return [[self class] colorForPersonalClass:self.personalClass];
+    PersonalClass subjectPersonalClass = self.unread ? PersonalClassDefault : self.personalClass;
+    return [[self class] colorForPersonalClass:subjectPersonalClass];
 }
 
 + (UIColor*) colorForPersonalClass:(PersonalClass)personalClass {
-    NSArray *colors = @[[UIColor colorWithRed:0.953 green:0.268 blue:0.935 alpha:1.000],
-                        [UIColor colorWithRed:0.000 green:0.814 blue:0.000 alpha:1.000],
-                        [UIColor colorWithRed:0.415 green:0.000 blue:0.414 alpha:1.000],
+    NSArray *colors = @[[UIColor colorWithRed:0.000 green:0.814 blue:0.000 alpha:1.000],
+                        [UIColor colorWithRed:0.000 green:0.076 blue:0.509 alpha:1.000],
+                        [UIColor colorWithRed:0.953 green:0.268 blue:0.935 alpha:1.000],
                         [UIColor blackColor]];
     
     return colors[personalClass];

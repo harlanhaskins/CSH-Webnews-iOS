@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "WebNewsDataHandler.h"
 
-@interface PushAPIHandler : WebNewsDataHandler
+@interface PushAPIHandler : NSObject
 
 + (void) sendPushToken:(NSString*)token withSuccess:(HTTPSuccessBlock)success failure:(HTTPFailureBlock)failure;
 
