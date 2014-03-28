@@ -11,6 +11,7 @@ database = MongoClient().webnewsios.users
 API_KEY_KEY = "apiKey"
 DEVICE_TOKEN_KEY = "deviceTokens"
 DEVELOPER_KEY = "dev"
+UNREAD_POSTS_KEY = "unreadPosts"
 
 def insertUser(deviceToken, apiKey):
     """
@@ -129,7 +130,8 @@ def newUserDict(deviceToken, apiKey):
     """
     return {API_KEY_KEY : apiKey,
             DEVICE_TOKEN_KEY : [deviceToken],
-            DEVELOPER_KEY : False}
+            DEVELOPER_KEY : False,
+            UNREAD_POSTS_KEY : []}
 
 def clearToken(deviceToken):
     """
@@ -178,6 +180,21 @@ def removeUserWithAPIKey(apiKey):
     userToRemove = userWithAPIKey(apiKey)
     if (userToRemove):
         return database.remove(userToRemove)
+
+def clearPostsForAPIKey(apiKey):
+    """
+    Removes all of the posts for a user.
+    """
+    userToClear = userWithAPIKey(apiKey)
+    if (userToClear):
+        userToClear[UNREAD_POSTS_KEY] = []
+        return updateUser(userToClear)
+
+def updatePostsForAPIKey(posts, apiKey):
+    user = userWithAPIKey(apiKey)
+    if user:
+        user[UNREAD_POSTS_KEY] = posts
+        updateUser(user)
 
 def boolFromString(inputString):
     """
