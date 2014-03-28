@@ -6,6 +6,8 @@ import pushnotifications
 import argparse
 
 baseURL = "https://webnews.csh.rit.edu/"
+verbose = False
+debug = False
 
 def unreadReplies(apiKey):
     hasOlder = True
@@ -14,7 +16,12 @@ def unreadReplies(apiKey):
 
     from_older = ""
 
+    apiShortKey = shortAPIKey(apiKey)
+    requestAttempt = 0
+
     while hasOlder:
+        requestAttempt += 1
+        if verbose: print("\t" + apiShortKey + "Requesting posts - attempt " + str(requestAttempt))
         request = requests.get(url + from_older, headers = {'Accept': 'application/json'})
         if ("does not match any known user" in request.text):
             return None
@@ -32,7 +39,10 @@ def unreadReplies(apiKey):
 def credentials(apiKey):
     return "api_key=" + apiKey + "&api_agent=iOSPushServer"
 
-def checkAllUsers(debug, verbose):
+def shortAPIKey(apiKey):
+    return apiKey[:4] + ": "
+
+def checkAllUsers():
     for user in mongoapi.allUsers():
         apiKey = user[mongoapi.API_KEY_KEY]
         tokens = user[mongoapi.DEVICE_TOKEN_KEY]
@@ -40,7 +50,8 @@ def checkAllUsers(debug, verbose):
         posts = user[mongoapi.UNREAD_POSTS_KEY]
 
         if verbose: print("Processing user: " + apiKey)
-        apiShortKey = apiKey[:4] + ": "
+
+        apiShortKey = shortAPIKey(apiKey)
 
         newPosts = unreadReplies(apiKey)
         if newPosts == None:
@@ -82,4 +93,7 @@ if __name__ == "__main__":
                         action="store_true")
     args = parser.parse_args()
 
-    checkAllUsers(debug=args.test, verbose=args.verbose)
+    debug = args.test
+    verbose = args.verbose
+
+    checkAllUsers()
