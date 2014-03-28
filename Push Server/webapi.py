@@ -27,7 +27,22 @@ def token():
 def user():
     arguments = request.args
     apiKey = arguments.get("apiKey", "")
+    if not apiKey:
+        return errorWithMessage("You must provide an API key.")
     user = mongoapi.userWithAPIKey(apiKey)
+    if user:
+        return successWithMessage(user)
+    else:
+        return errorWithMessage('Could not find user with that API Key.')
+
+@app.route("/clearUnread", methods=["POST"])
+def clearUnread():
+    arguments = request.args
+    apiKey = arguments.get("apiKey", "")
+    if not apiKey:
+        return errorWithMessage("You must provide an API key.")
+
+    user = mongoapi.clearPostsForAPIKey(apiKey)
     if user:
         return successWithMessage(user)
     else:
