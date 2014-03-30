@@ -102,12 +102,6 @@
         [_actionButtons HH_addActionButtonWithImage:starImage
                                              target:self.delegate
                                            selector:@selector(didTapStar:)];
-        
-//        if (self.post.isSelfPost && ![self hasChildren]) {
-//            [_actionButtons HH_addActionButtonWithImage:[UIImage imageNamed:@"Delete"]
-//                                                 target:self.delegate
-//                                               selector:@selector(didTapDelete:)];
-//        }
     }
     return _actionButtons;
 }

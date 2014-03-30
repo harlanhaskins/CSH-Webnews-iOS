@@ -42,6 +42,7 @@ typedef NS_ENUM(NSUInteger, UnreadClass) {
 @property (nonatomic, readonly) NSInteger parentNumber;
 
 @property (nonatomic, readwrite) NSInteger depth;
+@property (nonatomic, readwrite) NSInteger index;
 
 @property (nonatomic, readonly) PersonalClass personalClass;
 

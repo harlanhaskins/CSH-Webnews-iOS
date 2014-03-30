@@ -90,7 +90,7 @@ def checkAllUsers():
         unreadPostCount = len(differenceOfLists(newPosts, posts))
         if verbose:
             postsWord = "post" if unreadPostCount == 1 else "posts"
-            print("\t" + apiShortKey + "User has " + str(unreadPostCount) + " unread " + postsWord + ".")
+            print("\t" + apiShortKey + "User has " + str(unreadPostCount) + " new unread " + postsWord + ".")
         if unreadPostCount > 0 or (debug and isDev):
             if verbose: print("\t" + apiShortKey + "Sending notification...")
             pushnotifications.sendUnreadReplyAlert(tokens, unreadPostCount, len(newPosts))
@@ -121,6 +121,9 @@ if __name__ == "__main__":
     parser.add_argument("-v", "--verbose",
                         help="Prints information about each user.",
                         action="store_true")
+    parser.add_argument("-f", "--force-repeat",
+                        help="Forces the script to keep going even if it's in test mode.",
+                        action="store_true")
     parser.add_argument("-s", "--sleep",
                         help="Specifies the duration (in seconds) that the program sleeps between executions.",
                         type=float)
@@ -129,11 +132,12 @@ if __name__ == "__main__":
     debug = args.test
     verbose = args.verbose
     pushnotifications.verbose = verbose
+    forcerepeat = args.force_repeat
 
     timeout = args.sleep if args.sleep else 10
 
     while True:
         checkAllUsers()
-        if debug:
+        if debug and not forcerepeat:
             break
         time.sleep(timeout)
