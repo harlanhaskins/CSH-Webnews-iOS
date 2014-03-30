@@ -7,7 +7,10 @@ collection.
 
 If these do not exist, they are created.
 """
-database = MongoClient().webnewsios.users
+credentials = "" #Credentials withheld.
+databaseURI = "mongodb://@db1.csh.rit.edu/webnewspush"
+database = MongoClient(databaseURI).webnewspush.users
+# database = MongoClient().webnewsios.users
 API_KEY_KEY = "apiKey"
 DEVICE_TOKEN_KEY = "deviceTokens"
 DEVELOPER_KEY = "dev"
