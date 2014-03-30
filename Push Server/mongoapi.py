@@ -7,10 +7,6 @@ collection.
 
 If these do not exist, they are created.
 """
-credentials = "" #Credentials withheld.
-databaseURI = "mongodb://@db1.csh.rit.edu/webnewspush"
-database = MongoClient(databaseURI).webnewspush.users
-# database = MongoClient().webnewsios.users
 API_KEY_KEY = "apiKey"
 DEVICE_TOKEN_KEY = "deviceTokens"
 DEVELOPER_KEY = "dev"
@@ -273,3 +269,11 @@ def boolFromString(inputString):
     The function ignores whitespace.
     """
     return not not re.search("[yYtT1-9]", inputString.strip())
+
+def mongoURI():
+    fileName = "uri.txt"
+    with open(fileName) as creds:
+        return creds.readline().strip()
+
+database = MongoClient(mongoURI()).webnewspush.users
+# database = MongoClient().webnewsios.users
