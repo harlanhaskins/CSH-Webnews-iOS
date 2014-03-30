@@ -81,7 +81,7 @@ def sendUnreadReplyAlert(tokens, newUnreadCount, totalUnreadCount):
     """
     sendAlert(tokens, unreadReplyAlert(newUnreadCount), totalUnreadCount)
 
-def sendSilentBadgeUpdateAlert(tokens, newUnreadCount, totalUnreadCount)
+def sendSilentBadgeUpdateAlert(tokens, newUnreadCount, totalUnreadCount):
     """
     Sends a silent message that just updates a badge.
     """
