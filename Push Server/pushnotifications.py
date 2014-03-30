@@ -30,7 +30,7 @@ def sendAlertiOS(tokens, message, count):
         retry_message = result.retry()
 
 def sendAlertAndroid(tokens, message, count):
-    if verbose: print("\n\t\tSkipping Android notification, until implemented.")
+    if verbose: print("\t\tSkipping Android notification, until implemented.")
 
 def sendAlert(tokens, message, count):
     if mongoapi.IOS_DEVICE_TYPE in tokens:
