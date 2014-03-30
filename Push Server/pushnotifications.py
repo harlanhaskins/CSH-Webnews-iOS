@@ -2,7 +2,7 @@
 import mongoapi
 from apnsclient import *
 
-session = Session.new_connection("push_sandbox", cert_file="newspush.pem")
+session = Session.new_connection("push_production", cert_file="newspush_production.pem")
 debug = False
 verbose = False
 
@@ -79,3 +79,9 @@ def sendUnreadReplyAlert(tokens, newUnreadCount, totalUnreadCount):
     Sends an unreadReplyAlert.
     """
     sendAlert(tokens, unreadReplyAlert(newUnreadCount), totalUnreadCount)
+
+def sendSilentBadgeUpdateAlert(tokens, newUnreadCount, totalUnreadCount)
+    """
+    Sends a silent message that just updates a badge.
+    """
+    sendAlert(tokens, None, totalUnreadCount)
