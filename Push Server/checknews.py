@@ -67,7 +67,7 @@ def checkAllUsers():
 
     Once the new posts have been determined, the posts in the database are overwritten with the posts returned from unreadReplies().
     """
-    print("----- New Run ----")
+    if verbose: print("----- New Run ----")
     for user in mongoapi.allUsers():
         apiKey = user[mongoapi.API_KEY_KEY]
         tokens = user[mongoapi.DEVICE_TOKEN_KEY]
@@ -88,7 +88,9 @@ def checkAllUsers():
         if verbose: print("\t" + apiShortKey + "New Posts: " + str(newPosts))
 
         unreadPostCount = len(differenceOfLists(newPosts, posts))
-        if verbose: print("\t" + apiShortKey + "User has " + str(unreadPostCount) + " unread posts.")
+        if verbose:
+            postsWord = "post" if unreadPostCount == 1 else "posts"
+            print("\t" + apiShortKey + "User has " + str(unreadPostCount) + " unread " + postsWord + ".")
         if unreadPostCount > 0 or (debug and isDev):
             if verbose: print("\t" + apiShortKey + "Sending notification...", end="")
             pushnotifications.sendUnreadReplyAlert(tokens, unreadPostCount, len(newPosts))
@@ -119,13 +121,19 @@ if __name__ == "__main__":
     parser.add_argument("-v", "--verbose",
                         help="Prints information about each user.",
                         action="store_true")
+    parser.add_argument("-s", "--sleep",
+                        help="Specifies the duration (in seconds) that the program sleeps between executions.",
+                        type=float)
     args = parser.parse_args()
 
     debug = args.test
     verbose = args.verbose
+    pushnotifications.verbose = verbose
+
+    timeout = args.sleep if args.sleep else 10
 
     while True:
         checkAllUsers()
-        time.sleep(10)
         if debug:
             break
+        time.sleep(timeout)
