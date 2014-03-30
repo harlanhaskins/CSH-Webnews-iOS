@@ -44,4 +44,4 @@ if __name__ == "__main__":
     if args.test:
         mongoapi.database = mongoapi.MongoClient().webnewsios.testUsers
 
-    app.run(debug=args.test)
+    app.run(host="san.csh.rit.edu", debug=args.test)

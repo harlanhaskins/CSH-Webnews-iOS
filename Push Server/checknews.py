@@ -28,7 +28,7 @@ def unreadReplies(apiKey):
     while hasOlder:
         requestAttempt += 1
         if verbose: print("\t" + apiShortKey + "Requesting posts - attempt " + str(requestAttempt))
-        request = requests.get(url + from_older, headers = {'Accept': 'application/json'})
+        request = requests.get(url + from_older, headers = {'Accept': 'application/json'}, verify=False)
         if ("does not match any known user" in request.text):
             return None
 

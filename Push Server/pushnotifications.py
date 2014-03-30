@@ -2,7 +2,8 @@
 import mongoapi
 from apnsclient import *
 
-session = Session.new_connection("push_sandbox", cert_file="newspush.pem")
+certificateSource = "production"
+session = Session.new_connection("push_production", cert_file="newspush_" + certificateSource + ".pem")
 debug = False
 verbose = False
 
