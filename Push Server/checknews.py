@@ -104,6 +104,8 @@ def checkAllUsers():
             if verbose: print("\t" + apiShortKey + "Not updating posts.")
         else:
             pushnotifications.sendSilentBadgeUpdateAlert(tokens, unreadPostCount, numberOfNewPosts)
+            if numberOfNewPosts < posts:
+                pushnotifications.sendSilentBadgeUpdateAlert(tokens, unreadPostCount, len(newPosts))
             if verbose: print("\t" + apiShortKey + "Updating posts.\n\t\tOld count: " + \
                               str(len(posts)) + \
                               "\n\t\tNew count: " + str(len(newPosts)))
