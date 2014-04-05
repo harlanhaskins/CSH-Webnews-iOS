@@ -37,31 +37,29 @@ Once you've set all that up, you'll need to register the web API for accepting n
 
 Just run `./webapi.py` and you'll have an instance of the web API at `localhost:5000`.
 
-The Web API follows a simple format. Anything returned from the API will be in the form of a JSON object, either with
-a key of `S`, indicating success, or a key of `E`, indicating an error, like this:
+The Web API returns 
 
-```json
-{
-    "S" : "The user was added successfully."
-}
-```
+    "The user was added successfully."
 
-or this:
+or one of these (with a 401 Preciondition Failed status code):
 
-```json
-{
-    "E" : "You must provide both a token and an API key."
-}
-```
+    "You must provide both a token and an API key."
+    "Only 'ios', 'android', and 'windowsphone' are supported device types."
+    
+or this (with a 500 Internal Server Error status code)
+
+    "The server had a problem processing your request."
+
 
 #### POST /token
 
 `token` accepts only two parameters, and they are both required.
 
-| Parameter |                   Description                     |
-|-----------|---------------------------------------------------|
-| `apiKey`  |The API key of the user you're adding a token to.  |
-| `token`   |The token to be added to the user's list of tokens.|
+| Parameter      |                   Description                     |
+|----------------|---------------------------------------------------|
+| `apiKey`       |The API key of the user you're adding a token to.  |
+| `token`        |The token to be added to the user's list of tokens.|
+| `deviceType`   |The token to be added to the user's list of tokens.|
 
 ### WebNews Check Script
 
