@@ -55,11 +55,11 @@ or this (with a 500 Internal Server Error status code)
 
 `token` accepts only two parameters, and they are both required.
 
-| Parameter      |                   Description                     |
-|----------------|---------------------------------------------------|
-| `apiKey`       |The API key of the user you're adding a token to.  |
-| `token`        |The token to be added to the user's list of tokens.|
-| `deviceType`   |The token to be added to the user's list of tokens.|
+| Parameter      |                   Description                                                                 |
+|----------------|-----------------------------------------------------------------------------------------------|
+| `apiKey`       |The API key of the user you're adding a token to.                                              |
+| `token`        |The token to be added to the user's list of tokens.                                            |
+| `deviceType`   |The type of token you're adding. Acceptable responses are `ios`, `android`, and `windowsphone`.|
 
 ### WebNews Check Script
 
