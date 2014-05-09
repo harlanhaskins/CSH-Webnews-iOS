@@ -30,9 +30,6 @@
     [application registerForRemoteNotificationTypes:
      (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
     
-    // Reset the badge icon.
-    application.applicationIconBadgeNumber = 0;
-    
     [self.window makeKeyAndVisible];
     
     [PushAPIHandler sendPushToken:@"Token" withSuccess:^(AFHTTPRequestOperation *op, id response) {
@@ -81,6 +78,9 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    
+    // Reset the badge icon.
+    application.applicationIconBadgeNumber = 0;
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

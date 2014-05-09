@@ -6,6 +6,8 @@ import pushnotifications
 import argparse
 import time
 
+from daemonize import Daemonize
+
 baseURL = "https://webnews.csh.rit.edu/"
 verbose = False
 debug = False
@@ -119,31 +121,41 @@ def differenceOfLists(list1, list2):
     s = set(list2)
     return [x for x in list1 if x not in s]
 
+
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument("-t", "--test",
-                        help="Send notifications even when replies are zero.",
-                        action="store_true")
-    parser.add_argument("-v", "--verbose",
-                        help="Prints information about each user.",
-                        action="store_true")
-    parser.add_argument("-f", "--force-repeat",
-                        help="Forces the script to keep going even if it's in test mode.",
-                        action="store_true")
-    parser.add_argument("-s", "--sleep",
-                        help="Specifies the duration (in seconds) that the program sleeps between executions.",
-                        type=float)
-    args = parser.parse_args()
 
-    debug = args.test
-    verbose = args.verbose
-    pushnotifications.verbose = verbose
-    forcerepeat = args.force_repeat
+    def main():
+        parser = argparse.ArgumentParser()
+        parser.add_argument("-t", "--test",
+                            help="Send notifications even when replies are zero.",
+                            action="store_true")
+        parser.add_argument("-v", "--verbose",
+                            help="Prints information about each user.",
+                            action="store_true")
+        parser.add_argument("-f", "--force-repeat",
+                            help="Forces the script to keep going even if it's in test mode.",
+                            action="store_true")
+        parser.add_argument("-s", "--sleep",
+                            help="Specifies the duration (in seconds) that the program sleeps between executions.",
+                            type=float)
+        args = parser.parse_args()
 
-    timeout = args.sleep if args.sleep else 10
+        debug = args.test
+        verbose = args.verbose
+        pushnotifications.verbose = verbose
+        forcerepeat = args.force_repeat
 
-    while True:
-        checkAllUsers()
-        if debug and not forcerepeat:
-            break
-        time.sleep(timeout)
+        timeout = args.sleep if args.sleep else 10
+
+        while True:
+            checkAllUsers()
+            if debug and not forcerepeat:
+                break
+            time.sleep(timeout)
+
+    appName = "com.harlanhaskins.WebNewsPushCheck"
+    pidFile = "~/tmp/" + appName + ".pid"
+
+    daemon = Daemonize(app=appName, pid=pidFile, action=main)
+    daemon.start()
+

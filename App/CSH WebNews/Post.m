@@ -243,12 +243,20 @@
 }
 
 + (UIColor*) colorForPersonalClass:(PersonalClass)personalClass {
-    NSArray *colors = @[[UIColor colorWithRed:0.000 green:0.814 blue:0.000 alpha:1.000],
-                        [UIColor colorWithRed:0.000 green:0.076 blue:0.509 alpha:1.000],
-                        [UIColor colorWithRed:0.953 green:0.268 blue:0.935 alpha:1.000],
-                        [UIColor blackColor]];
-    
-    return colors[personalClass];
+    switch (personalClass) {
+        case PersonalClassInThreadWithMine:
+            return [UIColor colorWithRed:0.000 green:0.076 blue:0.509 alpha:1.000];
+            
+        case PersonalClassMine:
+            return [UIColor colorWithRed:0.000 green:0.814 blue:0.000 alpha:1.000];
+            
+        case PersonalClassReplyToMine:
+            return [UIColor colorWithRed:0.953 green:0.268 blue:0.935 alpha:1.000];
+            
+        case PersonalClassDefault:
+        default:
+            return [UIColor blackColor];
+    }
 }
 
 - (UIFont*) fontForAuthorshipString {
