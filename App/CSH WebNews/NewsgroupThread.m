@@ -127,7 +127,7 @@
 }
 
 - (NSString*) headerText {
-    return self.post.authorName;
+    return [NSString stringWithFormat:@"%@ (%@)", self.post.authorName, [self.post friendlyDate]];
 }
 
 - (NSInteger) number {
