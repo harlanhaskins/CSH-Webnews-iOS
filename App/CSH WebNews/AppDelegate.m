@@ -21,18 +21,14 @@
 {
     [TestFlight takeOff:@"57f8a290-0abe-4a6c-8e31-cc74dabf6b99"];
     
+    [self respondToUpdate];
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     
     self.window.backgroundColor = [UIColor whiteColor];
     
     self.window.rootViewController = [[self class] viewController];
-    
-    NSString *currentVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
-    NSString *version = [[NSUserDefaults standardUserDefaults] objectForKey:@"version"];
-    if (!version || ![version isEqualToString:currentVersion]) {
-        [CacheManager clearAllCaches];
-    }
         
     [application registerForRemoteNotificationTypes:
      (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
@@ -40,6 +36,15 @@
     [self.window makeKeyAndVisible];
     
     return YES;
+}
+
+- (void) respondToUpdate {
+    NSString *currentVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+    NSString *version = [[NSUserDefaults standardUserDefaults] objectForKey:@"version"];
+    if (!version || ![version isEqualToString:currentVersion]) {
+        [CacheManager clearAllCaches];
+        [[NSUserDefaults standardUserDefaults] setObject:currentVersion forKey:@"version"];
+    }
 }
 
 + (UIViewController*) viewController {
