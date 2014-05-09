@@ -155,6 +155,10 @@
     return self.post.number * [self.post.newsgroup hash];
 }
 
+- (BOOL) isUnread {
+    return self.post.unread;
+}
+
 - (BOOL) isEqual:(id)object {
     if (![object isKindOfClass:[self class]]) {
         return NO;
