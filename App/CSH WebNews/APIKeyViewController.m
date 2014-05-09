@@ -59,15 +59,15 @@
 }
 
 - (void) viewDidLayoutSubviews {
-    [titleLabel centerToParent];
+    titleLabel.centerX = self.view.width / 2.0;
     titleLabel.y = 40.0f;
     
     descriptionLabel.width = self.view.width * 0.9;
-    [descriptionLabel centerToParent];
+    descriptionLabel.centerX = self.view.width / 2.0;
     descriptionLabel.y = titleLabel.bottom + 7.0;
     
     keyTextField.width = self.view.width * 0.75;
-    [keyTextField centerToParent];
+    keyTextField.centerX = self.view.width / 2.0;
     keyTextField.y = descriptionLabel.bottom + 25.0;
 }
 
