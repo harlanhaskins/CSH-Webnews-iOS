@@ -112,9 +112,10 @@ static NSDateFormatter *dateFormatter;
     }
     
     NSInteger postNumber = [postDictionary[@"number"] integerValue];
+    NSString *newsgroup  = postDictionary[@"newsgroup"];
     ISO8601DateFormatter *dateFormatter = [[ISO8601DateFormatter alloc] init];
     
-    Post *post = [CacheManager cachedPostWithNumber:postNumber];
+    Post *post = [CacheManager cachedPostWithNewsgroup:newsgroup number:postNumber];
     if (post) {
         // Change the values that can change.
         post.starred = [postDictionary[@"starred"] boolValue];
@@ -124,7 +125,7 @@ static NSDateFormatter *dateFormatter;
     }
     
     post = [Post new];
-    post.newsgroup = postDictionary[@"newsgroup"];
+    post.newsgroup = newsgroup;
     post.subject = postDictionary[@"subject"];
     post.authorName = postDictionary[@"author_name"];
     post.authorEmail = postDictionary[@"author_email"];

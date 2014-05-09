@@ -13,6 +13,7 @@
 #import "SelectivelyRotatingNavigationController.h"
 #import "SelectivelyRotatingTabBarController.h"
 #import "PushAPIHandler.h"
+#import "CacheManager.h"
 
 @implementation AppDelegate
 
@@ -26,6 +27,12 @@
     self.window.backgroundColor = [UIColor whiteColor];
     
     self.window.rootViewController = [[self class] viewController];
+    
+    NSString *currentVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+    NSString *version = [[NSUserDefaults standardUserDefaults] objectForKey:@"version"];
+    if (!version || ![version isEqualToString:currentVersion]) {
+        [CacheManager clearAllCaches];
+    }
         
     [application registerForRemoteNotificationTypes:
      (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];

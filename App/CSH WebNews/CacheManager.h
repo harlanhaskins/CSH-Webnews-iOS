@@ -16,9 +16,11 @@
 + (void) cacheActivityThreads:(NSArray*)array;
 + (void) cacheNewsgroupList:(NSArray*)array;
 + (NSArray*) cachedNewsgroupList;
-+ (Post*) cachedPostWithNumber:(NSInteger)postNumber;
++ (Post*) cachedPostWithNewsgroup:(NSString*)newsgroup number:(NSInteger)postNumber;
 + (void) cachePosts:(NSArray*)array;
 + (void) cachePost:(Post*)post;
 + (NSArray*) cachedThreadsWithOutline:(NewsgroupOutline*)outline;
 + (void) cacheThreads:(NSArray*)array withOutline:(NewsgroupOutline*)outline;
++ (void) clearAllCaches;
+
 @end

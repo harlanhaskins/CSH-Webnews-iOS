@@ -56,20 +56,20 @@
 }
 
 + (void) cachePost:(Post*)post {
-    [NSKeyedArchiver archiveRootObject:post toFile:[self postCachePathWithNumber:post.number]];
+    [NSKeyedArchiver archiveRootObject:post toFile:[self postCachePathWithWithNewsgroup:post.newsgroup number:post.number]];
 }
 
 + (NSString*) postCachePath {
     return [self cachePathWithPathComponent:@"Posts"];
 }
 
-+ (NSString*) postCachePathWithNumber:(NSInteger)number {
-    NSString *postCachePath = [NSString stringWithFormat:@"Post_%li", (long)number];
++ (NSString*) postCachePathWithWithNewsgroup:(NSString*)newsgroup number:(NSInteger)number {
+    NSString *postCachePath = [NSString stringWithFormat:@"Post_%@_%li", newsgroup, (long)number];
     return [self cachePathWithPathComponent:postCachePath];
 }
 
-+ (Post*) cachedPostWithNumber:(NSInteger)postNumber {
-    return [NSKeyedUnarchiver unarchiveObjectWithFile:[self postCachePathWithNumber:postNumber]];
++ (Post*) cachedPostWithNewsgroup:(NSString*)newsgroup number:(NSInteger)postNumber {
+    return [NSKeyedUnarchiver unarchiveObjectWithFile:[self postCachePathWithWithNewsgroup:(NSString*)newsgroup number:postNumber]];
 }
 
 + (NSString*) cachePathWithPathComponent:(NSString*)pathComponent {
