@@ -23,10 +23,12 @@
 - (id) init {
     if (self = [super init]) {
         self.securityPolicy.allowInvalidCertificates = YES;
+        
         // Create a response serializer. That'll convert the JSON to an NSDictionary automagically (read: so I don't have to.)
         AFJSONResponseSerializer *serializer = (AFJSONResponseSerializer*)self.responseSerializer;
         serializer.readingOptions = (NSJSONReadingMutableContainers | NSJSONReadingMutableLeaves);
         
+        self.requestSerializer.HTTPMethodsEncodingParametersInURI = [NSSet setWithArray:@[@"GET", @"HEAD", @"DELETE", @"PUT"]];
         [self.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
         [self.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     }
