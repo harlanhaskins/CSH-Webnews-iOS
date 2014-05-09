@@ -35,8 +35,6 @@
 		DC0FC96417EC230700945EEC /* APIKeyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0FC96317EC230700945EEC /* APIKeyViewController.m */; };
 		DC22B1A917EBB00600E328DE /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC22B1A817EBB00600E328DE /* SettingsViewController.m */; };
 		DC22B1AD17EBDFD800E328DE /* ISO8601DateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = DC22B1AC17EBDFD800E328DE /* ISO8601DateFormatter.m */; };
-		DC9D24A2180BB2B10034E02B /* NSDictionary+Merge.m in Sources */ = {isa = PBXBuildFile; fileRef = DC9D24A1180BB2B10034E02B /* NSDictionary+Merge.m */; };
-		DCBE062417E000F1007BBF4C /* UIView+Positioning.m in Sources */ = {isa = PBXBuildFile; fileRef = DCBE062317E000F1007BBF4C /* UIView+Positioning.m */; };
 		DCCAB04217EAB3CD004B683B /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCCAB04117EAB3CD004B683B /* CFNetwork.framework */; };
 		DCCAB04417EAB3D3004B683B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCCAB04317EAB3D3004B683B /* SystemConfiguration.framework */; };
 		DCCAB04617EAB3DA004B683B /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCCAB04517EAB3DA004B683B /* CoreData.framework */; };
@@ -123,10 +121,6 @@
 		DC22B1A817EBB00600E328DE /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		DC22B1AB17EBDFD800E328DE /* ISO8601DateFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISO8601DateFormatter.h; sourceTree = "<group>"; };
 		DC22B1AC17EBDFD800E328DE /* ISO8601DateFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISO8601DateFormatter.m; sourceTree = "<group>"; };
-		DC9D24A0180BB2B10034E02B /* NSDictionary+Merge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Merge.h"; sourceTree = "<group>"; };
-		DC9D24A1180BB2B10034E02B /* NSDictionary+Merge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Merge.m"; sourceTree = "<group>"; };
-		DCBE062217E000F1007BBF4C /* UIView+Positioning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Positioning.h"; sourceTree = "<group>"; };
-		DCBE062317E000F1007BBF4C /* UIView+Positioning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Positioning.m"; sourceTree = "<group>"; };
 		DCCAB04117EAB3CD004B683B /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		DCCAB04317EAB3D3004B683B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		DCCAB04517EAB3DA004B683B /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -343,12 +337,8 @@
 				C9CE73A618D39F7200FD5CA4 /* SelectivelyRotatingNavigationController.m */,
 				C9CE73A818D3A58500FD5CA4 /* SelectivelyRotatingTabBarController.h */,
 				C9CE73A918D3A58500FD5CA4 /* SelectivelyRotatingTabBarController.m */,
-				DC9D24A0180BB2B10034E02B /* NSDictionary+Merge.h */,
-				DC9D24A1180BB2B10034E02B /* NSDictionary+Merge.m */,
 				DC22B1AB17EBDFD800E328DE /* ISO8601DateFormatter.h */,
 				DC22B1AC17EBDFD800E328DE /* ISO8601DateFormatter.m */,
-				DCBE062217E000F1007BBF4C /* UIView+Positioning.h */,
-				DCBE062317E000F1007BBF4C /* UIView+Positioning.m */,
 				DCF26DE017CD617C0073DA19 /* CSH News-Info.plist */,
 				DCF26DE117CD617C0073DA19 /* InfoPlist.strings */,
 				DCF26DE417CD617C0073DA19 /* main.m */,
@@ -525,10 +515,8 @@
 				C9D6F9F81898498D00004E3B /* NewsgroupOutlineTableViewModel.m in Sources */,
 				DCF26E0917CD62830073DA19 /* ActivityViewController.m in Sources */,
 				C96D22831895CD7B001BFA57 /* User.m in Sources */,
-				DC9D24A2180BB2B10034E02B /* NSDictionary+Merge.m in Sources */,
 				DC22B1A917EBB00600E328DE /* SettingsViewController.m in Sources */,
 				C96D227D1895BD80001BFA57 /* WebNewsDataHandler.m in Sources */,
-				DCBE062417E000F1007BBF4C /* UIView+Positioning.m in Sources */,
 				C97DD33318A2A08000D1B9B7 /* ThreadPostsViewController.m in Sources */,
 				C92B9DDB189752DC0099C22D /* CacheManager.m in Sources */,
 				C9CE73AA18D3A58500FD5CA4 /* SelectivelyRotatingTabBarController.m in Sources */,
@@ -669,7 +657,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/CSH\\ WebNews/TestFlightSDK3",
 				);
-				LLVM_LTO = YES;
+				LLVM_LTO = NO;
 				PRODUCT_NAME = "CSH News";
 				PROVISIONING_PROFILE = "C3B2E889-70F5-4466-BFB3-1316E1D9D411";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -697,7 +685,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/CSH\\ WebNews/TestFlightSDK3",
 				);
-				LLVM_LTO = YES;
+				LLVM_LTO = NO;
 				PRODUCT_NAME = "CSH News";
 				PROVISIONING_PROFILE = "98D6F7D2-A38E-4E1A-8F52-A57885C49C9C";
 				TARGETED_DEVICE_FAMILY = "1,2";

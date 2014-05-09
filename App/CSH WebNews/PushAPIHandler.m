@@ -10,23 +10,15 @@
 
 @implementation PushAPIHandler
 
-+ (void) sendPushToken:(NSString*)token withSuccess:(HTTPSuccessBlock)success failure:(HTTPFailureBlock)failure {
-    NSString *tokenParameters = [NSString stringWithFormat:@"?token=%@&deviceType=ios", token];
-    NSURL *url = [self urlFromParameters:tokenParameters];
++ (void) sendPushToken:(NSString*)token {
+    NSDictionary *tokenParameters = @{@"token" : token,
+                                      @"deviceType" : @"ios"};
     
-    if (!url) {
-        return;
-    }
+    NSString *url = @"https://san.csh.rit.edu:5000/token";
     
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    [request setHTTPMethod:@"POST"];
-    
-    AFHTTPRequestOperation *op = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-    op.responseSerializer = [[AFJSONResponseSerializer alloc] init];
-    op.securityPolicy.allowInvalidCertificates = YES;
-    [op setCompletionBlockWithSuccess:success failure:failure];
-    
-    [[NSOperationQueue mainQueue] addOperation:op];
+    [[WebNewsDataHandler sharedHandler] POST:url parameters:tokenParameters success:nil failure:^(NSURLSessionDataTask *task, NSError *error) {
+        NSLog(@"%s %@", __PRETTY_FUNCTION__, error);
+    }];
 }
 
 + (NSURL*) urlFromParameters:(NSString*)parameters {

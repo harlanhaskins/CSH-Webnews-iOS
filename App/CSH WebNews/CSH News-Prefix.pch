@@ -16,9 +16,7 @@
     #import "UIView+Positioning.h"
     #import <SystemConfiguration/SystemConfiguration.h>
     #import <MobileCoreServices/MobileCoreServices.h>
-    #import "AFNetworking.h"
     #import "PDKeychainBindingsController.h"
-    #import "NSDictionary+Merge.h"
     #import "NSNull+TypeAdditions.h"
     #import "TestFlight.h"
     #define kApiKeyKey @"api_key"

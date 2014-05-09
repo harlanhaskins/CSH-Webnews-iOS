@@ -32,12 +32,6 @@
     
     [self.window makeKeyAndVisible];
     
-    [PushAPIHandler sendPushToken:@"Token" withSuccess:^(AFHTTPRequestOperation *op, id response) {
-        NSLog(@"Response: %@", response);
-    } failure:^(AFHTTPRequestOperation *op, NSError *error) {
-        NSLog(@"Error: %@", error);
-    }];
-    
     return YES;
 }
 
@@ -98,11 +92,7 @@
                           ntohl(tokenBytes[3]), ntohl(tokenBytes[4]), ntohl(tokenBytes[5]),
                           ntohl(tokenBytes[6]), ntohl(tokenBytes[7])];
     
-    [PushAPIHandler sendPushToken:hexToken withSuccess:^(AFHTTPRequestOperation *op, id response) {
-        NSLog(@"Response: %@", response);
-    } failure:^(AFHTTPRequestOperation *op, NSError *error) {
-        NSLog(@"Error: %@", error);
-    }];
+    [PushAPIHandler sendPushToken:hexToken];
 }
 
 - (void) application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {

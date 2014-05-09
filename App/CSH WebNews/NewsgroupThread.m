@@ -147,4 +147,25 @@
     return self.post.isStarred;
 }
 
+- (NSComparisonResult) compare:(NewsgroupThread*)thread {
+    return [self.post.date compare:thread.post.date];
+}
+
+- (NSUInteger) hash {
+    return self.post.number * [self.post.newsgroup hash];
+}
+
+- (BOOL) isEqual:(id)object {
+    if (![object isKindOfClass:[self class]]) {
+        return NO;
+    }
+    if (self.post.number != [[object post] number]) {
+        return NO;
+    }
+    if (![self.post.newsgroup isEqualToString:[[object post] newsgroup]]) {
+        return NO;
+    }
+    return YES;
+}
+
 @end

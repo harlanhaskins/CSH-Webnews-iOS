@@ -37,7 +37,9 @@
 }
 
 + (void) cacheThreads:(NSArray*)array withOutline:(NewsgroupOutline*)outline {
-    [NSKeyedArchiver archiveRootObject:array toFile:[self threadListCachePathWithOutline:outline]];
+    NSRange range = NSMakeRange(0, MIN(array.count, 30));
+    NSArray *firstThirty = [array subarrayWithRange:range];
+    [NSKeyedArchiver archiveRootObject:firstThirty toFile:[self threadListCachePathWithOutline:outline]];
 }
 
 + (NSString*) threadListCachePathWithOutline:(NewsgroupOutline*)outline {

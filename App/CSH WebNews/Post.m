@@ -43,6 +43,12 @@
 
 @implementation Post
 
+static NSDateFormatter *dateFormatter;
+
++ (void) initialize {
+    dateFormatter = [NSDateFormatter new];
+}
+
 - (void) encodeWithCoder:(NSCoder *)coder {
     [coder encodeObject:self.newsgroup forKey:@"newsgroup"];
     [coder encodeObject:self.subject forKey:@"subject"];
@@ -190,21 +196,21 @@
         return;
     }
     
-    NSString *parameters = [NSString stringWithFormat:@"%@/%li?html_body=true", self.newsgroup, (long)self.number];
+    NSString *url = [NSString stringWithFormat:@"%@/%li", self.newsgroup, (long)self.number];
     
-    [WebNewsDataHandler runHTTPGETOperationWithParameters:parameters
-                                                  success:^(AFHTTPRequestOperation *op, id response) {
-                                                      [self setBody:response[@"post"][@"body"]];
-                                                      [CacheManager cachePost:self];
-                                                      block(self);
-                                                  } failure:^(AFHTTPRequestOperation *op, NSError *error) {
-                                                      NSLog(@"Error: %@", error);
-                                                  }];
+    [[WebNewsDataHandler sharedHandler] GET:url
+                                 parameters:@{@"html_body" : @"true"}
+                                    success:^(NSURLSessionDataTask *task, id response) {
+                                        [self setBody:response[@"post"][@"body"]];
+                                        [CacheManager cachePost:self];
+                                        block(self);
+                                    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+                                        NSLog(@"Error: %@", error);
+                                    }];
 }
 
 - (NSString*) dateString {
     // Create an empty formatter.
-    NSDateFormatter *dateFormatter = [NSDateFormatter new];
     
     // Set the date format to a nice format.
     [dateFormatter setDateFormat:@"yyyy-MM-d"];
@@ -214,9 +220,6 @@
 }
 
 - (NSString *) timeString {
-    // Create an empty formatter.
-    NSDateFormatter *dateFormatter = [NSDateFormatter new];
-    
     // Set the date format to a nice format.
     [dateFormatter setDateFormat:@"hh:mm:sa"];
     

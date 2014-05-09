@@ -240,14 +240,13 @@
 
 - (void) sendReply {
     
-    NSString *baseURL = [NSString stringWithFormat:@"newsgroup=%@&reply_newsgroup=%@&subject=%@&body=%@&reply_number=%ld",
-                         self.newsgroup,
-                         self.newsgroup,
-                         [self subjectText],
-                         [self bodyText],
-                         (long)self.post.number];
+    NSDictionary *parameters = @{@"newsgroup": self.newsgroup,
+                                 @"reply_newsgroup" : self.newsgroup,
+                                 @"subject@" : [self subjectText],
+                                 @"body" : [self bodyText],
+                                 @"reply_number" : @(self.post.number)};
     
-    [self sendPostWithBaseURL:baseURL];
+    [self sendPostWithParameters:parameters];
 }
 
 - (NSString*) subjectText {
@@ -273,29 +272,28 @@
 }
 
 - (void) sendPost {
-    NSString *baseURL = [NSString stringWithFormat:@"newsgroup=%@&subject=%@&body=%@",
-                          self.newsgroup,
-                          [self subjectText],
-                          [self bodyText]];
-    
-    [self sendPostWithBaseURL:baseURL];
-}
-
-- (void) sendPostWithBaseURL:(NSString*)baseURL {
     [SVProgressHUD showWithStatus:@"Posting..."];
     
-    [WebNewsDataHandler runHTTPPOSTOperationWithBaseURL:@"compose"
-                                             parameters:baseURL
-                                                success:^(AFHTTPRequestOperation *op, id response) {
-                                                    if (self.didSendReplyBlock) {
-                                                        self.didSendReplyBlock();
-                                                    }
-                                                    [SVProgressHUD dismiss];
-                                                    [self.navigationController popViewControllerAnimated:YES];
-                                                }
-                                                failure:^(AFHTTPRequestOperation *op, NSError *error) {
-                                                    NSLog(@"%s Error: %@", __PRETTY_FUNCTION__, error);
-                                                }];
+    NSDictionary *parameters = @{@"newsgroup"   : self.newsgroup,
+                                 @"subject"     : [self subjectText],
+                                 @"body"        : [self bodyText]};
+    
+    [self sendPostWithParameters:parameters];
+}
+
+- (void) sendPostWithParameters:(NSDictionary*)parameters {
+    [[WebNewsDataHandler sharedHandler] POST:@"compose"
+                                  parameters:parameters
+                                     success:^(NSURLSessionDataTask *task, id response) {
+                                         if (self.didSendReplyBlock) {
+                                             self.didSendReplyBlock();
+                                         }
+                                         [SVProgressHUD dismiss];
+                                         [self.navigationController popViewControllerAnimated:YES];
+                                     }
+                                     failure:^(NSURLSessionDataTask *task, NSError *error) {
+                                         NSLog(@"%s Error: %@", __PRETTY_FUNCTION__, error);
+                                     }];
 }
 
 - (void)didReceiveMemoryWarning

@@ -83,15 +83,15 @@
 - (void) submitAPIKey {
     [[PDKeychainBindings sharedKeychainBindings] setObject:keyTextField.text forKey:kApiKeyKey];
     
-    NSString *parameters = @"user";
+    NSString *url = @"user";
     
-    [WebNewsDataHandler runHTTPGETOperationWithParameters:parameters success:^(AFHTTPRequestOperation *op, id responseObject) {
+    [[WebNewsDataHandler sharedHandler] GET:url parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         [self setData:responseObject[@"user"]];
         [TestFlight passCheckpoint:@"Entered API Key"];
         [self dismissViewControllerAnimated:YES completion:^{
             self.completionBlock();
         }];
-    } failure:^(AFHTTPRequestOperation *op, NSError *error) {
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
         descriptionLabel.text = @"There seems to be an error with that key. Check to see if it's correct and that you're connected to the Internet, and try again.";
         descriptionLabel.textColor = [UIColor redColor];
         [[PDKeychainBindings sharedKeychainBindings] setObject:@"NULL_API_KEY" forKey:kApiKeyKey];

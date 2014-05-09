@@ -11,6 +11,5 @@
 
 @interface PushAPIHandler : NSObject
 
-+ (void) sendPushToken:(NSString*)token withSuccess:(HTTPSuccessBlock)success failure:(HTTPFailureBlock)failure;
-
++ (void) sendPushToken:(NSString*)token;
 @end

@@ -64,6 +64,8 @@ typedef NS_ENUM(NSUInteger, UnreadClass) {
 + (instancetype) postwithDictionary:(NSDictionary*)postDictionary;
 + (PersonalClass) personalClassFromString:(NSString*)string;
 + (UIColor*) colorForPersonalClass:(PersonalClass)personalClass;
+- (NSString*) dateString;
+- (NSString*) timeString;
 
 - (void) loadBody;
 - (void) loadBodyWithBlock:(void (^)(Post *currentPost))block;
