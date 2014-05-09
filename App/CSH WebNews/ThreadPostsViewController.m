@@ -89,7 +89,9 @@
     replyVC.didSendReplyBlock = ^ {
         self.reloadThreadsBlock();
     };
-    [self.navigationController pushViewController:replyVC animated:YES];
+    [self presentViewController:[[UINavigationController alloc] initWithRootViewController:replyVC]
+                       animated:YES
+                     completion:nil];
 }
 
 - (void) viewDidLayoutSubviews {

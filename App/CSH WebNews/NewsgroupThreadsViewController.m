@@ -66,7 +66,9 @@
 
 - (void) newPost {
     NewPostViewController *newPost = [NewPostViewController postControllerWithNewsgroup:self.outline.name];
-    [self.navigationController pushViewController:newPost animated:YES];
+    [self presentViewController:[[UINavigationController alloc] initWithRootViewController:newPost]
+                       animated:YES
+                     completion:nil];
 }
 
 - (void) viewWillAppear:(BOOL)animated {
