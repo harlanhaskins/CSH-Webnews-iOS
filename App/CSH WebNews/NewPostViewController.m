@@ -240,7 +240,7 @@
 }
 
 - (void) dismiss {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void) dealloc {
@@ -272,10 +272,10 @@
 }
 
 - (void) sendReply {
-    
+    [SVProgressHUD showWithStatus:@"Replying..."];
     NSDictionary *parameters = @{@"newsgroup": self.newsgroup,
                                  @"reply_newsgroup" : self.newsgroup,
-                                 @"subject@" : [self subjectText],
+                                 @"subject" : [self subjectText],
                                  @"body" : [self bodyText],
                                  @"reply_number" : @(self.post.number)};
     
@@ -315,6 +315,7 @@
 }
 
 - (void) sendPostWithParameters:(NSDictionary*)parameters {
+    
     [[WebNewsDataHandler sharedHandler] POST:@"compose"
                                   parameters:parameters
                                      success:^(NSURLSessionDataTask *task, id response) {
@@ -322,7 +323,7 @@
                                              self.didSendReplyBlock();
                                          }
                                          [SVProgressHUD dismiss];
-                                         [self.navigationController popViewControllerAnimated:YES];
+                                         [self dismiss];
                                      }
                                      failure:^(NSURLSessionDataTask *task, NSError *error) {
                                          NSLog(@"%s Error: %@", __PRETTY_FUNCTION__, error);
