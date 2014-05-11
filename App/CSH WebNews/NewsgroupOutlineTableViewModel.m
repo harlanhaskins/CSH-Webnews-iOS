@@ -49,6 +49,9 @@
     if (newsgroup.unreadPosts > 0) {
         cell.textLabel.textColor = [Post colorForPersonalClass:newsgroup.highestPriorityPersonalClass];
     }
+    else {
+        cell.textLabel.textColor = [Post colorForPersonalClass:PersonalClassDefault];
+    }
     
     cell.textLabel.font = [newsgroup fontForName];
     
