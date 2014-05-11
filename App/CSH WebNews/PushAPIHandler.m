@@ -13,6 +13,11 @@
 
 + (void) sendPushToken:(NSString*)token {
     NSString *apiKey = [[PDKeychainBindings sharedKeychainBindings] objectForKey:kApiKeyKey];
+    
+    if (!apiKey) {
+        return;
+    }
+    
     NSDictionary *tokenParameters = @{@"token" : token,
                                       @"deviceType" : @"ios",
                                       @"apiKey" : apiKey};
