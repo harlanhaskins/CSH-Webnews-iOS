@@ -43,6 +43,10 @@
     return self;
 }
 
+- (UIColor*) headerColor {
+    return self.unread ? [UIColor colorWithRed:0.760 green:0.112 blue:0.090 alpha:1.000] : [UIColor colorWithRed:0.122 green:0.533 blue:1.000 alpha:1.000];
+}
+
 // Don't expose the recursive methods.
 + (instancetype) newsgroupThreadWithDictionary:(NSDictionary*)dictionary {
     return [self newsgroupThreadWithDictionary:dictionary atDepth:0];

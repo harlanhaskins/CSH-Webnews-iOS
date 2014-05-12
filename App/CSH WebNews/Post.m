@@ -242,20 +242,19 @@ static NSDateFormatter *dateFormatter;
 }
 
 - (UIColor*) subjectColor {
-    PersonalClass subjectPersonalClass = self.unread ? PersonalClassDefault : self.personalClass;
-    return [[self class] colorForPersonalClass:subjectPersonalClass];
+    return [[self class] colorForPersonalClass:self.personalClass];
 }
 
 + (UIColor*) colorForPersonalClass:(PersonalClass)personalClass {
     switch (personalClass) {
         case PersonalClassInThreadWithMine:
-            return [UIColor colorWithRed:0.000 green:0.076 blue:0.509 alpha:1.000];
+            return [UIColor colorWithRed:0.085 green:0.227 blue:0.709 alpha:1.000];
             
         case PersonalClassMine:
-            return [UIColor colorWithRed:0.000 green:0.814 blue:0.000 alpha:1.000];
+            return [UIColor colorWithRed:0.067 green:0.755 blue:0.071 alpha:1.000];
             
         case PersonalClassReplyToMine:
-            return [UIColor colorWithRed:0.953 green:0.268 blue:0.935 alpha:1.000];
+            return [UIColor colorWithRed:0.875 green:0.284 blue:0.874 alpha:1.000];
             
         case PersonalClassDefault:
         default:
