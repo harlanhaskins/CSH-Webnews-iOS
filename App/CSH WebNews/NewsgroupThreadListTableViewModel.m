@@ -45,7 +45,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellID];
     }
     
-    cell.textLabel.text = thread.post.subject;
+    cell.textLabel.text = [thread subjectAndUnreadCount];
     cell.textLabel.font = [thread fontForSubject];
     cell.detailTextLabel.text = [thread.post authorshipAndTimeString];
     
