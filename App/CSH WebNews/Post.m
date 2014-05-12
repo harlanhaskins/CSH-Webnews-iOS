@@ -254,7 +254,7 @@ static NSDateFormatter *dateFormatter;
             return [UIColor colorWithRed:0.067 green:0.755 blue:0.071 alpha:1.000];
             
         case PersonalClassReplyToMine:
-            return [UIColor colorWithRed:0.875 green:0.284 blue:0.874 alpha:1.000];
+            return [UIColor colorWithRed:0.953 green:0.309 blue:0.952 alpha:1.000];
             
         case PersonalClassDefault:
         default:
