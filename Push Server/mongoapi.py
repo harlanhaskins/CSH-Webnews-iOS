@@ -70,7 +70,8 @@ def deviceTokenLookupQuery(deviceToken):
     """
     deviceQueries = []
     for deviceType in DEVICE_TYPE_KEYS:
-        deviceQueries.append({DEVICE_TOKEN_KEY + "." + deviceType: deviceToken})
+        key = (DEVICE_TOKEN_KEY + "." + deviceType);
+        deviceQueries.append({key : deviceToken})
 
     return {"$or":deviceQueries}
 

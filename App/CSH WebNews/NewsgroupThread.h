@@ -29,5 +29,6 @@
 
 + (instancetype) newsgroupThreadWithDictionary:(NSDictionary*)dictionary;
 - (UIFont*) fontForSubject;
+- (NSString *) subjectAndUnreadCount;
 
 @end

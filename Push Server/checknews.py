@@ -6,6 +6,8 @@ import pushnotifications
 import argparse
 import time
 
+from daemonize import Daemonize
+
 baseURL = "https://webnews.csh.rit.edu/"
 verbose = False
 debug = False
@@ -117,6 +119,7 @@ def differenceOfLists(list1, list2):
     """
     s = set(list2)
     return [x for x in list1 if x not in s]
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()

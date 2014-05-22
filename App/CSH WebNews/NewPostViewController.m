@@ -155,7 +155,7 @@
     [super viewDidLayoutSubviews];
     
     self.replyToLabel.size = [self.replyToLabel sizeThatFits:[self replyToLabelConstraintSize]];
-    [self.replyToLabel centerToParent];
+    self.replyToLabel.centerX = self.view.width / 2;
     self.replyToLabel.y = [self topPadding];
     
     self.subjectField.size = [self subjectFieldSize];
@@ -164,6 +164,25 @@
     
     self.bodyTextView.size = [self bodyTextViewSize];
     self.bodyTextView.y = [self subjectFieldBottom];
+}
+
+- (void) loadDefaultText {
+    [SVProgressHUD showWithStatus:@"Loading Reply..."];
+    
+    NSDictionary *parameters = @{@"newsgroup" : self.newsgroup,
+                                 @"number" : @(self.post.number)};
+    
+    [[WebNewsDataHandler sharedHandler] GET:@"compose"
+                                 parameters:parameters
+                                    success:^(NSURLSessionDataTask *task, id responseObject) {
+                                        [SVProgressHUD dismiss];
+                                        NSString *replyDefault = responseObject[@"new_post"][@"body"];
+                                        if (replyDefault) {
+                                            self.bodyTextView.text = [self.bodyTextView.text stringByAppendingString:replyDefault];
+                                        }
+                                    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+                                        [SVProgressHUD dismiss];
+                                    }];
 }
 
 - (CGFloat) standardPadding {
@@ -204,50 +223,63 @@
                                                                                  target:self
                                                                                  action:@selector(sendPost)];
     }
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel"
+                                                                             style:UIBarButtonItemStylePlain
+                                                                            target:self
+                                                                            action:@selector(dismiss)];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWillShow:)
+                                             selector:@selector(keyboardWasShown:)
                                                  name:UIKeyboardWillShowNotification
                                                object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWillHide:)
+                                             selector:@selector(keyboardWillBeHidden:)
                                                  name:UIKeyboardWillHideNotification
                                                object:nil];
 }
 
-- (void)keyboardWillShow:(NSNotification *)notification
-{
-    // Take frame with key: UIKeyboardFrameEndUserInfoKey because we want the final frame not the begin one
-    NSValue *keyboardFrameValue = (notification.userInfo)[UIKeyboardFrameEndUserInfoKey];
-    CGRect keyboardFrame = [keyboardFrameValue CGRectValue];
-    
-    UIEdgeInsets contentInsets = self.bodyTextView.contentInset;
-    contentInsets.bottom = CGRectGetHeight(keyboardFrame);
-    
-    self.bodyTextView.contentInset = contentInsets;
-    self.bodyTextView.scrollIndicatorInsets = contentInsets;
+- (void) dismiss {
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)keyboardWillHide:(NSNotification *)notification
-{
-    UIEdgeInsets contentInsets = self.bodyTextView.contentInset;
-    contentInsets.bottom = 0.0;
+- (void) dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIKeyboardWillShowNotification
+                                                  object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIKeyboardWillHideNotification
+                                                  object:nil];
+}
+
+- (void) viewDidAppear:(BOOL)animated {
+    if (self.reply) {
+        [self loadDefaultText];
+    }
+}
+
+- (void)keyboardWasShown:(NSNotification*)notification {
+    NSDictionary* info = [notification userInfo];
+    CGSize keyboardSize = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
     
-    self.bodyTextView.contentInset = contentInsets;
-    self.bodyTextView.scrollIndicatorInsets = contentInsets;
+    self.bodyTextView.contentInset = UIEdgeInsetsMake(0, 0, keyboardSize.height, 0);
+    self.bodyTextView.scrollIndicatorInsets = self.bodyTextView.contentInset;
+}
+
+- (void)keyboardWillBeHidden:(NSNotification*)notification {
+    self.bodyTextView.contentInset = UIEdgeInsetsZero;
+    self.bodyTextView.scrollIndicatorInsets = UIEdgeInsetsZero;
 }
 
 - (void) sendReply {
+    [SVProgressHUD showWithStatus:@"Replying..."];
+    NSDictionary *parameters = @{@"newsgroup": self.newsgroup,
+                                 @"reply_newsgroup" : self.newsgroup,
+                                 @"subject" : [self subjectText],
+                                 @"body" : [self bodyText],
+                                 @"reply_number" : @(self.post.number)};
     
-    NSString *baseURL = [NSString stringWithFormat:@"newsgroup=%@&reply_newsgroup=%@&subject=%@&body=%@&reply_number=%ld",
-                         self.newsgroup,
-                         self.newsgroup,
-                         [self subjectText],
-                         [self bodyText],
-                         (long)self.post.number];
-    
-    [self sendPostWithBaseURL:baseURL];
+    [self sendPostWithParameters:parameters];
 }
 
 - (NSString*) subjectText {
@@ -273,29 +305,29 @@
 }
 
 - (void) sendPost {
-    NSString *baseURL = [NSString stringWithFormat:@"newsgroup=%@&subject=%@&body=%@",
-                          self.newsgroup,
-                          [self subjectText],
-                          [self bodyText]];
-    
-    [self sendPostWithBaseURL:baseURL];
-}
-
-- (void) sendPostWithBaseURL:(NSString*)baseURL {
     [SVProgressHUD showWithStatus:@"Posting..."];
     
-    [WebNewsDataHandler runHTTPPOSTOperationWithBaseURL:@"compose"
-                                             parameters:baseURL
-                                                success:^(AFHTTPRequestOperation *op, id response) {
-                                                    if (self.didSendReplyBlock) {
-                                                        self.didSendReplyBlock();
-                                                    }
-                                                    [SVProgressHUD dismiss];
-                                                    [self.navigationController popViewControllerAnimated:YES];
-                                                }
-                                                failure:^(AFHTTPRequestOperation *op, NSError *error) {
-                                                    NSLog(@"%s Error: %@", __PRETTY_FUNCTION__, error);
-                                                }];
+    NSDictionary *parameters = @{@"newsgroup"   : self.newsgroup,
+                                 @"subject"     : [self subjectText],
+                                 @"body"        : [self bodyText]};
+    
+    [self sendPostWithParameters:parameters];
+}
+
+- (void) sendPostWithParameters:(NSDictionary*)parameters {
+    
+    [[WebNewsDataHandler sharedHandler] POST:@"compose"
+                                  parameters:parameters
+                                     success:^(NSURLSessionDataTask *task, id response) {
+                                         if (self.didSendReplyBlock) {
+                                             self.didSendReplyBlock();
+                                         }
+                                         [SVProgressHUD dismiss];
+                                         [self dismiss];
+                                     }
+                                     failure:^(NSURLSessionDataTask *task, NSError *error) {
+                                         NSLog(@"%s Error: %@", __PRETTY_FUNCTION__, error);
+                                     }];
 }
 
 - (void)didReceiveMemoryWarning

@@ -13,12 +13,15 @@
 #import "SelectivelyRotatingNavigationController.h"
 #import "SelectivelyRotatingTabBarController.h"
 #import "PushAPIHandler.h"
+#import "CacheManager.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [TestFlight takeOff:@"57f8a290-0abe-4a6c-8e31-cc74dabf6b99"];
+    
+    [self respondToUpdate];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
@@ -30,18 +33,18 @@
     [application registerForRemoteNotificationTypes:
      (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
     
-    // Reset the badge icon.
-    application.applicationIconBadgeNumber = 0;
-    
     [self.window makeKeyAndVisible];
     
-    [PushAPIHandler sendPushToken:@"Token" withSuccess:^(AFHTTPRequestOperation *op, id response) {
-        NSLog(@"Response: %@", response);
-    } failure:^(AFHTTPRequestOperation *op, NSError *error) {
-        NSLog(@"Error: %@", error);
-    }];
-    
     return YES;
+}
+
+- (void) respondToUpdate {
+    NSString *currentVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+    NSString *version = [[NSUserDefaults standardUserDefaults] objectForKey:@"version"];
+    if (!version || ![version isEqualToString:currentVersion]) {
+        [CacheManager clearAllCaches];
+        [[NSUserDefaults standardUserDefaults] setObject:currentVersion forKey:@"version"];
+    }
 }
 
 + (UIViewController*) viewController {
@@ -81,6 +84,9 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    
+    // Reset the badge icon.
+    application.applicationIconBadgeNumber = 0;
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
@@ -98,11 +104,7 @@
                           ntohl(tokenBytes[3]), ntohl(tokenBytes[4]), ntohl(tokenBytes[5]),
                           ntohl(tokenBytes[6]), ntohl(tokenBytes[7])];
     
-    [PushAPIHandler sendPushToken:hexToken withSuccess:^(AFHTTPRequestOperation *op, id response) {
-        NSLog(@"Response: %@", response);
-    } failure:^(AFHTTPRequestOperation *op, NSError *error) {
-        NSLog(@"Error: %@", error);
-    }];
+    [PushAPIHandler sendPushToken:hexToken];
 }
 
 - (void) application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {

@@ -45,7 +45,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellID];
     }
     
-    cell.textLabel.text = thread.post.subject;
+    cell.textLabel.text = [thread subjectAndUnreadCount];
     cell.textLabel.font = [thread fontForSubject];
     cell.detailTextLabel.text = [thread.post authorshipAndTimeString];
     
@@ -70,18 +70,39 @@
 }
 
 - (void) setThreads:(NSArray *)threads {
-    _threads = threads;
+    _threads = [self arrayByMergingArray:threads intoArray:_threads];
     [CacheManager cacheThreads:threads withOutline:self.outline];
 }
 
 - (void) loadData {
-    NSString *parameters = [NSString stringWithFormat:@"%@/index?limit=20", self.outline.name];
+    return [self loadDataWithParameters:@{@"limit" : @20}];
+}
+
+- (void) loadMorePosts {
+    NewsgroupThread *oldestThread = [self.threads lastObject];
+    NSString *date = [oldestThread.post dateString];
+    [self loadDataWithParameters:@{@"limit" : @20,
+                                   @"from_older" : date}];
+}
+
+- (NSArray*) arrayByMergingArray:(NSArray*)array intoArray:(NSArray*)otherArray {
+    array = array ?: @[];
+    otherArray = otherArray ?: @[];
+    NSArray *newArray = [@[array, otherArray] valueForKeyPath: @"@distinctUnionOfArrays.self"];
+    newArray = [newArray sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        return [obj2 compare:obj1];
+    }];
+    return newArray;
+}
+
+- (void) loadDataWithParameters:(NSDictionary*)parameters {
+    NSString *url = [NSString stringWithFormat:@"%@/index", self.outline.name];
     
-    [WebNewsDataHandler runHTTPGETOperationWithParameters:parameters success:^(AFHTTPRequestOperation *op, id response) {
+    [[WebNewsDataHandler sharedHandler] GET:url parameters:parameters success:^(NSURLSessionDataTask *task, id response) {
         NSArray *threads = [self newsgroupThreadsFromNewsgroupThreadDictionaryArray:response[@"posts_older"]];
         [self setThreads:threads];
         self.loadDataBlock();
-    } failure:^(AFHTTPRequestOperation *op, NSError *error) {
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"Error: %@", error);
     }];
 }

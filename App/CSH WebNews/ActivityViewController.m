@@ -56,12 +56,15 @@
     self.refreshControl = [UIRefreshControl new];
     [self.refreshControl addTarget:self action:@selector(loadData) forControlEvents:UIControlEventAllEvents];
 //    [self.view addSubview:self.tableView];
-    
-    [self checkAPIKey];
 }
 
 - (void) viewDidLayoutSubviews {
     self.tableView.frame = self.view.frame;
+}
+
+- (void) viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self checkAPIKey];
 }
 
 - (void) checkAPIKey {

@@ -6,3 +6,4 @@ xcuserdata
 *.pyc
 *.pem
 *.txt
+*.pid

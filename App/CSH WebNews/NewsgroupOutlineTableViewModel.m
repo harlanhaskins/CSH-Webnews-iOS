@@ -49,6 +49,9 @@
     if (newsgroup.unreadPosts > 0) {
         cell.textLabel.textColor = [Post colorForPersonalClass:newsgroup.highestPriorityPersonalClass];
     }
+    else {
+        cell.textLabel.textColor = [Post colorForPersonalClass:PersonalClassDefault];
+    }
     
     cell.textLabel.font = [newsgroup fontForName];
     
@@ -78,13 +81,13 @@
 
 - (void) loadDataWithBlock:(void(^)())block {
     
-    NSString *parameters = @"newsgroups";
+    NSString *url = @"newsgroups";
     
-    [WebNewsDataHandler runHTTPGETOperationWithParameters:parameters success:^(AFHTTPRequestOperation *op, id response) {
-        NSArray *newsgroups = [self newsgroupArrayFromDictionaryArray:response[parameters]];
+    [[WebNewsDataHandler sharedHandler] GET:url parameters:nil success:^(NSURLSessionDataTask *task, id response) {
+        NSArray *newsgroups = [self newsgroupArrayFromDictionaryArray:response[url]];
         [self setNewsgroups:newsgroups];
         block();
-    } failure:^(AFHTTPRequestOperation *op, NSError *error) {
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Error downloading data. Please check your internet connection." delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Okay", nil];
         [alert show];
     }];

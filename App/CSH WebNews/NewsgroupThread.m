@@ -43,6 +43,19 @@
     return self;
 }
 
+- (UIColor*) headerColor {
+    return self.unread ? [UIColor colorWithRed:0.760 green:0.112 blue:0.090 alpha:1.000] : [UIColor colorWithRed:0.122 green:0.533 blue:1.000 alpha:1.000];
+}
+
+- (NSString *) subjectAndUnreadCount {
+    NSPredicate *unreadPredicate = [NSPredicate predicateWithFormat:@"%K = %@", @"unread", @YES];
+    NSArray *unread = [self.allThreads filteredArrayUsingPredicate:unreadPredicate];
+    if (unread && unread.count == 0) {
+        return self.subject;
+    }
+    return [NSString stringWithFormat:@"%@ (%lu)", self.subject, (unsigned long)unread.count];
+}
+
 // Don't expose the recursive methods.
 + (instancetype) newsgroupThreadWithDictionary:(NSDictionary*)dictionary {
     return [self newsgroupThreadWithDictionary:dictionary atDepth:0];
@@ -127,7 +140,7 @@
 }
 
 - (NSString*) headerText {
-    return self.post.authorName;
+    return [NSString stringWithFormat:@"%@ (%@)", self.post.authorName, [self.post friendlyDate]];
 }
 
 - (NSInteger) number {
@@ -145,6 +158,31 @@
 
 - (BOOL) isStarred {
     return self.post.isStarred;
+}
+
+- (NSComparisonResult) compare:(NewsgroupThread*)thread {
+    return [self.post.date compare:thread.post.date];
+}
+
+- (NSUInteger) hash {
+    return self.post.number * [self.post.newsgroup hash];
+}
+
+- (BOOL) isUnread {
+    return self.post.unread;
+}
+
+- (BOOL) isEqual:(id)object {
+    if (![object isKindOfClass:[self class]]) {
+        return NO;
+    }
+    if (self.post.number != [[object post] number]) {
+        return NO;
+    }
+    if (![self.post.newsgroup isEqualToString:[[object post] newsgroup]]) {
+        return NO;
+    }
+    return YES;
 }
 
 @end

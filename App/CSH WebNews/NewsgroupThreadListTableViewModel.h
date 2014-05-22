@@ -17,6 +17,7 @@
 
 + (instancetype) threadListWithNewsgroupOutline:(NewsgroupOutline*)outline;
 - (void) loadData;
+- (void) loadMorePosts;
 
 @property (nonatomic, readonly) NewsgroupOutline *outline;
 @property (nonatomic, readonly) NSArray *threads;

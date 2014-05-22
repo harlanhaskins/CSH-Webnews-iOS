@@ -71,13 +71,13 @@
 
 - (void) loadDataWithBlock:(void(^)())block {
     
-    NSString *parameters = @"activity";
+    NSString *url = @"activity";
     
-    [WebNewsDataHandler runHTTPGETOperationWithParameters:parameters success:^(AFHTTPRequestOperation *op, id response) {
-        NSArray *activityThreads = [self activityThreadArrayFromDictionaryArray:response[parameters]];
+    [[WebNewsDataHandler sharedHandler] GET:url parameters:nil success:^(NSURLSessionDataTask *task, id response) {
+        NSArray *activityThreads = [self activityThreadArrayFromDictionaryArray:response[url]];
         [self setThreads:activityThreads];
         block();
-    } failure:^(AFHTTPRequestOperation *op, NSError *error) {
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Error downloading data. Please check your internet connection." delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Okay", nil];
         [alert show];
     }];

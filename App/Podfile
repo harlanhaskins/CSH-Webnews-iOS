@@ -5,4 +5,6 @@ pod 'PDKeychainBindingsController', :podspec => 'https://raw.github.com/carlbrow
 pod 'SAMTextView'
 pod 'SAMTextField'
 pod 'SVProgressHUD'
+pod 'SVPullToRefresh'
 pod 'UIImage+ImageWithColor'
+pod 'UIView+Positioning'

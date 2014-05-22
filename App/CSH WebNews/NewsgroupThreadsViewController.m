@@ -11,6 +11,7 @@
 #import "NewsgroupThreadListTableViewModel.h"
 #import "NewsgroupOutline.h"
 #import "NewPostViewController.h"
+#import "UIScrollView+SVInfiniteScrolling.h"
 
 @interface NewsgroupThreadsViewController ()
 
@@ -43,9 +44,13 @@
     };
     self.tableViewModel.loadDataBlock = ^{
         [weakself reloadTableView];
+        [weakself.tableView.infiniteScrollingView stopAnimating];
     };
     
     self.tableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStylePlain];
+    [self.tableView addInfiniteScrollingWithActionHandler:^{
+        [weakself.tableViewModel loadMorePosts];
+    }];
     
     self.tableView.delegate = self.tableViewModel;
     self.tableView.dataSource = self.tableViewModel;
@@ -61,7 +66,9 @@
 
 - (void) newPost {
     NewPostViewController *newPost = [NewPostViewController postControllerWithNewsgroup:self.outline.name];
-    [self.navigationController pushViewController:newPost animated:YES];
+    [self presentViewController:[[UINavigationController alloc] initWithRootViewController:newPost]
+                       animated:YES
+                     completion:nil];
 }
 
 - (void) viewWillAppear:(BOOL)animated {

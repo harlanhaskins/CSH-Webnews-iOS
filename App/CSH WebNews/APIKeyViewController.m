@@ -59,15 +59,15 @@
 }
 
 - (void) viewDidLayoutSubviews {
-    [titleLabel centerToParent];
+    titleLabel.centerX = self.view.width / 2.0;
     titleLabel.y = 40.0f;
     
     descriptionLabel.width = self.view.width * 0.9;
-    [descriptionLabel centerToParent];
+    descriptionLabel.centerX = self.view.width / 2.0;
     descriptionLabel.y = titleLabel.bottom + 7.0;
     
     keyTextField.width = self.view.width * 0.75;
-    [keyTextField centerToParent];
+    keyTextField.centerX = self.view.width / 2.0;
     keyTextField.y = descriptionLabel.bottom + 25.0;
 }
 
@@ -83,15 +83,15 @@
 - (void) submitAPIKey {
     [[PDKeychainBindings sharedKeychainBindings] setObject:keyTextField.text forKey:kApiKeyKey];
     
-    NSString *parameters = @"user";
+    NSString *url = @"user";
     
-    [WebNewsDataHandler runHTTPGETOperationWithParameters:parameters success:^(AFHTTPRequestOperation *op, id responseObject) {
+    [[WebNewsDataHandler sharedHandler] GET:url parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         [self setData:responseObject[@"user"]];
         [TestFlight passCheckpoint:@"Entered API Key"];
         [self dismissViewControllerAnimated:YES completion:^{
             self.completionBlock();
         }];
-    } failure:^(AFHTTPRequestOperation *op, NSError *error) {
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
         descriptionLabel.text = @"There seems to be an error with that key. Check to see if it's correct and that you're connected to the Internet, and try again.";
         descriptionLabel.textColor = [UIColor redColor];
         [[PDKeychainBindings sharedKeychainBindings] setObject:@"NULL_API_KEY" forKey:kApiKeyKey];

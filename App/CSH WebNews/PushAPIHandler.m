@@ -7,54 +7,26 @@
 //
 
 #import "PushAPIHandler.h"
+#import "PDKeychainBindings.h"
 
 @implementation PushAPIHandler
 
-+ (void) sendPushToken:(NSString*)token withSuccess:(HTTPSuccessBlock)success failure:(HTTPFailureBlock)failure {
-    NSString *tokenParameters = [NSString stringWithFormat:@"?token=%@&deviceType=ios", token];
-    NSURL *url = [self urlFromParameters:tokenParameters];
++ (void) sendPushToken:(NSString*)token {
+    NSString *apiKey = [[PDKeychainBindings sharedKeychainBindings] objectForKey:kApiKeyKey];
     
-    if (!url) {
+    if (!apiKey) {
         return;
     }
     
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    [request setHTTPMethod:@"POST"];
+    NSDictionary *tokenParameters = @{@"token" : token,
+                                      @"deviceType" : @"ios",
+                                      @"apiKey" : apiKey};
     
-    AFHTTPRequestOperation *op = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-    op.responseSerializer = [[AFJSONResponseSerializer alloc] init];
-    op.securityPolicy.allowInvalidCertificates = YES;
-    [op setCompletionBlockWithSuccess:success failure:failure];
+    NSString *url = @"http://san.csh.rit.edu:38382/token";
     
-    [[NSOperationQueue mainQueue] addOperation:op];
-}
-
-+ (NSURL*) urlFromParameters:(NSString*)parameters {
-    NSString *baseURL = @"http://localhost:5000/token";
-    
-    NSString *apiKey = [[PDKeychainBindings sharedKeychainBindings] objectForKey:kApiKeyKey];
-    
-    if ([apiKey isEqualToString:@"NULL_API_KEY"]) {
-        return nil;
-    }
-    
-    NSString *apiKeyString = [NSString stringWithFormat:@"apiKey=%@", apiKey];
-    
-    NSString *questionMarkString = @"?";
-    NSString *ampersandString = @"&";
-    
-    if ([parameters rangeOfString:questionMarkString].location == NSNotFound) {
-        apiKeyString = [questionMarkString stringByAppendingString:apiKeyString];
-    }
-    else {
-        apiKeyString = [ampersandString stringByAppendingString:apiKeyString];
-    }
-    
-    parameters = [parameters stringByAppendingString:apiKeyString];
-    
-    baseURL = [baseURL stringByAppendingString:parameters];
-    
-    return [NSURL URLWithString:baseURL];
+    [[AFHTTPSessionManager manager] POST:url parameters:tokenParameters success:nil failure:^(NSURLSessionDataTask *task, NSError *error) {
+        NSLog(@"%s %@", __PRETTY_FUNCTION__, error);
+    }];
 }
 
 @end

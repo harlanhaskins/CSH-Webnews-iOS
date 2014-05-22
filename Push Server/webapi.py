@@ -5,6 +5,7 @@ from flask import request
 from flask.json import jsonify
 import mongoapi
 import argparse
+from daemonize import Daemonize
 
 app = Flask(__name__)
 
@@ -23,10 +24,10 @@ def token():
         deviceType = form["deviceType"]
 
     if not (token and deviceType and apiKey):
-        return responseWithMessage("You must provide both an API Key, a push token, and a device type.", 412)
+        return responseWithMessage("You must provide an API Key, a push token, and a device type.", 412)
 
     if not deviceType in mongoapi.DEVICE_TYPE_KEYS:
-        return responseWithMessage("Only 'ios' and 'android' are supported as valid device types.", 412)
+        return responseWithMessage("Only 'ios', 'windowsphone', and 'android' are supported as valid device types.", 412)
 
     success = mongoapi.insertUser(token, apiKey, deviceType)
     if success:
@@ -41,14 +42,27 @@ def responseWithMessage(message, code):
     return Response(message, status=code)
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument("-t", "--test",
-                        help="Runs the server in test mode and updates the testUsers database.",
-                        action="store_true")
 
-    args = parser.parse_args()
+    def main():
+        parser = argparse.ArgumentParser()
+        parser.add_argument("-t", "--test",
+                            help="Runs the server in test mode and updates the testUsers database.",
+                            action="store_true")
 
-    if args.test:
-        mongoapi.database = mongoapi.MongoClient().webnewsios.testUsers
+        args = parser.parse_args()
 
-    app.run(port=38382, host="san.csh.rit.edu", debug=args.test)
+        app.run(port=38382, host="san.csh.rit.edu", debug=args.test)
+
+        if args.test:
+            mongoapi.database = mongoapi.MongoClient().webnewsios.testUsers
+
+
+    main()
+    """
+    appname = "com.harlanhaskins.webnewspushwebapi"
+    pidfile = "/tmp/" + appname + ".pid"
+
+    daemon = daemonize(app=appname, pid=pidfile, action=main)
+    daemon.start()
+    """
+>>>>>>> a897e2bd1b6a67c2c40ac22cadc3b9c128790472

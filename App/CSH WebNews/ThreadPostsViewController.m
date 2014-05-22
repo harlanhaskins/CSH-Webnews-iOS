@@ -48,8 +48,8 @@
 
 - (void) didTapStar:(UIButton*)sender {
     NewsgroupThread *threadToStar = self.thread.allThreads[sender.tag];
-    NSString *parameters = [NSString stringWithFormat:@"%@/%li/star", threadToStar.board, (long)threadToStar.number];
-    [WebNewsDataHandler runHTTPPUTOperationWithParameters:parameters success:^(AFHTTPRequestOperation *op, id response) {
+    NSString *url = [NSString stringWithFormat:@"%@/%li/star", threadToStar.board, (long)threadToStar.number];
+    [[WebNewsDataHandler sharedHandler] PUT:url parameters:nil success:^(NSURLSessionDataTask *task, id response) {
         BOOL starred = [response[@"starred"] boolValue];
         if (starred) {
             [sender setImage:[UIImage imageNamed:@"StarFilled"] forState:UIControlStateNormal];
@@ -57,29 +57,29 @@
         else {
             [sender setImage:[UIImage imageNamed:@"Star"] forState:UIControlStateNormal];
         }
-    } failure:^(AFHTTPRequestOperation *op, NSError *error) {
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"%s Error: %@", __PRETTY_FUNCTION__, error);
     }];
 }
 
 - (void) didTapDelete:(UIButton*)sender {
     NewsgroupThread *threadToDelete = self.thread.allThreads[sender.tag];
-    NSString *parameters = [NSString stringWithFormat:@"%@/%li", threadToDelete.board, (long)threadToDelete.number];
-    NSString *deleteParameters = [parameters stringByAppendingString:@"?confirm_cancel=true"];
-    [WebNewsDataHandler runHTTPDELETEOperationWithParameters:deleteParameters success:^(AFHTTPRequestOperation *op, id response) {
+    NSString *url = [NSString stringWithFormat:@"%@/%li", threadToDelete.board, (long)threadToDelete.number];
+    NSDictionary *parameters = @{@"confirm_cancel" : @YES};
+    [[WebNewsDataHandler sharedHandler] DELETE:url parameters:parameters success:^(NSURLSessionDataTask *task, id response) {
         [self reloadThread];
-    } failure:^(AFHTTPRequestOperation *op, NSError *error) {
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"%s Error: %@", __PRETTY_FUNCTION__, error);
     }];
 }
 
 - (void) reloadThread {
     NewsgroupThread *thread = self.thread;
-    NSString *parameters = [NSString stringWithFormat:@"%@/%li", thread.board, (long)thread.number];
-    [WebNewsDataHandler runHTTPGETOperationWithParameters:parameters success:^(AFHTTPRequestOperation *op, id response) {
+    NSString *url = [NSString stringWithFormat:@"%@/%li", thread.board, (long)thread.number];
+    [[WebNewsDataHandler sharedHandler] GET:url parameters:nil success:^(NSURLSessionDataTask *task, id response) {
         self.thread = [NewsgroupThread newsgroupThreadWithDictionary:response];
         [self loadPosts];
-    } failure:^(AFHTTPRequestOperation *op, NSError *error) {
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"%s Error: %@", __PRETTY_FUNCTION__, error);
     }];
 }
@@ -89,7 +89,9 @@
     replyVC.didSendReplyBlock = ^ {
         self.reloadThreadsBlock();
     };
-    [self.navigationController pushViewController:replyVC animated:YES];
+    [self presentViewController:[[UINavigationController alloc] initWithRootViewController:replyVC]
+                       animated:YES
+                     completion:nil];
 }
 
 - (void) viewDidLayoutSubviews {
@@ -122,15 +124,19 @@
 
 - (void) markThreadRead {
     dispatch_async(dispatch_queue_create("Mark Thread Read", NULL), ^{
-        NSString *parameters = [NSString stringWithFormat:@"mark_read?newsgroup=%@&number=%li&in_thread=true", self.thread.post.newsgroup, (long)self.thread.post.number];
-        [WebNewsDataHandler runHTTPPUTOperationWithParameters:parameters success:^(AFHTTPRequestOperation *op, id response) {
+        
+        NSDictionary *parameters = @{@"newsgroup" : self.thread.post.newsgroup,
+                                     @"number" : @(self.thread.post.number),
+                                     @"in_thread" : @"true"};
+        
+        [[WebNewsDataHandler sharedHandler] PUT:@"mark_read" parameters:parameters success:^(NSURLSessionDataTask *task, id response) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (self.reloadThreadsBlock) {
                     self.reloadThreadsBlock();
                 }
             });
-        } failure:^(AFHTTPRequestOperation *op, NSError *error) {
-            NSLog(@"Failed to mark thread read.");
+        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+            NSLog(@"%s [Line: %d] %@", __PRETTY_FUNCTION__, __LINE__, error);
         }];
     });
 }

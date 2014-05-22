@@ -43,6 +43,12 @@
 
 @implementation Post
 
+static NSDateFormatter *dateFormatter;
+
++ (void) initialize {
+    dateFormatter = [NSDateFormatter new];
+}
+
 - (void) encodeWithCoder:(NSCoder *)coder {
     [coder encodeObject:self.newsgroup forKey:@"newsgroup"];
     [coder encodeObject:self.subject forKey:@"subject"];
@@ -80,7 +86,7 @@
         self.stickyRealName = [decoder decodeObjectForKey:@"stickyRealName"];
         self.parentNewsgroup = [decoder decodeObjectForKey:@"parentNewsgroup"];
         self.followUpNewsgroup = [decoder decodeObjectForKey:@"followUpNewsgroup"];
-        self.body = [decoder decodeObjectForKey:@"body"];
+        [self setBody:[decoder decodeObjectForKey:@"body"] processed:NO];
         self.headers = [decoder decodeObjectForKey:@"headers"];
         
         self.date = [decoder decodeObjectForKey:@"date"];
@@ -106,9 +112,10 @@
     }
     
     NSInteger postNumber = [postDictionary[@"number"] integerValue];
+    NSString *newsgroup  = postDictionary[@"newsgroup"];
     ISO8601DateFormatter *dateFormatter = [[ISO8601DateFormatter alloc] init];
     
-    Post *post = [CacheManager cachedPostWithNumber:postNumber];
+    Post *post = [CacheManager cachedPostWithNewsgroup:newsgroup number:postNumber];
     if (post) {
         // Change the values that can change.
         post.starred = [postDictionary[@"starred"] boolValue];
@@ -118,7 +125,7 @@
     }
     
     post = [Post new];
-    post.newsgroup = postDictionary[@"newsgroup"];
+    post.newsgroup = newsgroup;
     post.subject = postDictionary[@"subject"];
     post.authorName = postDictionary[@"author_name"];
     post.authorEmail = postDictionary[@"author_email"];
@@ -190,21 +197,21 @@
         return;
     }
     
-    NSString *parameters = [NSString stringWithFormat:@"%@/%li?html_body=true", self.newsgroup, (long)self.number];
+    NSString *url = [NSString stringWithFormat:@"%@/%li", self.newsgroup, (long)self.number];
     
-    [WebNewsDataHandler runHTTPGETOperationWithParameters:parameters
-                                                  success:^(AFHTTPRequestOperation *op, id response) {
-                                                      [self setBody:response[@"post"][@"body"]];
-                                                      [CacheManager cachePost:self];
-                                                      block(self);
-                                                  } failure:^(AFHTTPRequestOperation *op, NSError *error) {
-                                                      NSLog(@"Error: %@", error);
-                                                  }];
+    [[WebNewsDataHandler sharedHandler] GET:url
+                                 parameters:@{@"html_body" : @"true"}
+                                    success:^(NSURLSessionDataTask *task, id response) {
+                                        [self setBody:response[@"post"][@"body"] processed:YES];
+                                        [CacheManager cachePost:self];
+                                        block(self);
+                                    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+                                        NSLog(@"Error: %@", error);
+                                    }];
 }
 
 - (NSString*) dateString {
     // Create an empty formatter.
-    NSDateFormatter *dateFormatter = [NSDateFormatter new];
     
     // Set the date format to a nice format.
     [dateFormatter setDateFormat:@"yyyy-MM-d"];
@@ -214,9 +221,6 @@
 }
 
 - (NSString *) timeString {
-    // Create an empty formatter.
-    NSDateFormatter *dateFormatter = [NSDateFormatter new];
-    
     // Set the date format to a nice format.
     [dateFormatter setDateFormat:@"hh:mm:sa"];
     
@@ -238,17 +242,24 @@
 }
 
 - (UIColor*) subjectColor {
-    PersonalClass subjectPersonalClass = self.unread ? PersonalClassDefault : self.personalClass;
-    return [[self class] colorForPersonalClass:subjectPersonalClass];
+    return [[self class] colorForPersonalClass:self.personalClass];
 }
 
 + (UIColor*) colorForPersonalClass:(PersonalClass)personalClass {
-    NSArray *colors = @[[UIColor colorWithRed:0.000 green:0.814 blue:0.000 alpha:1.000],
-                        [UIColor colorWithRed:0.000 green:0.076 blue:0.509 alpha:1.000],
-                        [UIColor colorWithRed:0.953 green:0.268 blue:0.935 alpha:1.000],
-                        [UIColor blackColor]];
-    
-    return colors[personalClass];
+    switch (personalClass) {
+        case PersonalClassInThreadWithMine:
+            return [UIColor colorWithRed:0.085 green:0.227 blue:0.709 alpha:1.000];
+            
+        case PersonalClassMine:
+            return [UIColor colorWithRed:0.067 green:0.755 blue:0.071 alpha:1.000];
+            
+        case PersonalClassReplyToMine:
+            return [UIColor colorWithRed:0.953 green:0.309 blue:0.952 alpha:1.000];
+            
+        case PersonalClassDefault:
+        default:
+            return [UIColor blackColor];
+    }
 }
 
 - (UIFont*) fontForAuthorshipString {
@@ -264,8 +275,13 @@
     return [NSString stringWithFormat:@"Depth: %li", (long)self.depth];
 }
 
-- (NSString*) body {
-    return [self processedBody];
+- (void) setBody:(NSString *)body processed:(BOOL)processed {
+    if (processed) {
+        _body = [self processedBodyFromUnprocessedBody:body];
+    }
+    else {
+        _body = body;
+    }
 }
 
 - (NSAttributedString *) attributedBody {
@@ -276,27 +292,29 @@
                                                      error:nil];
 }
 
-- (NSString*) processedBody {
-    if (_body) {
-        
-        // Add CSS to body. I'm so sorry.
-        NSString *cssRules = @"<style type=\"text/css\">body {white-space: pre-wrap; word-wrap: break-word; font-family: sans-serif;} blockquote {color: #aaa;} </style>";
-        _body = [_body stringByAppendingString:cssRules];
-        
-        // Replace tabs with 4 spaces. I'm so sorry.
-        _body = [_body stringByReplacingOccurrencesOfString:@"\t" withString:@"&nbsp;&nbsp;&nbsp;&nbsp;"];
-        
-        // Grab the end of the blockquote and delete everything before it. I'm so sorry.
-        NSRange rangeOfDivClosing = [_body rangeOfString:@"</div><br />"];
-        NSUInteger end = rangeOfDivClosing.location + rangeOfDivClosing.length;
-        if (end != NSNotFound) {
-            NSUInteger totalLength = end;
-            _body = [_body substringFromIndex:totalLength];
-        }
+- (NSString*) processedBodyFromUnprocessedBody:(NSString*)body {
+    if (!body) {
+        return nil;
     }
+    // Add CSS to body. I'm so sorry.
+    NSString *cssRules = @"<style type=\"text/css\">body {white-space: pre-wrap; word-wrap: break-word; font-family: sans-serif;} blockquote {color: #aaa;} span.subject {color:#aaa; font-weight: bold;} </style>";
+    NSString *subjectHTML = [NSString stringWithFormat:@"<span class=\"subject\">%@\n\n</span>", self.subject];
+    NSString *newBody = [subjectHTML stringByAppendingString:body];
+    newBody = [newBody stringByAppendingString:cssRules];
+    
+    // Replace tabs with 4 spaces. I'm so sorry.
+    newBody = [newBody stringByReplacingOccurrencesOfString:@"\t" withString:@"&nbsp;&nbsp;&nbsp;&nbsp;"];
+    
+    //        // Grab the end of the blockquote and delete everything before it. I'm so sorry.
+    //        NSRange rangeOfDivClosing = [_body rangeOfString:@"</div><br />"];
+    //        NSUInteger end = rangeOfDivClosing.location + rangeOfDivClosing.length;
+    //        if (end != NSNotFound) {
+    //            NSUInteger totalLength = end;
+    //            _body = [body substringFromIndex:totalLength];
+    //        }
     
     // Sorry. So sorry. I am so sorry. I am.
-    return _body;
+    return newBody;
 }
 
 - (BOOL) isSelfPost {
