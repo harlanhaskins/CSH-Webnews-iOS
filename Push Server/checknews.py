@@ -103,7 +103,6 @@ def checkAllUsers():
         if numberOfNewPosts == numberOfOldPosts:
             if verbose: print("\t" + apiShortKey + "Not updating posts.")
         else:
-            pushnotifications.sendSilentBadgeUpdateAlert(tokens, unreadPostCount, numberOfNewPosts)
             if numberOfNewPosts < posts:
                 pushnotifications.sendSilentBadgeUpdateAlert(tokens, unreadPostCount, len(newPosts))
             if verbose: print("\t" + apiShortKey + "Updating posts.\n\t\tOld count: " + \
@@ -133,10 +132,14 @@ if __name__ == "__main__":
     parser.add_argument("-s", "--sleep",
                         help="Specifies the duration (in seconds) that the program sleeps between executions.",
                         type=float)
+    parser.add_argument("-c", "--cron",
+                        help="Run the script in 'cron-mode' meaning that it doesn't repeat ever.",
+                        action="store_true")
     args = parser.parse_args()
 
+    cron = args.cron
+    verbose = args.verbose or not cron
     debug = args.test
-    verbose = args.verbose
     pushnotifications.verbose = verbose
     forcerepeat = args.force_repeat
 
@@ -144,6 +147,6 @@ if __name__ == "__main__":
 
     while True:
         checkAllUsers()
-        if debug and not forcerepeat:
+        if (cron or debug) and not forcerepeat:
             break
         time.sleep(timeout)

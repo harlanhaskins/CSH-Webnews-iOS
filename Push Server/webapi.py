@@ -11,26 +11,33 @@ app = Flask(__name__)
 @app.route("/token", methods=["POST"])
 def token():
     arguments = request.args
+    form = request.form
     token = arguments.get("token", "")
+    if not token:
+        token = form["token"]
     apiKey = arguments.get("apiKey", "")
+    if not apiKey:
+        apiKey = form["apiKey"]
     deviceType = arguments.get("deviceType", "")
+    if not deviceType:
+        deviceType = form["deviceType"]
 
     if not (token and deviceType and apiKey):
-        return errorWithMessage("You must provide both an API Key, a push token, and a device type.", 412)
+        return responseWithMessage("You must provide both an API Key, a push token, and a device type.", 412)
 
     if not deviceType in mongoapi.DEVICE_TYPE_KEYS:
-        return errorWithMessage("Only 'ios' and 'android' are supported as valid device types.", 412)
+        return responseWithMessage("Only 'ios' and 'android' are supported as valid device types.", 412)
 
     success = mongoapi.insertUser(token, apiKey, deviceType)
     if success:
         return successWithMessage('The user was updated successfully.')
     else:
-        return errorWithMessage('The database encountered an error inserting the token', 500)
+        return responseWithMessage('The database encountered an error inserting the token', 500)
 
 def successWithMessage(message):
-    return jsonify(message)
+    return responseWithMessage(message, 200)
 
-def errorWithMessage(message, code):
+def responseWithMessage(message, code):
     return Response(message, status=code)
 
 if __name__ == "__main__":
@@ -44,4 +51,4 @@ if __name__ == "__main__":
     if args.test:
         mongoapi.database = mongoapi.MongoClient().webnewsios.testUsers
 
-    app.run(host="san.csh.rit.edu", debug=args.test)
+    app.run(port=38382, host="san.csh.rit.edu", debug=args.test)
