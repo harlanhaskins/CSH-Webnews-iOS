@@ -5,8 +5,7 @@ import requests
 import pushnotifications
 import argparse
 import time
-
-from daemonize import Daemonize
+from multiprocessing import Pool
 
 baseURL = "https://webnews.csh.rit.edu/"
 verbose = False
@@ -70,48 +69,54 @@ def checkAllUsers():
     Once the new posts have been determined, the posts in the database are overwritten with the posts returned from unreadReplies().
     """
     if verbose: print("----- New Run ----")
-    for user in mongoapi.allUsers():
-        apiKey = user[mongoapi.API_KEY_KEY]
-        tokens = user[mongoapi.DEVICE_TOKEN_KEY]
-        isDev = user[mongoapi.DEVELOPER_KEY]
-        posts = user[mongoapi.UNREAD_POSTS_KEY]
+    pool = Pool(60)
+    results = [pool.apply_async(processUnreadRepliesForUser, args=(user,)) for user in mongoapi.allUsers()]
+    if verbose:
+        results = [result.get() for result in results]
 
-        if verbose: print("Processing user: " + apiKey)
 
-        apiShortKey = shortAPIKey(apiKey)
+def processUnreadRepliesForUser(user):
+    apiKey = user[mongoapi.API_KEY_KEY]
+    tokens = user[mongoapi.DEVICE_TOKEN_KEY]
+    isDev = user[mongoapi.DEVELOPER_KEY]
+    posts = user[mongoapi.UNREAD_POSTS_KEY]
 
-        newPosts = unreadReplies(apiKey)
-        if newPosts == None:
-            # If the user's API key is invalid, then remove the user from the database.
-            mongoapi.removeUserWithAPIKey(apiKey)
-            if verbose: print("\t" + apiShortKey + "Removing API Key: " + apiKey)
-            continue
+    if verbose: print("Processing user: " + apiKey)
 
-        if verbose: print("\t" + apiShortKey + "New Posts: " + str(newPosts))
+    apiShortKey = shortAPIKey(apiKey)
 
-        unreadPostCount = len(differenceOfLists(newPosts, posts))
-        if verbose:
-            postsWord = "post" if unreadPostCount == 1 else "posts"
-            print("\t" + apiShortKey + "User has " + str(unreadPostCount) + " new unread " + postsWord + ".")
-        if unreadPostCount > 0 or (debug and isDev):
-            if verbose: print("\t" + apiShortKey + "Sending notification...")
-            pushnotifications.sendUnreadReplyAlert(tokens, unreadPostCount, len(newPosts))
-            if verbose: print("\t\tDone.")
-        else:
-            if verbose: print("\t" + apiShortKey + "Not sending notification.")
+    newPosts = unreadReplies(apiKey)
+    if newPosts == None:
+        # If the user's API key is invalid, then remove the user from the database.
+        mongoapi.removeUserWithAPIKey(apiKey)
+        if verbose: print("\t" + apiShortKey + "Removing API Key: " + apiKey)
+        return
 
-        numberOfNewPosts = len(newPosts)
-        numberOfOldPosts = len(posts)
-        if numberOfNewPosts == numberOfOldPosts:
-            if verbose: print("\t" + apiShortKey + "Not updating posts.")
-        else:
-            if numberOfNewPosts < posts:
-                pushnotifications.sendSilentBadgeUpdateAlert(tokens, unreadPostCount, len(newPosts))
-            if verbose: print("\t" + apiShortKey + "Updating posts.\n\t\tOld count: " + \
-                              str(len(posts)) + \
-                              "\n\t\tNew count: " + str(len(newPosts)))
+    if verbose: print("\t" + apiShortKey + "New Posts: " + str(newPosts))
 
-            mongoapi.updatePostIDListForAPIKey(newPosts, apiKey)
+    unreadPostCount = len(differenceOfLists(newPosts, posts))
+    if verbose:
+        postsWord = "post" if unreadPostCount == 1 else "posts"
+        print("\t" + apiShortKey + "User has " + str(unreadPostCount) + " new unread " + postsWord + ".")
+    if unreadPostCount > 0 or (debug and isDev):
+        if verbose: print("\t" + apiShortKey + "Sending notification...")
+        pushnotifications.sendUnreadReplyAlert(tokens, unreadPostCount, len(newPosts))
+        if verbose: print("\t\tDone.")
+    else:
+        if verbose: print("\t" + apiShortKey + "Not sending notification.")
+
+    numberOfNewPosts = len(newPosts)
+    numberOfOldPosts = len(posts)
+    if numberOfNewPosts == numberOfOldPosts:
+        if verbose: print("\t" + apiShortKey + "Not updating posts.")
+    else:
+        if numberOfNewPosts < posts:
+            pushnotifications.sendSilentBadgeUpdateAlert(tokens, unreadPostCount, len(newPosts))
+        if verbose: print("\t" + apiShortKey + "Updating posts.\n\t\tOld count: " + \
+                          str(len(posts)) + \
+                          "\n\t\tNew count: " + str(len(newPosts)))
+
+        mongoapi.updatePostIDListForAPIKey(newPosts, apiKey)
 
 def differenceOfLists(list1, list2):
     """
@@ -141,7 +146,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     cron = args.cron
-    verbose = args.verbose or not cron
+    verbose = args.verbose
     debug = args.test
     pushnotifications.verbose = verbose
     forcerepeat = args.force_repeat

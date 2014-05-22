@@ -5,7 +5,6 @@ from flask import request
 from flask.json import jsonify
 import mongoapi
 import argparse
-from daemonize import Daemonize
 
 app = Flask(__name__)
 
@@ -65,4 +64,3 @@ if __name__ == "__main__":
     daemon = daemonize(app=appname, pid=pidfile, action=main)
     daemon.start()
     """
->>>>>>> a897e2bd1b6a67c2c40ac22cadc3b9c128790472
