@@ -71,8 +71,7 @@ def checkAllUsers():
     if verbose: print("----- New Run ----")
     pool = Pool(60)
     results = [pool.apply_async(processUnreadRepliesForUser, args=(user,)) for user in mongoapi.allUsers()]
-    if verbose:
-        results = [result.get() for result in results]
+    runResults = [result.get() for result in results]
 
 
 def processUnreadRepliesForUser(user):
