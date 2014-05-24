@@ -47,7 +47,7 @@ def credentials(apiKey):
     """
     Returns the WebNews API credential parameters for a given API key.
     """
-    return "api_key=" + apiKey + "&api_agent=iOSPushServer"
+    return "api_key=" + apiKey + "&api_agent=Mobile%20Push%20Server"
 
 def shortAPIKey(apiKey):
     """
@@ -55,7 +55,7 @@ def shortAPIKey(apiKey):
     """
     return apiKey[:4] + ": "
 
-def checkAllUsers():
+def checkAllUsers(threaded=False):
     """
     Iterates through every user in the Mongo database checking for their unread
     posts, and sending push notifications when necessary.
@@ -69,9 +69,13 @@ def checkAllUsers():
     Once the new posts have been determined, the posts in the database are overwritten with the posts returned from unreadReplies().
     """
     if verbose: print("----- New Run ----")
-    pool = Pool(60)
-    results = [pool.apply_async(processUnreadRepliesForUser, args=(user,)) for user in mongoapi.allUsers()]
-    runResults = [result.get() for result in results]
+    if threaded:
+        pool = Pool(60)
+        results = [pool.apply_async(processUnreadRepliesForUser, args=(user,)) for user in mongoapi.allUsers()]
+        runResults = [result.get() for result in results]
+    else:
+        for user in mongoapi.allUsers():
+            processUnreadRepliesForUser(user)
 
 
 def processUnreadRepliesForUser(user):
@@ -142,18 +146,22 @@ if __name__ == "__main__":
     parser.add_argument("-c", "--cron",
                         help="Run the script in 'cron-mode' meaning that it doesn't repeat ever.",
                         action="store_true")
+    parser.add_argument("-p", "--pooled",
+                        help="Runs the script multithreaded",
+                        action="store_true")
     args = parser.parse_args()
 
     cron = args.cron
     verbose = args.verbose
     debug = args.test
+    threaded = args.pooled
     pushnotifications.verbose = verbose
     forcerepeat = args.force_repeat
 
     timeout = args.sleep if args.sleep else 10
 
     while True:
-        checkAllUsers()
+        checkAllUsers(threaded=threaded)
         if (cron or debug) and not forcerepeat:
             break
         time.sleep(timeout)
