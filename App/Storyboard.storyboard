@@ -1,41 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6206.9" systemVersion="14A354" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="3H9-Yo-BLv">
-=======
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6206.9" systemVersion="14A354" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Gqt-lM-fCt">
->>>>>>> cc1c60b... Fixed small issues with authentication.
-=======
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6206.9" systemVersion="14A365" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Gqt-lM-fCt">
->>>>>>> cf80b1b... Small fixes with authentication.
-=======
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A370" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Gqt-lM-fCt">
->>>>>>> 1bae97a... Fixed issue preventing reloading threads.
-=======
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A370" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Gqt-lM-fCt">
->>>>>>> ac351b8... Merged in master.
-=======
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A370" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="3H9-Yo-BLv">
->>>>>>> 26b9571... Split View Controller works with small bugs. Titles don't show up, and it shows up uncollapsed.
-=======
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6249" systemVersion="14A386a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="3H9-Yo-BLv">
->>>>>>> a4cc61b... Fixed all bugs relating to split view controllers on iPhone and iPad. Thanks, iOS 8!
-=======
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A386a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="3H9-Yo-BLv">
->>>>>>> 58b8f1c... Fixed some small issues here and there. Re-made all assets as vectors.
-=======
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6249" systemVersion="14A388a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="3H9-Yo-BLv">
->>>>>>> a8c2a35... Adjusted white points to be a little more legible.
-=======
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A388a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="3H9-Yo-BLv">
->>>>>>> fe8aaa2... Fixed caching issue. Added descriptive text for all sorts of post loading.
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -511,41 +475,7 @@
         <image name="SelectedNewsgroupTab" width="25" height="26"/>
     </resources>
     <inferredMetricsTieBreakers>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-        <segue reference="WIf-66-Owm"/>
-=======
-        <segue reference="kzR-CH-oxv"/>
->>>>>>> cf80b1b... Small fixes with authentication.
-        <segue reference="vJA-hj-EFH"/>
-=======
-        <segue reference="Cg0-Jb-FHL"/>
-        <segue reference="PVq-Lt-6PZ"/>
->>>>>>> 26b9571... Split View Controller works with small bugs. Titles don't show up, and it shows up uncollapsed.
-=======
-        <segue reference="ufE-hn-82r"/>
-        <segue reference="vJA-hj-EFH"/>
->>>>>>> a4cc61b... Fixed all bugs relating to split view controllers on iPhone and iPad. Thanks, iOS 8!
-=======
-        <segue reference="PVq-Lt-6PZ"/>
-        <segue reference="ufE-hn-82r"/>
->>>>>>> 8ffadc1... Fixed issue with unrecognized segue and moved to using a popover segue for posts.
-=======
-        <segue reference="ufE-hn-82r"/>
-        <segue reference="vJA-hj-EFH"/>
->>>>>>> c4c9fff... Small subtle changes to improve readability throughout.
-=======
-        <segue reference="PVq-Lt-6PZ"/>
-        <segue reference="9uI-mF-SAL"/>
->>>>>>> 3e8e7c8... Removed the TestFlight SDK.
-=======
         <segue reference="9uI-mF-SAL"/>
         <segue reference="vJA-hj-EFH"/>
->>>>>>> e343510... Made headers relative.
     </inferredMetricsTieBreakers>
 </document>

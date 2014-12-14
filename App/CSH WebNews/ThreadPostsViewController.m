@@ -75,15 +75,7 @@
 }
 
 - (IBAction) reloadThread {
-<<<<<<< HEAD
-<<<<<<< HEAD
-    [self loadThreadWithNewsgroup:self.thread.newsgroup
-=======
     [self loadThreadWithNewsgroup:self.thread.post.newsgroup
->>>>>>> 1bae97a... Fixed issue preventing reloading threads.
-=======
-    [self loadThreadWithNewsgroup:self.thread.post.newsgroup
->>>>>>> ac351b8... Merged in master.
                            number:@(self.thread.number)];
 }
 
