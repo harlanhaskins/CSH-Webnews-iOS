@@ -15,8 +15,6 @@
 
 @interface NewsgroupOutlineTableViewModel ()
 
-@property (nonatomic, readwrite) NSArray* newsgroups;
-
 @end
 
 @implementation NewsgroupOutlineTableViewModel
@@ -28,21 +26,15 @@
 }
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.newsgroups count];
+    NSUInteger rows = self.newsgroups.count;
+    [tableView addLoadingTextIfNecessaryForRows:rows withItemName:@"Newsgroups"];
+    return rows;
 }
 
 - (UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NewsgroupOutline *newsgroup = self.newsgroups[indexPath.row];
     
-    NSString *cellID = @"NewsgroupCell";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-    
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
-                                                       reuseIdentifier:cellID];
-    }
-    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NewsgroupCell" forIndexPath:indexPath];
     
     cell.textLabel.text = [newsgroup textWithUnreadCount];
     
@@ -52,14 +44,6 @@
     else {
         cell.textLabel.textColor = [Post colorForPersonalClass:PersonalClassDefault];
     }
-    
-    cell.textLabel.font = [newsgroup fontForName];
-    
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    
-    cell.textLabel.backgroundColor =
-    cell.detailTextLabel.backgroundColor =
-    cell.backgroundColor = [UIColor whiteColor];
     return cell;
 }
 
@@ -86,21 +70,13 @@
     [[WebNewsDataHandler sharedHandler] GET:url parameters:nil success:^(NSURLSessionDataTask *task, id response) {
         NSArray *newsgroups = [self newsgroupArrayFromDictionaryArray:response[url]];
         [self setNewsgroups:newsgroups];
-        block();
+        if (block) {
+           block();
+        }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Error downloading data. Please check your internet connection." delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Okay", nil];
         [alert show];
     }];
-}
-
-- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [self loadNewsgroupIndexWithNewsgroup:self.newsgroups[indexPath.row]];
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-}
-
-- (void) loadNewsgroupIndexWithNewsgroup:(NewsgroupOutline*)newsgroup {
-    NewsgroupThreadsViewController *threadsVC = [NewsgroupThreadsViewController threadListWithNewsgroupOutline:newsgroup];
-    self.pushViewControllerBlock(threadsVC);
 }
 
 @end

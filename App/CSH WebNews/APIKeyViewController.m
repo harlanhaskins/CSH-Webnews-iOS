@@ -13,62 +13,27 @@
 
 @property (nonatomic) NSDictionary *data;
 
+@property (weak, nonatomic) IBOutlet UITextField *keyTextField;
+@property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
+@property (nonatomic) UIStatusBarStyle oldStyle;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *keyFieldTrailingConstraint;
+
 @end
 
-@implementation APIKeyViewController {
-    UITextField *keyTextField;
-    UILabel *descriptionLabel;
-    UILabel *titleLabel;
-}
+@implementation APIKeyViewController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
     self.title = @"User";
-    self.view.backgroundColor = [UIColor whiteColor];
-	titleLabel = [[UILabel alloc] init];
-    titleLabel.font = [UIFont systemFontOfSize:34.0];
-    titleLabel.text = @"Enter your\nWebNews API Key";
-    titleLabel.numberOfLines = 2;
-    titleLabel.textAlignment = NSTextAlignmentCenter;
-    [titleLabel sizeToFit];
-    [self.view addSubview:titleLabel];
-    
-    descriptionLabel = [[UILabel alloc] init];
-    descriptionLabel.text = @"You can't use Web News until you type in your API key.\nYou can find it in WebNews Settings.";
-    descriptionLabel.font = [UIFont systemFontOfSize:10.0f];
-    descriptionLabel.adjustsFontSizeToFitWidth = YES;
-    descriptionLabel.numberOfLines = 2;
-    descriptionLabel.textAlignment = NSTextAlignmentCenter;
-    [descriptionLabel sizeToFit];
-    [self.view addSubview:descriptionLabel];
-    
-    keyTextField = [[UITextField alloc] init];
-    keyTextField.height = 44.0;
-    keyTextField.placeholder = @"abcd1234efgh5678";
-    keyTextField.delegate = self;
-    keyTextField.autocapitalizationType = UITextAutocapitalizationTypeNone;
-    keyTextField.autocorrectionType = UITextAutocorrectionTypeNo;
-    keyTextField.returnKeyType = UIReturnKeyDone;
-    keyTextField.enablesReturnKeyAutomatically = YES;
-    keyTextField.textAlignment = NSTextAlignmentCenter;
-    [self.view addSubview:keyTextField];
-    [keyTextField becomeFirstResponder];
-    
-}
 
-- (void) viewDidLayoutSubviews {
-    titleLabel.centerX = self.view.width / 2.0;
-    titleLabel.y = 40.0f;
+    self.oldStyle = [UIApplication sharedApplication].statusBarStyle;
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
     
-    descriptionLabel.width = self.view.width * 0.9;
-    descriptionLabel.centerX = self.view.width / 2.0;
-    descriptionLabel.y = titleLabel.bottom + 7.0;
-    
-    keyTextField.width = self.view.width * 0.75;
-    keyTextField.centerX = self.view.width / 2.0;
-    keyTextField.y = descriptionLabel.bottom + 25.0;
+    [self.keyTextField becomeFirstResponder];
 }
 
 - (BOOL) textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
@@ -81,21 +46,45 @@
 }
 
 - (void) submitAPIKey {
-    [[PDKeychainBindings sharedKeychainBindings] setObject:keyTextField.text forKey:kApiKeyKey];
-    
+    [AuthenticationManager setApiKey:self.keyTextField.text];
+    [self.activityIndicator startAnimating];
+    [self setKeyFieldLeadingConstant:10.0];
     NSString *url = @"user";
     
-    [[WebNewsDataHandler sharedHandler] GET:url parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[WebNewsDataHandler sharedHandler] GET:url parameters:nil
+                                    success:^(NSURLSessionDataTask *task, id responseObject) {
         [self setData:responseObject[@"user"]];
-        [TestFlight passCheckpoint:@"Entered API Key"];
+        [UIApplication sharedApplication].statusBarStyle = self.oldStyle;
         [self dismissViewControllerAnimated:YES completion:^{
-            self.completionBlock();
+            if (self.completionBlock) {
+                self.completionBlock();
+            }
         }];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        descriptionLabel.text = @"There seems to be an error with that key. Check to see if it's correct and that you're connected to the Internet, and try again.";
-        descriptionLabel.textColor = [UIColor redColor];
-        [[PDKeychainBindings sharedKeychainBindings] setObject:@"NULL_API_KEY" forKey:kApiKeyKey];
+        self.descriptionLabel.text = @"There seems to be an error with that key.\n"
+                                     @"Check it and your connection.";
+        self.descriptionLabel.textColor = [UIColor redColor];
+        [self.activityIndicator stopAnimating];
+        [self setKeyFieldLeadingConstant:-20.0];
+        [AuthenticationManager invalidateKey];
     }];
+}
+
+- (void) setKeyFieldLeadingConstant:(CGFloat)constant {
+    self.keyFieldTrailingConstraint.constant = constant;
+    [UIView animateWithDuration:0.5
+                          delay:0.0
+         usingSpringWithDamping:1.0
+          initialSpringVelocity:1.0
+                        options:UIViewAnimationOptionAllowAnimatedContent
+                     animations:^{
+                         [self.view layoutIfNeeded];
+                     } completion:nil];
+}
+
+- (void) dismissViewControllerAnimated:(BOOL)flag completion:(void (^)(void))completion {
+    [self.keyTextField resignFirstResponder];
+    [super dismissViewControllerAnimated:flag completion:completion];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
@@ -104,12 +93,6 @@
         [self submitAPIKey];
     }
     return shouldReturn;
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end

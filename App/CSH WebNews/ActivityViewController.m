@@ -11,11 +11,12 @@
 #import "APIKeyViewController.h"
 #import "WebNewsDataHandler.h"
 #import "NewsgroupThread.h"
+#import "ActivityThread.h"
 #import "ThreadPostsViewController.h"
+#import "CSH_News-Swift.h"
 
-@interface ActivityViewController ()
+@interface ActivityViewController ()<UISplitViewControllerDelegate>
 
-@property (nonatomic, readwrite) UITableView *tableView;
 @property (nonatomic, readwrite) ActivityTableViewModel *tableViewModel;
 @property (nonatomic, readwrite) NSDate *lastUpdated;
 
@@ -23,43 +24,50 @@
 
 @implementation ActivityViewController
 
-- (instancetype) init {
-    if (self = [super init]) {
-        self.title = @"Activity";
-        self.tabBarItem = [[UITabBarItem alloc] initWithTitle:self.title
-                                                        image:[UIImage imageNamed:@"ActivityTab.png"]
-                                                          tag:0];
-    }
+- (instancetype) initWithCoder:(NSCoder *)aDecoder {
+    self = [super initWithCoder:aDecoder];
+    if (!self) return nil;
+    
+    self.tabBarItem.image = [[UIImage imageNamed:@"ActivityTab"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    self.tabBarItem.selectedImage = [[UIImage imageNamed:@"SelectedActivityTab"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    
+    self.title = @"Activity";
+    
     return self;
 }
 
-- (void) viewDidLoad
-{
+- (void) viewDidLoad {
     [super viewDidLoad];
     
     self.tableViewModel = [ActivityTableViewModel new];
     
-    __weak ActivityViewController *weakSelf = self;
-    self.tableViewModel.didSelectCellBlock = ^(NewsgroupThread* thread) {
-        ThreadPostsViewController *postsVC = [ThreadPostsViewController controllerWithThread:thread];
-        postsVC.reloadThreadsBlock = ^ {
-            [weakSelf loadData];
-        };
-        [weakSelf.navigationController pushViewController:postsVC animated:YES];
-    };
-    
-    self.tableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStylePlain];
-    
-    self.tableView.delegate = self.tableViewModel;
+    self.tableView.delegate = self;
     self.tableView.dataSource = self.tableViewModel;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 50.0;
     
-    self.refreshControl = [UIRefreshControl new];
-    [self.refreshControl addTarget:self action:@selector(loadData) forControlEvents:UIControlEventAllEvents];
-//    [self.view addSubview:self.tableView];
+    [self.tableView registerNib:[UINib nibWithNibName:@"ThreadCell" bundle:nil]
+         forCellReuseIdentifier:@"ThreadCell"];
+    
+    [self.tableView reloadData];
 }
 
-- (void) viewDidLayoutSubviews {
-    self.tableView.frame = self.view.frame;
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [self performSegueWithIdentifier:@"View Posts" sender:[tableView cellForRowAtIndexPath:indexPath]];
+}
+
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"Prompt for API Key"]) {
+        [segue.destinationViewController setCompletionBlock:^{
+            [self loadData];
+        }];
+    }
+    else if ([segue.identifier isEqualToString:@"View Posts"]) {
+        ActivityThread *thread = self.tableViewModel.threads[[self.tableView indexPathForCell:sender].row];
+        ThreadPostsViewController *postsVC = (ThreadPostsViewController*)[segue.destinationViewController topViewController];
+        [postsVC setNewsgroup:thread.parentPost.newsgroup number:@(thread.parentPost.number) subject:thread.parentPost.subject];
+    }
 }
 
 - (void) viewDidAppear:(BOOL)animated {
@@ -68,30 +76,38 @@
 }
 
 - (void) checkAPIKey {
-    NSString *apiKey = [[PDKeychainBindings sharedKeychainBindings] objectForKey:kApiKeyKey];
-    if (!apiKey || [apiKey isEqualToString:@"NULL_API_KEY"]) {
-        APIKeyViewController *apiKeyViewController = [[APIKeyViewController alloc] init];
-        
-        [apiKeyViewController setCompletionBlock:^{
-            [self loadData];
-        }];
-        
-        [self presentViewController:apiKeyViewController animated:YES completion:nil];
+    if ([AuthenticationManager keyIsValid]) {
+        [self loadData];
     }
     else {
-        [self loadData];
+        [self showAPIKeyViewController];
     }
 }
 
-- (void) loadData {
+- (void) showAPIKeyViewController {
+    [self performSegueWithIdentifier:@"Prompt for API Key" sender:nil];
+}
+
+- (IBAction) loadData  {
     [self.tableViewModel loadDataWithBlock:^{
         [self reloadTableView];
+    } invalidAPIKeyBlock:^(NSError *error) {
+        if ([error.userInfo[AFNetworkingOperationFailingURLResponseErrorKey] statusCode] == 401) {
+            [self showAPIKeyViewController];
+        }
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Error" message:@"Error downloading data. Please check your internet connection." preferredStyle:UIAlertControllerStyleAlert];
+        [alertController addAction:[UIAlertAction actionWithTitle:@"Okay"
+                                                            style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction *action) {
+                                                              [self dismissViewControllerAnimated:YES completion:nil];
+                                                          }]];
+        [self presentViewController:alertController animated:YES completion:nil];
     }];
 }
 
 - (void) reloadTableView {
-    [self.tableView reloadData];
     [self.refreshControl endRefreshing];
+    [self.tableView reloadData];
 }
 
 @end

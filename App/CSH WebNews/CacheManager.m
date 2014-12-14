@@ -64,7 +64,7 @@
 }
 
 + (NSString*) postCachePathWithWithNewsgroup:(NSString*)newsgroup number:(NSInteger)number {
-    NSString *postCachePath = [NSString stringWithFormat:@"Post_%@_%li", newsgroup, (long)number];
+    NSString *postCachePath = [NSString stringWithFormat:@"Post_%@_%@", newsgroup, @(number)];
     return [self cachePathWithPathComponent:postCachePath];
 }
 

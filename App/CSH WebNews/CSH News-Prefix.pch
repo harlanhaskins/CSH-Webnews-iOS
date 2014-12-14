@@ -13,12 +13,7 @@
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
-    #import "UIView+Positioning.h"
     #import <SystemConfiguration/SystemConfiguration.h>
     #import <MobileCoreServices/MobileCoreServices.h>
-    #import "PDKeychainBindingsController.h"
-    #import "NSNull+TypeAdditions.h"
-    #import "TestFlight.h"
-    #define kApiKeyKey @"api_key"
-    #define kBaseURLFormat @"https://webnews.csh.rit.edu/%@"
+    #import "CSH_News-Swift.h"
 #endif

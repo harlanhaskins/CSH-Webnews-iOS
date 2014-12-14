@@ -9,7 +9,8 @@
 #import "NewsgroupThread.h"
 #import "Post.h"
 #import "CacheManager.h"
-#import "NSMutableArray+HHActionButtons.h"
+#import "HHPostCell.h"
+#import "UIColor+CSH.h"
 
 @interface NewsgroupThread ()
 
@@ -22,11 +23,6 @@
 @end
 
 @implementation NewsgroupThread
-
-@synthesize bodyText;
-@synthesize headerText;
-@synthesize depth;
-@synthesize actionButtons = _actionButtons;
 
 - (void) encodeWithCoder:(NSCoder *)coder {
     [coder encodeObject:self.post forKey:@"post"];
@@ -43,17 +39,14 @@
     return self;
 }
 
-- (UIColor*) headerColor {
-    return self.unread ? [UIColor colorWithRed:0.760 green:0.112 blue:0.090 alpha:1.000] : [UIColor colorWithRed:0.122 green:0.533 blue:1.000 alpha:1.000];
+- (NSUInteger) numberOfPosts {
+    return self.allThreads.count;
 }
 
-- (NSString *) subjectAndUnreadCount {
+- (NSUInteger) numberOfUnreadPosts {
     NSPredicate *unreadPredicate = [NSPredicate predicateWithFormat:@"%K = %@", @"unread", @YES];
     NSArray *unread = [self.allThreads filteredArrayUsingPredicate:unreadPredicate];
-    if (unread && unread.count == 0) {
-        return self.subject;
-    }
-    return [NSString stringWithFormat:@"%@ (%lu)", self.subject, (unsigned long)unread.count];
+    return unread.count;
 }
 
 // Don't expose the recursive methods.
@@ -73,21 +66,9 @@
     return thread;
 }
 
-- (UIFont*) fontForSubject {
-    for (Post *post in self.allPosts) {
-        if (post.unreadClass != UnreadClassDefault) {
-            return [UIFont boldSystemFontOfSize:18.0];
-        }
-    }
-    return [UIFont systemFontOfSize:18.0];
-}
-
 - (NSMutableArray *) allPosts {
     if (!_allPosts) {
-        _allPosts = [NSMutableArray array];
-        for (NewsgroupThread *thread in self.allThreads) {
-            [_allPosts addObject:thread.post];
-        }
+        _allPosts = [self.allThreads valueForKeyPath:@"@unionOfObjects.post"];
     }
     return _allPosts;
 }
@@ -104,27 +85,12 @@
     return _allThreads;
 }
 
-- (NSMutableArray*) actionButtons {
-    if (!_actionButtons) {
-        _actionButtons = [NSMutableArray new];
-        [_actionButtons HH_addActionButtonWithImage:[UIImage imageNamed:@"Reply"]
-                                             target:self.delegate
-                                           selector:@selector(didTapReply:)];
-        
-        UIImage *starImage = [self isStarred] ? [UIImage imageNamed:@"StarFilled"] : [UIImage imageNamed:@"Star"];
-        [_actionButtons HH_addActionButtonWithImage:starImage
-                                             target:self.delegate
-                                           selector:@selector(didTapStar:)];
-    }
-    return _actionButtons;
-}
-
 - (BOOL) hasChildren {
     return self.children && self.children.count > 0;
 }
 
 - (NSString *) bodyText {
-    return [self.post.body stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    return self.post.body;
 }
 
 - (NSString*) board {
@@ -139,12 +105,27 @@
     return self.post.attributedBody;
 }
 
-- (NSString*) headerText {
-    return [NSString stringWithFormat:@"%@ (%@)", self.post.authorName, [self.post friendlyDate]];
+- (NSString *)dotsString {
+    NSInteger numberPastMax = self.depth - MaxIndentationLevel;
+    NSString *dots;
+    if (numberPastMax > 0) {
+        NSString *paddingString = @"• ";
+        dots = [@"" stringByPaddingToLength:(numberPastMax * paddingString.length)
+                                 withString:paddingString startingAtIndex:0];
+    }
+    return dots;
 }
 
-- (NSInteger) number {
+- (NSString *)friendlyDate {
+    return self.post.friendlyDate;
+}
+
+- (NSUInteger) number {
     return self.post.number;
+}
+
+- (void) addAttributesToAttributedString:(NSMutableAttributedString*)string {
+    [self.post addAttributesToAttributedString:string];
 }
 
 - (NSMutableArray *) childrenFromDictionaryArray:(NSArray*)array atDepth:(NSInteger)theDepth {
@@ -161,11 +142,13 @@
 }
 
 - (NSComparisonResult) compare:(NewsgroupThread*)thread {
-    return [self.post.date compare:thread.post.date];
+    NSDate *myDate = self.sticky ? self.post.stickyUntilDate : self.post.date;
+    NSDate *otherDate = thread.sticky ? thread.post.stickyUntilDate : thread.post.date;
+    return [otherDate compare:myDate];
 }
 
 - (NSUInteger) hash {
-    return self.post.number * [self.post.newsgroup hash];
+    return @(self.post.number).hash ^ [self.post.newsgroup hash];
 }
 
 - (BOOL) isUnread {
@@ -183,6 +166,32 @@
         return NO;
     }
     return YES;
+}
+
+- (NSString*) description {
+    return self.post.description;
+}
+
+#pragma mark - ThreadProtocol
+
+- (UIColor*) unreadColor {
+    return self.post.unreadColor;
+}
+
+- (NSString*) author {
+    return self.post.authorName;
+}
+
+- (NSDate*) timestamp {
+    return self.post.date;
+}
+
+- (BOOL) sticky {
+    return [self.post isSticky];
+}
+
+- (NSString*) newsgroup {
+    return nil; // self.post.newsgroup;
 }
 
 @end

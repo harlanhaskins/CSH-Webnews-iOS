@@ -8,137 +8,135 @@
 
 #import "ThreadPostsViewController.h"
 #import "NewsgroupThread.h"
-#import "HHThreadScrollView.h"
 #import "Post.h"
 #import "WebNewsDataHandler.h"
-#import "NSMutableArray+HHActionButtons.h"
 #import "NewPostViewController.h"
+#import "HHThreadViewDataSource.h"
 #import "HHPostCell.h"
-#import "HHPostCellActionsView.h"
-#import "SVProgressHUD.h"
 
-@interface ThreadPostsViewController () <NewsgroupThreadDelegate>
+@interface ThreadPostsViewController () <HHPostCellDelegate>
 
-@property (nonatomic) HHThreadScrollView *scrollView;
 @property (nonatomic) NewsgroupThread *thread;
-@property (nonatomic) NSInteger postsLoaded;
+@property (nonatomic) HHThreadViewDataSource *dataSource;
 
 @end
 
 @implementation ThreadPostsViewController
 
-+ (instancetype) controllerWithThread:(NewsgroupThread*)thread {
-    ThreadPostsViewController *postsVC = [ThreadPostsViewController new];
-    postsVC.thread = thread;
-    return postsVC;
-}
-
 - (void) setThread:(NewsgroupThread *)thread {
     _thread = thread;
-    for (NewsgroupThread *child in thread.allThreads) {
-        child.delegate = self;
-    }
+    _thread.post.unread = NO;
     self.title = thread.post.subject;
+    self.dataSource.posts = thread.allThreads;
+    [self loadPosts];
 }
 
-- (void) didTapReply:(UIButton*)sender {
-    NewsgroupThread *threadToReply = self.thread.allThreads[sender.tag];
+- (void) postCellDidTapReply:(HHPostCell*)cell {
+    NewsgroupThread *threadToReply = (NewsgroupThread *)cell.post;
     [self replyToPost:threadToReply];
 }
 
-- (void) didTapStar:(UIButton*)sender {
-    NewsgroupThread *threadToStar = self.thread.allThreads[sender.tag];
-    NSString *url = [NSString stringWithFormat:@"%@/%li/star", threadToStar.board, (long)threadToStar.number];
-    [[WebNewsDataHandler sharedHandler] PUT:url parameters:nil success:^(NSURLSessionDataTask *task, id response) {
-        BOOL starred = [response[@"starred"] boolValue];
-        if (starred) {
-            [sender setImage:[UIImage imageNamed:@"StarFilled"] forState:UIControlStateNormal];
-        }
-        else {
-            [sender setImage:[UIImage imageNamed:@"Star"] forState:UIControlStateNormal];
-        }
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        NSLog(@"%s Error: %@", __PRETTY_FUNCTION__, error);
-    }];
+- (void) postCellDidTapStar:(HHPostCell *)cell {
+    NewsgroupThread *threadToStar = (NewsgroupThread *)cell.post;
+    NSString *url = [NSString stringWithFormat:@"%@/%@/star", threadToStar.post.newsgroup, @(threadToStar.number)];
+    [self toggleStarredOnCell:cell];
+    [[WebNewsDataHandler sharedHandler] PUT:url
+                                 parameters:nil
+                                    success:^(NSURLSessionDataTask *task, id response) {
+                                        BOOL starred = [response[@"starred"] boolValue];
+                                        [self setStarred:starred onCell:cell];
+                                    }
+                                    failure:^(NSURLSessionDataTask *task, NSError *error) {
+                                        [self toggleStarredOnCell:cell];
+                                    }];
 }
 
-- (void) didTapDelete:(UIButton*)sender {
-    NewsgroupThread *threadToDelete = self.thread.allThreads[sender.tag];
-    NSString *url = [NSString stringWithFormat:@"%@/%li", threadToDelete.board, (long)threadToDelete.number];
+- (void) toggleStarredOnCell:(HHPostCell *)cell {
+    NewsgroupThread *thread = (NewsgroupThread*)cell.post;
+    [self setStarred:!thread.post.starred onCell:cell];
+}
+
+- (void) setStarred:(BOOL)starred onCell:(HHPostCell *)cell {
+    NewsgroupThread *thread = (NewsgroupThread*)cell.post;
+    thread.post.starred = starred;
+    [cell setStarFilling];
+}
+
+- (void) postCellDidTapDelete:(HHPostCell *)cell {
+    NewsgroupThread *threadToDelete = (NewsgroupThread*)cell.post;
+    NSString *url = [NSString stringWithFormat:@"%@/%@", threadToDelete.post.newsgroup, @(threadToDelete.number)];
     NSDictionary *parameters = @{@"confirm_cancel" : @YES};
-    [[WebNewsDataHandler sharedHandler] DELETE:url parameters:parameters success:^(NSURLSessionDataTask *task, id response) {
-        [self reloadThread];
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        NSLog(@"%s Error: %@", __PRETTY_FUNCTION__, error);
-    }];
+    [[WebNewsDataHandler sharedHandler] DELETE:url
+                                    parameters:parameters
+                                       success:^(NSURLSessionDataTask *task, id response) {
+                                           [self reloadThread];
+                                       }
+                                       failure:nil];
 }
 
-- (void) reloadThread {
-    NewsgroupThread *thread = self.thread;
-    NSString *url = [NSString stringWithFormat:@"%@/%li", thread.board, (long)thread.number];
-    [[WebNewsDataHandler sharedHandler] GET:url parameters:nil success:^(NSURLSessionDataTask *task, id response) {
-        self.thread = [NewsgroupThread newsgroupThreadWithDictionary:response];
-        [self loadPosts];
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        NSLog(@"%s Error: %@", __PRETTY_FUNCTION__, error);
-    }];
+- (IBAction) reloadThread {
+<<<<<<< HEAD
+<<<<<<< HEAD
+    [self loadThreadWithNewsgroup:self.thread.newsgroup
+=======
+    [self loadThreadWithNewsgroup:self.thread.post.newsgroup
+>>>>>>> 1bae97a... Fixed issue preventing reloading threads.
+=======
+    [self loadThreadWithNewsgroup:self.thread.post.newsgroup
+>>>>>>> ac351b8... Merged in master.
+                           number:@(self.thread.number)];
 }
 
-- (void) replyToPost:(id<HHPostProtocol>)post {
-    NewPostViewController *replyVC = [NewPostViewController replyControllerWithPost:post];
-    replyVC.didSendReplyBlock = ^ {
-        self.reloadThreadsBlock();
-    };
-    [self presentViewController:[[UINavigationController alloc] initWithRootViewController:replyVC]
-                       animated:YES
-                     completion:nil];
+- (void) loadThreadWithNewsgroup:(NSString*)newsgroup number:(NSNumber*)number {
+    NSString *url = [NSString stringWithFormat:@"%@/index", newsgroup];
+    [[WebNewsDataHandler sharedHandler] GET:url
+                                 parameters:@{@"from_number" : number}
+                                    success:^(NSURLSessionDataTask *task, id response) {
+                                        self.thread = [NewsgroupThread newsgroupThreadWithDictionary:response[@"posts_selected"]];
+                                    }
+                                    failure:^(NSURLSessionDataTask *task, NSError *error) {
+                                        NSLog(@"Error: %@", error);
+                                    }];
 }
 
-- (void) viewDidLayoutSubviews {
-    [super viewDidLayoutSubviews];
-    self.scrollView.contentInset = UIEdgeInsetsMake(self.topLayoutGuide.length + 3.0,
-                                                    0,
-                                                    self.bottomLayoutGuide.length,
-                                                    0);
-    self.scrollView.frame = self.view.frame;
+- (void) replyToPost:(NewsgroupThread *)post {
+    [self performSegueWithIdentifier:@"New Reply" sender:post];
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
-    [self loadPosts];
-    // Do any additional setup after loading the view.
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    NewPostViewController *replyVC = (NewPostViewController*)[segue.destinationViewController topViewController];
+    replyVC.post = sender;
+    replyVC.reply = YES;
+    replyVC.newsgroup = replyVC.post.post.newsgroup;
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(reloadThread)
+                                                 name:NewPostViewControllerPostWasSuccessfulNotification
+                                               object:replyVC];
 }
 
-- (void) createScrollView {
-    if (self.scrollView) {
-        [self.scrollView removeFromSuperview];
-        self.scrollView = nil;
-    }
-    self.scrollView = [HHThreadScrollView threadViewWithPosts:self.thread.allThreads];
-    self.scrollView.scrollEnabled = YES;
-    self.scrollView.contentInset =
-    self.scrollView.scrollIndicatorInsets = UIEdgeInsetsMake(self.topLayoutGuide.length, 0, self.bottomLayoutGuide.length, 0);
-    [self.view addSubview:self.scrollView];
+- (void) awakeFromNib {
+    self.dataSource = [HHThreadViewDataSource new];
+    self.dataSource.delegate = self;
+    self.tableView.dataSource = self.dataSource;
+    
+    [self.tableView registerNib:[UINib nibWithNibName:@"HHPostCell" bundle:nil] forCellReuseIdentifier:kCellIdentifier];
+    
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 44.0;
+}
+
+- (void) setNewsgroup:(NSString*)newsgroup number:(NSNumber*)number subject:(NSString*)subject {
+    self.title = subject;
+    [self loadThreadWithNewsgroup:newsgroup
+                           number:number];
 }
 
 - (void) markThreadRead {
-    dispatch_async(dispatch_queue_create("Mark Thread Read", NULL), ^{
-        
-        NSDictionary *parameters = @{@"newsgroup" : self.thread.post.newsgroup,
-                                     @"number" : @(self.thread.post.number),
-                                     @"in_thread" : @"true"};
-        
-        [[WebNewsDataHandler sharedHandler] PUT:@"mark_read" parameters:parameters success:^(NSURLSessionDataTask *task, id response) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                if (self.reloadThreadsBlock) {
-                    self.reloadThreadsBlock();
-                }
-            });
-        } failure:^(NSURLSessionDataTask *task, NSError *error) {
-            NSLog(@"%s [Line: %d] %@", __PRETTY_FUNCTION__, __LINE__, error);
-        }];
-    });
+    NSDictionary *parameters = @{@"newsgroup" : self.thread.post.newsgroup,
+                                 @"number" : @(self.thread.post.number),
+                                 @"in_thread" : @YES};
+    
+    [[WebNewsDataHandler sharedHandler] PUT:@"mark_read" parameters:parameters success:nil failure:nil];
 }
 
 - (NSArray*) posts {
@@ -146,34 +144,21 @@
 }
 
 - (void) loadPosts {
-    [SVProgressHUD showWithStatus:@"Loading posts."];
-    dispatch_async(dispatch_queue_create("Loading Posts", NULL), ^{
-        for (Post *post in self.posts) {
-            [post loadBodyWithBlock:^(Post *currentPost) {
-                self.postsLoaded++;
-            }];
-        }
-        while (self.postsLoaded < self.posts.count) {
-            [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.05]];
-        }
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [SVProgressHUD dismiss];
-            [self createScrollView];
-            [self markThreadRead];
-        });
+    [self markThreadRead];
+    
+    dispatch_group_t loadPostsGroup = dispatch_group_create();
+    
+    for (NewsgroupThread *thread in self.dataSource.posts) {
+        dispatch_group_enter(loadPostsGroup);
+        [thread.post loadBodyWithCompletion:^(NSError *error) {
+            dispatch_group_leave(loadPostsGroup);
+        }];
+    }
+    
+    dispatch_group_notify(loadPostsGroup, dispatch_get_main_queue(), ^{
+        [self.refreshControl endRefreshing];
+        [self.tableView reloadData];
     });
-}
-
--(NSUInteger)supportedInterfaceOrientations {
-    return UIInterfaceOrientationMaskPortrait;
-}
-
-- (BOOL) shouldAutorotate {
-    return NO;
-}
-
-- (UIInterfaceOrientation) preferredInterfaceOrientationForPresentation {
-    return self.supportedInterfaceOrientations;
 }
 
 @end

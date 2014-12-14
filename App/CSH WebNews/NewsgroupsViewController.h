@@ -8,6 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NewsgroupsViewController : UITableViewController
+@interface NewsgroupsViewController : UITableViewController<UITableViewDelegate>
 
 @end

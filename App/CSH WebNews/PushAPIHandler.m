@@ -7,26 +7,23 @@
 //
 
 #import "PushAPIHandler.h"
-#import "PDKeychainBindings.h"
 
 @implementation PushAPIHandler
 
 + (void) sendPushToken:(NSString*)token {
-    NSString *apiKey = [[PDKeychainBindings sharedKeychainBindings] objectForKey:kApiKeyKey];
     
-    if (!apiKey) {
-        return;
-    }
+    if (!AuthenticationManager.apiKey) return;
     
     NSDictionary *tokenParameters = @{@"token" : token,
                                       @"deviceType" : @"ios",
-                                      @"apiKey" : apiKey};
+                                      @"apiKey" : AuthenticationManager.apiKey};
     
     NSString *url = @"http://san.csh.rit.edu:38382/token";
     
-    [[AFHTTPSessionManager manager] POST:url parameters:tokenParameters success:nil failure:^(NSURLSessionDataTask *task, NSError *error) {
-        NSLog(@"%s %@", __PRETTY_FUNCTION__, error);
-    }];
+    [[AFHTTPSessionManager manager] POST:url
+                              parameters:tokenParameters
+                                 success:nil
+                                 failure:nil];
 }
 
 @end

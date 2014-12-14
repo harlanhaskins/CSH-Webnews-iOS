@@ -11,14 +11,14 @@
 
 @class NewsgroupThread;
 
-@interface ActivityThread : NSObject<NSCoding>
+@interface ActivityThread : NSObject<NSCoding, ThreadProtocol>
 
 @property (nonatomic, readonly) Post *parentPost;
 @property (nonatomic, readonly) Post *newestPost;
 @property (nonatomic, readonly) Post *nextUnreadPost;
 
-@property (nonatomic, readonly) NSInteger numberOfPosts;
-@property (nonatomic, readonly) NSInteger numberOfUnreadPosts;
+@property (nonatomic, readonly) NSUInteger numberOfPosts;
+@property (nonatomic, readonly) NSUInteger numberOfUnreadPosts;
 
 @property (nonatomic, readonly) PersonalClass parentPersonalClass;
 @property (nonatomic, readonly) PersonalClass highestPriorityPersonalClass;
@@ -26,6 +26,5 @@
 @property (nonatomic, readonly, getter = isCrossPosted) BOOL crossPosted;
 
 + (instancetype) activityThreadWithDictionary:(NSDictionary*)dictionary;
-- (void) loadNewsgroupThreadVersionWithBlock:(void(^)(NewsgroupThread* thread))block;
 
 @end

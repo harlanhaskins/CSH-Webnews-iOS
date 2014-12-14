@@ -10,7 +10,6 @@
 #import "Post.h"
 #import "NewsgroupThread.h"
 #import "WebNewsDataHandler.h"
-#import "SVProgressHUD.h"
 
 @interface ActivityThread ()
 
@@ -18,8 +17,8 @@
 @property (nonatomic, readwrite) Post *newestPost;
 @property (nonatomic, readwrite) Post *nextUnreadPost;
 
-@property (nonatomic, readwrite) NSInteger numberOfPosts;
-@property (nonatomic, readwrite) NSInteger numberOfUnreadPosts;
+@property (nonatomic, readwrite) NSUInteger numberOfPosts;
+@property (nonatomic, readwrite) NSUInteger numberOfUnreadPosts;
 
 @property (nonatomic, readwrite) PersonalClass parentPersonalClass;
 @property (nonatomic, readwrite) PersonalClass highestPriorityPersonalClass;
@@ -29,6 +28,8 @@
 @end
 
 @implementation ActivityThread
+
+@synthesize sticky = _sticky;
 
 - (void) encodeWithCoder:(NSCoder *)coder {
     [coder encodeObject:self.parentPost forKey:@"parentPost"];
@@ -86,23 +87,30 @@
     return [[self parentPost] subject];
 }
 
-- (void) loadNewsgroupThreadVersionWithBlock:(void(^)(NewsgroupThread* thread))block {
-    NSString *url = [NSString stringWithFormat:@"%@/index", self.parentPost.newsgroup];
-    NSDictionary *parameters = @{@"from_number" : @(self.parentPost.number)};
-    
-    [SVProgressHUD showWithStatus:@"Loading Thread..."];
-    [[WebNewsDataHandler sharedHandler] GET:url parameters:parameters success:^(NSURLSessionDataTask *task, id response) {
-        [SVProgressHUD dismiss];
-        NSDictionary *threadDict = response[@"posts_selected"];
-        
-        NewsgroupThread *thread = [NewsgroupThread newsgroupThreadWithDictionary:threadDict];
-        if (thread) {
-            block(thread);
-        }
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        [SVProgressHUD dismiss];
-        NSLog(@"%s Error: %@", __PRETTY_FUNCTION__, error);
-    }];
+#pragma mark - ThreadProtocol
+
+- (NSString*) subject {
+    return self.parentPost.subject;
+}
+
+- (UIColor*) unreadColor {
+    return self.numberOfUnreadPosts > 0 ? [Post colorForPersonalClass:self.highestPriorityPersonalClass] : nil;
+}
+
+- (NSString*) author {
+    return self.parentPost.authorName;
+}
+
+- (NSDate*) timestamp {
+    return self.parentPost.date;
+}
+
+- (BOOL) sticky {
+    return !![self.parentPost isSticky];
+}
+
+- (NSString*) newsgroup {
+    return self.parentPost.newsgroup;
 }
 
 @end

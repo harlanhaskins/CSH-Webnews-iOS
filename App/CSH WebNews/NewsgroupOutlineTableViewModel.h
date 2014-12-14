@@ -8,10 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NewsgroupOutlineTableViewModel : NSObject<UITableViewDataSource, UITableViewDelegate>
-
-@property (nonatomic, copy) void (^pushViewControllerBlock)(UIViewController* controller);
+@interface NewsgroupOutlineTableViewModel : NSObject<UITableViewDataSource>
 
 - (void) loadDataWithBlock:(void(^)())block;
+
+@property (nonatomic) NSArray* newsgroups;
 
 @end

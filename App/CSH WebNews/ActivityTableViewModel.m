@@ -7,14 +7,12 @@
 //
 
 #import "ActivityTableViewModel.h"
-#import "ActivityThreadCell.h"
 #import "WebNewsDataHandler.h"
 #import "ActivityThread.h"
 #import "CacheManager.h"
+#import "CSH_News-Swift.h"
 
 @interface ActivityTableViewModel ()
-
-@property (nonatomic, readwrite) NSArray *threads;
 
 @end
 
@@ -31,28 +29,17 @@
 }
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.threads.count;
+    NSUInteger rows = self.threads.count;
+    [tableView addLoadingTextIfNecessaryForRows:rows withItemName:@"Threads"];
+    return rows;
 }
 
 - (UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    ActivityThreadCell *cell = [tableView dequeueReusableCellWithIdentifier:[ActivityThreadCell reuseIdentifier]];
-    if (!cell) {
-        cell = [ActivityThreadCell cell];
-    }
+    ThreadCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ThreadCell"
+                                                       forIndexPath:indexPath];
     ActivityThread *thread = self.threads[indexPath.row];
-    cell.textLabel.text = thread.parentPost.subject;
-    cell.detailTextLabel.text = [thread.parentPost authorshipAndTimeString];
-    
-    cell.textLabel.textColor = [thread.parentPost subjectColor];
+    [cell setThread:thread indexPath:indexPath];
     return cell;
-}
-
-- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    ActivityThread *thread = self.threads[indexPath.row];
-    [thread loadNewsgroupThreadVersionWithBlock:^(NewsgroupThread *thread) {
-        self.didSelectCellBlock(thread);
-    }];
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (NSArray*) activityThreadArrayFromDictionaryArray:(NSArray*)array {
@@ -69,17 +56,20 @@
     [CacheManager cacheActivityThreads:self.threads];
 }
 
-- (void) loadDataWithBlock:(void(^)())block {
+- (void) loadDataWithBlock:(void(^)())block invalidAPIKeyBlock:(void (^)(NSError *error))failure {
     
     NSString *url = @"activity";
     
     [[WebNewsDataHandler sharedHandler] GET:url parameters:nil success:^(NSURLSessionDataTask *task, id response) {
-        NSArray *activityThreads = [self activityThreadArrayFromDictionaryArray:response[url]];
-        [self setThreads:activityThreads];
-        block();
+        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^{
+            NSArray *activityThreads = [self activityThreadArrayFromDictionaryArray:response[url]];
+            [self setThreads:activityThreads];
+            dispatch_async(dispatch_get_main_queue(), block);
+        });
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Error downloading data. Please check your internet connection." delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Okay", nil];
-        [alert show];
+        if (failure) {
+            failure(error);
+        }
     }];
     
 }

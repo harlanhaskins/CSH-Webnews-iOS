@@ -1,10 +1,8 @@
-pod 'AFNetworking'
-pod 'HHThreadView'
-pod 'NSNull+TypeAdditions'
-pod 'PDKeychainBindingsController', :podspec => 'https://raw.github.com/carlbrown/PDKeychainBindingsController/master/PDKeychainBindingsController.podspec'
-pod 'SAMTextView'
-pod 'SAMTextField'
-pod 'SVProgressHUD'
-pod 'SVPullToRefresh'
-pod 'UIImage+ImageWithColor'
-pod 'UIView+Positioning'
+source 'https://github.com/CocoaPods/Specs.git'
+pod "AFNetworking"
+pod "PDKeychainBindingsController"
+pod "SAMTextView"
+pod "SAMTextField"
+pod "SVPullToRefresh"
+pod "UIImage+ImageWithColor"
+pod "FormatterKit"

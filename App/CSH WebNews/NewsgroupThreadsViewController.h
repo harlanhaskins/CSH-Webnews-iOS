@@ -10,8 +10,8 @@
 
 @class NewsgroupOutline;
 
-@interface NewsgroupThreadsViewController : UITableViewController
+@interface NewsgroupThreadsViewController : UITableViewController<UITableViewDelegate>
 
-+ (instancetype) threadListWithNewsgroupOutline:(NewsgroupOutline*)outline;
+@property (nonatomic) NewsgroupOutline *outline;
 
 @end

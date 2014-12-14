@@ -7,28 +7,26 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "HHPostProtocol.h"
 
 @class Post;
 
-@protocol NewsgroupThreadDelegate <NSObject>
-
-- (void) didTapDelete:(id)sender;
-- (void) didTapReply:(id)sender;
-- (void) didTapStar:(id)sender;
-
-@end
-
-@interface NewsgroupThread : NSObject<NSCoding, HHPostProtocol>
+@interface NewsgroupThread : NSObject<NSCoding, ThreadProtocol>
 
 @property (nonatomic, readonly) Post *post;
 
 @property (nonatomic, readonly) NSMutableArray *allPosts;
 @property (nonatomic, readonly) NSMutableArray *allThreads;
-@property (nonatomic) id<NewsgroupThreadDelegate> delegate;
+@property (nonatomic, readonly, getter=isStarred) BOOL starred;
+@property (nonatomic, readonly, getter=isUnread) BOOL unread;
+@property (nonatomic) NSUInteger depth;
+@property (nonatomic) NSUInteger number;
+@property (nonatomic) NSString *body;
+@property (nonatomic) NSString *friendlyDate;
+@property (nonatomic, readonly) NSString *dotsString;
+@property (nonatomic, readonly) NSAttributedString *attributedBody;
 
 + (instancetype) newsgroupThreadWithDictionary:(NSDictionary*)dictionary;
-- (UIFont*) fontForSubject;
-- (NSString *) subjectAndUnreadCount;
+
+- (void) addAttributesToAttributedString:(NSMutableAttributedString*)string;
 
 @end

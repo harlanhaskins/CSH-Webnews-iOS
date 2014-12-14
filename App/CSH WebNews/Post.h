@@ -9,10 +9,10 @@
 #import <Foundation/Foundation.h>
 
 typedef NS_ENUM(NSUInteger, PersonalClass) {
+    PersonalClassDefault,
     PersonalClassMine,
     PersonalClassInThreadWithMine,
-    PersonalClassReplyToMine,
-    PersonalClassDefault
+    PersonalClassReplyToMine
 };
 
 typedef NS_ENUM(NSUInteger, UnreadClass) {
@@ -48,26 +48,27 @@ typedef NS_ENUM(NSUInteger, UnreadClass) {
 
 @property (nonatomic, readonly) UnreadClass unreadClass;
 
-@property (nonatomic, readonly, getter = isStarred) BOOL starred;
+@property (nonatomic, getter = isStarred) BOOL starred;
+@property (nonatomic, getter = isUnread) BOOL unread;
 @property (nonatomic, readonly, getter = isOrphaned) BOOL orphaned;
 @property (nonatomic, readonly, getter = isStripped) BOOL stripped;
 @property (nonatomic, readonly, getter = isReparented) BOOL reparented;
-@property (nonatomic, readonly, getter = isUnread) BOOL unread;
+@property (nonatomic, readonly, getter = isSticky) BOOL sticky;
 @property (nonatomic, readonly, getter = isSelfPost) BOOL selfPost;
 
 @property (nonatomic, readonly) NSString *friendlyDate;
-@property (nonatomic, readonly) NSString *authorshipAndTimeString;
-@property (nonatomic, readonly) UIColor *subjectColor;
+@property (nonatomic, readonly) UIColor *unreadColor;
 
 @property (nonatomic, readonly) NSAttributedString *attributedBody;
 
 + (instancetype) postwithDictionary:(NSDictionary*)postDictionary;
 + (PersonalClass) personalClassFromString:(NSString*)string;
++ (UnreadClass) unreadClassFromString:(NSString*)string;
 + (UIColor*) colorForPersonalClass:(PersonalClass)personalClass;
+- (void) addAttributesToAttributedString:(NSMutableAttributedString*)string;
 - (NSString*) dateString;
 - (NSString*) timeString;
 
 - (void) loadBody;
-- (void) loadBodyWithBlock:(void (^)(Post *currentPost))block;
-
+- (void) loadBodyWithCompletion:(void (^)(NSError *error))failure;
 @end

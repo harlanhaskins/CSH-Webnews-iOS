@@ -7,9 +7,11 @@
 //
 
 #import "Post.h"
-#import "ISO8601DateFormatter.h"
 #import "WebNewsDataHandler.h"
+#import "TTTTimeIntervalFormatter.h"
+#import "ISO8601DateFormatter.h"
 #import "CacheManager.h"
+#import "UIColor+CSH.h"
 
 @interface Post ()
 
@@ -24,6 +26,7 @@
 @property (nonatomic, readwrite) NSString *body;
 @property (nonatomic, readwrite) NSString *htmlBody;
 @property (nonatomic, readwrite) NSString *headers;
+@property (nonatomic, readwrite) NSAttributedString *attributedBody;
 
 @property (nonatomic, readwrite) UnreadClass unreadClass;
 
@@ -34,7 +37,6 @@
 
 @property (nonatomic, readwrite) PersonalClass personalClass;
 
-@property (nonatomic, readwrite, getter = isStarred) BOOL starred;
 @property (nonatomic, readwrite, getter = isOrphaned) BOOL orphaned;
 @property (nonatomic, readwrite, getter = isStripped) BOOL stripped;
 @property (nonatomic, readwrite, getter = isReparented) BOOL reparented;
@@ -44,9 +46,14 @@
 @implementation Post
 
 static NSDateFormatter *dateFormatter;
+static ISO8601DateFormatter *iso8601DateFormatter;
+static TTTTimeIntervalFormatter *timeFormatter;
 
 + (void) initialize {
     dateFormatter = [NSDateFormatter new];
+    iso8601DateFormatter = [ISO8601DateFormatter new];
+    timeFormatter = [TTTTimeIntervalFormatter new];
+    timeFormatter.usesIdiomaticDeicticExpressions = YES;
 }
 
 - (void) encodeWithCoder:(NSCoder *)coder {
@@ -60,6 +67,7 @@ static NSDateFormatter *dateFormatter;
     [coder encodeObject:self.followUpNewsgroup forKey:@"followUpNewsgroup"];
     [coder encodeObject:self.body forKey:@"body"];
     [coder encodeObject:self.headers forKey:@"headers"];
+    [coder encodeObject:self.attributedBody forKey:@"attributedBody"];
     
     [coder encodeObject:self.date forKey:@"date"];
     [coder encodeObject:self.stickyUntilDate forKey:@"stickyUntilDate"];
@@ -87,6 +95,7 @@ static NSDateFormatter *dateFormatter;
         self.parentNewsgroup = [decoder decodeObjectForKey:@"parentNewsgroup"];
         self.followUpNewsgroup = [decoder decodeObjectForKey:@"followUpNewsgroup"];
         [self setBody:[decoder decodeObjectForKey:@"body"] processed:NO];
+        self.attributedBody = [decoder decodeObjectForKey:@"attributedBody"];
         self.headers = [decoder decodeObjectForKey:@"headers"];
         
         self.date = [decoder decodeObjectForKey:@"date"];
@@ -107,20 +116,17 @@ static NSDateFormatter *dateFormatter;
 
 + (instancetype) postwithDictionary:(NSDictionary*)postDictionary {
     
-    if (!postDictionary || [postDictionary isKindOfClass:[NSNull class]]) {
-        return nil;
-    }
+    if (!postDictionary) return nil;
     
     NSInteger postNumber = [postDictionary[@"number"] integerValue];
     NSString *newsgroup  = postDictionary[@"newsgroup"];
-    ISO8601DateFormatter *dateFormatter = [[ISO8601DateFormatter alloc] init];
     
     Post *post = [CacheManager cachedPostWithNewsgroup:newsgroup number:postNumber];
     if (post) {
         // Change the values that can change.
         post.starred = [postDictionary[@"starred"] boolValue];
         post.unreadClass = [self unreadClassFromString:postDictionary[@"unread_class"]];
-        post.stickyUntilDate = [dateFormatter dateFromString:postDictionary[@"sticky_until"]];
+        post.stickyUntilDate = [iso8601DateFormatter dateFromString:postDictionary[@"sticky_until"]];
         return post;
     }
     
@@ -130,7 +136,7 @@ static NSDateFormatter *dateFormatter;
     post.authorName = postDictionary[@"author_name"];
     post.authorEmail = postDictionary[@"author_email"];
     
-    post.date = [dateFormatter dateFromString:postDictionary[@"date"]];
+    post.date = [iso8601DateFormatter dateFromString:postDictionary[@"date"]];
     
     post.number = postNumber;
     
@@ -151,6 +157,7 @@ static NSDateFormatter *dateFormatter;
     NSDictionary *stickyUser = postDictionary[@"sticky_user"];
     post.stickyUserName = stickyUser[@"username"];
     post.stickyRealName = stickyUser[@"real_name"];
+    post.stickyUntilDate = [iso8601DateFormatter dateFromString:postDictionary[@"sticky_until"]];
     
     post.unreadClass = [self unreadClassFromString:postDictionary[@"unread_class"]];
     
@@ -158,55 +165,59 @@ static NSDateFormatter *dateFormatter;
 }
 
 + (PersonalClass) personalClassFromString:(NSString*)string {
-    if ([string isKindOfClass:[NSNull class]]) {
-        return PersonalClassDefault;
-    }
-    else if ([string isEqualToString:@"mine_reply"]) {
+    if ([string isEqualToString:@"mine_reply"]) {
         return PersonalClassReplyToMine;
     }
-    else if ([string isEqualToString:@"mine_in_thread"]) {
+    if ([string isEqualToString:@"mine_in_thread"]) {
         return PersonalClassInThreadWithMine;
     }
-    else if ([string isEqualToString:@"mine"]) {
+    if ([string isEqualToString:@"mine"]) {
         return PersonalClassMine;
     }
     return PersonalClassDefault;
 }
 
 + (UnreadClass) unreadClassFromString:(NSString*)string {
-    if ([string isKindOfClass:[NSNull class]]) {
-        return UnreadClassDefault;
-    }
     if ([string isEqualToString:@"auto"]) {
         return UnreadClassAuto;
     }
     if ([string isEqualToString:@"manual"]) {
         return UnreadClassManual;
     }
-    return UnreadClassManual;
+    return UnreadClassDefault;
 }
 
 - (void) loadBody {
-    [self loadBodyWithBlock:nil];
+    [self loadBodyWithCompletion:nil];
 }
 
-- (void) loadBodyWithBlock:(void (^)(Post *currentPost))block {
+- (BOOL) isSticky {
+    return [self.stickyUntilDate timeIntervalSinceDate:[NSDate date]] > 0;
+}
+
+- (void) loadBodyWithCompletion:(void (^)(NSError *error))completion {
     
-    if (self.body) {
-        block(self);
+    if (self.body && completion) {
+        completion(nil);
         return;
     }
     
-    NSString *url = [NSString stringWithFormat:@"%@/%li", self.newsgroup, (long)self.number];
+    NSString *url = [NSString stringWithFormat:@"%@/%@", self.newsgroup, @(self.number)];
     
     [[WebNewsDataHandler sharedHandler] GET:url
-                                 parameters:@{@"html_body" : @"true"}
+                                 parameters:nil
                                     success:^(NSURLSessionDataTask *task, id response) {
-                                        [self setBody:response[@"post"][@"body"] processed:YES];
-                                        [CacheManager cachePost:self];
-                                        block(self);
+                                        dispatch_queue_t queue = dispatch_queue_create(url.UTF8String, DISPATCH_QUEUE_CONCURRENT);
+                                        dispatch_async(queue, ^{
+                                            [self setBody:response[@"post"][@"body"] processed:YES];
+                                            [CacheManager cachePost:self];
+                                            dispatch_async(dispatch_get_main_queue(), ^{
+                                                if (completion) completion(nil);
+                                            });
+                                        });
                                     } failure:^(NSURLSessionDataTask *task, NSError *error) {
                                         NSLog(@"Error: %@", error);
+                                        if (completion) completion(error);
                                     }];
 }
 
@@ -228,43 +239,35 @@ static NSDateFormatter *dateFormatter;
     return [dateFormatter stringFromDate:self.date];
 }
 
+
+
 - (NSString*) friendlyDate {
     
-    NSString *time = [self timeString];
-    NSString *date = [self dateString];
-    NSString *friendlyString = [NSString stringWithFormat:@"%@ at %@", date, time];
-    
+//    NSString *time = [self timeString];
+//    NSString *date = [self dateString];
+//    NSString *friendlyString = [NSString stringWithFormat:@"%@ %@", date, time];
+    NSString *friendlyString = [timeFormatter stringForTimeIntervalFromDate:[NSDate date] toDate:self.date];
     return friendlyString;
 }
 
-- (NSString *) authorshipAndTimeString {
-    return [NSString stringWithFormat:@"by %@ on %@", self.authorName, [self friendlyDate]];
-}
-
-- (UIColor*) subjectColor {
-    return [[self class] colorForPersonalClass:self.personalClass];
+- (UIColor*) unreadColor {
+    return self.unread ? [[self class] colorForPersonalClass:self.personalClass] : nil;
 }
 
 + (UIColor*) colorForPersonalClass:(PersonalClass)personalClass {
     switch (personalClass) {
         case PersonalClassInThreadWithMine:
-            return [UIColor colorWithRed:0.085 green:0.227 blue:0.709 alpha:1.000];
+            return [UIColor inThreadColor];
             
         case PersonalClassMine:
-            return [UIColor colorWithRed:0.067 green:0.755 blue:0.071 alpha:1.000];
+            return [UIColor mineColor];
             
         case PersonalClassReplyToMine:
-            return [UIColor colorWithRed:0.953 green:0.309 blue:0.952 alpha:1.000];
+            return [UIColor replyColor];
             
-        case PersonalClassDefault:
         default:
-            return [UIColor blackColor];
+            return [UIColor colorWithWhite:0.29 alpha:1.0];
     }
-}
-
-- (UIFont*) fontForAuthorshipString {
-    CGFloat fontSize = 12.0;
-    return self.unread ? [UIFont boldSystemFontOfSize:fontSize] : [UIFont systemFontOfSize:fontSize];
 }
 
 - (BOOL) isUnread {
@@ -272,49 +275,44 @@ static NSDateFormatter *dateFormatter;
 }
 
 - (NSString*) description {
-    return [NSString stringWithFormat:@"Depth: %li", (long)self.depth];
+    return [NSString stringWithFormat:@"Depth: %@", @(self.depth)];
 }
 
 - (void) setBody:(NSString *)body processed:(BOOL)processed {
+    _body = body;
     if (processed) {
-        _body = [self processedBodyFromUnprocessedBody:body];
-    }
-    else {
-        _body = body;
+        _attributedBody = [self createAttributedBody];
     }
 }
 
-- (NSAttributedString *) attributedBody {
-    return [[NSMutableAttributedString alloc] initWithData:[self.body dataUsingEncoding:NSUTF8StringEncoding]
-                                                   options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,
-                                                             NSCharacterEncodingDocumentAttribute: @(NSUTF8StringEncoding)}
-                                        documentAttributes:nil
-                                                     error:nil];
+- (NSAttributedString *) createAttributedBody {
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:self.body];
+    [self addAttributesToAttributedString:attributedString];
+    return attributedString;
 }
 
-- (NSString*) processedBodyFromUnprocessedBody:(NSString*)body {
-    if (!body) {
-        return nil;
-    }
-    // Add CSS to body. I'm so sorry.
-    NSString *cssRules = @"<style type=\"text/css\">body {white-space: pre-wrap; word-wrap: break-word; font-family: sans-serif;} blockquote {color: #aaa;} span.subject {color:#aaa; font-weight: bold;} </style>";
-    NSString *subjectHTML = [NSString stringWithFormat:@"<span class=\"subject\">%@\n\n</span>", self.subject];
-    NSString *newBody = [subjectHTML stringByAppendingString:body];
-    newBody = [newBody stringByAppendingString:cssRules];
+- (void) addAttributesToAttributedString:(NSMutableAttributedString*)string {
+    NSRange wholeStringRange = NSMakeRange(0, string.length);
+
+    NSString *lineIsQuoteRegex = @"^>.*$"; // Will match any line that begins with `>`.
+    NSShadow *shadow = [NSShadow new];
+    shadow.shadowOffset = CGSizeMake(0, 1);
+    shadow.shadowColor = [UIColor whiteColor];
+    NSDictionary *defaultAttributes = @{NSFontAttributeName : [UIFont fontWithName:@"CriqueGrotesk" size:15.0],
+                                        NSShadowAttributeName : shadow};
+    [string addAttributes:defaultAttributes range:wholeStringRange];
     
-    // Replace tabs with 4 spaces. I'm so sorry.
-    newBody = [newBody stringByReplacingOccurrencesOfString:@"\t" withString:@"&nbsp;&nbsp;&nbsp;&nbsp;"];
-    
-    //        // Grab the end of the blockquote and delete everything before it. I'm so sorry.
-    //        NSRange rangeOfDivClosing = [_body rangeOfString:@"</div><br />"];
-    //        NSUInteger end = rangeOfDivClosing.location + rangeOfDivClosing.length;
-    //        if (end != NSNotFound) {
-    //            NSUInteger totalLength = end;
-    //            _body = [body substringFromIndex:totalLength];
-    //        }
-    
-    // Sorry. So sorry. I am so sorry. I am.
-    return newBody;
+    NSError *error;
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:lineIsQuoteRegex
+                                                                           options:NSRegularExpressionAnchorsMatchLines
+                                                                             error:&error];
+    NSDictionary *attributes = @{NSForegroundColorAttributeName : [UIColor lightGrayColor]};
+    [regex enumerateMatchesInString:string.string
+                            options:0
+                              range:wholeStringRange
+                         usingBlock:^(NSTextCheckingResult *match, NSMatchingFlags flags, BOOL *stop){
+                             [string addAttributes:attributes range:match.range];
+                         }];
 }
 
 - (BOOL) isSelfPost {

@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14A388a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="CriqueGrotesk-Bold.otf">
+            <string>CriqueGrotesk-Bold</string>
+        </mutableArray>
+        <mutableArray key="CriqueGrotesk-Regular.otf">
+            <string>CriqueGrotesk</string>
+            <string>CriqueGrotesk</string>
+            <string>CriqueGrotesk</string>
+            <string>CriqueGrotesk</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="18" reuseIdentifier="HHPostCell" rowHeight="418" id="Lcr-Kk-10s" customClass="HHPostCell">
+            <rect key="frame" x="0.0" y="0.0" width="372" height="418"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Lcr-Kk-10s" id="WXP-o7-JaQ">
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="249" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Whr-Gu-PIq">
+                        <rect key="frame" x="8" y="50" width="356" height="333.5"/>
+                        <color key="backgroundColor" white="0.96999999999999997" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="0.90588235289999997" green="0.24313725489999999" blue="0.47843137250000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                        <color key="textColor" red="0.21246603260869568" green="0.21246603260869568" blue="0.21246603260869568" alpha="1" colorSpace="calibratedRGB"/>
+                        <fontDescription key="fontDescription" name="CriqueGrotesk" family="Crique Grotesk" pointSize="15"/>
+                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                        <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                    </textView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="subject" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6ph-Dg-MJJ">
+                        <rect key="frame" x="13" y="34" width="348" height="16"/>
+                        <color key="backgroundColor" white="0.96999999999999997" alpha="1" colorSpace="calibratedWhite"/>
+                        <fontDescription key="fontDescription" name="CriqueGrotesk" family="Crique Grotesk" pointSize="15"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                        <color key="shadowColor" red="0.99148692260000004" green="0.99148692260000004" blue="0.99148692260000004" alpha="1" colorSpace="calibratedRGB"/>
+                        <size key="shadowOffset" width="0.0" height="1"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Harlan Haskins " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VSz-6F-LhE">
+                        <rect key="frame" x="44.5" y="13" width="102" height="13"/>
+                        <color key="backgroundColor" white="0.96999999999999997" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="13" id="qW8-kX-mYe"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="CriqueGrotesk-Bold" family="Crique Grotesk" pointSize="14"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                        <color key="shadowColor" white="0.98999999999999999" alpha="1" colorSpace="calibratedWhite"/>
+                        <size key="shadowOffset" width="0.0" height="1"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hrt-0i-QUC">
+                        <rect key="frame" x="13" y="384" width="101.5" height="34"/>
+                        <color key="backgroundColor" white="0.96999999999999997" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="34" id="iKa-En-Nsf"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="duQ-gX-tsg">
+                        <rect key="frame" x="270" y="384" width="101.5" height="34"/>
+                        <color key="backgroundColor" white="0.96999999999999997" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="34" id="i2k-3v-bWx"/>
+                        </constraints>
+                    </view>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EQl-GP-zaD">
+                        <rect key="frame" x="112" y="386" width="31" height="24"/>
+                        <color key="backgroundColor" white="0.96999999999999997" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="EQl-GP-zaD" secondAttribute="height" multiplier="9:7" id="MsH-Ex-CJH"/>
+                            <constraint firstAttribute="height" constant="24" id="aI4-0O-LmZ"/>
+                        </constraints>
+                        <color key="tintColor" red="0.90588235289999997" green="0.24313725489999999" blue="0.47843137250000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <state key="normal" image="Reply">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="didTapReply:" destination="Lcr-Kk-10s" eventType="touchUpInside" id="YqB-V0-2do"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="APm-b4-ccw">
+                        <rect key="frame" x="245" y="386" width="25" height="25"/>
+                        <color key="backgroundColor" white="0.96999999999999997" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="APm-b4-ccw" secondAttribute="height" id="I3K-bC-xqJ"/>
+                            <constraint firstAttribute="height" constant="25" id="WZN-z5-S9i"/>
+                        </constraints>
+                        <color key="tintColor" red="0.90588235289999997" green="0.24313725489999999" blue="0.47843137250000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <state key="normal" image="Star">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="didTapStar:" destination="Lcr-Kk-10s" eventType="touchUpInside" id="WKw-yg-fou"/>
+                        </connections>
+                    </button>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WBk-hl-7fI">
+                        <rect key="frame" x="143" y="384" width="102" height="34"/>
+                        <color key="backgroundColor" white="0.96999999999999997" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="34" id="56J-0y-SNo"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2 days ago" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ThE-99-mMk">
+                        <rect key="frame" x="151.5" y="13" width="68.5" height="13"/>
+                        <color key="backgroundColor" white="0.96999999999999997" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="13" id="qmJ-mO-etX"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="CriqueGrotesk" family="Crique Grotesk" pointSize="14"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                        <color key="shadowColor" white="0.98999999999999999" alpha="1" colorSpace="calibratedWhite"/>
+                        <size key="shadowOffset" width="0.0" height="1"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="• • • " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rae-fT-T32">
+                        <rect key="frame" x="13" y="13" width="31.5" height="13"/>
+                        <color key="backgroundColor" white="0.96999999999999997" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="13" id="T1B-GG-aBT"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="CriqueGrotesk" family="Crique Grotesk" pointSize="14"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                        <color key="shadowColor" white="0.98999999999999999" alpha="1" colorSpace="calibratedWhite"/>
+                        <size key="shadowOffset" width="0.0" height="1"/>
+                    </label>
+                </subviews>
+                <color key="backgroundColor" white="0.96999999999999997" alpha="1" colorSpace="calibratedWhite"/>
+                <constraints>
+                    <constraint firstAttribute="trailingMargin" secondItem="Whr-Gu-PIq" secondAttribute="trailing" id="618-hg-n3h"/>
+                    <constraint firstItem="Rae-fT-T32" firstAttribute="leading" secondItem="hrt-0i-QUC" secondAttribute="leading" id="EeR-pS-dJj"/>
+                    <constraint firstItem="duQ-gX-tsg" firstAttribute="leading" secondItem="APm-b4-ccw" secondAttribute="trailing" id="Ehb-mh-po5"/>
+                    <constraint firstItem="ThE-99-mMk" firstAttribute="leading" secondItem="VSz-6F-LhE" secondAttribute="trailing" constant="5" id="KbH-Tq-QpS"/>
+                    <constraint firstAttribute="trailing" secondItem="duQ-gX-tsg" secondAttribute="trailing" id="LOE-rr-r1M"/>
+                    <constraint firstItem="WBk-hl-7fI" firstAttribute="centerY" secondItem="hrt-0i-QUC" secondAttribute="centerY" id="NBb-z4-UXC"/>
+                    <constraint firstAttribute="bottom" secondItem="hrt-0i-QUC" secondAttribute="bottom" id="Nl1-B4-xbJ"/>
+                    <constraint firstItem="ThE-99-mMk" firstAttribute="centerY" secondItem="VSz-6F-LhE" secondAttribute="centerY" id="ODG-qB-JY6"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="6ph-Dg-MJJ" secondAttribute="trailing" constant="3" id="PZo-wE-rZa"/>
+                    <constraint firstAttribute="bottom" secondItem="duQ-gX-tsg" secondAttribute="bottom" id="PfK-rx-NCG"/>
+                    <constraint firstItem="WBk-hl-7fI" firstAttribute="width" secondItem="hrt-0i-QUC" secondAttribute="width" id="QOT-iG-KPc"/>
+                    <constraint firstItem="Whr-Gu-PIq" firstAttribute="top" secondItem="6ph-Dg-MJJ" secondAttribute="bottom" id="U9M-BE-GtA"/>
+                    <constraint firstItem="6ph-Dg-MJJ" firstAttribute="top" secondItem="VSz-6F-LhE" secondAttribute="bottom" constant="8" id="UVw-kB-Oe4"/>
+                    <constraint firstItem="VSz-6F-LhE" firstAttribute="top" secondItem="WXP-o7-JaQ" secondAttribute="topMargin" constant="5" id="V4u-Ov-f02"/>
+                    <constraint firstItem="APm-b4-ccw" firstAttribute="leading" secondItem="WBk-hl-7fI" secondAttribute="trailing" id="V5r-Gv-8dm"/>
+                    <constraint firstItem="VSz-6F-LhE" firstAttribute="centerY" secondItem="Rae-fT-T32" secondAttribute="centerY" id="VmN-gH-Slr"/>
+                    <constraint firstItem="WBk-hl-7fI" firstAttribute="centerY" secondItem="duQ-gX-tsg" secondAttribute="centerY" id="ZHI-HJ-Igv"/>
+                    <constraint firstItem="WBk-hl-7fI" firstAttribute="width" secondItem="duQ-gX-tsg" secondAttribute="width" id="ald-Hv-v2p"/>
+                    <constraint firstItem="WBk-hl-7fI" firstAttribute="leading" secondItem="EQl-GP-zaD" secondAttribute="trailing" id="c7B-2R-USj"/>
+                    <constraint firstAttribute="bottom" secondItem="WBk-hl-7fI" secondAttribute="bottom" id="ezR-7G-kVB"/>
+                    <constraint firstItem="Whr-Gu-PIq" firstAttribute="leading" secondItem="Rae-fT-T32" secondAttribute="leading" constant="-5" id="g6A-HH-tai"/>
+                    <constraint firstItem="hrt-0i-QUC" firstAttribute="centerY" secondItem="EQl-GP-zaD" secondAttribute="centerY" constant="3" id="h5E-83-17M"/>
+                    <constraint firstItem="WBk-hl-7fI" firstAttribute="centerY" secondItem="APm-b4-ccw" secondAttribute="centerY" constant="3" id="iBn-4q-m7x"/>
+                    <constraint firstItem="EQl-GP-zaD" firstAttribute="leading" secondItem="hrt-0i-QUC" secondAttribute="trailing" constant="-2" id="m66-Ee-hXI"/>
+                    <constraint firstItem="Rae-fT-T32" firstAttribute="leading" secondItem="WXP-o7-JaQ" secondAttribute="leadingMargin" constant="5" id="q5U-31-Ezp"/>
+                    <constraint firstItem="hrt-0i-QUC" firstAttribute="top" secondItem="Whr-Gu-PIq" secondAttribute="bottom" id="qOO-NH-A1R"/>
+                    <constraint firstItem="VSz-6F-LhE" firstAttribute="leading" secondItem="Rae-fT-T32" secondAttribute="trailing" id="qdf-5D-7w2"/>
+                    <constraint firstItem="6ph-Dg-MJJ" firstAttribute="leading" secondItem="Rae-fT-T32" secondAttribute="leading" id="w6g-oa-Vfh"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="bodyView" destination="Whr-Gu-PIq" id="HJj-lq-VuU"/>
+                <outlet property="dotLabel" destination="Rae-fT-T32" id="sq7-Oj-UMl"/>
+                <outlet property="headerIndentationConstraint" destination="q5U-31-Ezp" id="5fB-Bv-4uc"/>
+                <outlet property="headerLabel" destination="VSz-6F-LhE" id="ggH-qx-BFF"/>
+                <outlet property="replyButton" destination="EQl-GP-zaD" id="t3u-pm-h0n"/>
+                <outlet property="starButton" destination="APm-b4-ccw" id="HMu-tH-j8J"/>
+                <outlet property="starButtonHeightConstraint" destination="WZN-z5-S9i" id="pOL-qP-AOH"/>
+                <outlet property="subjectLabel" destination="6ph-Dg-MJJ" id="Q2P-Yc-Ehh"/>
+                <outlet property="timeLabel" destination="ThE-99-mMk" id="xf1-UH-XoD"/>
+            </connections>
+            <point key="canvasLocation" x="414" y="448"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="Reply" width="36" height="28"/>
+        <image name="Star" width="29" height="27"/>
+    </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>

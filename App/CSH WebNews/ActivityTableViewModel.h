@@ -12,8 +12,7 @@
 
 @interface ActivityTableViewModel : NSObject<UITableViewDataSource, UITableViewDelegate>
 
-- (void) loadDataWithBlock:(void(^)())block;
-
-@property (nonatomic, copy) void (^didSelectCellBlock)(NewsgroupThread* thread);
+@property (nonatomic) NSArray *threads;
+- (void) loadDataWithBlock:(void(^)())block invalidAPIKeyBlock:(void(^)(NSError*))failure;
 
 @end

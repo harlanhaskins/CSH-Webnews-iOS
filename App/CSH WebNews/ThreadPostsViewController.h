@@ -10,9 +10,9 @@
 
 @class NewsgroupThread;
 
-@interface ThreadPostsViewController : UIViewController
+@interface ThreadPostsViewController : UITableViewController
 
-@property (nonatomic, copy) void (^reloadThreadsBlock)();
-+ (instancetype) controllerWithThread:(NewsgroupThread*)thread;
+- (void) loadPosts;
+- (void) setNewsgroup:(NSString*)newsgroup number:(NSNumber*)number subject:(NSString*)subject;
 
 @end

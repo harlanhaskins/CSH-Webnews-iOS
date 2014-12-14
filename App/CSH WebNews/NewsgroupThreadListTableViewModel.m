@@ -12,8 +12,7 @@
 #import "NewsgroupThread.h"
 #import "CacheManager.h"
 #import "ThreadPostsViewController.h"
-#import "NSMutableArray+HHActionButtons.h"
-#import "SVProgressHUD.h"
+#import "CSH_News-Swift.h"
 
 @interface NewsgroupThreadListTableViewModel ()
 
@@ -32,28 +31,16 @@
 }
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.threads count];
+    NSUInteger rows = self.threads.count;
+    [tableView addLoadingTextIfNecessaryForRows:rows withItemName:@"Threads"];
+    return rows;
 }
 
 - (UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NewsgroupThread *thread = self.threads[indexPath.row];
-    NSString *cellID = @"NewsgroupThread";
+    id<ThreadProtocol> thread = self.threads[indexPath.row];
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-    
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellID];
-    }
-    
-    cell.textLabel.text = [thread subjectAndUnreadCount];
-    cell.textLabel.font = [thread fontForSubject];
-    cell.detailTextLabel.text = [thread.post authorshipAndTimeString];
-    
-    cell.textLabel.textColor = thread.post.subjectColor;
-    
-    cell.backgroundColor =
-    cell.textLabel.backgroundColor =
-    cell.detailTextLabel.backgroundColor = [UIColor whiteColor];
+    ThreadCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ThreadCell" forIndexPath:indexPath];
+    [cell setThread:thread indexPath:indexPath];
     
     return cell;
 }
@@ -80,38 +67,32 @@
 
 - (void) loadMorePosts {
     NewsgroupThread *oldestThread = [self.threads lastObject];
-    NSString *date = [oldestThread.post dateString];
-    [self loadDataWithParameters:@{@"limit" : @20,
-                                   @"from_older" : date}];
+    if (!oldestThread) return;
+    dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^{
+        NSString *date = [oldestThread.post dateString];
+        [self loadDataWithParameters:@{@"limit" : @20,
+                                       @"from_older" : date}];
+    });
 }
 
-- (NSArray*) arrayByMergingArray:(NSArray*)array intoArray:(NSArray*)otherArray {
+- (NSArray *)arrayByMergingArray:(NSArray*)array intoArray:(NSArray*)otherArray {
     array = array ?: @[];
     otherArray = otherArray ?: @[];
-    NSArray *newArray = [@[array, otherArray] valueForKeyPath: @"@distinctUnionOfArrays.self"];
-    newArray = [newArray sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-        return [obj2 compare:obj1];
-    }];
+    NSArray *newArray = [@[array, otherArray] valueForKeyPath:@"@distinctUnionOfArrays.self"];
+    newArray = [newArray sortedArrayUsingSelector:@selector(compare:)];
     return newArray;
 }
 
 - (void) loadDataWithParameters:(NSDictionary*)parameters {
     NSString *url = [NSString stringWithFormat:@"%@/index", self.outline.name];
     
-    [[WebNewsDataHandler sharedHandler] GET:url parameters:parameters success:^(NSURLSessionDataTask *task, id response) {
-        NSArray *threads = [self newsgroupThreadsFromNewsgroupThreadDictionaryArray:response[@"posts_older"]];
-        [self setThreads:threads];
-        self.loadDataBlock();
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        NSLog(@"Error: %@", error);
-    }];
-}
-
-- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NewsgroupThread *thread = self.threads[indexPath.row];
-    ThreadPostsViewController *threadVC = [ThreadPostsViewController controllerWithThread:thread];
-    threadVC.reloadThreadsBlock = self.loadDataBlock;
-    self.pushViewControllerBlock(threadVC);
+    [[WebNewsDataHandler sharedHandler] GET:url
+                                 parameters:parameters
+                                    success:^(NSURLSessionDataTask *task, id response) {
+                                        NSArray *threads = [self newsgroupThreadsFromNewsgroupThreadDictionaryArray:response[@"posts_older"]];
+                                        [self setThreads:threads];
+                                        dispatch_async(dispatch_get_main_queue(), self.loadDataBlock);
+                                    } failure:nil];
 }
 
 - (NSArray *) newsgroupThreadsFromNewsgroupThreadDictionaryArray:(NSArray*)array {

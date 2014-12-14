@@ -7,31 +7,70 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C906663919A942A30067D054 /* ToolBarColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C906663819A942A30067D054 /* ToolBarColorManager.swift */; };
 		C910A6F3189733ED001D222D /* ActivityTableViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C910A6F2189733ED001D222D /* ActivityTableViewModel.m */; };
-		C924761918D105490006D1DC /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = C924761318D105490006D1DC /* README.md */; };
-		C924761A18D105490006D1DC /* release_notes.md in Resources */ = {isa = PBXBuildFile; fileRef = C924761418D105490006D1DC /* release_notes.md */; };
 		C924761C18D105BB0006D1DC /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C924761B18D105BB0006D1DC /* libPods.a */; };
-		C924761D18D105C70006D1DC /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C924761218D105490006D1DC /* libTestFlight.a */; };
 		C92B5F0418D0B83400FCB8EA /* NewPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C92B5F0318D0B83400FCB8EA /* NewPostViewController.m */; };
 		C92B9DDB189752DC0099C22D /* CacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C92B9DDA189752DC0099C22D /* CacheManager.m */; };
+		C93F2E3C19F749CA000545BA /* UITableView+LoadingMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93F2E3B19F749CA000545BA /* UITableView+LoadingMessage.swift */; };
+		C955B80619A6DEBA00AEFA44 /* HHPostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C955B7FF19A6DEBA00AEFA44 /* HHPostCell.m */; };
+		C955B80719A6DEBA00AEFA44 /* HHPostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C955B80019A6DEBA00AEFA44 /* HHPostCell.xib */; };
+		C955B80919A6DEBA00AEFA44 /* HHThreadViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = C955B80519A6DEBA00AEFA44 /* HHThreadViewDataSource.m */; };
+		C956361619A31A3800EBC7BE /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C956361519A31A3800EBC7BE /* Storyboard.storyboard */; };
 		C96032FD18E4909500BAE63C /* PushAPIHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C96032FC18E4909500BAE63C /* PushAPIHandler.m */; };
 		C96D227D1895BD80001BFA57 /* WebNewsDataHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C96D227C1895BD80001BFA57 /* WebNewsDataHandler.m */; };
 		C96D22801895CC08001BFA57 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = C96D227F1895CC08001BFA57 /* Post.m */; };
 		C96D22831895CD7B001BFA57 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = C96D22821895CD7B001BFA57 /* User.m */; };
 		C96D22871895CDBC001BFA57 /* Preferences.m in Sources */ = {isa = PBXBuildFile; fileRef = C96D22861895CDBC001BFA57 /* Preferences.m */; };
 		C96D228A1895D550001BFA57 /* ActivityThread.m in Sources */ = {isa = PBXBuildFile; fileRef = C96D22891895D550001BFA57 /* ActivityThread.m */; };
-		C96D228D18960320001BFA57 /* ActivityThreadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C96D228C18960320001BFA57 /* ActivityThreadCell.m */; };
 		C97DD33318A2A08000D1B9B7 /* ThreadPostsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C97DD33218A2A08000D1B9B7 /* ThreadPostsViewController.m */; };
+		C9A7B18819A9C7600007C362 /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A7B18719A9C7600007C362 /* AuthenticationManager.swift */; };
+		C9AD13E319A9ADD600808BD1 /* ThreadCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9AD13E219A9ADD600808BD1 /* ThreadCell.xib */; };
+		C9AD13E519A9AFD500808BD1 /* ThreadCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9AD13E419A9AFD500808BD1 /* ThreadCell.swift */; };
 		C9C9484418985C0C00599E74 /* NewsgroupThreadsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C9484318985C0C00599E74 /* NewsgroupThreadsViewController.m */; };
 		C9C9484818985D9B00599E74 /* NewsgroupThread.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C9484718985D9B00599E74 /* NewsgroupThread.m */; };
 		C9C9484B1898690800599E74 /* NewsgroupThreadListTableViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C9484A1898690800599E74 /* NewsgroupThreadListTableViewModel.m */; };
 		C9C9485C189892AA00599E74 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9C9485B189892AA00599E74 /* Images.xcassets */; };
-		C9CE73A718D39F7200FD5CA4 /* SelectivelyRotatingNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9CE73A618D39F7200FD5CA4 /* SelectivelyRotatingNavigationController.m */; };
-		C9CE73AA18D3A58500FD5CA4 /* SelectivelyRotatingTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9CE73A918D3A58500FD5CA4 /* SelectivelyRotatingTabBarController.m */; };
+		C9D2716B19B82408001E82F2 /* CriqueGrotesk-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = C9D2714B19B82408001E82F2 /* CriqueGrotesk-Black.otf */; };
+		C9D2716C19B82408001E82F2 /* CriqueGrotesk-BlackItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = C9D2714C19B82408001E82F2 /* CriqueGrotesk-BlackItalic.otf */; };
+		C9D2716D19B82408001E82F2 /* CriqueGrotesk-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = C9D2714D19B82408001E82F2 /* CriqueGrotesk-Bold.otf */; };
+		C9D2716E19B82408001E82F2 /* CriqueGrotesk-BoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = C9D2714E19B82408001E82F2 /* CriqueGrotesk-BoldItalic.otf */; };
+		C9D2716F19B82408001E82F2 /* CriqueGrotesk-Heavy.otf in Resources */ = {isa = PBXBuildFile; fileRef = C9D2714F19B82408001E82F2 /* CriqueGrotesk-Heavy.otf */; };
+		C9D2717019B82408001E82F2 /* CriqueGrotesk-HeavyItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = C9D2715019B82408001E82F2 /* CriqueGrotesk-HeavyItalic.otf */; };
+		C9D2717119B82408001E82F2 /* CriqueGrotesk-Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = C9D2715119B82408001E82F2 /* CriqueGrotesk-Italic.otf */; };
+		C9D2717219B82408001E82F2 /* CriqueGrotesk-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = C9D2715219B82408001E82F2 /* CriqueGrotesk-Light.otf */; };
+		C9D2717319B82408001E82F2 /* CriqueGrotesk-LightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = C9D2715319B82408001E82F2 /* CriqueGrotesk-LightItalic.otf */; };
+		C9D2717419B82408001E82F2 /* CriqueGrotesk-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = C9D2715419B82408001E82F2 /* CriqueGrotesk-Medium.otf */; };
+		C9D2717519B82408001E82F2 /* CriqueGrotesk-MediumItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = C9D2715519B82408001E82F2 /* CriqueGrotesk-MediumItalic.otf */; };
+		C9D2717619B82408001E82F2 /* CriqueGrotesk-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = C9D2715619B82408001E82F2 /* CriqueGrotesk-Regular.otf */; };
+		C9D2717719B82408001E82F2 /* CriqueGrotesk-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = C9D2715719B82408001E82F2 /* CriqueGrotesk-Thin.otf */; };
+		C9D2717819B82408001E82F2 /* CriqueGrotesk-ThinItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = C9D2715819B82408001E82F2 /* CriqueGrotesk-ThinItalic.otf */; };
+		C9D2717919B82408001E82F2 /* CriqueGrotesk-UltraLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = C9D2715919B82408001E82F2 /* CriqueGrotesk-UltraLight.otf */; };
+		C9D2717A19B82408001E82F2 /* CriqueGrotesk-UltraLightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = C9D2715A19B82408001E82F2 /* CriqueGrotesk-UltraLightItalic.otf */; };
+		C9D2717B19B82408001E82F2 /* CriqueGroteskDisplay-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = C9D2715B19B82408001E82F2 /* CriqueGroteskDisplay-Black.otf */; };
+		C9D2717C19B82408001E82F2 /* CriqueGroteskDisplay-BlackItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = C9D2715C19B82408001E82F2 /* CriqueGroteskDisplay-BlackItalic.otf */; };
+		C9D2717D19B82408001E82F2 /* CriqueGroteskDisplay-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = C9D2715D19B82408001E82F2 /* CriqueGroteskDisplay-Bold.otf */; };
+		C9D2717E19B82408001E82F2 /* CriqueGroteskDisplay-BoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = C9D2715E19B82408001E82F2 /* CriqueGroteskDisplay-BoldItalic.otf */; };
+		C9D2717F19B82408001E82F2 /* CriqueGroteskDisplay-Heavy.otf in Resources */ = {isa = PBXBuildFile; fileRef = C9D2715F19B82408001E82F2 /* CriqueGroteskDisplay-Heavy.otf */; };
+		C9D2718019B82408001E82F2 /* CriqueGroteskDisplay-HeavyItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = C9D2716019B82408001E82F2 /* CriqueGroteskDisplay-HeavyItalic.otf */; };
+		C9D2718119B82408001E82F2 /* CriqueGroteskDisplay-Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = C9D2716119B82408001E82F2 /* CriqueGroteskDisplay-Italic.otf */; };
+		C9D2718219B82408001E82F2 /* CriqueGroteskDisplay-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = C9D2716219B82408001E82F2 /* CriqueGroteskDisplay-Light.otf */; };
+		C9D2718319B82408001E82F2 /* CriqueGroteskDisplay-LightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = C9D2716319B82408001E82F2 /* CriqueGroteskDisplay-LightItalic.otf */; };
+		C9D2718419B82408001E82F2 /* CriqueGroteskDisplay-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = C9D2716419B82408001E82F2 /* CriqueGroteskDisplay-Medium.otf */; };
+		C9D2718519B82408001E82F2 /* CriqueGroteskDisplay-MediumItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = C9D2716519B82408001E82F2 /* CriqueGroteskDisplay-MediumItalic.otf */; };
+		C9D2718619B82408001E82F2 /* CriqueGroteskDisplay-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = C9D2716619B82408001E82F2 /* CriqueGroteskDisplay-Regular.otf */; };
+		C9D2718719B82408001E82F2 /* CriqueGroteskDisplay-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = C9D2716719B82408001E82F2 /* CriqueGroteskDisplay-Thin.otf */; };
+		C9D2718819B82408001E82F2 /* CriqueGroteskDisplay-ThinItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = C9D2716819B82408001E82F2 /* CriqueGroteskDisplay-ThinItalic.otf */; };
+		C9D2718919B82408001E82F2 /* CriqueGroteskDisplay-UltraLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = C9D2716919B82408001E82F2 /* CriqueGroteskDisplay-UltraLight.otf */; };
+		C9D2718A19B82408001E82F2 /* CriqueGroteskDisplay-UltraLightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = C9D2716A19B82408001E82F2 /* CriqueGroteskDisplay-UltraLightItalic.otf */; };
 		C9D6F9F01898406C00004E3B /* NewsgroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D6F9EF1898406C00004E3B /* NewsgroupsViewController.m */; };
 		C9D6F9F5189840FE00004E3B /* NewsgroupOutline.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D6F9F4189840FE00004E3B /* NewsgroupOutline.m */; };
 		C9D6F9F81898498D00004E3B /* NewsgroupOutlineTableViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D6F9F71898498D00004E3B /* NewsgroupOutlineTableViewModel.m */; };
+		C9D7AF4619F760C30048B56B /* TPKeyboardAvoidingTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D7AF4319F760C30048B56B /* TPKeyboardAvoidingTableView.m */; };
+		C9D7AF4719F760C30048B56B /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D7AF4519F760C30048B56B /* UIScrollView+TPKeyboardAvoidingAdditions.m */; };
+		C9D7AF4A19F760F00048B56B /* TPKeyboardAvoidingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D7AF4919F760F00048B56B /* TPKeyboardAvoidingScrollView.m */; };
 		C9E1243E18A5665F0084B828 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C9E1243D18A5665F0084B828 /* libz.dylib */; };
+		C9F9BCA819B51ADC00E42B14 /* UIColor+CSH.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F9BCA719B51ADC00E42B14 /* UIColor+CSH.m */; };
 		DC0FC96417EC230700945EEC /* APIKeyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0FC96317EC230700945EEC /* APIKeyViewController.m */; };
 		DC22B1A917EBB00600E328DE /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC22B1A817EBB00600E328DE /* SettingsViewController.m */; };
 		DC22B1AD17EBDFD800E328DE /* ISO8601DateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = DC22B1AC17EBDFD800E328DE /* ISO8601DateFormatter.m */; };
@@ -46,39 +85,28 @@
 		DCF26DE317CD617C0073DA19 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DCF26DE117CD617C0073DA19 /* InfoPlist.strings */; };
 		DCF26DE517CD617C0073DA19 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DCF26DE417CD617C0073DA19 /* main.m */; };
 		DCF26DE917CD617C0073DA19 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DCF26DE817CD617C0073DA19 /* AppDelegate.m */; };
-		DCF26DF217CD617C0073DA19 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCF26DF117CD617C0073DA19 /* XCTest.framework */; };
-		DCF26DF317CD617C0073DA19 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCF26DD817CD617C0073DA19 /* Foundation.framework */; };
-		DCF26DF417CD617C0073DA19 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCF26DDC17CD617C0073DA19 /* UIKit.framework */; };
-		DCF26DFC17CD617C0073DA19 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DCF26DFA17CD617C0073DA19 /* InfoPlist.strings */; };
-		DCF26DFE17CD617C0073DA19 /* CSH_WebNewsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DCF26DFD17CD617C0073DA19 /* CSH_WebNewsTests.m */; };
 		DCF26E0917CD62830073DA19 /* ActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCF26E0817CD62830073DA19 /* ActivityViewController.m */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		DCF26DF517CD617C0073DA19 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = DCF26DCD17CD617C0073DA19 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = DCF26DD417CD617C0073DA19;
-			remoteInfo = "CSH WebNews";
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		234ACC9F35034B7CA1D4ECFC /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		500D60C2EBBBAA60AA1B0BC1 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		C906663719A942A20067D054 /* CSH News-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CSH News-Bridging-Header.h"; sourceTree = "<group>"; };
+		C906663819A942A30067D054 /* ToolBarColorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToolBarColorManager.swift; sourceTree = "<group>"; };
 		C910A6F1189733ED001D222D /* ActivityTableViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityTableViewModel.h; sourceTree = "<group>"; };
 		C910A6F2189733ED001D222D /* ActivityTableViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityTableViewModel.m; sourceTree = "<group>"; };
-		C924761218D105490006D1DC /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
-		C924761318D105490006D1DC /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
-		C924761418D105490006D1DC /* release_notes.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes.md; sourceTree = "<group>"; };
-		C924761518D105490006D1DC /* TestFlight+AsyncLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TestFlight+AsyncLogging.h"; sourceTree = "<group>"; };
-		C924761618D105490006D1DC /* TestFlight+ManualSessions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TestFlight+ManualSessions.h"; sourceTree = "<group>"; };
-		C924761718D105490006D1DC /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
 		C924761B18D105BB0006D1DC /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
 		C92B5F0218D0B83400FCB8EA /* NewPostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewPostViewController.h; sourceTree = "<group>"; };
 		C92B5F0318D0B83400FCB8EA /* NewPostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewPostViewController.m; sourceTree = "<group>"; };
 		C92B9DD9189752DC0099C22D /* CacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheManager.h; sourceTree = "<group>"; };
 		C92B9DDA189752DC0099C22D /* CacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheManager.m; sourceTree = "<group>"; };
+		C93F2E3B19F749CA000545BA /* UITableView+LoadingMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+LoadingMessage.swift"; sourceTree = "<group>"; };
+		C955B7FE19A6DEBA00AEFA44 /* HHPostCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HHPostCell.h; sourceTree = "<group>"; };
+		C955B7FF19A6DEBA00AEFA44 /* HHPostCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HHPostCell.m; sourceTree = "<group>"; };
+		C955B80019A6DEBA00AEFA44 /* HHPostCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HHPostCell.xib; sourceTree = "<group>"; };
+		C955B80419A6DEBA00AEFA44 /* HHThreadViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HHThreadViewDataSource.h; sourceTree = "<group>"; };
+		C955B80519A6DEBA00AEFA44 /* HHThreadViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HHThreadViewDataSource.m; sourceTree = "<group>"; };
+		C956361519A31A3800EBC7BE /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		C96032FB18E4909500BAE63C /* PushAPIHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushAPIHandler.h; sourceTree = "<group>"; };
 		C96032FC18E4909500BAE63C /* PushAPIHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushAPIHandler.m; sourceTree = "<group>"; };
 		C96D227B1895BD80001BFA57 /* WebNewsDataHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebNewsDataHandler.h; sourceTree = "<group>"; };
@@ -91,10 +119,11 @@
 		C96D22861895CDBC001BFA57 /* Preferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Preferences.m; sourceTree = "<group>"; };
 		C96D22881895D550001BFA57 /* ActivityThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityThread.h; sourceTree = "<group>"; };
 		C96D22891895D550001BFA57 /* ActivityThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityThread.m; sourceTree = "<group>"; };
-		C96D228B18960320001BFA57 /* ActivityThreadCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityThreadCell.h; sourceTree = "<group>"; };
-		C96D228C18960320001BFA57 /* ActivityThreadCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityThreadCell.m; sourceTree = "<group>"; };
 		C97DD33118A2A08000D1B9B7 /* ThreadPostsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreadPostsViewController.h; sourceTree = "<group>"; };
 		C97DD33218A2A08000D1B9B7 /* ThreadPostsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThreadPostsViewController.m; sourceTree = "<group>"; };
+		C9A7B18719A9C7600007C362 /* AuthenticationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
+		C9AD13E219A9ADD600808BD1 /* ThreadCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ThreadCell.xib; sourceTree = "<group>"; };
+		C9AD13E419A9AFD500808BD1 /* ThreadCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadCell.swift; sourceTree = "<group>"; };
 		C9C456C318A73564008C6C1F /* CSH News.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "CSH News.entitlements"; sourceTree = "<group>"; };
 		C9C9484218985C0C00599E74 /* NewsgroupThreadsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsgroupThreadsViewController.h; sourceTree = "<group>"; };
 		C9C9484318985C0C00599E74 /* NewsgroupThreadsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsgroupThreadsViewController.m; sourceTree = "<group>"; };
@@ -103,18 +132,53 @@
 		C9C948491898690800599E74 /* NewsgroupThreadListTableViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsgroupThreadListTableViewModel.h; sourceTree = "<group>"; };
 		C9C9484A1898690800599E74 /* NewsgroupThreadListTableViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsgroupThreadListTableViewModel.m; sourceTree = "<group>"; };
 		C9C9485B189892AA00599E74 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		C9CE73A518D39F7200FD5CA4 /* SelectivelyRotatingNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectivelyRotatingNavigationController.h; sourceTree = "<group>"; };
-		C9CE73A618D39F7200FD5CA4 /* SelectivelyRotatingNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectivelyRotatingNavigationController.m; sourceTree = "<group>"; };
-		C9CE73A818D3A58500FD5CA4 /* SelectivelyRotatingTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectivelyRotatingTabBarController.h; sourceTree = "<group>"; };
-		C9CE73A918D3A58500FD5CA4 /* SelectivelyRotatingTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectivelyRotatingTabBarController.m; sourceTree = "<group>"; };
+		C9D2714B19B82408001E82F2 /* CriqueGrotesk-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CriqueGrotesk-Black.otf"; sourceTree = "<group>"; };
+		C9D2714C19B82408001E82F2 /* CriqueGrotesk-BlackItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CriqueGrotesk-BlackItalic.otf"; sourceTree = "<group>"; };
+		C9D2714D19B82408001E82F2 /* CriqueGrotesk-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CriqueGrotesk-Bold.otf"; sourceTree = "<group>"; };
+		C9D2714E19B82408001E82F2 /* CriqueGrotesk-BoldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CriqueGrotesk-BoldItalic.otf"; sourceTree = "<group>"; };
+		C9D2714F19B82408001E82F2 /* CriqueGrotesk-Heavy.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CriqueGrotesk-Heavy.otf"; sourceTree = "<group>"; };
+		C9D2715019B82408001E82F2 /* CriqueGrotesk-HeavyItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CriqueGrotesk-HeavyItalic.otf"; sourceTree = "<group>"; };
+		C9D2715119B82408001E82F2 /* CriqueGrotesk-Italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CriqueGrotesk-Italic.otf"; sourceTree = "<group>"; };
+		C9D2715219B82408001E82F2 /* CriqueGrotesk-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CriqueGrotesk-Light.otf"; sourceTree = "<group>"; };
+		C9D2715319B82408001E82F2 /* CriqueGrotesk-LightItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CriqueGrotesk-LightItalic.otf"; sourceTree = "<group>"; };
+		C9D2715419B82408001E82F2 /* CriqueGrotesk-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CriqueGrotesk-Medium.otf"; sourceTree = "<group>"; };
+		C9D2715519B82408001E82F2 /* CriqueGrotesk-MediumItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CriqueGrotesk-MediumItalic.otf"; sourceTree = "<group>"; };
+		C9D2715619B82408001E82F2 /* CriqueGrotesk-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CriqueGrotesk-Regular.otf"; sourceTree = "<group>"; };
+		C9D2715719B82408001E82F2 /* CriqueGrotesk-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CriqueGrotesk-Thin.otf"; sourceTree = "<group>"; };
+		C9D2715819B82408001E82F2 /* CriqueGrotesk-ThinItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CriqueGrotesk-ThinItalic.otf"; sourceTree = "<group>"; };
+		C9D2715919B82408001E82F2 /* CriqueGrotesk-UltraLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CriqueGrotesk-UltraLight.otf"; sourceTree = "<group>"; };
+		C9D2715A19B82408001E82F2 /* CriqueGrotesk-UltraLightItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CriqueGrotesk-UltraLightItalic.otf"; sourceTree = "<group>"; };
+		C9D2715B19B82408001E82F2 /* CriqueGroteskDisplay-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CriqueGroteskDisplay-Black.otf"; sourceTree = "<group>"; };
+		C9D2715C19B82408001E82F2 /* CriqueGroteskDisplay-BlackItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CriqueGroteskDisplay-BlackItalic.otf"; sourceTree = "<group>"; };
+		C9D2715D19B82408001E82F2 /* CriqueGroteskDisplay-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CriqueGroteskDisplay-Bold.otf"; sourceTree = "<group>"; };
+		C9D2715E19B82408001E82F2 /* CriqueGroteskDisplay-BoldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CriqueGroteskDisplay-BoldItalic.otf"; sourceTree = "<group>"; };
+		C9D2715F19B82408001E82F2 /* CriqueGroteskDisplay-Heavy.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CriqueGroteskDisplay-Heavy.otf"; sourceTree = "<group>"; };
+		C9D2716019B82408001E82F2 /* CriqueGroteskDisplay-HeavyItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CriqueGroteskDisplay-HeavyItalic.otf"; sourceTree = "<group>"; };
+		C9D2716119B82408001E82F2 /* CriqueGroteskDisplay-Italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CriqueGroteskDisplay-Italic.otf"; sourceTree = "<group>"; };
+		C9D2716219B82408001E82F2 /* CriqueGroteskDisplay-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CriqueGroteskDisplay-Light.otf"; sourceTree = "<group>"; };
+		C9D2716319B82408001E82F2 /* CriqueGroteskDisplay-LightItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CriqueGroteskDisplay-LightItalic.otf"; sourceTree = "<group>"; };
+		C9D2716419B82408001E82F2 /* CriqueGroteskDisplay-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CriqueGroteskDisplay-Medium.otf"; sourceTree = "<group>"; };
+		C9D2716519B82408001E82F2 /* CriqueGroteskDisplay-MediumItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CriqueGroteskDisplay-MediumItalic.otf"; sourceTree = "<group>"; };
+		C9D2716619B82408001E82F2 /* CriqueGroteskDisplay-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CriqueGroteskDisplay-Regular.otf"; sourceTree = "<group>"; };
+		C9D2716719B82408001E82F2 /* CriqueGroteskDisplay-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CriqueGroteskDisplay-Thin.otf"; sourceTree = "<group>"; };
+		C9D2716819B82408001E82F2 /* CriqueGroteskDisplay-ThinItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CriqueGroteskDisplay-ThinItalic.otf"; sourceTree = "<group>"; };
+		C9D2716919B82408001E82F2 /* CriqueGroteskDisplay-UltraLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CriqueGroteskDisplay-UltraLight.otf"; sourceTree = "<group>"; };
+		C9D2716A19B82408001E82F2 /* CriqueGroteskDisplay-UltraLightItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CriqueGroteskDisplay-UltraLightItalic.otf"; sourceTree = "<group>"; };
 		C9D6F9EE1898406C00004E3B /* NewsgroupsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsgroupsViewController.h; sourceTree = "<group>"; };
 		C9D6F9EF1898406C00004E3B /* NewsgroupsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsgroupsViewController.m; sourceTree = "<group>"; };
 		C9D6F9F3189840FE00004E3B /* NewsgroupOutline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsgroupOutline.h; sourceTree = "<group>"; };
 		C9D6F9F4189840FE00004E3B /* NewsgroupOutline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsgroupOutline.m; sourceTree = "<group>"; };
 		C9D6F9F61898498D00004E3B /* NewsgroupOutlineTableViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsgroupOutlineTableViewModel.h; sourceTree = "<group>"; };
 		C9D6F9F71898498D00004E3B /* NewsgroupOutlineTableViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsgroupOutlineTableViewModel.m; sourceTree = "<group>"; };
+		C9D7AF4219F760C30048B56B /* TPKeyboardAvoidingTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPKeyboardAvoidingTableView.h; sourceTree = "<group>"; };
+		C9D7AF4319F760C30048B56B /* TPKeyboardAvoidingTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPKeyboardAvoidingTableView.m; sourceTree = "<group>"; };
+		C9D7AF4419F760C30048B56B /* UIScrollView+TPKeyboardAvoidingAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+TPKeyboardAvoidingAdditions.h"; sourceTree = "<group>"; };
+		C9D7AF4519F760C30048B56B /* UIScrollView+TPKeyboardAvoidingAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+TPKeyboardAvoidingAdditions.m"; sourceTree = "<group>"; };
+		C9D7AF4819F760F00048B56B /* TPKeyboardAvoidingScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPKeyboardAvoidingScrollView.h; sourceTree = "<group>"; };
+		C9D7AF4919F760F00048B56B /* TPKeyboardAvoidingScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPKeyboardAvoidingScrollView.m; sourceTree = "<group>"; };
 		C9E1243D18A5665F0084B828 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		CCF7A34595E241278F44BBAB /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		C9F9BCA619B51ADC00E42B14 /* UIColor+CSH.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+CSH.h"; sourceTree = "<group>"; };
+		C9F9BCA719B51ADC00E42B14 /* UIColor+CSH.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+CSH.m"; sourceTree = "<group>"; };
 		DC0FC96217EC230700945EEC /* APIKeyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIKeyViewController.h; sourceTree = "<group>"; };
 		DC0FC96317EC230700945EEC /* APIKeyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIKeyViewController.m; sourceTree = "<group>"; };
 		DC22B1A717EBB00600E328DE /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
@@ -126,6 +190,7 @@
 		DCCAB04517EAB3DA004B683B /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		DCCAB04717EAB3E5004B683B /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		DCCAB04917EAB3E9004B683B /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		DCEF254219B8D70900F8ED18 /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
 		DCF26DD517CD617C0073DA19 /* CSH News.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CSH News.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCF26DD817CD617C0073DA19 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		DCF26DDA17CD617C0073DA19 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -136,13 +201,13 @@
 		DCF26DE617CD617C0073DA19 /* CSH News-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CSH News-Prefix.pch"; sourceTree = "<group>"; };
 		DCF26DE717CD617C0073DA19 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		DCF26DE817CD617C0073DA19 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		DCF26DF017CD617C0073DA19 /* CSH NewsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "CSH NewsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCF26DF117CD617C0073DA19 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		DCF26DF917CD617C0073DA19 /* CSH NewsTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CSH NewsTests-Info.plist"; sourceTree = "<group>"; };
 		DCF26DFB17CD617C0073DA19 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		DCF26DFD17CD617C0073DA19 /* CSH_WebNewsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSH_WebNewsTests.m; sourceTree = "<group>"; };
 		DCF26E0717CD62830073DA19 /* ActivityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityViewController.h; sourceTree = "<group>"; };
 		DCF26E0817CD62830073DA19 /* ActivityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityViewController.m; sourceTree = "<group>"; };
+		E248814F46477368A0D708D9 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,7 +216,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C924761C18D105BB0006D1DC /* libPods.a in Frameworks */,
-				C924761D18D105C70006D1DC /* libTestFlight.a in Frameworks */,
 				C9E1243E18A5665F0084B828 /* libz.dylib in Frameworks */,
 				DCCAB04A17EAB3E9004B683B /* Security.framework in Frameworks */,
 				DCCAB04817EAB3E5004B683B /* MobileCoreServices.framework in Frameworks */,
@@ -164,30 +228,19 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DCF26DED17CD617C0073DA19 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				DCF26DF217CD617C0073DA19 /* XCTest.framework in Frameworks */,
-				DCF26DF417CD617C0073DA19 /* UIKit.framework in Frameworks */,
-				DCF26DF317CD617C0073DA19 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		C924761118D105490006D1DC /* TestFlightSDK3 */ = {
+		C955B80A19A6DEC500AEFA44 /* HHThreadView */ = {
 			isa = PBXGroup;
 			children = (
-				C924761218D105490006D1DC /* libTestFlight.a */,
-				C924761318D105490006D1DC /* README.md */,
-				C924761418D105490006D1DC /* release_notes.md */,
-				C924761518D105490006D1DC /* TestFlight+AsyncLogging.h */,
-				C924761618D105490006D1DC /* TestFlight+ManualSessions.h */,
-				C924761718D105490006D1DC /* TestFlight.h */,
+				C955B7FE19A6DEBA00AEFA44 /* HHPostCell.h */,
+				C955B7FF19A6DEBA00AEFA44 /* HHPostCell.m */,
+				C955B80019A6DEBA00AEFA44 /* HHPostCell.xib */,
+				C955B80419A6DEBA00AEFA44 /* HHThreadViewDataSource.h */,
+				C955B80519A6DEBA00AEFA44 /* HHThreadViewDataSource.m */,
 			);
-			path = TestFlightSDK3;
+			name = HHThreadView;
 			sourceTree = "<group>";
 		};
 		C96D22841895CDA4001BFA57 /* Objects */ = {
@@ -210,8 +263,6 @@
 				C910A6F2189733ED001D222D /* ActivityTableViewModel.m */,
 				C96D22881895D550001BFA57 /* ActivityThread.h */,
 				C96D22891895D550001BFA57 /* ActivityThread.m */,
-				C96D228B18960320001BFA57 /* ActivityThreadCell.h */,
-				C96D228C18960320001BFA57 /* ActivityThreadCell.m */,
 				DCF26E0717CD62830073DA19 /* ActivityViewController.h */,
 				DCF26E0817CD62830073DA19 /* ActivityViewController.m */,
 				C96D22841895CDA4001BFA57 /* Objects */,
@@ -237,10 +288,52 @@
 			children = (
 				C97DD33118A2A08000D1B9B7 /* ThreadPostsViewController.h */,
 				C97DD33218A2A08000D1B9B7 /* ThreadPostsViewController.m */,
+				C9AD13E219A9ADD600808BD1 /* ThreadCell.xib */,
+				C9AD13E419A9AFD500808BD1 /* ThreadCell.swift */,
+				C93F2E3B19F749CA000545BA /* UITableView+LoadingMessage.swift */,
 				C92B5F0218D0B83400FCB8EA /* NewPostViewController.h */,
 				C92B5F0318D0B83400FCB8EA /* NewPostViewController.m */,
 			);
 			name = ThreadDetail;
+			sourceTree = "<group>";
+		};
+		C9D2714A19B82408001E82F2 /* Crique Grotesk + Display */ = {
+			isa = PBXGroup;
+			children = (
+				C9D2714B19B82408001E82F2 /* CriqueGrotesk-Black.otf */,
+				C9D2714C19B82408001E82F2 /* CriqueGrotesk-BlackItalic.otf */,
+				C9D2714D19B82408001E82F2 /* CriqueGrotesk-Bold.otf */,
+				C9D2714E19B82408001E82F2 /* CriqueGrotesk-BoldItalic.otf */,
+				C9D2714F19B82408001E82F2 /* CriqueGrotesk-Heavy.otf */,
+				C9D2715019B82408001E82F2 /* CriqueGrotesk-HeavyItalic.otf */,
+				C9D2715119B82408001E82F2 /* CriqueGrotesk-Italic.otf */,
+				C9D2715219B82408001E82F2 /* CriqueGrotesk-Light.otf */,
+				C9D2715319B82408001E82F2 /* CriqueGrotesk-LightItalic.otf */,
+				C9D2715419B82408001E82F2 /* CriqueGrotesk-Medium.otf */,
+				C9D2715519B82408001E82F2 /* CriqueGrotesk-MediumItalic.otf */,
+				C9D2715619B82408001E82F2 /* CriqueGrotesk-Regular.otf */,
+				C9D2715719B82408001E82F2 /* CriqueGrotesk-Thin.otf */,
+				C9D2715819B82408001E82F2 /* CriqueGrotesk-ThinItalic.otf */,
+				C9D2715919B82408001E82F2 /* CriqueGrotesk-UltraLight.otf */,
+				C9D2715A19B82408001E82F2 /* CriqueGrotesk-UltraLightItalic.otf */,
+				C9D2715B19B82408001E82F2 /* CriqueGroteskDisplay-Black.otf */,
+				C9D2715C19B82408001E82F2 /* CriqueGroteskDisplay-BlackItalic.otf */,
+				C9D2715D19B82408001E82F2 /* CriqueGroteskDisplay-Bold.otf */,
+				C9D2715E19B82408001E82F2 /* CriqueGroteskDisplay-BoldItalic.otf */,
+				C9D2715F19B82408001E82F2 /* CriqueGroteskDisplay-Heavy.otf */,
+				C9D2716019B82408001E82F2 /* CriqueGroteskDisplay-HeavyItalic.otf */,
+				C9D2716119B82408001E82F2 /* CriqueGroteskDisplay-Italic.otf */,
+				C9D2716219B82408001E82F2 /* CriqueGroteskDisplay-Light.otf */,
+				C9D2716319B82408001E82F2 /* CriqueGroteskDisplay-LightItalic.otf */,
+				C9D2716419B82408001E82F2 /* CriqueGroteskDisplay-Medium.otf */,
+				C9D2716519B82408001E82F2 /* CriqueGroteskDisplay-MediumItalic.otf */,
+				C9D2716619B82408001E82F2 /* CriqueGroteskDisplay-Regular.otf */,
+				C9D2716719B82408001E82F2 /* CriqueGroteskDisplay-Thin.otf */,
+				C9D2716819B82408001E82F2 /* CriqueGroteskDisplay-ThinItalic.otf */,
+				C9D2716919B82408001E82F2 /* CriqueGroteskDisplay-UltraLight.otf */,
+				C9D2716A19B82408001E82F2 /* CriqueGroteskDisplay-UltraLightItalic.otf */,
+			);
+			path = "Crique Grotesk + Display";
 			sourceTree = "<group>";
 		};
 		C9D6F9F11898407E00004E3B /* Newsgroups */ = {
@@ -264,15 +357,29 @@
 			name = Objects;
 			sourceTree = "<group>";
 		};
+		C9D7AF4119F760B80048B56B /* TPKeyboardAvoiding */ = {
+			isa = PBXGroup;
+			children = (
+				C9D7AF4819F760F00048B56B /* TPKeyboardAvoidingScrollView.h */,
+				C9D7AF4919F760F00048B56B /* TPKeyboardAvoidingScrollView.m */,
+				C9D7AF4219F760C30048B56B /* TPKeyboardAvoidingTableView.h */,
+				C9D7AF4319F760C30048B56B /* TPKeyboardAvoidingTableView.m */,
+				C9D7AF4419F760C30048B56B /* UIScrollView+TPKeyboardAvoidingAdditions.h */,
+				C9D7AF4519F760C30048B56B /* UIScrollView+TPKeyboardAvoidingAdditions.m */,
+			);
+			name = TPKeyboardAvoiding;
+			sourceTree = "<group>";
+		};
 		DCF26DCC17CD617C0073DA19 = {
 			isa = PBXGroup;
 			children = (
+				C956361519A31A3800EBC7BE /* Storyboard.storyboard */,
 				C9C456C318A73564008C6C1F /* CSH News.entitlements */,
 				DCF26DDE17CD617C0073DA19 /* CSH WebNews */,
 				DCF26DF717CD617C0073DA19 /* CSH WebNewsTests */,
 				DCF26DD717CD617C0073DA19 /* Frameworks */,
 				DCF26DD617CD617C0073DA19 /* Products */,
-				CCF7A34595E241278F44BBAB /* Pods.xcconfig */,
+				F36E2D1426533A71A09708EF /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -280,7 +387,6 @@
 			isa = PBXGroup;
 			children = (
 				DCF26DD517CD617C0073DA19 /* CSH News.app */,
-				DCF26DF017CD617C0073DA19 /* CSH NewsTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -288,6 +394,7 @@
 		DCF26DD717CD617C0073DA19 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DCEF254219B8D70900F8ED18 /* libPods.a */,
 				C924761B18D105BB0006D1DC /* libPods.a */,
 				C9E1243D18A5665F0084B828 /* libz.dylib */,
 				DCCAB04917EAB3E9004B683B /* Security.framework */,
@@ -309,16 +416,21 @@
 			children = (
 				DCF26DE717CD617C0073DA19 /* AppDelegate.h */,
 				DCF26DE817CD617C0073DA19 /* AppDelegate.m */,
+				C906663819A942A30067D054 /* ToolBarColorManager.swift */,
+				C9A7B18719A9C7600007C362 /* AuthenticationManager.swift */,
 				DC22B1A717EBB00600E328DE /* SettingsViewController.h */,
 				DC22B1A817EBB00600E328DE /* SettingsViewController.m */,
 				C92B9DD9189752DC0099C22D /* CacheManager.h */,
 				C92B9DDA189752DC0099C22D /* CacheManager.m */,
+				C9F9BCA619B51ADC00E42B14 /* UIColor+CSH.h */,
+				C9F9BCA719B51ADC00E42B14 /* UIColor+CSH.m */,
 				C9C9485818987CAC00599E74 /* ThreadDetail */,
 				C9C9484518985C1300599E74 /* Newsgroup Threads */,
 				C9D6F9F11898407E00004E3B /* Newsgroups */,
 				C97003E1189618DD00BB8B35 /* Activity */,
 				DC0FC96217EC230700945EEC /* APIKeyViewController.h */,
 				DC0FC96317EC230700945EEC /* APIKeyViewController.m */,
+				C955B80A19A6DEC500AEFA44 /* HHThreadView */,
 				C9C9485B189892AA00599E74 /* Images.xcassets */,
 				DCF26DDF17CD617C0073DA19 /* Supporting Files */,
 			);
@@ -328,21 +440,19 @@
 		DCF26DDF17CD617C0073DA19 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				C924761118D105490006D1DC /* TestFlightSDK3 */,
+				C9D7AF4119F760B80048B56B /* TPKeyboardAvoiding */,
+				C9D2714A19B82408001E82F2 /* Crique Grotesk + Display */,
 				C96D227B1895BD80001BFA57 /* WebNewsDataHandler.h */,
 				C96D227C1895BD80001BFA57 /* WebNewsDataHandler.m */,
 				C96032FB18E4909500BAE63C /* PushAPIHandler.h */,
 				C96032FC18E4909500BAE63C /* PushAPIHandler.m */,
-				C9CE73A518D39F7200FD5CA4 /* SelectivelyRotatingNavigationController.h */,
-				C9CE73A618D39F7200FD5CA4 /* SelectivelyRotatingNavigationController.m */,
-				C9CE73A818D3A58500FD5CA4 /* SelectivelyRotatingTabBarController.h */,
-				C9CE73A918D3A58500FD5CA4 /* SelectivelyRotatingTabBarController.m */,
 				DC22B1AB17EBDFD800E328DE /* ISO8601DateFormatter.h */,
 				DC22B1AC17EBDFD800E328DE /* ISO8601DateFormatter.m */,
 				DCF26DE017CD617C0073DA19 /* CSH News-Info.plist */,
 				DCF26DE117CD617C0073DA19 /* InfoPlist.strings */,
 				DCF26DE417CD617C0073DA19 /* main.m */,
 				DCF26DE617CD617C0073DA19 /* CSH News-Prefix.pch */,
+				C906663719A942A20067D054 /* CSH News-Bridging-Header.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -365,6 +475,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		F36E2D1426533A71A09708EF /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E248814F46477368A0D708D9 /* Pods.debug.xcconfig */,
+				500D60C2EBBBAA60AA1B0BC1 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -377,6 +496,8 @@
 				DCF26DD217CD617C0073DA19 /* Frameworks */,
 				DCF26DD317CD617C0073DA19 /* Resources */,
 				982FA99914F5456085776421 /* Copy Pods Resources */,
+				C9297C9319EF6FAD00333AC5 /* ShellScript */,
+				C9297C9419EF6FC000333AC5 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -386,24 +507,6 @@
 			productName = "CSH WebNews";
 			productReference = DCF26DD517CD617C0073DA19 /* CSH News.app */;
 			productType = "com.apple.product-type.application";
-		};
-		DCF26DEF17CD617C0073DA19 /* CSH NewsTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = DCF26E0417CD617C0073DA19 /* Build configuration list for PBXNativeTarget "CSH NewsTests" */;
-			buildPhases = (
-				DCF26DEC17CD617C0073DA19 /* Sources */,
-				DCF26DED17CD617C0073DA19 /* Frameworks */,
-				DCF26DEE17CD617C0073DA19 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				DCF26DF617CD617C0073DA19 /* PBXTargetDependency */,
-			);
-			name = "CSH NewsTests";
-			productName = "CSH WebNewsTests";
-			productReference = DCF26DF017CD617C0073DA19 /* CSH NewsTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -422,9 +525,6 @@
 							};
 						};
 					};
-					DCF26DEF17CD617C0073DA19 = {
-						TestTargetID = DCF26DD417CD617C0073DA19;
-					};
 				};
 			};
 			buildConfigurationList = DCF26DD017CD617C0073DA19 /* Build configuration list for PBXProject "CSH News" */;
@@ -440,7 +540,6 @@
 			projectRoot = "";
 			targets = (
 				DCF26DD417CD617C0073DA19 /* CSH News */,
-				DCF26DEF17CD617C0073DA19 /* CSH NewsTests */,
 			);
 		};
 /* End PBXProject section */
@@ -450,18 +549,43 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C924761A18D105490006D1DC /* release_notes.md in Resources */,
-				C924761918D105490006D1DC /* README.md in Resources */,
+				C9D2716B19B82408001E82F2 /* CriqueGrotesk-Black.otf in Resources */,
+				C9D2717F19B82408001E82F2 /* CriqueGroteskDisplay-Heavy.otf in Resources */,
+				C9D2718A19B82408001E82F2 /* CriqueGroteskDisplay-UltraLightItalic.otf in Resources */,
+				C9D2717C19B82408001E82F2 /* CriqueGroteskDisplay-BlackItalic.otf in Resources */,
+				C9D2716D19B82408001E82F2 /* CriqueGrotesk-Bold.otf in Resources */,
+				C9D2717119B82408001E82F2 /* CriqueGrotesk-Italic.otf in Resources */,
+				C9D2718419B82408001E82F2 /* CriqueGroteskDisplay-Medium.otf in Resources */,
+				C9D2718219B82408001E82F2 /* CriqueGroteskDisplay-Light.otf in Resources */,
+				C9D2718919B82408001E82F2 /* CriqueGroteskDisplay-UltraLight.otf in Resources */,
+				C9D2717519B82408001E82F2 /* CriqueGrotesk-MediumItalic.otf in Resources */,
+				C9D2718019B82408001E82F2 /* CriqueGroteskDisplay-HeavyItalic.otf in Resources */,
+				C9D2717619B82408001E82F2 /* CriqueGrotesk-Regular.otf in Resources */,
+				C9D2717719B82408001E82F2 /* CriqueGrotesk-Thin.otf in Resources */,
+				C9AD13E319A9ADD600808BD1 /* ThreadCell.xib in Resources */,
+				C9D2717019B82408001E82F2 /* CriqueGrotesk-HeavyItalic.otf in Resources */,
+				C9D2717D19B82408001E82F2 /* CriqueGroteskDisplay-Bold.otf in Resources */,
+				C9D2717419B82408001E82F2 /* CriqueGrotesk-Medium.otf in Resources */,
+				C9D2717319B82408001E82F2 /* CriqueGrotesk-LightItalic.otf in Resources */,
 				DCF26DE317CD617C0073DA19 /* InfoPlist.strings in Resources */,
+				C9D2717B19B82408001E82F2 /* CriqueGroteskDisplay-Black.otf in Resources */,
+				C9D2717A19B82408001E82F2 /* CriqueGrotesk-UltraLightItalic.otf in Resources */,
+				C9D2718319B82408001E82F2 /* CriqueGroteskDisplay-LightItalic.otf in Resources */,
 				C9C9485C189892AA00599E74 /* Images.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		DCF26DEE17CD617C0073DA19 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				DCF26DFC17CD617C0073DA19 /* InfoPlist.strings in Resources */,
+				C9D2717219B82408001E82F2 /* CriqueGrotesk-Light.otf in Resources */,
+				C9D2716C19B82408001E82F2 /* CriqueGrotesk-BlackItalic.otf in Resources */,
+				C9D2718619B82408001E82F2 /* CriqueGroteskDisplay-Regular.otf in Resources */,
+				C9D2717919B82408001E82F2 /* CriqueGrotesk-UltraLight.otf in Resources */,
+				C9D2718519B82408001E82F2 /* CriqueGroteskDisplay-MediumItalic.otf in Resources */,
+				C9D2716F19B82408001E82F2 /* CriqueGrotesk-Heavy.otf in Resources */,
+				C9D2718819B82408001E82F2 /* CriqueGroteskDisplay-ThinItalic.otf in Resources */,
+				C9D2717E19B82408001E82F2 /* CriqueGroteskDisplay-BoldItalic.otf in Resources */,
+				C9D2716E19B82408001E82F2 /* CriqueGrotesk-BoldItalic.otf in Resources */,
+				C9D2717819B82408001E82F2 /* CriqueGrotesk-ThinItalic.otf in Resources */,
+				C9D2718119B82408001E82F2 /* CriqueGroteskDisplay-Italic.otf in Resources */,
+				C956361619A31A3800EBC7BE /* Storyboard.storyboard in Resources */,
+				C9D2718719B82408001E82F2 /* CriqueGroteskDisplay-Thin.otf in Resources */,
+				C955B80719A6DEBA00AEFA44 /* HHPostCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -495,8 +619,34 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		C9297C9319EF6FAD00333AC5 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 8;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+			shellPath = /bin/sh;
+			shellScript = "# This splits a two-decimal version string, such as \"0.45.123\", allowing us to increment the third position.\nVERSIONNUM=$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\")\nNEWSUBVERSION=`echo $VERSIONNUM | awk -F \".\" '{print $3}'`\nNEWSUBVERSION=$(($NEWSUBVERSION + 1))\nNEWVERSIONSTRING=`echo $VERSIONNUM | awk -F \".\" '{print $1 \".\" $2 \".'$NEWSUBVERSION'\" }'`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleShortVersionString $NEWVERSIONSTRING\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"";
+		};
+		C9297C9419EF6FC000333AC5 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "buildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -506,50 +656,41 @@
 			buildActionMask = 2147483647;
 			files = (
 				C96D228A1895D550001BFA57 /* ActivityThread.m in Sources */,
+				C955B80919A6DEBA00AEFA44 /* HHThreadViewDataSource.m in Sources */,
 				DCF26DE917CD617C0073DA19 /* AppDelegate.m in Sources */,
 				C9C9484B1898690800599E74 /* NewsgroupThreadListTableViewModel.m in Sources */,
+				C93F2E3C19F749CA000545BA /* UITableView+LoadingMessage.swift in Sources */,
 				C92B5F0418D0B83400FCB8EA /* NewPostViewController.m in Sources */,
 				C9C9484418985C0C00599E74 /* NewsgroupThreadsViewController.m in Sources */,
 				C910A6F3189733ED001D222D /* ActivityTableViewModel.m in Sources */,
 				C96032FD18E4909500BAE63C /* PushAPIHandler.m in Sources */,
+				C9D7AF4A19F760F00048B56B /* TPKeyboardAvoidingScrollView.m in Sources */,
 				C9D6F9F81898498D00004E3B /* NewsgroupOutlineTableViewModel.m in Sources */,
+				C9A7B18819A9C7600007C362 /* AuthenticationManager.swift in Sources */,
 				DCF26E0917CD62830073DA19 /* ActivityViewController.m in Sources */,
 				C96D22831895CD7B001BFA57 /* User.m in Sources */,
 				DC22B1A917EBB00600E328DE /* SettingsViewController.m in Sources */,
 				C96D227D1895BD80001BFA57 /* WebNewsDataHandler.m in Sources */,
 				C97DD33318A2A08000D1B9B7 /* ThreadPostsViewController.m in Sources */,
+				C955B80619A6DEBA00AEFA44 /* HHPostCell.m in Sources */,
 				C92B9DDB189752DC0099C22D /* CacheManager.m in Sources */,
-				C9CE73AA18D3A58500FD5CA4 /* SelectivelyRotatingTabBarController.m in Sources */,
 				C96D22801895CC08001BFA57 /* Post.m in Sources */,
 				C9D6F9F5189840FE00004E3B /* NewsgroupOutline.m in Sources */,
+				C9AD13E519A9AFD500808BD1 /* ThreadCell.swift in Sources */,
+				C9D7AF4619F760C30048B56B /* TPKeyboardAvoidingTableView.m in Sources */,
 				C9C9484818985D9B00599E74 /* NewsgroupThread.m in Sources */,
-				C96D228D18960320001BFA57 /* ActivityThreadCell.m in Sources */,
 				DC22B1AD17EBDFD800E328DE /* ISO8601DateFormatter.m in Sources */,
-				C9CE73A718D39F7200FD5CA4 /* SelectivelyRotatingNavigationController.m in Sources */,
+				C9F9BCA819B51ADC00E42B14 /* UIColor+CSH.m in Sources */,
+				C906663919A942A30067D054 /* ToolBarColorManager.swift in Sources */,
 				C96D22871895CDBC001BFA57 /* Preferences.m in Sources */,
+				C9D7AF4719F760C30048B56B /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
 				DC0FC96417EC230700945EEC /* APIKeyViewController.m in Sources */,
 				DCF26DE517CD617C0073DA19 /* main.m in Sources */,
 				C9D6F9F01898406C00004E3B /* NewsgroupsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DCF26DEC17CD617C0073DA19 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				DCF26DFE17CD617C0073DA19 /* CSH_WebNewsTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		DCF26DF617CD617C0073DA19 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = DCF26DD417CD617C0073DA19 /* CSH News */;
-			targetProxy = DCF26DF517CD617C0073DA19 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		DCF26DE117CD617C0073DA19 /* InfoPlist.strings */ = {
@@ -641,25 +782,26 @@
 		};
 		DCF26E0217CD617C0073DA19 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CCF7A34595E241278F44BBAB /* Pods.xcconfig */;
+			baseConfigurationReference = E248814F46477368A0D708D9 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "CSH News.entitlements";
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CSH WebNews/CSH News-Prefix.pch";
 				GCC_UNROLL_LOOPS = YES;
 				INFOPLIST_FILE = "CSH WebNews/CSH News-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/CSH\\ WebNews/TestFlightSDK3",
-				);
-				LLVM_LTO = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LLVM_LTO = YES;
 				PRODUCT_NAME = "CSH News";
-				PROVISIONING_PROFILE = "C3B2E889-70F5-4466-BFB3-1316E1D9D411";
+				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "CSH WebNews/CSH News-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/../\"/**";
 				WRAPPER_EXTENSION = app;
@@ -668,69 +810,28 @@
 		};
 		DCF26E0317CD617C0073DA19 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CCF7A34595E241278F44BBAB /* Pods.xcconfig */;
+			baseConfigurationReference = 500D60C2EBBBAA60AA1B0BC1 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "CSH News.entitlements";
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				GCC_OPTIMIZATION_LEVEL = fast;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_OPTIMIZATION_LEVEL = 3;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CSH WebNews/CSH News-Prefix.pch";
 				GCC_UNROLL_LOOPS = YES;
 				INFOPLIST_FILE = "CSH WebNews/CSH News-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/CSH\\ WebNews/TestFlightSDK3",
-				);
-				LLVM_LTO = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LLVM_LTO = YES;
 				PRODUCT_NAME = "CSH News";
-				PROVISIONING_PROFILE = "42D93AC0-1651-4E6C-9DEC-744BA5880D13";
+				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "CSH WebNews/CSH News-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/../\"/**";
 				WRAPPER_EXTENSION = app;
-			};
-			name = Release;
-		};
-		DCF26E0517CD617C0073DA19 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/CSH WebNews.app/CSH WebNews";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "CSH WebNews/CSH WebNews-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "CSH WebNewsTests/CSH NewsTests-Info.plist";
-				PRODUCT_NAME = "CSH NewsTests";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Debug;
-		};
-		DCF26E0617CD617C0073DA19 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/CSH WebNews.app/CSH WebNews";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "CSH WebNews/CSH WebNews-Prefix.pch";
-				INFOPLIST_FILE = "CSH WebNewsTests/CSH NewsTests-Info.plist";
-				PRODUCT_NAME = "CSH NewsTests";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;
 		};
@@ -751,15 +852,6 @@
 			buildConfigurations = (
 				DCF26E0217CD617C0073DA19 /* Debug */,
 				DCF26E0317CD617C0073DA19 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		DCF26E0417CD617C0073DA19 /* Build configuration list for PBXNativeTarget "CSH NewsTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				DCF26E0517CD617C0073DA19 /* Debug */,
-				DCF26E0617CD617C0073DA19 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

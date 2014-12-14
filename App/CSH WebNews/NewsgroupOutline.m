@@ -80,7 +80,7 @@
         return [self name];
     }
     else {
-        return [NSString stringWithFormat:@"%@ (%li)", [self name], (long)self.unreadPosts];
+        return [NSString stringWithFormat:@"%@ (%@)", [self name], @(self.unreadPosts)];
     }
 }
 

@@ -7,14 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NewsgroupThread.h"
 
-@protocol HHPostProtocol;
+static NSString *const NewPostViewControllerPostWasSuccessfulNotification = @"NewPostViewControllerPostWasSuccessfulNotification";
+static NSString *const NewPostViewControllerUserInfoPostKey = @"NewPostViewControllerUserInfoPostKey";
+static NSString *const NewPostViewControllerUserInfoNewsgroupKey = @"NewPostViewControllerUserInfoNewsgroupKey";
 
-@interface NewPostViewController : UIViewController<UITextViewDelegate>
+@interface NewPostViewController : UITableViewController
 
-+ (instancetype) replyControllerWithPost:(id<HHPostProtocol>)post;
-+ (instancetype) postControllerWithNewsgroup:(NSString*)string;
-
-@property (nonatomic, copy) void (^didSendReplyBlock)();
+@property (nonatomic) NewsgroupThread *post;
+@property (nonatomic) NSString *newsgroup;
+@property (nonatomic, getter = isReply) BOOL reply;
 
 @end

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14A388a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="CriqueGrotesk-Bold.otf">
+            <string>CriqueGrotesk-Bold</string>
+            <string>CriqueGrotesk-Bold</string>
+            <string>CriqueGrotesk-Bold</string>
+        </mutableArray>
+        <mutableArray key="CriqueGrotesk-Regular.otf">
+            <string>CriqueGrotesk</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" restorationIdentifier="ThreadCell" selectionStyle="none" indentationWidth="10" reuseIdentifier="ThreadCell" rowHeight="116" id="qnh-jP-JXZ" customClass="ThreadCell" customModule="CSH_News" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="116"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qnh-jP-JXZ" id="7YM-ug-JTW">
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k2y-kA-fqc">
+                        <rect key="frame" x="27" y="13" width="248" height="53.5"/>
+                        <string key="text">I've rewritten Drink in Visual Basic.
+It's a lot better now.</string>
+                        <fontDescription key="fontDescription" name="CriqueGrotesk" family="Crique Grotesk" pointSize="17"/>
+                        <color key="textColor" white="0.29486526268115942" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                        <color key="shadowColor" red="0.99148692260000004" green="0.99148692260000004" blue="0.99148692260000004" alpha="1" colorSpace="calibratedRGB"/>
+                        <size key="shadowOffset" width="0.0" height="1"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="253" text="Ben Centra" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q1w-HR-QV5">
+                        <rect key="frame" x="27" y="72" width="248" height="13"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="13" id="vHS-Vf-p9T"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="CriqueGrotesk-Bold" family="Crique Grotesk" pointSize="12"/>
+                        <color key="textColor" white="0.54953577898550721" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                        <color key="shadowColor" red="0.99148692260000004" green="0.99148692260000004" blue="0.99148692260000004" alpha="1" colorSpace="calibratedRGB"/>
+                        <size key="shadowOffset" width="0.0" height="1"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="252" text="3 hours ago to c.p.drink" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mnR-Eu-LUk">
+                        <rect key="frame" x="27" y="90" width="248" height="13"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="13" id="duh-re-Ig7"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="CriqueGrotesk-Bold" family="Crique Grotesk" pointSize="12"/>
+                        <color key="textColor" white="0.3616961051" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                        <color key="shadowColor" red="0.99148692260000004" green="0.99148692260000004" blue="0.99148692260000004" alpha="1" colorSpace="calibratedRGB"/>
+                        <size key="shadowOffset" width="0.0" height="1"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="55" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RTy-O6-fF8">
+                        <rect key="frame" x="285" y="0.0" width="35" height="115.5"/>
+                        <color key="backgroundColor" white="0.79732789855072472" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="35" id="Wb0-gT-GLn"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="CriqueGrotesk-Bold" family="Crique Grotesk" pointSize="16"/>
+                        <color key="textColor" red="0.99148692255434778" green="0.99148692255434778" blue="0.99148692255434778" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                        <size key="shadowOffset" width="0.0" height="1"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yIB-lX-4Pv">
+                        <rect key="frame" x="11" y="15" width="10" height="10"/>
+                        <color key="backgroundColor" red="0.14414911684782605" green="0.14414911684782605" blue="0.14414911684782605" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="yIB-lX-4Pv" secondAttribute="height" multiplier="1:1" id="SUM-vx-uV2"/>
+                            <constraint firstAttribute="height" constant="10" id="awa-WL-XdK"/>
+                        </constraints>
+                    </view>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Pin" translatesAutoresizingMaskIntoConstraints="NO" id="znN-n8-bcz">
+                        <rect key="frame" x="5" y="30" width="17" height="17"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="17" id="89L-aR-fTL"/>
+                            <constraint firstAttribute="width" secondItem="znN-n8-bcz" secondAttribute="height" multiplier="1:1" id="bKA-QQ-5OG"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <color key="backgroundColor" white="0.96999999999999997" alpha="1" colorSpace="calibratedWhite"/>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="RTy-O6-fF8" secondAttribute="bottom" id="3Ca-0h-dNZ"/>
+                    <constraint firstItem="Q1w-HR-QV5" firstAttribute="top" secondItem="k2y-kA-fqc" secondAttribute="bottom" constant="5" id="3nm-Qh-F9o"/>
+                    <constraint firstItem="RTy-O6-fF8" firstAttribute="leading" secondItem="Q1w-HR-QV5" secondAttribute="trailing" constant="10" id="8w3-on-6lb"/>
+                    <constraint firstItem="RTy-O6-fF8" firstAttribute="top" secondItem="7YM-ug-JTW" secondAttribute="top" id="DVP-SS-NKi"/>
+                    <constraint firstAttribute="trailing" secondItem="RTy-O6-fF8" secondAttribute="trailing" id="Lz0-4A-anp"/>
+                    <constraint firstItem="znN-n8-bcz" firstAttribute="leading" secondItem="7YM-ug-JTW" secondAttribute="leading" constant="5" id="N6Y-HV-Jhp"/>
+                    <constraint firstItem="mnR-Eu-LUk" firstAttribute="leading" secondItem="Q1w-HR-QV5" secondAttribute="leading" id="R3m-gT-zPr"/>
+                    <constraint firstItem="znN-n8-bcz" firstAttribute="top" secondItem="yIB-lX-4Pv" secondAttribute="bottom" constant="5" id="Vak-Qh-suj"/>
+                    <constraint firstItem="k2y-kA-fqc" firstAttribute="top" secondItem="7YM-ug-JTW" secondAttribute="topMargin" constant="5" id="bHJ-rF-yv8"/>
+                    <constraint firstItem="RTy-O6-fF8" firstAttribute="leading" secondItem="mnR-Eu-LUk" secondAttribute="trailing" constant="10" id="ghT-aL-7JW"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="mnR-Eu-LUk" secondAttribute="bottom" constant="5" id="ghu-wm-rg3"/>
+                    <constraint firstItem="k2y-kA-fqc" firstAttribute="leading" secondItem="yIB-lX-4Pv" secondAttribute="trailing" constant="6" id="iy8-1e-rUA"/>
+                    <constraint firstItem="k2y-kA-fqc" firstAttribute="leading" secondItem="znN-n8-bcz" secondAttribute="trailing" constant="5" id="l0z-OK-9Ai"/>
+                    <constraint firstItem="yIB-lX-4Pv" firstAttribute="top" secondItem="k2y-kA-fqc" secondAttribute="top" constant="2" id="nA6-gj-zpq"/>
+                    <constraint firstItem="RTy-O6-fF8" firstAttribute="leading" secondItem="k2y-kA-fqc" secondAttribute="trailing" constant="10" id="pNP-xz-vKa"/>
+                    <constraint firstItem="mnR-Eu-LUk" firstAttribute="top" secondItem="Q1w-HR-QV5" secondAttribute="bottom" constant="5" id="vRF-4x-KPL"/>
+                    <constraint firstItem="Q1w-HR-QV5" firstAttribute="leading" secondItem="k2y-kA-fqc" secondAttribute="leading" id="vep-BA-ZDU"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="authorLabel" destination="Q1w-HR-QV5" id="rzH-B5-0Pi"/>
+                <outlet property="detailsLabel" destination="mnR-Eu-LUk" id="aPO-2J-Qkl"/>
+                <outlet property="pinImageView" destination="znN-n8-bcz" id="saf-V9-6MQ"/>
+                <outlet property="pinVerticalSpaceConstraint" destination="Vak-Qh-suj" id="i3B-U4-l4V"/>
+                <outlet property="postCountLabel" destination="RTy-O6-fF8" id="F1i-dn-p93"/>
+                <outlet property="subjectLabel" destination="k2y-kA-fqc" id="S8h-iv-fES"/>
+                <outlet property="unreadCircle" destination="yIB-lX-4Pv" id="4v5-gT-Jpk"/>
+                <outlet property="unreadCircleHeightConstraint" destination="awa-WL-XdK" id="SWu-o3-BhE"/>
+            </connections>
+            <point key="canvasLocation" x="494" y="327"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="Pin" width="256" height="256"/>
+    </resources>
+</document>
