@@ -13,9 +13,8 @@
 		C92B5F0418D0B83400FCB8EA /* NewPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C92B5F0318D0B83400FCB8EA /* NewPostViewController.m */; };
 		C92B9DDB189752DC0099C22D /* CacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C92B9DDA189752DC0099C22D /* CacheManager.m */; };
 		C93F2E3C19F749CA000545BA /* UITableView+LoadingMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93F2E3B19F749CA000545BA /* UITableView+LoadingMessage.swift */; };
-		C955B80619A6DEBA00AEFA44 /* HHPostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C955B7FF19A6DEBA00AEFA44 /* HHPostCell.m */; };
-		C955B80719A6DEBA00AEFA44 /* HHPostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C955B80019A6DEBA00AEFA44 /* HHPostCell.xib */; };
-		C955B80919A6DEBA00AEFA44 /* HHThreadViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = C955B80519A6DEBA00AEFA44 /* HHThreadViewDataSource.m */; };
+		C955B80619A6DEBA00AEFA44 /* PostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C955B7FF19A6DEBA00AEFA44 /* PostCell.m */; };
+		C955B80719A6DEBA00AEFA44 /* PostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C955B80019A6DEBA00AEFA44 /* PostCell.xib */; };
 		C956361619A31A3800EBC7BE /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C956361519A31A3800EBC7BE /* Storyboard.storyboard */; };
 		C96032FD18E4909500BAE63C /* PushAPIHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C96032FC18E4909500BAE63C /* PushAPIHandler.m */; };
 		C96D227D1895BD80001BFA57 /* WebNewsDataHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C96D227C1895BD80001BFA57 /* WebNewsDataHandler.m */; };
@@ -101,11 +100,9 @@
 		C92B9DD9189752DC0099C22D /* CacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheManager.h; sourceTree = "<group>"; };
 		C92B9DDA189752DC0099C22D /* CacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheManager.m; sourceTree = "<group>"; };
 		C93F2E3B19F749CA000545BA /* UITableView+LoadingMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+LoadingMessage.swift"; sourceTree = "<group>"; };
-		C955B7FE19A6DEBA00AEFA44 /* HHPostCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HHPostCell.h; sourceTree = "<group>"; };
-		C955B7FF19A6DEBA00AEFA44 /* HHPostCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HHPostCell.m; sourceTree = "<group>"; };
-		C955B80019A6DEBA00AEFA44 /* HHPostCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HHPostCell.xib; sourceTree = "<group>"; };
-		C955B80419A6DEBA00AEFA44 /* HHThreadViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HHThreadViewDataSource.h; sourceTree = "<group>"; };
-		C955B80519A6DEBA00AEFA44 /* HHThreadViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HHThreadViewDataSource.m; sourceTree = "<group>"; };
+		C955B7FE19A6DEBA00AEFA44 /* PostCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostCell.h; sourceTree = "<group>"; };
+		C955B7FF19A6DEBA00AEFA44 /* PostCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostCell.m; sourceTree = "<group>"; };
+		C955B80019A6DEBA00AEFA44 /* PostCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostCell.xib; sourceTree = "<group>"; };
 		C956361519A31A3800EBC7BE /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		C96032FB18E4909500BAE63C /* PushAPIHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushAPIHandler.h; sourceTree = "<group>"; };
 		C96032FC18E4909500BAE63C /* PushAPIHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushAPIHandler.m; sourceTree = "<group>"; };
@@ -234,11 +231,9 @@
 		C955B80A19A6DEC500AEFA44 /* HHThreadView */ = {
 			isa = PBXGroup;
 			children = (
-				C955B7FE19A6DEBA00AEFA44 /* HHPostCell.h */,
-				C955B7FF19A6DEBA00AEFA44 /* HHPostCell.m */,
-				C955B80019A6DEBA00AEFA44 /* HHPostCell.xib */,
-				C955B80419A6DEBA00AEFA44 /* HHThreadViewDataSource.h */,
-				C955B80519A6DEBA00AEFA44 /* HHThreadViewDataSource.m */,
+				C955B7FE19A6DEBA00AEFA44 /* PostCell.h */,
+				C955B7FF19A6DEBA00AEFA44 /* PostCell.m */,
+				C955B80019A6DEBA00AEFA44 /* PostCell.xib */,
 			);
 			name = HHThreadView;
 			sourceTree = "<group>";
@@ -512,7 +507,8 @@
 		DCF26DCD17CD617C0073DA19 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = Haskins;
 				TargetAttributes = {
 					DCF26DD417CD617C0073DA19 = {
@@ -583,7 +579,7 @@
 				C9D2718119B82408001E82F2 /* CriqueGroteskDisplay-Italic.otf in Resources */,
 				C956361619A31A3800EBC7BE /* Storyboard.storyboard in Resources */,
 				C9D2718719B82408001E82F2 /* CriqueGroteskDisplay-Thin.otf in Resources */,
-				C955B80719A6DEBA00AEFA44 /* HHPostCell.xib in Resources */,
+				C955B80719A6DEBA00AEFA44 /* PostCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -628,7 +624,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C96D228A1895D550001BFA57 /* ActivityThread.m in Sources */,
-				C955B80919A6DEBA00AEFA44 /* HHThreadViewDataSource.m in Sources */,
 				DCF26DE917CD617C0073DA19 /* AppDelegate.m in Sources */,
 				C9C9484B1898690800599E74 /* NewsgroupThreadListTableViewModel.m in Sources */,
 				C93F2E3C19F749CA000545BA /* UITableView+LoadingMessage.swift in Sources */,
@@ -644,7 +639,7 @@
 				DC22B1A917EBB00600E328DE /* SettingsViewController.m in Sources */,
 				C96D227D1895BD80001BFA57 /* WebNewsDataHandler.m in Sources */,
 				C97DD33318A2A08000D1B9B7 /* ThreadPostsViewController.m in Sources */,
-				C955B80619A6DEBA00AEFA44 /* HHPostCell.m in Sources */,
+				C955B80619A6DEBA00AEFA44 /* PostCell.m in Sources */,
 				C92B9DDB189752DC0099C22D /* CacheManager.m in Sources */,
 				C96D22801895CC08001BFA57 /* Post.m in Sources */,
 				C9D6F9F5189840FE00004E3B /* NewsgroupOutline.m in Sources */,
@@ -702,6 +697,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -715,7 +711,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -746,7 +742,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -766,10 +762,11 @@
 				GCC_PREFIX_HEADER = "CSH WebNews/CSH News-Prefix.pch";
 				GCC_UNROLL_LOOPS = YES;
 				INFOPLIST_FILE = "CSH WebNews/CSH News-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				LLVM_LTO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.rit.csh.News;
 				PRODUCT_NAME = "CSH News";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "CSH WebNews/CSH News-Bridging-Header.h";
@@ -794,10 +791,11 @@
 				GCC_PREFIX_HEADER = "CSH WebNews/CSH News-Prefix.pch";
 				GCC_UNROLL_LOOPS = YES;
 				INFOPLIST_FILE = "CSH WebNews/CSH News-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				LLVM_LTO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.rit.csh.News;
 				PRODUCT_NAME = "CSH News";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "CSH WebNews/CSH News-Bridging-Header.h";

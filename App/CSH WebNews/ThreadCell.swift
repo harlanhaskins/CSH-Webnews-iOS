@@ -17,9 +17,6 @@ class ThreadCell: UITableViewCell {
     @IBOutlet weak var subjectLabel: UILabel!
     @IBOutlet weak var detailsLabel: UILabel!
     @IBOutlet weak var pinImageView: UIImageView!
-    @IBOutlet weak var pinVerticalSpaceConstraint: NSLayoutConstraint!
-    
-    @IBOutlet weak var unreadCircleHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var unreadCircle: UIView!
     
     var thread: ThreadProtocol?
@@ -45,11 +42,10 @@ class ThreadCell: UITableViewCell {
         if let truncated = memoizedTruncatedStrings[newsgroup] {
             return truncated
         }
-        var stringComponents = newsgroup.componentsSeparatedByString(".")
-        var lastString = stringComponents.last!
-        let firstComponents = stringComponents.removeLast()
-        let firstChars = stringComponents.map { String(Array($0).first!) }
-        let truncatedString = join(".", firstChars) + "."
+        let stringComponents = newsgroup.componentsSeparatedByString(".")
+        let lastString = stringComponents.last!
+        let firstChars = stringComponents.map { String(Array($0.characters).first!) }
+        let truncatedString = ".".join(firstChars) + "."
         let attributes = [NSForegroundColorAttributeName : UIColor(white: 0.75, alpha: 1.0)]
         
         let truncatedAttributedString = NSMutableAttributedString(string: truncatedString,
@@ -62,15 +58,12 @@ class ThreadCell: UITableViewCell {
     
     func resetUnreadCircle() {
         if let color = self.thread?.unreadColor {
-            self.unreadCircleHeightConstraint.constant = 10.0
-            self.pinVerticalSpaceConstraint.constant = 5.0
             self.unreadCircle.backgroundColor = color
+            self.unreadCircle.hidden = false
+        } else {
+            self.unreadCircle.hidden = true
         }
-        else {
-            self.unreadCircleHeightConstraint.constant = 0.0
-            self.pinVerticalSpaceConstraint.constant = -2.0
-        }
-        self.unreadCircle.layer.cornerRadius = self.unreadCircleHeightConstraint.constant / 2.0
+        self.unreadCircle.layer.cornerRadius = self.unreadCircle.frame.height / 2.0
     }
     
     override func awakeFromNib() {

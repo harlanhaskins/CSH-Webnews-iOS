@@ -12,6 +12,7 @@
 #import "WebNewsDataHandler.h"
 #import "CacheManager.h"
 #import "NewsgroupThread.h"
+#import "AppDelegate.h"
 
 @interface NewsgroupOutlineTableViewModel ()
 
@@ -74,8 +75,11 @@
            block();
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Error downloading data. Please check your internet connection." delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Okay", nil];
-        [alert show];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:@"Error downloading data. Please check your internet connection." preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * __nonnull action) {
+            [alert dismissViewControllerAnimated:YES completion:nil];
+        }]];
+        [((AppDelegate *)[UIApplication sharedApplication].delegate).window.rootViewController presentViewController:alert animated:YES completion:nil];
     }];
 }
 

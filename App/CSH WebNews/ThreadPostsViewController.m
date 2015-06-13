@@ -11,15 +11,17 @@
 #import "Post.h"
 #import "WebNewsDataHandler.h"
 #import "NewPostViewController.h"
-#import "HHThreadViewDataSource.h"
-#import "HHPostCell.h"
+#import "PostCell.h"
+#import "RZCellSizeManager.h"
+#import "SVModalWebViewController.h"
 
-@interface ThreadPostsViewController () <HHPostCellDelegate>
+@interface ThreadPostsViewController () <PostCellDelegate>
 
 @property (nonatomic) NewsgroupThread *thread;
-@property (nonatomic) HHThreadViewDataSource *dataSource;
 
 @end
+
+NSString *const kCellIdentifier = @"PostCell";
 
 @implementation ThreadPostsViewController
 
@@ -27,16 +29,15 @@
     _thread = thread;
     _thread.post.unread = NO;
     self.title = thread.post.subject;
-    self.dataSource.posts = thread.allThreads;
     [self loadPosts];
 }
 
-- (void) postCellDidTapReply:(HHPostCell*)cell {
+- (void) postCellDidTapReply:(PostCell*)cell {
     NewsgroupThread *threadToReply = (NewsgroupThread *)cell.post;
     [self replyToPost:threadToReply];
 }
 
-- (void) postCellDidTapStar:(HHPostCell *)cell {
+- (void) postCellDidTapStar:(PostCell *)cell {
     NewsgroupThread *threadToStar = (NewsgroupThread *)cell.post;
     NSString *url = [NSString stringWithFormat:@"%@/%@/star", threadToStar.post.newsgroup, @(threadToStar.number)];
     [self toggleStarredOnCell:cell];
@@ -51,18 +52,18 @@
                                     }];
 }
 
-- (void) toggleStarredOnCell:(HHPostCell *)cell {
+- (void) toggleStarredOnCell:(PostCell *)cell {
     NewsgroupThread *thread = (NewsgroupThread*)cell.post;
     [self setStarred:!thread.post.starred onCell:cell];
 }
 
-- (void) setStarred:(BOOL)starred onCell:(HHPostCell *)cell {
+- (void) setStarred:(BOOL)starred onCell:(PostCell *)cell {
     NewsgroupThread *thread = (NewsgroupThread*)cell.post;
     thread.post.starred = starred;
     [cell setStarFilling];
 }
 
-- (void) postCellDidTapDelete:(HHPostCell *)cell {
+- (void) postCellDidTapDelete:(PostCell *)cell {
     NewsgroupThread *threadToDelete = (NewsgroupThread*)cell.post;
     NSString *url = [NSString stringWithFormat:@"%@/%@", threadToDelete.post.newsgroup, @(threadToDelete.number)];
     NSDictionary *parameters = @{@"confirm_cancel" : @YES};
@@ -106,15 +107,14 @@
                                                object:replyVC];
 }
 
-- (void) awakeFromNib {
-    self.dataSource = [HHThreadViewDataSource new];
-    self.dataSource.delegate = self;
-    self.tableView.dataSource = self.dataSource;
+- (void)viewDidLoad {
+    [super viewDidLoad];
     
-    [self.tableView registerNib:[UINib nibWithNibName:@"HHPostCell" bundle:nil] forCellReuseIdentifier:kCellIdentifier];
+    UINib *postCellNib = [UINib nibWithNibName:@"PostCell" bundle:[NSBundle mainBundle]];
+    [self.tableView registerNib:postCellNib forCellReuseIdentifier:kCellIdentifier];
     
     self.tableView.rowHeight = UITableViewAutomaticDimension;
-    self.tableView.estimatedRowHeight = 44.0;
+    self.tableView.estimatedRowHeight = 600.0;
 }
 
 - (void) setNewsgroup:(NSString*)newsgroup number:(NSNumber*)number subject:(NSString*)subject {
@@ -131,8 +131,25 @@
     [[WebNewsDataHandler sharedHandler] PUT:@"mark_read" parameters:parameters success:nil failure:nil];
 }
 
-- (NSArray*) posts {
-    return self.thread.allPosts;
+- (NSArray *) posts {
+    return self.thread.allThreads;
+}
+
+- (UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    PostCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier forIndexPath:indexPath];
+    [self configureCell:cell withPost:self.posts[indexPath.row]];
+    return cell;
+}
+
+- (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    NSUInteger rows = self.posts.count;
+    [tableView addLoadingTextIfNecessaryForRows:rows withItemName:@"Posts"];
+    return rows;
+}
+
+- (void) configureCell:(PostCell*)cell withPost:(NewsgroupThread *)post {
+    cell.post = post;
+    cell.delegate = self;
 }
 
 - (void) loadPosts {
@@ -140,7 +157,7 @@
     
     dispatch_group_t loadPostsGroup = dispatch_group_create();
     
-    for (NewsgroupThread *thread in self.dataSource.posts) {
+    for (NewsgroupThread *thread in self.posts) {
         dispatch_group_enter(loadPostsGroup);
         [thread.post loadBodyWithCompletion:^(NSError *error) {
             dispatch_group_leave(loadPostsGroup);
@@ -148,9 +165,20 @@
     }
     
     dispatch_group_notify(loadPostsGroup, dispatch_get_main_queue(), ^{
-        [self.refreshControl endRefreshing];
-        [self.tableView reloadData];
+        [self reloadTable];
     });
+}
+
+-(void)attributedLabel:(TTTAttributedLabel *)label didSelectLinkWithURL:(NSURL *)url {
+    SVModalWebViewController *webViewController = [[SVModalWebViewController alloc] initWithURL:url];
+    webViewController.navigationBar.tintColor = [UIColor whiteColor];
+    webViewController.toolbar.tintColor = [UIColor whiteColor];
+    [self presentViewController:webViewController animated:YES completion:nil];
+}
+
+- (void)reloadTable {
+    [self.refreshControl endRefreshing];
+    [self.tableView reloadData];
 }
 
 @end

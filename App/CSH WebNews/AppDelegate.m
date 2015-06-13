@@ -29,13 +29,14 @@
     [application registerUserNotificationSettings:notificationSettings];
     [application registerForRemoteNotifications];
     
-    [ToolBarColorManager setPurpleToolbars];
     
 //    [AuthenticationManager invalidateKey];
     
     UISplitViewController *splitController = (UISplitViewController*)self.window.rootViewController;
     splitController.delegate = self;
     splitController.preferredDisplayMode = UISplitViewControllerDisplayModeAllVisible;
+    
+    [ToolBarColorManager setPurpleToolbars];
 
     return YES;
 }

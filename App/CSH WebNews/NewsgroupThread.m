@@ -9,7 +9,7 @@
 #import "NewsgroupThread.h"
 #import "Post.h"
 #import "CacheManager.h"
-#import "HHPostCell.h"
+#import "PostCell.h"
 #import "UIColor+CSH.h"
 
 @interface NewsgroupThread ()
