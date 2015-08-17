@@ -15,7 +15,6 @@
 
 @property (nonatomic) BOOL actionButtonsVisible;
 
-@property (weak, nonatomic) IBOutlet UILabel *dotLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet TTTAttributedLabel *bodyView;
 @property (weak, nonatomic) IBOutlet UILabel *headerLabel;
@@ -101,15 +100,13 @@ static CGFloat const IndentationColorStartingValue = 0.95;
 }
 
 - (void) initializeHeaderLabel {
-    self.headerLabel.text = self.post.author;
-    self.dotLabel.text = self.post.dotsString;
-    self.dotLabel.hidden = (self.dotLabel.text.length == 0);
+    self.headerLabel.text = [NSString stringWithFormat:@"%@%@", self.post.dotsString, self.post.author];
     self.timeLabel.text = self.post.friendlyDate;
     UIColor *labelColor = [UIColor darkGrayColor];
     if (self.post.unread) {
         labelColor = [UIColor infoColor];
     }
-    self.headerLabel.textColor = self.dotLabel.textColor = self.timeLabel.textColor = labelColor;
+    self.headerLabel.textColor = self.timeLabel.textColor = labelColor;
 }
 
 - (void) initializePostBody {
@@ -117,14 +114,6 @@ static CGFloat const IndentationColorStartingValue = 0.95;
     self.bodyView.preferredMaxLayoutWidth = self.bodyView.frame.size.width;
     
     self.subjectLabel.text = self.post.subject;
-}
-
--(void)touchesBegan:(nonnull NSSet<UITouch *> *)touches withEvent:(nullable UIEvent *)event {
-    [UIView animateWithDuration:0.5 delay:0.0 usingSpringWithDamping:1.0 initialSpringVelocity:1.0 options:0 animations:^{
-        self.buttonView.hidden = !self.buttonView.hidden;
-        [self setNeedsUpdateConstraints];
-        [self updateConstraintsIfNeeded];
-    } completion:nil];
 }
 
 - (void) prepareForReuse {

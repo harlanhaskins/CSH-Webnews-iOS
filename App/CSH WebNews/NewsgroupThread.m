@@ -107,7 +107,7 @@
 
 - (NSString *)dotsString {
     NSInteger numberPastMax = self.depth - MaxIndentationLevel;
-    NSString *dots;
+    NSString *dots = @"";
     if (numberPastMax > 0) {
         NSString *paddingString = @"• ";
         dots = [@"" stringByPaddingToLength:(numberPastMax * paddingString.length)

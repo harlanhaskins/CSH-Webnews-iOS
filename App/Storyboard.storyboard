@@ -1,21 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8121.17" systemVersion="15A178w" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="3H9-Yo-BLv">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8173.3" systemVersion="15A244d" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="3H9-Yo-BLv">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8101.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8142"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <mutableArray key="CriqueGrotesk-Regular.otf">
-            <string>CriqueGrotesk</string>
-            <string>CriqueGrotesk</string>
-            <string>CriqueGrotesk</string>
-            <string>CriqueGrotesk</string>
-        </mutableArray>
-        <mutableArray key="CriqueGroteskDisplay-Regular.otf">
-            <string>CriqueGroteskDisplay</string>
-            <string>CriqueGroteskDisplay</string>
-        </mutableArray>
-    </customFonts>
     <scenes>
         <!--Activity-->
         <scene sceneID="V0Z-MI-k3T">
@@ -65,28 +53,28 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter your WebNews API Key" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zXB-jy-Tvr">
-                                <rect key="frame" x="35" y="50" width="530" height="31"/>
+                                <rect key="frame" x="35" y="50" width="530" height="37"/>
                                 <animations/>
-                                <fontDescription key="fontDescription" name="CriqueGrotesk" family="Crique Grotesk" pointSize="31"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="31"/>
                                 <color key="textColor" red="0.18792459239130432" green="0.18792459239130432" blue="0.18792459239130432" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You can't use CSH News until you type in your API key. You can find it online in WebNews Settings." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yzu-Z5-v9O">
-                                <rect key="frame" x="35" y="91" width="530" height="11"/>
+                                <rect key="frame" x="35" y="97" width="530" height="13.5"/>
                                 <animations/>
-                                <fontDescription key="fontDescription" name="CriqueGrotesk" family="Crique Grotesk" pointSize="11"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="E5E-na-5My">
-                                <rect key="frame" x="535" y="132" width="20" height="20"/>
+                                <rect key="frame" x="535" y="140.5" width="20" height="20"/>
                                 <animations/>
                             </activityIndicatorView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="abcd1234efgh5678" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sKb-Yz-6oX">
-                                <rect key="frame" x="45" y="127" width="510" height="30"/>
+                                <rect key="frame" x="45" y="135.5" width="510" height="30"/>
                                 <animations/>
                                 <nil key="textColor"/>
-                                <fontDescription key="fontDescription" name="CriqueGrotesk" family="Crique Grotesk" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" returnKeyType="go" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
                                 <connections>
                                     <outlet property="delegate" destination="MwE-Ax-ZoS" id="pEI-Wo-96s"/>
@@ -142,7 +130,7 @@
                                             <rect key="frame" x="15" y="0.0" width="550" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <animations/>
-                                            <fontDescription key="fontDescription" name="CriqueGrotesk" family="Crique Grotesk" pointSize="17"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" white="0.28999999999999998" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                             <color key="shadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -219,7 +207,7 @@
         <!--Navigation Controller-->
         <scene sceneID="kQd-hA-mHw">
             <objects>
-                <navigationController id="xWg-zo-AMM" sceneMemberID="viewController">
+                <navigationController id="xWg-zo-AMM" customClass="WNNavigationController" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="FIh-7h-03N">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -260,7 +248,7 @@
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Subject" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uiU-tO-tsC" customClass="SAMTextField">
                                                     <rect key="frame" x="13" y="0.0" width="579" height="44"/>
                                                     <animations/>
-                                                    <fontDescription key="fontDescription" name="CriqueGroteskDisplay" family="Crique Grotesk Display" pointSize="16"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <connections>
                                                         <action selector="textFieldDidChange:" destination="jSS-eI-0vA" eventType="editingChanged" id="KCR-SA-NSr"/>
@@ -294,7 +282,7 @@
                                                     <rect key="frame" x="8" y="0.0" width="584" height="275"/>
                                                     <animations/>
                                                     <color key="backgroundColor" white="0.96999999999999997" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <fontDescription key="fontDescription" name="CriqueGroteskDisplay" family="Crique Grotesk Display" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                     <connections>
                                                         <outlet property="delegate" destination="jSS-eI-0vA" id="LIA-ni-e2E"/>
@@ -345,7 +333,7 @@
         <!--Split View Controller-->
         <scene sceneID="XWN-pH-VTg">
             <objects>
-                <splitViewController id="3H9-Yo-BLv" sceneMemberID="viewController">
+                <splitViewController id="3H9-Yo-BLv" customClass="WNSplitViewController" sceneMemberID="viewController">
                     <connections>
                         <segue destination="Gqt-lM-fCt" kind="relationship" relationship="masterViewController" id="xLP-yA-Qpa"/>
                         <segue destination="eoK-Bi-Xlx" kind="relationship" relationship="detailViewController" id="oPr-UH-2su"/>
@@ -368,9 +356,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select a Post" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w9K-V3-7W0">
-                                <rect key="frame" x="250" y="290.5" width="100" height="20.5"/>
+                                <rect key="frame" x="208" y="281" width="184" height="38.5"/>
                                 <animations/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -390,7 +378,7 @@
         <!--Navigation Controller-->
         <scene sceneID="SHd-Rm-DEq">
             <objects>
-                <navigationController id="mAD-tI-wfM" sceneMemberID="viewController">
+                <navigationController id="mAD-tI-wfM" customClass="WNNavigationController" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="DBT-98-3UH">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -469,7 +457,7 @@
         <!--Item-->
         <scene sceneID="X0Y-Am-DUh">
             <objects>
-                <navigationController id="2mc-Bj-yy3" sceneMemberID="viewController">
+                <navigationController id="2mc-Bj-yy3" customClass="WNNavigationController" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="3Dh-6X-ljR"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="WLW-qm-Xwb">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -491,7 +479,7 @@
         <!--Item-->
         <scene sceneID="bGb-RQ-h6G">
             <objects>
-                <navigationController id="EVg-Z2-zoS" sceneMemberID="viewController">
+                <navigationController id="EVg-Z2-zoS" customClass="WNNavigationController" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="3is-7R-FVt"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="x21-Ra-meJ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>

@@ -14,7 +14,7 @@ extension UITableView {
     func addLoadingTextIfNecessaryForRows(rows: UInt, withItemName name: String) {
         if (rows == 0) {
             NoPostsLabel.text = "Loading \(name)..."
-            NoPostsLabel.font = UIFont(descriptor: UIFontDescriptor(name: "CriqueGrotesk", size: 18.0), size: 18.0)
+            NoPostsLabel.font = UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)
             NoPostsLabel.textColor = UIColor.lightGrayColor()
             NoPostsLabel.textAlignment = .Center
             NoPostsLabel.sizeToFit();

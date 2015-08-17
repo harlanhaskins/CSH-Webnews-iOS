@@ -45,7 +45,7 @@ class ThreadCell: UITableViewCell {
         let stringComponents = newsgroup.componentsSeparatedByString(".")
         let lastString = stringComponents.last!
         let firstChars = stringComponents.map { String(Array($0.characters).first!) }
-        let truncatedString = ".".join(firstChars) + "."
+        let truncatedString = ".".join(firstChars.prefix(firstChars.count - 1)) + "."
         let attributes = [NSForegroundColorAttributeName : UIColor(white: 0.75, alpha: 1.0)]
         
         let truncatedAttributedString = NSMutableAttributedString(string: truncatedString,

@@ -7,4 +7,3 @@ pod "SVPullToRefresh"
 pod "UIImage+ImageWithColor"
 pod "FormatterKit"
 pod 'RZCellSizeManager'
-pod 'SVWebViewController', :head

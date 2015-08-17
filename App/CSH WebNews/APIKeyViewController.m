@@ -95,4 +95,8 @@
     return shouldReturn;
 }
 
+-(UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleDefault;
+}
+
 @end

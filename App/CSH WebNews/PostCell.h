@@ -33,7 +33,8 @@ static const NSInteger MaxIndentationLevel = 8;
 
 @property (weak, nonatomic) NewsgroupThread *post;
 @property (weak, nonatomic) id<PostCellDelegate> delegate;
+@property (nonatomic) BOOL buttonViewHidden;
 
-- (void) setStarFilling;
+- (void)setStarFilling;
 
 @end

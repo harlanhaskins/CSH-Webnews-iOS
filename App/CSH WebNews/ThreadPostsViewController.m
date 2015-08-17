@@ -13,11 +13,14 @@
 #import "NewPostViewController.h"
 #import "PostCell.h"
 #import "RZCellSizeManager.h"
-#import "SVModalWebViewController.h"
+@import SafariServices;
 
-@interface ThreadPostsViewController () <PostCellDelegate>
+@interface ThreadPostsViewController () <PostCellDelegate, SFSafariViewControllerDelegate>
 
 @property (nonatomic) NewsgroupThread *thread;
+@property (nonatomic) PostCell *templateCell;
+@property (nonatomic) NSMutableDictionary *cellHeights;
+@property (nonatomic) NSIndexPath *selectedPath;
 
 @end
 
@@ -113,8 +116,7 @@ NSString *const kCellIdentifier = @"PostCell";
     UINib *postCellNib = [UINib nibWithNibName:@"PostCell" bundle:[NSBundle mainBundle]];
     [self.tableView registerNib:postCellNib forCellReuseIdentifier:kCellIdentifier];
     
-    self.tableView.rowHeight = UITableViewAutomaticDimension;
-    self.tableView.estimatedRowHeight = 600.0;
+    self.templateCell = [postCellNib instantiateWithOwner:nil options:nil].firstObject;
 }
 
 - (void) setNewsgroup:(NSString*)newsgroup number:(NSNumber*)number subject:(NSString*)subject {
@@ -147,6 +149,23 @@ NSString *const kCellIdentifier = @"PostCell";
     return rows;
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    NewsgroupThread *post = self.thread.allThreads[indexPath.row];
+    NSNumber *height = self.cellHeights[@(post.number)];
+    if (height) {
+        return height.doubleValue + 1.0;
+    }
+    [self configureCell:self.templateCell
+               withPost:post];
+    self.templateCell.frame = CGRectMake(0.0, 0.0, tableView.frame.size.width, self.templateCell.frame.size.height);
+    [self.templateCell setNeedsLayout];
+    [self.templateCell layoutIfNeeded];
+    
+    CGFloat cellHeight = [self.templateCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
+    self.cellHeights[@(self.templateCell.post.number)] = @(cellHeight);
+    return cellHeight + 1.0;
+}
+
 - (void) configureCell:(PostCell*)cell withPost:(NewsgroupThread *)post {
     cell.post = post;
     cell.delegate = self;
@@ -170,10 +189,18 @@ NSString *const kCellIdentifier = @"PostCell";
 }
 
 -(void)attributedLabel:(TTTAttributedLabel *)label didSelectLinkWithURL:(NSURL *)url {
-    SVModalWebViewController *webViewController = [[SVModalWebViewController alloc] initWithURL:url];
-    webViewController.navigationBar.tintColor = [UIColor whiteColor];
-    webViewController.toolbar.tintColor = [UIColor whiteColor];
-    [self presentViewController:webViewController animated:YES completion:nil];
+    SFSafariViewController *vc = [[SFSafariViewController alloc] initWithURL:url];
+    vc.delegate = self;
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
+    [self presentViewController:vc animated:YES completion:nil];
+}
+
+-(void)safariViewControllerDidFinish:(SFSafariViewController *)controller {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
 }
 
 - (void)reloadTable {

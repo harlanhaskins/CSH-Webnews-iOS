@@ -110,4 +110,8 @@
     [self.tableView reloadData];
 }
 
+-(UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
+}
+
 @end

@@ -298,7 +298,7 @@ static TTTTimeIntervalFormatter *timeFormatter;
     NSShadow *shadow = [NSShadow new];
     shadow.shadowOffset = CGSizeMake(0, 1);
     shadow.shadowColor = [UIColor whiteColor];
-    NSDictionary *defaultAttributes = @{NSFontAttributeName : [UIFont fontWithName:@"CriqueGrotesk" size:15.0],
+    NSDictionary *defaultAttributes = @{NSFontAttributeName : [UIFont preferredFontForTextStyle:UIFontTextStyleBody],
                                         NSShadowAttributeName : shadow};
     [string addAttributes:defaultAttributes range:wholeStringRange];
     

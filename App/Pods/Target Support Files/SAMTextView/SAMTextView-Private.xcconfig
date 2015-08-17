@@ -1,0 +1,6 @@
+#include "SAMTextView.xcconfig"
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
+HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Private" "${PODS_ROOT}/Headers/Private/SAMTextView" "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/AFNetworking" "${PODS_ROOT}/Headers/Public/FormatterKit" "${PODS_ROOT}/Headers/Public/PDKeychainBindingsController" "${PODS_ROOT}/Headers/Public/RZCellSizeManager" "${PODS_ROOT}/Headers/Public/SAMTextField" "${PODS_ROOT}/Headers/Public/SAMTextView" "${PODS_ROOT}/Headers/Public/SVPullToRefresh" "${PODS_ROOT}/Headers/Public/UIImage+ImageWithColor"
+OTHER_LDFLAGS = ${SAMTEXTVIEW_OTHER_LDFLAGS}
+PODS_ROOT = ${SRCROOT}
+SKIP_INSTALL = YES

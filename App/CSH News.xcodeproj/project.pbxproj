@@ -30,38 +30,6 @@
 		C9C9484818985D9B00599E74 /* NewsgroupThread.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C9484718985D9B00599E74 /* NewsgroupThread.m */; };
 		C9C9484B1898690800599E74 /* NewsgroupThreadListTableViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C9484A1898690800599E74 /* NewsgroupThreadListTableViewModel.m */; };
 		C9C9485C189892AA00599E74 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9C9485B189892AA00599E74 /* Images.xcassets */; };
-		C9D2716B19B82408001E82F2 /* CriqueGrotesk-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = C9D2714B19B82408001E82F2 /* CriqueGrotesk-Black.otf */; };
-		C9D2716C19B82408001E82F2 /* CriqueGrotesk-BlackItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = C9D2714C19B82408001E82F2 /* CriqueGrotesk-BlackItalic.otf */; };
-		C9D2716D19B82408001E82F2 /* CriqueGrotesk-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = C9D2714D19B82408001E82F2 /* CriqueGrotesk-Bold.otf */; };
-		C9D2716E19B82408001E82F2 /* CriqueGrotesk-BoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = C9D2714E19B82408001E82F2 /* CriqueGrotesk-BoldItalic.otf */; };
-		C9D2716F19B82408001E82F2 /* CriqueGrotesk-Heavy.otf in Resources */ = {isa = PBXBuildFile; fileRef = C9D2714F19B82408001E82F2 /* CriqueGrotesk-Heavy.otf */; };
-		C9D2717019B82408001E82F2 /* CriqueGrotesk-HeavyItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = C9D2715019B82408001E82F2 /* CriqueGrotesk-HeavyItalic.otf */; };
-		C9D2717119B82408001E82F2 /* CriqueGrotesk-Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = C9D2715119B82408001E82F2 /* CriqueGrotesk-Italic.otf */; };
-		C9D2717219B82408001E82F2 /* CriqueGrotesk-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = C9D2715219B82408001E82F2 /* CriqueGrotesk-Light.otf */; };
-		C9D2717319B82408001E82F2 /* CriqueGrotesk-LightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = C9D2715319B82408001E82F2 /* CriqueGrotesk-LightItalic.otf */; };
-		C9D2717419B82408001E82F2 /* CriqueGrotesk-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = C9D2715419B82408001E82F2 /* CriqueGrotesk-Medium.otf */; };
-		C9D2717519B82408001E82F2 /* CriqueGrotesk-MediumItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = C9D2715519B82408001E82F2 /* CriqueGrotesk-MediumItalic.otf */; };
-		C9D2717619B82408001E82F2 /* CriqueGrotesk-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = C9D2715619B82408001E82F2 /* CriqueGrotesk-Regular.otf */; };
-		C9D2717719B82408001E82F2 /* CriqueGrotesk-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = C9D2715719B82408001E82F2 /* CriqueGrotesk-Thin.otf */; };
-		C9D2717819B82408001E82F2 /* CriqueGrotesk-ThinItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = C9D2715819B82408001E82F2 /* CriqueGrotesk-ThinItalic.otf */; };
-		C9D2717919B82408001E82F2 /* CriqueGrotesk-UltraLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = C9D2715919B82408001E82F2 /* CriqueGrotesk-UltraLight.otf */; };
-		C9D2717A19B82408001E82F2 /* CriqueGrotesk-UltraLightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = C9D2715A19B82408001E82F2 /* CriqueGrotesk-UltraLightItalic.otf */; };
-		C9D2717B19B82408001E82F2 /* CriqueGroteskDisplay-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = C9D2715B19B82408001E82F2 /* CriqueGroteskDisplay-Black.otf */; };
-		C9D2717C19B82408001E82F2 /* CriqueGroteskDisplay-BlackItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = C9D2715C19B82408001E82F2 /* CriqueGroteskDisplay-BlackItalic.otf */; };
-		C9D2717D19B82408001E82F2 /* CriqueGroteskDisplay-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = C9D2715D19B82408001E82F2 /* CriqueGroteskDisplay-Bold.otf */; };
-		C9D2717E19B82408001E82F2 /* CriqueGroteskDisplay-BoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = C9D2715E19B82408001E82F2 /* CriqueGroteskDisplay-BoldItalic.otf */; };
-		C9D2717F19B82408001E82F2 /* CriqueGroteskDisplay-Heavy.otf in Resources */ = {isa = PBXBuildFile; fileRef = C9D2715F19B82408001E82F2 /* CriqueGroteskDisplay-Heavy.otf */; };
-		C9D2718019B82408001E82F2 /* CriqueGroteskDisplay-HeavyItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = C9D2716019B82408001E82F2 /* CriqueGroteskDisplay-HeavyItalic.otf */; };
-		C9D2718119B82408001E82F2 /* CriqueGroteskDisplay-Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = C9D2716119B82408001E82F2 /* CriqueGroteskDisplay-Italic.otf */; };
-		C9D2718219B82408001E82F2 /* CriqueGroteskDisplay-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = C9D2716219B82408001E82F2 /* CriqueGroteskDisplay-Light.otf */; };
-		C9D2718319B82408001E82F2 /* CriqueGroteskDisplay-LightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = C9D2716319B82408001E82F2 /* CriqueGroteskDisplay-LightItalic.otf */; };
-		C9D2718419B82408001E82F2 /* CriqueGroteskDisplay-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = C9D2716419B82408001E82F2 /* CriqueGroteskDisplay-Medium.otf */; };
-		C9D2718519B82408001E82F2 /* CriqueGroteskDisplay-MediumItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = C9D2716519B82408001E82F2 /* CriqueGroteskDisplay-MediumItalic.otf */; };
-		C9D2718619B82408001E82F2 /* CriqueGroteskDisplay-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = C9D2716619B82408001E82F2 /* CriqueGroteskDisplay-Regular.otf */; };
-		C9D2718719B82408001E82F2 /* CriqueGroteskDisplay-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = C9D2716719B82408001E82F2 /* CriqueGroteskDisplay-Thin.otf */; };
-		C9D2718819B82408001E82F2 /* CriqueGroteskDisplay-ThinItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = C9D2716819B82408001E82F2 /* CriqueGroteskDisplay-ThinItalic.otf */; };
-		C9D2718919B82408001E82F2 /* CriqueGroteskDisplay-UltraLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = C9D2716919B82408001E82F2 /* CriqueGroteskDisplay-UltraLight.otf */; };
-		C9D2718A19B82408001E82F2 /* CriqueGroteskDisplay-UltraLightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = C9D2716A19B82408001E82F2 /* CriqueGroteskDisplay-UltraLightItalic.otf */; };
 		C9D6F9F01898406C00004E3B /* NewsgroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D6F9EF1898406C00004E3B /* NewsgroupsViewController.m */; };
 		C9D6F9F5189840FE00004E3B /* NewsgroupOutline.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D6F9F4189840FE00004E3B /* NewsgroupOutline.m */; };
 		C9D6F9F81898498D00004E3B /* NewsgroupOutlineTableViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D6F9F71898498D00004E3B /* NewsgroupOutlineTableViewModel.m */; };
@@ -73,6 +41,11 @@
 		DC0FC96417EC230700945EEC /* APIKeyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0FC96317EC230700945EEC /* APIKeyViewController.m */; };
 		DC22B1A917EBB00600E328DE /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC22B1A817EBB00600E328DE /* SettingsViewController.m */; };
 		DC22B1AD17EBDFD800E328DE /* ISO8601DateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = DC22B1AC17EBDFD800E328DE /* ISO8601DateFormatter.m */; };
+		DC85E6BB1B813252000FBEED /* NSObject+Swizzle.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC85E6B91B813252000FBEED /* NSObject+Swizzle.swift */; };
+		DC85E6BC1B813252000FBEED /* UILabel+AutoWidth.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC85E6BA1B813252000FBEED /* UILabel+AutoWidth.swift */; };
+		DC85E6BE1B813F3C000FBEED /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC85E6BD1B813F3C000FBEED /* Launch Screen.storyboard */; };
+		DC85E6C11B8142AC000FBEED /* WNNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC85E6C01B8142AC000FBEED /* WNNavigationController.m */; };
+		DC85E6C41B816359000FBEED /* WNSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC85E6C31B816359000FBEED /* WNSplitViewController.m */; };
 		DCCAB04217EAB3CD004B683B /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCCAB04117EAB3CD004B683B /* CFNetwork.framework */; };
 		DCCAB04417EAB3D3004B683B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCCAB04317EAB3D3004B683B /* SystemConfiguration.framework */; };
 		DCCAB04617EAB3DA004B683B /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCCAB04517EAB3DA004B683B /* CoreData.framework */; };
@@ -129,38 +102,6 @@
 		C9C948491898690800599E74 /* NewsgroupThreadListTableViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsgroupThreadListTableViewModel.h; sourceTree = "<group>"; };
 		C9C9484A1898690800599E74 /* NewsgroupThreadListTableViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsgroupThreadListTableViewModel.m; sourceTree = "<group>"; };
 		C9C9485B189892AA00599E74 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		C9D2714B19B82408001E82F2 /* CriqueGrotesk-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CriqueGrotesk-Black.otf"; sourceTree = "<group>"; };
-		C9D2714C19B82408001E82F2 /* CriqueGrotesk-BlackItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CriqueGrotesk-BlackItalic.otf"; sourceTree = "<group>"; };
-		C9D2714D19B82408001E82F2 /* CriqueGrotesk-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CriqueGrotesk-Bold.otf"; sourceTree = "<group>"; };
-		C9D2714E19B82408001E82F2 /* CriqueGrotesk-BoldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CriqueGrotesk-BoldItalic.otf"; sourceTree = "<group>"; };
-		C9D2714F19B82408001E82F2 /* CriqueGrotesk-Heavy.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CriqueGrotesk-Heavy.otf"; sourceTree = "<group>"; };
-		C9D2715019B82408001E82F2 /* CriqueGrotesk-HeavyItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CriqueGrotesk-HeavyItalic.otf"; sourceTree = "<group>"; };
-		C9D2715119B82408001E82F2 /* CriqueGrotesk-Italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CriqueGrotesk-Italic.otf"; sourceTree = "<group>"; };
-		C9D2715219B82408001E82F2 /* CriqueGrotesk-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CriqueGrotesk-Light.otf"; sourceTree = "<group>"; };
-		C9D2715319B82408001E82F2 /* CriqueGrotesk-LightItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CriqueGrotesk-LightItalic.otf"; sourceTree = "<group>"; };
-		C9D2715419B82408001E82F2 /* CriqueGrotesk-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CriqueGrotesk-Medium.otf"; sourceTree = "<group>"; };
-		C9D2715519B82408001E82F2 /* CriqueGrotesk-MediumItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CriqueGrotesk-MediumItalic.otf"; sourceTree = "<group>"; };
-		C9D2715619B82408001E82F2 /* CriqueGrotesk-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CriqueGrotesk-Regular.otf"; sourceTree = "<group>"; };
-		C9D2715719B82408001E82F2 /* CriqueGrotesk-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CriqueGrotesk-Thin.otf"; sourceTree = "<group>"; };
-		C9D2715819B82408001E82F2 /* CriqueGrotesk-ThinItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CriqueGrotesk-ThinItalic.otf"; sourceTree = "<group>"; };
-		C9D2715919B82408001E82F2 /* CriqueGrotesk-UltraLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CriqueGrotesk-UltraLight.otf"; sourceTree = "<group>"; };
-		C9D2715A19B82408001E82F2 /* CriqueGrotesk-UltraLightItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CriqueGrotesk-UltraLightItalic.otf"; sourceTree = "<group>"; };
-		C9D2715B19B82408001E82F2 /* CriqueGroteskDisplay-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CriqueGroteskDisplay-Black.otf"; sourceTree = "<group>"; };
-		C9D2715C19B82408001E82F2 /* CriqueGroteskDisplay-BlackItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CriqueGroteskDisplay-BlackItalic.otf"; sourceTree = "<group>"; };
-		C9D2715D19B82408001E82F2 /* CriqueGroteskDisplay-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CriqueGroteskDisplay-Bold.otf"; sourceTree = "<group>"; };
-		C9D2715E19B82408001E82F2 /* CriqueGroteskDisplay-BoldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CriqueGroteskDisplay-BoldItalic.otf"; sourceTree = "<group>"; };
-		C9D2715F19B82408001E82F2 /* CriqueGroteskDisplay-Heavy.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CriqueGroteskDisplay-Heavy.otf"; sourceTree = "<group>"; };
-		C9D2716019B82408001E82F2 /* CriqueGroteskDisplay-HeavyItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CriqueGroteskDisplay-HeavyItalic.otf"; sourceTree = "<group>"; };
-		C9D2716119B82408001E82F2 /* CriqueGroteskDisplay-Italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CriqueGroteskDisplay-Italic.otf"; sourceTree = "<group>"; };
-		C9D2716219B82408001E82F2 /* CriqueGroteskDisplay-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CriqueGroteskDisplay-Light.otf"; sourceTree = "<group>"; };
-		C9D2716319B82408001E82F2 /* CriqueGroteskDisplay-LightItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CriqueGroteskDisplay-LightItalic.otf"; sourceTree = "<group>"; };
-		C9D2716419B82408001E82F2 /* CriqueGroteskDisplay-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CriqueGroteskDisplay-Medium.otf"; sourceTree = "<group>"; };
-		C9D2716519B82408001E82F2 /* CriqueGroteskDisplay-MediumItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CriqueGroteskDisplay-MediumItalic.otf"; sourceTree = "<group>"; };
-		C9D2716619B82408001E82F2 /* CriqueGroteskDisplay-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CriqueGroteskDisplay-Regular.otf"; sourceTree = "<group>"; };
-		C9D2716719B82408001E82F2 /* CriqueGroteskDisplay-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CriqueGroteskDisplay-Thin.otf"; sourceTree = "<group>"; };
-		C9D2716819B82408001E82F2 /* CriqueGroteskDisplay-ThinItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CriqueGroteskDisplay-ThinItalic.otf"; sourceTree = "<group>"; };
-		C9D2716919B82408001E82F2 /* CriqueGroteskDisplay-UltraLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CriqueGroteskDisplay-UltraLight.otf"; sourceTree = "<group>"; };
-		C9D2716A19B82408001E82F2 /* CriqueGroteskDisplay-UltraLightItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CriqueGroteskDisplay-UltraLightItalic.otf"; sourceTree = "<group>"; };
 		C9D6F9EE1898406C00004E3B /* NewsgroupsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsgroupsViewController.h; sourceTree = "<group>"; };
 		C9D6F9EF1898406C00004E3B /* NewsgroupsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsgroupsViewController.m; sourceTree = "<group>"; };
 		C9D6F9F3189840FE00004E3B /* NewsgroupOutline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsgroupOutline.h; sourceTree = "<group>"; };
@@ -182,6 +123,13 @@
 		DC22B1A817EBB00600E328DE /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		DC22B1AB17EBDFD800E328DE /* ISO8601DateFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISO8601DateFormatter.h; sourceTree = "<group>"; };
 		DC22B1AC17EBDFD800E328DE /* ISO8601DateFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISO8601DateFormatter.m; sourceTree = "<group>"; };
+		DC85E6B91B813252000FBEED /* NSObject+Swizzle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+Swizzle.swift"; sourceTree = "<group>"; };
+		DC85E6BA1B813252000FBEED /* UILabel+AutoWidth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+AutoWidth.swift"; sourceTree = "<group>"; };
+		DC85E6BD1B813F3C000FBEED /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		DC85E6BF1B8142AC000FBEED /* WNNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WNNavigationController.h; sourceTree = "<group>"; };
+		DC85E6C01B8142AC000FBEED /* WNNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WNNavigationController.m; sourceTree = "<group>"; };
+		DC85E6C21B816359000FBEED /* WNSplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WNSplitViewController.h; sourceTree = "<group>"; };
+		DC85E6C31B816359000FBEED /* WNSplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WNSplitViewController.m; sourceTree = "<group>"; };
 		DCCAB04117EAB3CD004B683B /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		DCCAB04317EAB3D3004B683B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		DCCAB04517EAB3DA004B683B /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -292,45 +240,6 @@
 			name = ThreadDetail;
 			sourceTree = "<group>";
 		};
-		C9D2714A19B82408001E82F2 /* Crique Grotesk + Display */ = {
-			isa = PBXGroup;
-			children = (
-				C9D2714B19B82408001E82F2 /* CriqueGrotesk-Black.otf */,
-				C9D2714C19B82408001E82F2 /* CriqueGrotesk-BlackItalic.otf */,
-				C9D2714D19B82408001E82F2 /* CriqueGrotesk-Bold.otf */,
-				C9D2714E19B82408001E82F2 /* CriqueGrotesk-BoldItalic.otf */,
-				C9D2714F19B82408001E82F2 /* CriqueGrotesk-Heavy.otf */,
-				C9D2715019B82408001E82F2 /* CriqueGrotesk-HeavyItalic.otf */,
-				C9D2715119B82408001E82F2 /* CriqueGrotesk-Italic.otf */,
-				C9D2715219B82408001E82F2 /* CriqueGrotesk-Light.otf */,
-				C9D2715319B82408001E82F2 /* CriqueGrotesk-LightItalic.otf */,
-				C9D2715419B82408001E82F2 /* CriqueGrotesk-Medium.otf */,
-				C9D2715519B82408001E82F2 /* CriqueGrotesk-MediumItalic.otf */,
-				C9D2715619B82408001E82F2 /* CriqueGrotesk-Regular.otf */,
-				C9D2715719B82408001E82F2 /* CriqueGrotesk-Thin.otf */,
-				C9D2715819B82408001E82F2 /* CriqueGrotesk-ThinItalic.otf */,
-				C9D2715919B82408001E82F2 /* CriqueGrotesk-UltraLight.otf */,
-				C9D2715A19B82408001E82F2 /* CriqueGrotesk-UltraLightItalic.otf */,
-				C9D2715B19B82408001E82F2 /* CriqueGroteskDisplay-Black.otf */,
-				C9D2715C19B82408001E82F2 /* CriqueGroteskDisplay-BlackItalic.otf */,
-				C9D2715D19B82408001E82F2 /* CriqueGroteskDisplay-Bold.otf */,
-				C9D2715E19B82408001E82F2 /* CriqueGroteskDisplay-BoldItalic.otf */,
-				C9D2715F19B82408001E82F2 /* CriqueGroteskDisplay-Heavy.otf */,
-				C9D2716019B82408001E82F2 /* CriqueGroteskDisplay-HeavyItalic.otf */,
-				C9D2716119B82408001E82F2 /* CriqueGroteskDisplay-Italic.otf */,
-				C9D2716219B82408001E82F2 /* CriqueGroteskDisplay-Light.otf */,
-				C9D2716319B82408001E82F2 /* CriqueGroteskDisplay-LightItalic.otf */,
-				C9D2716419B82408001E82F2 /* CriqueGroteskDisplay-Medium.otf */,
-				C9D2716519B82408001E82F2 /* CriqueGroteskDisplay-MediumItalic.otf */,
-				C9D2716619B82408001E82F2 /* CriqueGroteskDisplay-Regular.otf */,
-				C9D2716719B82408001E82F2 /* CriqueGroteskDisplay-Thin.otf */,
-				C9D2716819B82408001E82F2 /* CriqueGroteskDisplay-ThinItalic.otf */,
-				C9D2716919B82408001E82F2 /* CriqueGroteskDisplay-UltraLight.otf */,
-				C9D2716A19B82408001E82F2 /* CriqueGroteskDisplay-UltraLightItalic.otf */,
-			);
-			path = "Crique Grotesk + Display";
-			sourceTree = "<group>";
-		};
 		C9D6F9F11898407E00004E3B /* Newsgroups */ = {
 			isa = PBXGroup;
 			children = (
@@ -409,10 +318,15 @@
 		DCF26DDE17CD617C0073DA19 /* CSH WebNews */ = {
 			isa = PBXGroup;
 			children = (
+				DC85E6C21B816359000FBEED /* WNSplitViewController.h */,
+				DC85E6C31B816359000FBEED /* WNSplitViewController.m */,
+				DC85E6BF1B8142AC000FBEED /* WNNavigationController.h */,
+				DC85E6C01B8142AC000FBEED /* WNNavigationController.m */,
 				DCF26DE717CD617C0073DA19 /* AppDelegate.h */,
 				DCF26DE817CD617C0073DA19 /* AppDelegate.m */,
 				C906663819A942A30067D054 /* ToolBarColorManager.swift */,
 				C9A7B18719A9C7600007C362 /* AuthenticationManager.swift */,
+				DC85E6BD1B813F3C000FBEED /* Launch Screen.storyboard */,
 				DC22B1A717EBB00600E328DE /* SettingsViewController.h */,
 				DC22B1A817EBB00600E328DE /* SettingsViewController.m */,
 				C92B9DD9189752DC0099C22D /* CacheManager.h */,
@@ -435,8 +349,9 @@
 		DCF26DDF17CD617C0073DA19 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				DC85E6B91B813252000FBEED /* NSObject+Swizzle.swift */,
+				DC85E6BA1B813252000FBEED /* UILabel+AutoWidth.swift */,
 				C9D7AF4119F760B80048B56B /* TPKeyboardAvoiding */,
-				C9D2714A19B82408001E82F2 /* Crique Grotesk + Display */,
 				C96D227B1895BD80001BFA57 /* WebNewsDataHandler.h */,
 				C96D227C1895BD80001BFA57 /* WebNewsDataHandler.m */,
 				C96032FB18E4909500BAE63C /* PushAPIHandler.h */,
@@ -543,42 +458,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C9D2716B19B82408001E82F2 /* CriqueGrotesk-Black.otf in Resources */,
-				C9D2717F19B82408001E82F2 /* CriqueGroteskDisplay-Heavy.otf in Resources */,
-				C9D2718A19B82408001E82F2 /* CriqueGroteskDisplay-UltraLightItalic.otf in Resources */,
-				C9D2717C19B82408001E82F2 /* CriqueGroteskDisplay-BlackItalic.otf in Resources */,
-				C9D2716D19B82408001E82F2 /* CriqueGrotesk-Bold.otf in Resources */,
-				C9D2717119B82408001E82F2 /* CriqueGrotesk-Italic.otf in Resources */,
-				C9D2718419B82408001E82F2 /* CriqueGroteskDisplay-Medium.otf in Resources */,
-				C9D2718219B82408001E82F2 /* CriqueGroteskDisplay-Light.otf in Resources */,
-				C9D2718919B82408001E82F2 /* CriqueGroteskDisplay-UltraLight.otf in Resources */,
-				C9D2717519B82408001E82F2 /* CriqueGrotesk-MediumItalic.otf in Resources */,
-				C9D2718019B82408001E82F2 /* CriqueGroteskDisplay-HeavyItalic.otf in Resources */,
-				C9D2717619B82408001E82F2 /* CriqueGrotesk-Regular.otf in Resources */,
-				C9D2717719B82408001E82F2 /* CriqueGrotesk-Thin.otf in Resources */,
+				DC85E6BE1B813F3C000FBEED /* Launch Screen.storyboard in Resources */,
 				C9AD13E319A9ADD600808BD1 /* ThreadCell.xib in Resources */,
-				C9D2717019B82408001E82F2 /* CriqueGrotesk-HeavyItalic.otf in Resources */,
-				C9D2717D19B82408001E82F2 /* CriqueGroteskDisplay-Bold.otf in Resources */,
-				C9D2717419B82408001E82F2 /* CriqueGrotesk-Medium.otf in Resources */,
-				C9D2717319B82408001E82F2 /* CriqueGrotesk-LightItalic.otf in Resources */,
 				DCF26DE317CD617C0073DA19 /* InfoPlist.strings in Resources */,
-				C9D2717B19B82408001E82F2 /* CriqueGroteskDisplay-Black.otf in Resources */,
-				C9D2717A19B82408001E82F2 /* CriqueGrotesk-UltraLightItalic.otf in Resources */,
-				C9D2718319B82408001E82F2 /* CriqueGroteskDisplay-LightItalic.otf in Resources */,
 				C9C9485C189892AA00599E74 /* Images.xcassets in Resources */,
-				C9D2717219B82408001E82F2 /* CriqueGrotesk-Light.otf in Resources */,
-				C9D2716C19B82408001E82F2 /* CriqueGrotesk-BlackItalic.otf in Resources */,
-				C9D2718619B82408001E82F2 /* CriqueGroteskDisplay-Regular.otf in Resources */,
-				C9D2717919B82408001E82F2 /* CriqueGrotesk-UltraLight.otf in Resources */,
-				C9D2718519B82408001E82F2 /* CriqueGroteskDisplay-MediumItalic.otf in Resources */,
-				C9D2716F19B82408001E82F2 /* CriqueGrotesk-Heavy.otf in Resources */,
-				C9D2718819B82408001E82F2 /* CriqueGroteskDisplay-ThinItalic.otf in Resources */,
-				C9D2717E19B82408001E82F2 /* CriqueGroteskDisplay-BoldItalic.otf in Resources */,
-				C9D2716E19B82408001E82F2 /* CriqueGrotesk-BoldItalic.otf in Resources */,
-				C9D2717819B82408001E82F2 /* CriqueGrotesk-ThinItalic.otf in Resources */,
-				C9D2718119B82408001E82F2 /* CriqueGroteskDisplay-Italic.otf in Resources */,
 				C956361619A31A3800EBC7BE /* Storyboard.storyboard in Resources */,
-				C9D2718719B82408001E82F2 /* CriqueGroteskDisplay-Thin.otf in Resources */,
 				C955B80719A6DEBA00AEFA44 /* PostCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -623,6 +507,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC85E6C41B816359000FBEED /* WNSplitViewController.m in Sources */,
 				C96D228A1895D550001BFA57 /* ActivityThread.m in Sources */,
 				DCF26DE917CD617C0073DA19 /* AppDelegate.m in Sources */,
 				C9C9484B1898690800599E74 /* NewsgroupThreadListTableViewModel.m in Sources */,
@@ -635,6 +520,7 @@
 				C9D6F9F81898498D00004E3B /* NewsgroupOutlineTableViewModel.m in Sources */,
 				C9A7B18819A9C7600007C362 /* AuthenticationManager.swift in Sources */,
 				DCF26E0917CD62830073DA19 /* ActivityViewController.m in Sources */,
+				DC85E6BB1B813252000FBEED /* NSObject+Swizzle.swift in Sources */,
 				C96D22831895CD7B001BFA57 /* User.m in Sources */,
 				DC22B1A917EBB00600E328DE /* SettingsViewController.m in Sources */,
 				C96D227D1895BD80001BFA57 /* WebNewsDataHandler.m in Sources */,
@@ -646,6 +532,7 @@
 				C9AD13E519A9AFD500808BD1 /* ThreadCell.swift in Sources */,
 				C9D7AF4619F760C30048B56B /* TPKeyboardAvoidingTableView.m in Sources */,
 				C9C9484818985D9B00599E74 /* NewsgroupThread.m in Sources */,
+				DC85E6C11B8142AC000FBEED /* WNNavigationController.m in Sources */,
 				DC22B1AD17EBDFD800E328DE /* ISO8601DateFormatter.m in Sources */,
 				C9F9BCA819B51ADC00E42B14 /* UIColor+CSH.m in Sources */,
 				C906663919A942A30067D054 /* ToolBarColorManager.swift in Sources */,
@@ -654,6 +541,7 @@
 				DC0FC96417EC230700945EEC /* APIKeyViewController.m in Sources */,
 				DCF26DE517CD617C0073DA19 /* main.m in Sources */,
 				C9D6F9F01898406C00004E3B /* NewsgroupsViewController.m in Sources */,
+				DC85E6BC1B813252000FBEED /* UILabel+AutoWidth.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
