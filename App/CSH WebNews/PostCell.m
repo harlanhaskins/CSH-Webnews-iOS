@@ -9,7 +9,7 @@
 #import "PostCell.h"
 #import "UIColor+CSH.h"
 #import "NewsgroupThread.h"
-#import "TTTAttributedLabel.h"
+@import TTTAttributedLabel;
 
 @interface PostCell ()
 
@@ -49,8 +49,9 @@ static CGFloat const IndentationColorStartingValue = 0.95;
 
 -(void)awakeFromNib {
     [super awakeFromNib];
-    self.bodyView.enabledTextCheckingTypes = NSTextCheckingTypeDate | NSTextCheckingTypeAddress | NSTextCheckingTypeLink | NSTextCheckingTypePhoneNumber;
+    self.bodyView.enabledTextCheckingTypes = NSTextCheckingTypeLink | NSTextCheckingTypePhoneNumber;
     self.bodyView.verticalAlignment = TTTAttributedLabelVerticalAlignmentTop;
+    self.bodyView.tintColor = [UIColor infoColor];
     self.bodyView.activeLinkAttributes =
     self.bodyView.inactiveLinkAttributes = @{
         NSForegroundColorAttributeName : [UIColor infoColor],

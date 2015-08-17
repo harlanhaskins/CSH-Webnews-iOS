@@ -1,4 +1,9 @@
 source 'https://github.com/CocoaPods/Specs.git'
+use_frameworks!
+inhibit_all_warnings!
+
+link_with 'CSH WebNews'
+
 pod "AFNetworking"
 pod "PDKeychainBindingsController"
 pod "SAMTextView"
@@ -7,3 +12,4 @@ pod "SVPullToRefresh"
 pod "UIImage+ImageWithColor"
 pod "FormatterKit"
 pod 'RZCellSizeManager'
+pod 'TTTAttributedLabel'

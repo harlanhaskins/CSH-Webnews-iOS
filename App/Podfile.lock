@@ -1,23 +1,23 @@
 PODS:
-  - AFNetworking (2.5.2):
-    - AFNetworking/NSURLConnection (= 2.5.2)
-    - AFNetworking/NSURLSession (= 2.5.2)
-    - AFNetworking/Reachability (= 2.5.2)
-    - AFNetworking/Security (= 2.5.2)
-    - AFNetworking/Serialization (= 2.5.2)
-    - AFNetworking/UIKit (= 2.5.2)
-  - AFNetworking/NSURLConnection (2.5.2):
+  - AFNetworking (2.5.4):
+    - AFNetworking/NSURLConnection (= 2.5.4)
+    - AFNetworking/NSURLSession (= 2.5.4)
+    - AFNetworking/Reachability (= 2.5.4)
+    - AFNetworking/Security (= 2.5.4)
+    - AFNetworking/Serialization (= 2.5.4)
+    - AFNetworking/UIKit (= 2.5.4)
+  - AFNetworking/NSURLConnection (2.5.4):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/NSURLSession (2.5.2):
+  - AFNetworking/NSURLSession (2.5.4):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/Reachability (2.5.2)
-  - AFNetworking/Security (2.5.2)
-  - AFNetworking/Serialization (2.5.2)
-  - AFNetworking/UIKit (2.5.2):
+  - AFNetworking/Reachability (2.5.4)
+  - AFNetworking/Security (2.5.4)
+  - AFNetworking/Serialization (2.5.4)
+  - AFNetworking/UIKit (2.5.4):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - FormatterKit (1.8.0):
@@ -46,7 +46,8 @@ PODS:
   - SAMTextField (0.1.2)
   - SAMTextView (0.2.2)
   - SVPullToRefresh (0.4.1)
-  - UIImage+ImageWithColor (1.2)
+  - TTTAttributedLabel (1.13.4)
+  - UIImage+ImageWithColor (1.3)
 
 DEPENDENCIES:
   - AFNetworking
@@ -56,16 +57,18 @@ DEPENDENCIES:
   - SAMTextField
   - SAMTextView
   - SVPullToRefresh
+  - TTTAttributedLabel
   - UIImage+ImageWithColor
 
 SPEC CHECKSUMS:
-  AFNetworking: fefbce9660acb17f48ae0011292d4da0f457bf36
+  AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
   FormatterKit: bddde83e054edf9d9ee14f9de3b3a5103db256f4
   PDKeychainBindingsController: fa8cb3cf99f2ea9240d61066ed0549f34e2cec3c
   RZCellSizeManager: 04bd83953cb5a427ae3d9e430045a15ee4789699
   SAMTextField: a0f4eb5b48b45aef56453c265262b45154bc3e2a
   SAMTextView: 979c43bb1fa5859ddfbfeb35e9c296a2b0ec55fd
   SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
-  UIImage+ImageWithColor: efe9aee4bf87f99e98e9a23433a44824d1ef4576
+  TTTAttributedLabel: 0a2ac7b2dd726d32a070dafb01446026b11e624f
+  UIImage+ImageWithColor: 158a45817f303804374feeae91046977c09d6c8a
 
 COCOAPODS: 0.38.2

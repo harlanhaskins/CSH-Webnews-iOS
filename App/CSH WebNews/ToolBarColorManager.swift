@@ -13,7 +13,7 @@ extension UIApplication {
     /// Sets the toolbars to a purple background with
     /// white text and tints.
     func setPurpleToolbars() {
-        let barTintColor = UIColor(red: 231/255, green: 62/255, blue: 122/255, alpha: 1.0)
+        let barTintColor = UIColor(red: 230/255, green: 36/255, blue: 106/255, alpha: 1.0)
         let tintColor = UIColor(white: 0.98, alpha: 1.0)
         var navBarTitleAttributes = [String : AnyObject]()
         navBarTitleAttributes[NSForegroundColorAttributeName] = UIColor.whiteColor()
@@ -27,7 +27,6 @@ extension UIApplication {
         UIToolbar.appearance().translucent = false
         
         UINavigationBar.appearance().titleTextAttributes = navBarTitleAttributes
-        UINavigationBar.appearance().barStyle = .BlackTranslucent
         UITabBar.appearance().tintColor = tintColor
         UITabBar.appearance().barTintColor = barTintColor
         UITabBar.appearance().translucent = false

@@ -207,13 +207,13 @@
         <!--Navigation Controller-->
         <scene sceneID="kQd-hA-mHw">
             <objects>
-                <navigationController id="xWg-zo-AMM" customClass="WNNavigationController" sceneMemberID="viewController">
+                <navigationController id="xWg-zo-AMM" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="FIh-7h-03N">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <animations/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="barTintColor" red="0.90588235289999997" green="0.24313725489999999" blue="0.47843137250000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" red="0.90196078431372551" green="0.14117647058823529" blue="0.41568627450980389" alpha="1" colorSpace="calibratedRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </textAttributes>
@@ -333,7 +333,7 @@
         <!--Split View Controller-->
         <scene sceneID="XWN-pH-VTg">
             <objects>
-                <splitViewController id="3H9-Yo-BLv" customClass="WNSplitViewController" sceneMemberID="viewController">
+                <splitViewController id="3H9-Yo-BLv" customClass="WNSplitViewController" customModule="CSH_News" customModuleProvider="target" sceneMemberID="viewController">
                     <connections>
                         <segue destination="Gqt-lM-fCt" kind="relationship" relationship="masterViewController" id="xLP-yA-Qpa"/>
                         <segue destination="eoK-Bi-Xlx" kind="relationship" relationship="detailViewController" id="oPr-UH-2su"/>
@@ -378,7 +378,7 @@
         <!--Navigation Controller-->
         <scene sceneID="SHd-Rm-DEq">
             <objects>
-                <navigationController id="mAD-tI-wfM" customClass="WNNavigationController" sceneMemberID="viewController">
+                <navigationController id="mAD-tI-wfM" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="DBT-98-3UH">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -457,7 +457,7 @@
         <!--Item-->
         <scene sceneID="X0Y-Am-DUh">
             <objects>
-                <navigationController id="2mc-Bj-yy3" customClass="WNNavigationController" sceneMemberID="viewController">
+                <navigationController id="2mc-Bj-yy3" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="3Dh-6X-ljR"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="WLW-qm-Xwb">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -479,7 +479,7 @@
         <!--Item-->
         <scene sceneID="bGb-RQ-h6G">
             <objects>
-                <navigationController id="EVg-Z2-zoS" customClass="WNNavigationController" sceneMemberID="viewController">
+                <navigationController id="EVg-Z2-zoS" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="3is-7R-FVt"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="x21-Ra-meJ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>

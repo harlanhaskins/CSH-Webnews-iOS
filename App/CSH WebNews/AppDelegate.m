@@ -12,7 +12,6 @@
 #import "AppDelegate.h"
 #import "PushAPIHandler.h"
 #import "CacheManager.h"
-#import "WNNavigationController.h"
 
 @interface AppDelegate () <UISplitViewControllerDelegate>
 
@@ -49,10 +48,10 @@ collapseSecondaryViewController:(UIViewController *)secondaryViewController
 }
 
 - (BOOL) splitViewController:(UISplitViewController *)splitViewController showDetailViewController:(UIViewController *)vc sender:(id)sender {
-    if ([vc isKindOfClass:[WNNavigationController class]]) {
+    if ([vc isKindOfClass:[UINavigationController class]]) {
         if (splitViewController.traitCollection.horizontalSizeClass == UIUserInterfaceSizeClassCompact) {
-            WNNavigationController *navController = (WNNavigationController *)vc;
-            WNNavigationController *masterNavController = (WNNavigationController* )[splitViewController.viewControllers[0] selectedViewController];
+            UINavigationController *navController = (UINavigationController *)vc;
+            UINavigationController *masterNavController = (UINavigationController* )[splitViewController.viewControllers[0] selectedViewController];
             [masterNavController.topViewController showViewController:navController.topViewController sender:sender];
             return YES;
         }

@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		C906663919A942A30067D054 /* ToolBarColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C906663819A942A30067D054 /* ToolBarColorManager.swift */; };
 		C910A6F3189733ED001D222D /* ActivityTableViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C910A6F2189733ED001D222D /* ActivityTableViewModel.m */; };
-		C924761C18D105BB0006D1DC /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C924761B18D105BB0006D1DC /* libPods.a */; };
 		C92B5F0418D0B83400FCB8EA /* NewPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C92B5F0318D0B83400FCB8EA /* NewPostViewController.m */; };
 		C92B9DDB189752DC0099C22D /* CacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C92B9DDA189752DC0099C22D /* CacheManager.m */; };
 		C93F2E3C19F749CA000545BA /* UITableView+LoadingMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93F2E3B19F749CA000545BA /* UITableView+LoadingMessage.swift */; };
@@ -44,8 +43,7 @@
 		DC85E6BB1B813252000FBEED /* NSObject+Swizzle.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC85E6B91B813252000FBEED /* NSObject+Swizzle.swift */; };
 		DC85E6BC1B813252000FBEED /* UILabel+AutoWidth.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC85E6BA1B813252000FBEED /* UILabel+AutoWidth.swift */; };
 		DC85E6BE1B813F3C000FBEED /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC85E6BD1B813F3C000FBEED /* Launch Screen.storyboard */; };
-		DC85E6C11B8142AC000FBEED /* WNNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC85E6C01B8142AC000FBEED /* WNNavigationController.m */; };
-		DC85E6C41B816359000FBEED /* WNSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC85E6C31B816359000FBEED /* WNSplitViewController.m */; };
+		DC85E6C51B8166ED000FBEED /* WNSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC85E6C31B816359000FBEED /* WNSplitViewController.swift */; };
 		DCCAB04217EAB3CD004B683B /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCCAB04117EAB3CD004B683B /* CFNetwork.framework */; };
 		DCCAB04417EAB3D3004B683B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCCAB04317EAB3D3004B683B /* SystemConfiguration.framework */; };
 		DCCAB04617EAB3DA004B683B /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCCAB04517EAB3DA004B683B /* CoreData.framework */; };
@@ -58,11 +56,12 @@
 		DCF26DE517CD617C0073DA19 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DCF26DE417CD617C0073DA19 /* main.m */; };
 		DCF26DE917CD617C0073DA19 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DCF26DE817CD617C0073DA19 /* AppDelegate.m */; };
 		DCF26E0917CD62830073DA19 /* ActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCF26E0817CD62830073DA19 /* ActivityViewController.m */; };
+		FEC938C4DEEF1843FDE43745 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67BC93702FC613560CF6F0A4 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		234ACC9F35034B7CA1D4ECFC /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		500D60C2EBBBAA60AA1B0BC1 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		67BC93702FC613560CF6F0A4 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C906663719A942A20067D054 /* CSH News-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CSH News-Bridging-Header.h"; sourceTree = "<group>"; };
 		C906663819A942A30067D054 /* ToolBarColorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToolBarColorManager.swift; sourceTree = "<group>"; };
 		C910A6F1189733ED001D222D /* ActivityTableViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityTableViewModel.h; sourceTree = "<group>"; };
@@ -126,10 +125,7 @@
 		DC85E6B91B813252000FBEED /* NSObject+Swizzle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+Swizzle.swift"; sourceTree = "<group>"; };
 		DC85E6BA1B813252000FBEED /* UILabel+AutoWidth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+AutoWidth.swift"; sourceTree = "<group>"; };
 		DC85E6BD1B813F3C000FBEED /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
-		DC85E6BF1B8142AC000FBEED /* WNNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WNNavigationController.h; sourceTree = "<group>"; };
-		DC85E6C01B8142AC000FBEED /* WNNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WNNavigationController.m; sourceTree = "<group>"; };
-		DC85E6C21B816359000FBEED /* WNSplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WNSplitViewController.h; sourceTree = "<group>"; };
-		DC85E6C31B816359000FBEED /* WNSplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WNSplitViewController.m; sourceTree = "<group>"; };
+		DC85E6C31B816359000FBEED /* WNSplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WNSplitViewController.swift; sourceTree = "<group>"; };
 		DCCAB04117EAB3CD004B683B /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		DCCAB04317EAB3D3004B683B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		DCCAB04517EAB3DA004B683B /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -147,9 +143,6 @@
 		DCF26DE717CD617C0073DA19 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		DCF26DE817CD617C0073DA19 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		DCF26DF117CD617C0073DA19 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		DCF26DF917CD617C0073DA19 /* CSH NewsTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CSH NewsTests-Info.plist"; sourceTree = "<group>"; };
-		DCF26DFB17CD617C0073DA19 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		DCF26DFD17CD617C0073DA19 /* CSH_WebNewsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSH_WebNewsTests.m; sourceTree = "<group>"; };
 		DCF26E0717CD62830073DA19 /* ActivityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityViewController.h; sourceTree = "<group>"; };
 		DCF26E0817CD62830073DA19 /* ActivityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityViewController.m; sourceTree = "<group>"; };
 		E248814F46477368A0D708D9 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -160,7 +153,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C924761C18D105BB0006D1DC /* libPods.a in Frameworks */,
 				C9E1243E18A5665F0084B828 /* libz.dylib in Frameworks */,
 				DCCAB04A17EAB3E9004B683B /* Security.framework in Frameworks */,
 				DCCAB04817EAB3E5004B683B /* MobileCoreServices.framework in Frameworks */,
@@ -170,6 +162,7 @@
 				DCF26DDB17CD617C0073DA19 /* CoreGraphics.framework in Frameworks */,
 				DCF26DDD17CD617C0073DA19 /* UIKit.framework in Frameworks */,
 				DCF26DD917CD617C0073DA19 /* Foundation.framework in Frameworks */,
+				FEC938C4DEEF1843FDE43745 /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,7 +273,6 @@
 				C956361519A31A3800EBC7BE /* Storyboard.storyboard */,
 				C9C456C318A73564008C6C1F /* CSH News.entitlements */,
 				DCF26DDE17CD617C0073DA19 /* CSH WebNews */,
-				DCF26DF717CD617C0073DA19 /* CSH WebNewsTests */,
 				DCF26DD717CD617C0073DA19 /* Frameworks */,
 				DCF26DD617CD617C0073DA19 /* Products */,
 				F36E2D1426533A71A09708EF /* Pods */,
@@ -310,7 +302,7 @@
 				DCF26DDA17CD617C0073DA19 /* CoreGraphics.framework */,
 				DCF26DDC17CD617C0073DA19 /* UIKit.framework */,
 				DCF26DF117CD617C0073DA19 /* XCTest.framework */,
-				234ACC9F35034B7CA1D4ECFC /* libPods.a */,
+				67BC93702FC613560CF6F0A4 /* Pods.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -318,10 +310,7 @@
 		DCF26DDE17CD617C0073DA19 /* CSH WebNews */ = {
 			isa = PBXGroup;
 			children = (
-				DC85E6C21B816359000FBEED /* WNSplitViewController.h */,
-				DC85E6C31B816359000FBEED /* WNSplitViewController.m */,
-				DC85E6BF1B8142AC000FBEED /* WNNavigationController.h */,
-				DC85E6C01B8142AC000FBEED /* WNNavigationController.m */,
+				DC85E6C31B816359000FBEED /* WNSplitViewController.swift */,
 				DCF26DE717CD617C0073DA19 /* AppDelegate.h */,
 				DCF26DE817CD617C0073DA19 /* AppDelegate.m */,
 				C906663819A942A30067D054 /* ToolBarColorManager.swift */,
@@ -367,24 +356,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		DCF26DF717CD617C0073DA19 /* CSH WebNewsTests */ = {
-			isa = PBXGroup;
-			children = (
-				DCF26DFD17CD617C0073DA19 /* CSH_WebNewsTests.m */,
-				DCF26DF817CD617C0073DA19 /* Supporting Files */,
-			);
-			path = "CSH WebNewsTests";
-			sourceTree = "<group>";
-		};
-		DCF26DF817CD617C0073DA19 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				DCF26DF917CD617C0073DA19 /* CSH NewsTests-Info.plist */,
-				DCF26DFA17CD617C0073DA19 /* InfoPlist.strings */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		F36E2D1426533A71A09708EF /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -406,6 +377,7 @@
 				DCF26DD217CD617C0073DA19 /* Frameworks */,
 				DCF26DD317CD617C0073DA19 /* Resources */,
 				982FA99914F5456085776421 /* Copy Pods Resources */,
+				B48FF353724390A6D5C3CF0A /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -500,6 +472,21 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		B48FF353724390A6D5C3CF0A /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -507,7 +494,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DC85E6C41B816359000FBEED /* WNSplitViewController.m in Sources */,
 				C96D228A1895D550001BFA57 /* ActivityThread.m in Sources */,
 				DCF26DE917CD617C0073DA19 /* AppDelegate.m in Sources */,
 				C9C9484B1898690800599E74 /* NewsgroupThreadListTableViewModel.m in Sources */,
@@ -532,10 +518,10 @@
 				C9AD13E519A9AFD500808BD1 /* ThreadCell.swift in Sources */,
 				C9D7AF4619F760C30048B56B /* TPKeyboardAvoidingTableView.m in Sources */,
 				C9C9484818985D9B00599E74 /* NewsgroupThread.m in Sources */,
-				DC85E6C11B8142AC000FBEED /* WNNavigationController.m in Sources */,
 				DC22B1AD17EBDFD800E328DE /* ISO8601DateFormatter.m in Sources */,
 				C9F9BCA819B51ADC00E42B14 /* UIColor+CSH.m in Sources */,
 				C906663919A942A30067D054 /* ToolBarColorManager.swift in Sources */,
+				DC85E6C51B8166ED000FBEED /* WNSplitViewController.swift in Sources */,
 				C96D22871895CDBC001BFA57 /* Preferences.m in Sources */,
 				C9D7AF4719F760C30048B56B /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
 				DC0FC96417EC230700945EEC /* APIKeyViewController.m in Sources */,
@@ -552,14 +538,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				DCF26DE217CD617C0073DA19 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		DCF26DFA17CD617C0073DA19 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				DCF26DFB17CD617C0073DA19 /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
